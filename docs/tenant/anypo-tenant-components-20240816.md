@@ -8,7 +8,7 @@ php artisan make:component Tenant/Info/AehInfo
 php artisan make:component Tenant/Ael/AelForAeh
 
 
-# 13. Jobs 
+# 13. Jobs
 -------------------------------------------------------------------------------------------------
 php artisan make:job ImportAllRate
 xxphp artisan make:job Tenant\SynBudget
@@ -23,7 +23,7 @@ php artisan make:job Tenant\AccountingReceipt
 [php artisan make:job ImportSingleRate]
 todo call API to create ticket
 
-# 13. Rules 
+# 13. Rules
 -------------------------------------------------------------------------------------------------
 php artisan make:rule Tenant\OverInvoiceRule	invoice.store and invoice.update invoice.post
 php artisan make:rule Tenant\OverPaymentRule
@@ -57,7 +57,7 @@ php artisan make:notification UserRegistered	RegisterController.php
 php artisan make:notification UserCreated	UserController.php/Provision.php
 
 php artisan make:notification TicketCreated	TicketController.php
-php artisan make:notification TicketAssigned	TicketController.php	
+php artisan make:notification TicketAssigned	TicketController.php
 php artisan make:notification TicketUpdated	CommentController.php
 php artisan make:notification TicketClosed	CommentController.php
 
@@ -74,16 +74,16 @@ php artisan make:notification InvoiceDue
 php artisan make:notification Contacted
 
 
-# 13. Mail 
+# 13. Mail
 -------------------------------------------------------------------------------------------------
 ContactUsMail
 
 
-# 13. Livewire 
+# 13. Livewire
 -------------------------------------------------------------------------------------------------
 php artisan make:livewire Index\\DeptIndex
 
-# 13. Components 
+# 13. Components
 -------------------------------------------------------------------------------------------------
 D:\laravel\test\app\View\Components\Landlord\Card		-> Proper case
 D:\laravel\test\resources\views\components\landlord\card	->lowercase
@@ -91,15 +91,15 @@ lv9->lv10: use and render
 public function render()
 public function render(): View|Closure|string
 
-=>component not modify to move to tenenact 
+=>component not modify to move to tenenact
 	- Alert
 	- Icons
 
 # Feather icon for livewire
 -------------------------------------
-xxphp artisan make:component Icons/BellOff --view	
-xxphp artisan make:component Icons/Bell --view	
-	
+xxphp artisan make:component Icons/BellOff --view
+xxphp artisan make:component Icons/Bell --view
+
 php artisan make:component Icons/Enable 	<x-icons.enable :enable="$dept->enable"/>
 php artisan make:component Icons/Edit --view 	<x-icons.edit/>
 php artisan make:component Icons/Show --view 	<x-icons.show/>
@@ -131,7 +131,7 @@ php artisan make:component Info --view		<x-tenant.info info="Note: You wont be a
 ?php artisan make:component PageHeader --view 	<x-page-header/>
 php artisan make:component Tenant\Alerts\Success
 php artisan make:component Tenant\Alerts\Error
-php artisan make:component Tenant\Alerts\Warning 
+php artisan make:component Tenant\Alerts\Warning
 php artisan make:component Share\Actions\TableActions --view
 
 # 13. Component to Display Notification
@@ -146,7 +146,7 @@ php artisan make:component Tenant\Notifications\Unread
 php artisan make:component Tenant\Cards\HeaderSearchExportBar  <x-tenant.cards.header-search-export-bar object="Activity"/>
 php artisan make:component Tenant\Cards\HeaderSearchBar 		<x-tenant.cards.header-search-bar object="Po"/>
 
-php artisan make:component Cards/HeaderExportButton 	<x-cards.header-export-button route="activities"/> 
+php artisan make:component Cards/HeaderExportButton 	<x-cards.header-export-button route="activities"/>
 ?php artisan make:component Cards/Header/Search	<x-cards.header-with-simple-search object="Dept" title="Department" :export="true"/>
 ?php artisan make:component Cards/Header/WithSearch
 
@@ -158,7 +158,7 @@ php artisan make:component Tenant\List\MyDateTime	<x-list.my-date-time :value="$
 php artisan make:component Tenant\List\MyDate		<x-list.my-date :value="$fdr->start_date"/>
 php artisan make:component Tenant\List\MyNumber		<x-list.my-number :value="$training->seat"/>
 php artisan make:component Tenant\List\MyInteger
-php artisan make:component Tenant\List\MyBadge		incomplete	
+php artisan make:component Tenant\List\MyBadge		incomplete
 php artisan make:component Tenant\List\MyBoolean	<x-tenant-list.my-boolean :value="$entity->enable"/>
 php artisan make:component Tenant\List\MyEnable		<x-tenant-list.my-boolean :value="$entity->enable"/>
 
@@ -201,7 +201,7 @@ php artisan make:component Tenant\Show\ProjectLink
 php artisan make:component Tenant\Wf\PrApprovalHistory
 php artisan make:component Tenant\Wf\PoApprovalHistory
 
-# 13. Form top Drop-down Actions 
+# 13. Form top Drop-down Actions
 -------------------------------------------------------------------------------------------------
 php artisan make:component Tenant\Actions\Admin\UserActions
 php artisan make:component Tenant\Actions\Admin\UserActionsIndex
@@ -262,7 +262,7 @@ php artisan make:component Buttons/Header/Lists		<x-buttons.header.lists object=
 php artisan make:component Buttons/Header/AddLine	<x-buttons.header.add-line object="User" :id="$user->id"/>
 php artisan make:component Buttons/Header/Pdf		<x-buttons.header.pdf object="User" :id="$user->id"/>
 php artisan make:component Buttons/Header/Password	<x-buttons.header.password object="User" :id="$user->id"/>
-php artisan make:component Buttons/Header/Save		<x-buttons.header.save 
+php artisan make:component Buttons/Header/Save		<x-buttons.header.save
 php artisan make:component Buttons/Header/Submit	<x-buttons.header.submit/>
 
 php artisan make:component Tenant/Buttons/Show/Edit		<x-tenant.buttons.show.edit object="User" :id="$user->id"/>
@@ -319,7 +319,7 @@ php artisan make:component Tenant/Create/CityStateZip
 //php artisan make:component Tenant/Create/State		<x-create.state/>
 //php artisan make:component Tenant/Create/Zip		<x-create.zip/>
 php artisan make:component Tenant/Create/Country	<x-create.country/>
-php artisan make:component Tenant/Create/Currency	<x-create.currency/>	
+php artisan make:component Tenant/Create/Currency	<x-create.currency/>
 php artisan make:component Tenant/Create/Cell		<x-create.cell/>
 php artisan make:component Tenant/Create/Email		<x-create.email/>
 php artisan make:component Tenant/Create/Website
@@ -422,7 +422,7 @@ php artisan make:component Tenant/Charts/DeptBudgetPrPie	<x-tenant.charts.dept-b
 php artisan make:component Tenant/Charts/DeptBudgetBar		<x-tenant.charts.dept-budget-bar :dbid="$deptBudget->id"/>
 
 php artisan make:component Tenant/Charts/BudgetPoPie		<x-tenant.charts.budget-po-pie/>
-php artisan make:component Tenant/Charts/BudgetByDeptPie	
+php artisan make:component Tenant/Charts/BudgetByDeptPie
 php artisan make:component Tenant/Charts/BudgetByDeptPoBar
 
 ?php artisan make:component Tenant/Charts/BudgetPie		<x-tenant.charts.budget-pie/>

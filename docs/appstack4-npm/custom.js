@@ -1,7 +1,7 @@
 // A+ https://stackoverflow.com/questions/66562974/how-to-catch-form-submit-method-with-sweetalert2
 document.addEventListener('DOMContentLoaded', function() {
 
-	// Tenant: Activity, Budget, Notification 
+	// Tenant: Activity, Budget, Notification
 	// Landlord: Ticket
 	$('.sw2').on('click', function (e) {
 		e.preventDefault();
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 		})
 	});
-	
+
 	$('.sw2-advance').on('click', function (e) {
 		e.preventDefault();
 		const url = $(this).attr('href');

@@ -21,10 +21,10 @@ php artisan migrate:fresh
 php artisan db:seed --class="UserSeeder"
 ~~~
 
-# Landlord Individual Seeder 
+# Landlord Individual Seeder
 -------------------
 ~~~
-[ 
+[
 php artisan db:seed --class="Database\Seeders\Landlord\TicketSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\CommentSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\UserSeeder"
@@ -32,10 +32,10 @@ php artisan db:seed --class="Database\Seeders\Landlord\MenuSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\StatusSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\TemplateSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\EntitySeeder"
-#Activity 
+#Activity
 xxphp artisan db:seed --class="Database\Seeders\Landlord\SetupSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\ConfigSeeder"
-#Attachment 
+#Attachment
 php artisan db:seed --class="Database\Seeders\Landlord\ContactSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\TopicSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\CategorySeeder"

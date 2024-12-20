@@ -11,7 +11,7 @@
 		Payment Lists
 		@endslot
 		@slot('buttons')
-			<a href="{{ route('payments.create-for-invoice') }}" class="btn btn-primary float-end me-2"><i data-lucide="plus"></i> Create</a>
+			<a href="{{ route('payments.create-for-invoice') }}" class="btn btn-primary me-2"><i data-lucide="plus"></i> Create</a>
 			<x-tenant.actions.payment-actions-index/>
 		@endslot
 	</x-tenant.page-header>

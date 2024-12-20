@@ -14,7 +14,7 @@ return new class extends Migration
 		Schema::create('uom_classes', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
 			$table->string('name');
-			$table->boolean('enable')->default(true); 
+			$table->boolean('enable')->default(true);
 			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
 			$table->uuid('updated_by')->nullable();

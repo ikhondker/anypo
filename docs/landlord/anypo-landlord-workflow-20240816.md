@@ -1,4 +1,4 @@
-# 9. Business Flow 
+# 9. Business Flow
 ====================================================================
 1. Pricing->Checkout->Stripe Success(provision=Create User+Account+Service i.e. Purchase)->upgrade => bill next cycle
 2. Register->Login->Pricing->Checkout->Success(provision=Create Account+service i.e. Purchase)->upgrade => bill next cycle
@@ -24,34 +24,34 @@
 0. Overall: event -> AkkController -> checkout -> stripe -> success -> job
 
 1. InvoiceTypeEnum::SIGNUP->value: (called from 2 places)
-		-landlord.pages.checkout.blade.php -> route('akk.process-signup') -> insertCheckout -> 
-		- AkkController.success - jobs.CreateTenant -> 
+		-landlord.pages.checkout.blade.php -> route('akk.process-signup') -> insertCheckout ->
+		- AkkController.success - jobs.CreateTenant ->
 		-> bo::createInvoiceForCheckout -> bo::payCheckoutInvoice
 
 2. InvoiceTypeEnum::SUBSCRIPTION->value
 		-> @include('landlord.includes.invoice') -> route('akk.process-subscription') ->
-		- AkkController.success -> jobs.SubscriptionInvoicePaid 
+		- AkkController.success -> jobs.SubscriptionInvoicePaid
 		-> bo::payCheckoutInvoice -> bo::extendAccountValidity
 
-3. InvoiceTypeEnum::ADVANCE->value:  // discount considered AkkControler::insertCheckout 
+3. InvoiceTypeEnum::ADVANCE->value:  // discount considered AkkControler::insertCheckout
 		admin.invoice.generate.blade.php -> route('akk.process-advance') -> self::insertCheckout
-		- AkkController.success	-> jobs.AddAdvance  -> 
+		- AkkController.success	-> jobs.AddAdvance  ->
 		-> bo::createInvoiceForCheckout -> bo::payCheckoutInvoice  -> bo::extendAccountValidity
 
 4. InvoiceTypeEnum::ADDON->value
 		- admin.services.index -> <x-landlord.widgets.add-addon/> -> route('akk.process-addon') -> self::insertCheckout
-		- AkkController.success - jobs.AddAddon  
+		- AkkController.success - jobs.AddAddon
 		-> bo::createInvoiceForCheckout -> bo::payCheckoutInvoice
 
-2. Payment made from three place: 
-	- bo::payCheckoutInvoice and 
+2. Payment made from three place:
+	- bo::payCheckoutInvoice and
 	- HomeController.paymentStripe
 	- InvoiceController.payPwop ??
 
 # 7. Regular Checkout (Table CHECKOUT)
 ====================================================================
 ~~~
-- pricing.blade.php 
+- pricing.blade.php
 - route('home.checkout')  => HomeController.checkout => view('landlord.pages.checkout)
 - route('checkout-stripe') => HomeController.checkoutStripe
 - <<TABLE>> $checkout->save();
@@ -68,10 +68,10 @@
 # 6. Advance invoice and pay (Table CHECKOUT)
 ====================================================================
 ~~~
-- invoices/index.blade.php => 	route('invoices.generate') 
+- invoices/index.blade.php => 	route('invoices.generate')
 - InvoiceController.generate => view('landlord.admin.invoices.generate')
-- route('invoices.store') 
-- <<TABLE>> set $checkout->end_date	
+- route('invoices.store')
+- <<TABLE>> set $checkout->end_date
 - <<TABLE>> $checkout->save();
 - route('checkout.success-advance') => HomeController.successAdvance
 - AddAdvance::dispatch($checkout->id);
@@ -100,7 +100,7 @@
 - <x-landlord.widget.add-addon/>
 - route('accounts.add-addon', ['account_id' => $account->id, 'addon_id' => $addon->id])
 - AccountController.addAddon
-- <<TABLE>> set $checkout->end_date	
+- <<TABLE>> set $checkout->end_date
 - <<TABLE>> $checkout->save();
 -> Stripe ->
 - route('checkout.success-addon') => HomeController.successAddon
@@ -130,7 +130,7 @@ $checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;
 
 # 2. Pay Generated Subscription Invoice
 ====================================================================
-- invoice/invoice.blade.php 
+- invoice/invoice.blade.php
 - url('/payment-stripe') => HomeController.paymentStripe
 - <<TABLE>> $payment->save();
 - checkout.success-payment => HomeController.successPayment
@@ -138,7 +138,7 @@ $checkout->status_code = LandlordCheckoutStatusEnum::COMPLETED->value;
 - bo::extendAccountValidity($invoice->id);
 - OK
 
-# 1. bill and payment cycle 
+# 1. bill and payment cycle
 ====================================================================
 - need to update
 - InvoiceController->createSubscriptionInvoice: Set

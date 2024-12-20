@@ -19,7 +19,7 @@ class UomClassSeeder extends Seeder
 		//Schema::disableForeignKeyConstraints();
 		//Uom::truncate();
 		//Schema::enableForeignKeyConstraints();
-	
+
 		$uomClasses = [
 			[
 				'id' 	=> 1001,
@@ -46,7 +46,7 @@ class UomClassSeeder extends Seeder
 				'name' => 'Temperature',
 			],
 
-			
+
 
 		];
 		//

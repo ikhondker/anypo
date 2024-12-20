@@ -1,7 +1,7 @@
 [25-NOV-2023] : Instance Specific File Shared Accors Landlord and Tenant
 
 
-# 1.Files/Objects shared/updated between bo and po 
+# 1.Files/Objects shared/updated between bo and po
 ====================================================================
 ## Models
 	1. User Model

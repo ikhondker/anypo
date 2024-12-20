@@ -1,6 +1,6 @@
 
 
-# 4. Size 
+# 4. Size
 -------------------------------------------------------------------------------------------------
 laptop screen size
 1920 x 1080
@@ -14,7 +14,7 @@ logo color:
 blue: #008BCD
 ash: #6A778A
 
-# 3. Icons (Tenat & landlord) 
+# 3. Icons (Tenat & landlord)
 ====================================================================
 - lucide and font awsome
 
@@ -27,7 +27,7 @@ Lanldord & Tenant
 - buttons
 - kpi 			<i class="align-middle" data-lucide="activity"></i>
 
-# 2. Tenant and landlord Theme App: AppsStack 4.0.0 
+# 2. Tenant and landlord Theme App: AppsStack 4.0.0
 ====================================================================
 Now 4.0.1 avaiable
 
@@ -86,7 +86,7 @@ $black: #000 !default;
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 works if added in app.blade.php
 
-# 1. [Discarded] Theme Landlord : Front 
+# 1. [Discarded] Theme Landlord : Front
 ====================================================================
 TODO comape them btn orignal and used in landlaord
 
@@ -145,7 +145,7 @@ edit front ->src->css->theme.css
   max-width: 1140px;
   }
 }
-to 
+to
 @media (min-width: 1440px) {
   .container-xl, .container-lg, .container-md, .container-sm, .container {
   max-width: 1400px;
@@ -157,7 +157,7 @@ to
 Font: file:///D:/xampp/htdocs/frontv431/dist/documentation/gulp.html
 npm install --global gulp
 npm install --global gulp-cli
-npm install 
+npm install
 
 - manually  install from old package.json
 npm  install typed.js@2.0.12
@@ -165,7 +165,7 @@ npm  install dropzone@5.9.3
 npm  install  chart.js@3.8.0
 
 - Keep thes elower veirosn. Latest viso crceate isisue
-npm isntall 
+npm isntall
 quill
 tom-select
 swiper

@@ -168,7 +168,6 @@ class DeptController extends Controller
 	{
 		$this->authorize('export', Dept::class);
 
-		//$fileName = 'dept.xlsx';
 		$fileName = 'export-depts-' . date('Ymd') . '.xlsx';
 		$depts = Dept::with('prHierarchy')->with('poHierarchy')->with('user_created_by')->with('user_updated_by')->get();
 

@@ -2,12 +2,12 @@
 
 Ref: laravel-tenancy.txt
 
-# 1. TODO 
+# 1. TODO
 ====================================================================
 1.
 
 
-# 2. SEEDED FILE CHANGE 
+# 2. SEEDED FILE CHANGE
 ====================================================================
 1. for jquery
 - resources/js/app.js
@@ -23,7 +23,7 @@ use Illuminate\Pagination\Paginator;
 use App\Models\User;
 ~~~
 ~~~
-Paginator::useBootstrapFive(); 
+Paginator::useBootstrapFive();
 & https not needed
 Gate::define('access-back-office',)
 ~~~
@@ -96,7 +96,7 @@ protected function mapManageRoutes()
 		Intervention\Image\ImageServiceProvider::class, // IQBAL
 		Barryvdh\DomPDF\ServiceProvider::class,			// IQBAL
 		App\Providers\ViewServiceProvider::class		// IQBAL
- 
+
 'aliases' => Facade::defaultAliases()->merge([
 		// 'Example' => App\Facades\Example::class,
 	'EntityEnum'	=> App\Enum\EntityEnum::class,
@@ -111,7 +111,7 @@ protected function mapManageRoutes()
 
 13. Env
 
-.env  => env('APP_NAME') 
+.env  => env('APP_NAME')
 - APP_NAME=AnyPO
 - alos check $setup->name
 - #APP_DOMAIN=anypo.net		# Custom
@@ -202,13 +202,13 @@ return [
 		],
 	~~~
 
-19. app/Http/Kernel.php 
+19. app/Http/Kernel.php
 - https://stackoverflow.com/questions/73073575/user-auth-not-working-properly-for-tenant-while-using-stancl-tenancy
 ~~~
 protected $middlewareGroups = [
   	// IQBAL 25-apr-23
 		'universal' => [
-		
+
 		],
 ~~~
 

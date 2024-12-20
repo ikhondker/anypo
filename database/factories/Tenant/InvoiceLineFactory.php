@@ -29,7 +29,7 @@ class InvoiceLineFactory extends Factory
 		//$gst				= $this->faker->numberBetween(20,45);
 		$gst				= $this->faker->randomElement([50,100,150]);
 		$fc_exchange_rate	= 125.20;
-		
+
 		return [
 			'invoice_id'		=> Invoice::inRandomOrder()->first()->id,
 			'summary'			=> $this->faker->randomElement(['Laptop (Lenovo)', 'Laptop (ASUS)','MacBook Air Laptop','Laptop (Dell)','iPhone 12']),

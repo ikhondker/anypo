@@ -1,7 +1,7 @@
 php artisan make:component Admin/Form/Input
 
 
-# 14. Jobs 
+# 14. Jobs
 ====================================================================
 ~~~
 php artisan queue:listen
@@ -15,12 +15,12 @@ php artisan make:job Landlord/SubscriptionInvoicePaid
 xphp artisan make:job Landlord/GenerateAllSubscriptionInvoice
 php artisan make:job Landlord/AccountsArchive
 ~~~
-# 13. View Composer 
+# 13. View Composer
 ====================================================================
 
 
 
-# 13. Form top Drop-down Actions 
+# 13. Form top Drop-down Actions
 ====================================================================
 ~~~
 php artisan make:component Landlord\Actions\AccountActions
@@ -32,7 +32,7 @@ php artisan make:component Landlord\Actions\TicketActions
 xxphp artisan make:component Tenant\Actions\Admin\UserActionsIndex
 ~~~
 
-# 13. Notification 
+# 13. Notification
 ====================================================================
 ~~~
 php artisan notifications:table
@@ -43,7 +43,7 @@ php artisan make:notification UserCreated		UserController.php/Provision.php
 php artisan make:notification Landlord\FirstTenantUserCreated	Job/CreateTenant.php
 
 php artisan make:notification TicketCreated	TicketController.php
-php artisan make:notification TicketAssigned	TicketController.php	
+php artisan make:notification TicketAssigned	TicketController.php
 php artisan make:notification TicketUpdated	CommentController.php
 php artisan make:notification TicketClosed	CommentController.php
 
@@ -58,7 +58,7 @@ php artisan make:notification InvoiceDue
 
 php artisan make:notification Contacted
 ~~~
-# 13. Mail 
+# 13. Mail
 ====================================================================
 - ContactUsMail
 - _landlord_setup	-> _config
@@ -118,7 +118,7 @@ php artisan make:component List/MyDateTime	<x-list.my-date-time :value="$activit
 php artisan make:component List/MyDate		<x-list.my-date :value="$fdr->start_date"/>
 php artisan make:component List/MyNumber	<x-list.my-number :value="$training->seat"/>
 php artisan make:component List/MyInteger
-php artisan make:component List/MyBadge		incomplete	
+php artisan make:component List/MyBadge		incomplete
 php artisan make:component List/MyEnable	<x-list.my-enable :value="$entity->enable"/>
 php artisan make:component List/MyStatus	<x-list.my-status :status="$advance->status"/>
 ~~~
@@ -147,8 +147,8 @@ php artisan make:component Create/Amount	<x-create.amount/>
 php artisan make:component Create/Price		<x-create.price/>
 php artisan make:component Create/qty		<x-create.qty/>
 qty
-php artisan make:component Create/DateStart	<x-create.date-start/>	
-php artisan make:component Create/DateEnd	<x-create.date-end/>	
+php artisan make:component Create/DateStart	<x-create.date-start/>
+php artisan make:component Create/DateEnd	<x-create.date-end/>
 php artisan make:component Create/Notes		<x-create.notes/>
 
 php artisan make:component Landlord/Create/Save
@@ -202,7 +202,7 @@ php artisan make:component Landlord\Attachment\image	<x-attachment.create />
 php artisan make:component Attachment\Create	<x-attachment.create />
 
 php artisan make:component Attachment\ShowById
-php artisan make:component Attachment\Show	<x-attachment.show  entity="{{ $entity }}" aid="{{ $advance->id }}"/>	
+php artisan make:component Attachment\Show	<x-attachment.show  entity="{{ $entity }}" aid="{{ $advance->id }}"/>
 
 php artisan make:component Attachment\ListOne	<x-attachment.list-one  entity="{{ $entity }}" aid="{{ $library->id }}"/>
 php artisan make:component Attachment\ListAll	<x-attachment.list-all entity="{{ $entity }}" aid="{{ $pr->id }}"/>

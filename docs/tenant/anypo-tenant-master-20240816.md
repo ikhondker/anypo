@@ -3,7 +3,7 @@
 
 [25-NOV-2023]
 
-# 2. Functionality Covered 
+# 2. Functionality Covered
 ====================================================================]
 1. menu activation
 2. budget control
@@ -33,12 +33,12 @@
 25. file based integration with core accounting system
 
 
-# 3.Major steps 
+# 3.Major steps
 ====================================================================]
 1. multi tenant configure -? laravel-multi-tenant.txt
-2. git 
+2. git
 3. appsstack deploy
-	- tenant is using public\tenancy\assets for css by default. 
+	- tenant is using public\tenancy\assets for css by default.
 4. install multi tenant and enable universal
 5. enable livewire for lieutenancy
 6. enable queue
@@ -48,13 +48,13 @@
 file:///D:/laravel/po02/public/tenancy/assets/css/light.css
 D:\laravel\po02\public\tenancy\assets\css
 
-# 2.How to Start 
+# 2.How to Start
 ====================================================================]
 1. laravel-create-project.txt po02
 2. laravel-project-post-create.txt
 2. laravel-multi-tenant.txt
 3. laravel-git.txt
-4. laravel-prototype.txt 
+4. laravel-prototype.txt
 5. laravel-my-auth.txt
 
 

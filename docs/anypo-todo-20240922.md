@@ -1,5 +1,5 @@
 
-# 3. TODO 
+# 3. TODO
 ====================================================================
 1.	demo access to user
 2.	bug report in both landlord and tenant
@@ -17,7 +17,7 @@
 14.	P2 quick code snipe generator like breadcrumb, edit, add etc
 15.	flyer for anypo.net
 16.	Facebook boost post design
-17.	FAQ landlord 
+17.	FAQ landlord
 18.	FAQ tenant
 19.	list in good product g2, captive listing
 20.	chatbot
@@ -35,7 +35,7 @@
 x32. cell placeholder="+x(xxx)xxx-xx-xx"
 x1.	fix bo.SYSTEM_USER_ID, akk.SYSTEM_USER_ID, bo.SUPPORT_MGR_ID
 
-# 2. TODO P2 
+# 2. TODO P2
 ====================================================================
 1. recon country vs currency vs flag
 2. Edit CORS Configuration aws
@@ -44,7 +44,7 @@ x1.	fix bo.SYSTEM_USER_ID, akk.SYSTEM_USER_ID, bo.SUPPORT_MGR_ID
 5. tenant login page show company logo
 
 
-# 1. Done 
+# 1. Done
 ====================================================================
 - [x] 21. tenant setup name
 - [x] 22. supplier wise spent chart
@@ -54,7 +54,7 @@ x@example.com, demo,  email@example.com
 xx'email'				=> 'info@anypo.net',
 xx'cell'				=> '+0012262804920',
 xwebsite'			=> 'https://www.anypo.net',
-x126. find and replace 01911310509 +0012262804920 you@company.com 
+x126. find and replace 01911310509 +0012262804920 you@company.com
 x2.	float to decimal (19,4)
 x1. move changelog to a shared controler and let supprot entry P2
 xfind and replace <table id="datatables-orders" class="table w-100">

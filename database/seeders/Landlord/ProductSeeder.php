@@ -29,7 +29,7 @@ class ProductSeeder extends Seeder
 				'mnth'			=> 1,
 				'user'			=> 5,
 				'gb'			=> 99,
-				'list_price'	=> 59.00,	// per user list price 6$ after discuss 10$ 
+				'list_price'	=> 59.00,	// per user list price 6$ after discuss 10$
 				'price'			=> 49.00,
 				'notes'			=> $faker->paragraph,
 				'enable'		=> true,

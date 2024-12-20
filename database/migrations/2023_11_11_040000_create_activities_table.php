@@ -15,11 +15,11 @@ return new class extends Migration
 			$table->id()->startingValue(1001);
 			$table->foreignId('account_id')->nullable();
 			$table->string('object_name')->nullable();
-			$table->string('object_id')->nullable()->default(''); 
-			$table->string('event_name')->nullable(); 
-			$table->string('column_name')->nullable(); 
-			$table->string('prior_value')->nullable(); 
-			$table->enum('object_type', ['C','M','O','E','H'])->default('C'); 
+			$table->string('object_id')->nullable()->default('');
+			$table->string('event_name')->nullable();
+			$table->string('column_name')->nullable();
+			$table->string('prior_value')->nullable();
+			$table->enum('object_type', ['C','M','O','E','H'])->default('C');
 			$table->string('url');
 			$table->string('method');
 			$table->string('ip');

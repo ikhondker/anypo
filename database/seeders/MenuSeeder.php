@@ -16,7 +16,7 @@ class MenuSeeder extends Seeder
 	{
 		Menu::truncate();
 
-		$menus =  [
+		$menus = [
 
 			/**
 			* ==================================================================================
@@ -37,56 +37,56 @@ class MenuSeeder extends Seeder
 			* ==================================================================================
 			*/
 
-			[ 'raw_route_name' => 'prs.index','route_name'  			=> 'prs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prs.index','route_name'				=> 'prs.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'prs.my-prs','route_name' 			=> 'prs.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'prs.show','route_name'				=> 'prs.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'prs.history','route_name'			=> 'prs.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'prs.extra','route_name'  			=> 'prs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prs.extra','route_name'				=> 'prs.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'prs.edit','route_name'				=> 'prs.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'prs.create','route_name' 			=> 'prs.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'prs.attachments','route_name'		=> 'prs.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'prs.timestamp','route_name'				=> 'prs.index', 'node_name' => 'workbench'],
 
-			[ 'raw_route_name' => 'prls.edit','route_name'  			=> 'prs.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'prls.add-line','route_name'  		=> 'prs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prls.edit','route_name'				=> 'prs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prls.add-line','route_name'			=> 'prs.index', 'node_name' => 'workbench'],
 
 
-			[ 'raw_route_name' => 'pos.index','route_name'  			=> 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pos.index','route_name'				=> 'pos.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'pos.my-pos','route_name' 			=> 'pos.index', 'node_name' => 'workbench'],
 
-			[ 'raw_route_name' => 'pos.show','route_name'  				=> 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pos.show','route_name'				=> 'pos.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'pos.edit','route_name'				=> 'pos.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'pos.create','route_name' 			=> 'pos.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'pos.history','route_name'			=> 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pos.extra','route_name'  			=> 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pos.extra','route_name'				=> 'pos.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'pos.invoice','route_name'			=> 'pos.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'pos.attachments','route_name'		=> 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pos.timestamp','route_name'  		=> 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pos.timestamp','route_name'			=> 'pos.index', 'node_name' => 'workbench'],
 
 
-			[ 'raw_route_name' => 'pols.show','route_name'  			=> 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pols.edit','route_name'  			=> 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pols.show','route_name'				=> 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pols.edit','route_name'				=> 'pos.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'pols.receipt','route_name'			=> 'pos.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'pols.add-line','route_name'  		=> 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'pols.add-line','route_name'			=> 'pos.index', 'node_name' => 'workbench'],
 
 
 			[ 'raw_route_name' => 'receipts.index','route_name' 		=> 'receipts.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'receipts.my-receipts','route_name'	=> 'receipts.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'receipts.show','route_name'  		=> 'receipts.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'receipts.show','route_name'			=> 'receipts.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'receipts.create-for-pol','route_name'=> 'receipts.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'receipts.ael','route_name'			=> 'receipts.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'receipts.timestamp','route_name'  	=> 'receipts.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'receipts.timestamp','route_name' 	=> 'receipts.index', 'node_name' => 'workbench'],
 
 
 			[ 'raw_route_name' => 'invoices.index','route_name' 		=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoices.my-invoices','route_name'	=> 'invoices.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'invoices.show','route_name'  		=> 'invoices.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'invoices.edit','route_name'  		=> 'invoices.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'invoices.show','route_name'			=> 'invoices.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'invoices.edit','route_name'			=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoices.create-for-po','route_name' => 'invoices.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'invoices.ael','route_name'  			=> 'invoices.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'invoices.ael','route_name'			=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoices.payments','route_name'		=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoices.attachments','route_name'	=> 'invoices.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'invoices.timestamp','route_name'  	=> 'invoices.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'invoices.timestamp','route_name'		=> 'invoices.index', 'node_name' => 'workbench'],
 
 			[ 'raw_route_name' => 'invoice-lines.add-line','route_name'	=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoice-lines.edit','route_name'		=> 'invoices.index', 'node_name' => 'workbench'],
@@ -207,7 +207,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'uoms.timestamp','route_name' 		=> 'uoms.index', 'node_name' 		=> 'lookups'],
 
 			[ 'raw_route_name' => 'designations.index','route_name' 	=> 'designations.index', 'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'designations.show','route_name'  	=> 'designations.index', 'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'designations.show','route_name'		=> 'designations.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'designations.edit','route_name' 		=> 'designations.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'designations.create','route_name'	=> 'designations.index', 'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'designations.timestamp','route_name' => 'designations.index', 'node_name' => 'lookups'],
@@ -369,7 +369,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'users.profile-password','route_name' => 'users.profile-password', 'node_name'=> 'profile'],
 
 
-		  ];
+			;
 		//
 		Menu::insert($menus);
 	}

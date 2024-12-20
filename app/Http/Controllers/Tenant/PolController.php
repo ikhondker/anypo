@@ -42,6 +42,9 @@ use App\Helpers\EventLog;
 # 6. Mails
 # 7. Rules
 # 8. Packages
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xls;
+
 # 9. Exceptions
 # 10. Events
 # 11. Controller
@@ -269,39 +272,85 @@ class PolController extends Controller
 
 		$this->authorize('export', Pol::class);
 
-		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
-			$requestor_id 	= auth()->user()->id;
-		} else {
-			$requestor_id 	= '';
-		}
+        $fileName = 'export-pols-' . date('Ymd') . '.xls';
+		$pols = Pol::with('item')->with('po')->with('po.dept')->with('po.project')->with('po.supplier')->with('po.requestor')->with('user_created_by')->with('user_updated_by');
+        $pols->whereHas('po', function ($q) {
+            $q->where('auth_status', AuthStatusEnum::APPROVED->value);
+        });
 
+		// HoD sees only dept
 		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
-			$dept_id 	= auth()->user()->dept_id;
-		} else {
-			$dept_id 	= '';
+            $pols->whereHas('po', function ($q) {
+                $q->where('dept_id', auth()->user()->dept_id);
+            });
+
+		}
+		$pols = $pols->get();
+
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+
+		$sheet->setCellValue('A1', 'PO#');
+		$sheet->setCellValue('B1', 'Summary');
+		$sheet->setCellValue('C1', 'Date');
+		$sheet->setCellValue('D1', 'Requestor');
+		$sheet->setCellValue('E1', 'Dept');
+		$sheet->setCellValue('F1', 'Project');
+		$sheet->setCellValue('G1', 'Supplier');
+		$sheet->setCellValue('H1', 'Currency');
+		$sheet->setCellValue('I1', 'PO Amount');
+		$sheet->setCellValue('J1', 'Status');
+		$sheet->setCellValue('K1', 'Auth_status');
+		$sheet->setCellValue('L1', 'Line#');
+        $sheet->setCellValue('M1', 'Item Description');
+        $sheet->setCellValue('N1', 'Code');
+        $sheet->setCellValue('O1', 'UoM');
+        $sheet->setCellValue('P1', 'Qty');
+        $sheet->setCellValue('Q1', 'Price');
+		$sheet->setCellValue('R1', 'Sub_total');
+		$sheet->setCellValue('S1', 'Tax');
+		$sheet->setCellValue('T1', 'GST');
+        $sheet->setCellValue('U1', 'Amount');
+		// $sheet->setCellValue('V1', 'Created By');
+		// $sheet->setCellValue('W1', 'Created At');
+		// $sheet->setCellValue('X1', 'Updated By');
+		// $sheet->setCellValue('Y1', 'Updated At');
+
+		$rows = 2;
+		foreach($pols as $pol){
+			$sheet->setCellValue('A' . $rows, $pol->id);
+			$sheet->setCellValue('B' . $rows, $pol->po->summary);
+			$sheet->setCellValue('C' . $rows, $pol->po->po_date);
+			$sheet->setCellValue('D' . $rows, $pol->po->requestor->name);
+			$sheet->setCellValue('E' . $rows, $pol->po->dept->name);
+			$sheet->setCellValue('F' . $rows, $pol->po->project->name);
+			$sheet->setCellValue('G' . $rows, $pol->po->supplier->name);
+			$sheet->setCellValue('H' . $rows, $pol->po->currency);
+			$sheet->setCellValue('I' . $rows, $pol->po->amount);
+			$sheet->setCellValue('J' . $rows, $pol->po->status);
+			$sheet->setCellValue('K' . $rows, $pol->po->auth_status);
+            $sheet->setCellValue('L' . $rows, $pol->line_num);
+            $sheet->setCellValue('M' . $rows, $pol->item->name);
+            $sheet->setCellValue('N' . $rows, $pol->item->code);
+            $sheet->setCellValue('O' . $rows, $pol->uom->name);
+            $sheet->setCellValue('P' . $rows, $pol->qty);
+            $sheet->setCellValue('Q' . $rows, $pol->price);
+			$sheet->setCellValue('R' . $rows, $pol->sub_total);
+			$sheet->setCellValue('S' . $rows, $pol->tax);
+			$sheet->setCellValue('T' . $rows, $pol->gst);
+            $sheet->setCellValue('U' . $rows, $pol->amount);
+
+			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
+			// $sheet->setCellValue('S' . $rows, $pr->created_at);
+			// $sheet->setCellValue('T' . $rows, $pr->user_updated_by->name);
+			// $sheet->setCellValue('U' . $rows, $pr->updated_at);
+			$rows++;
 		}
 
-		$data = DB::select("
-		SELECT po.id, po.summary po_summary, po.po_date, po.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name,
-		po.notes, po.currency, po.amount, po.status, po.auth_status, po.auth_date,
-		pol.line_num, pol.item_description, i.code item_code, uom.name uom, pol.qty, pol.price, pol.sub_total, pol.tax, pol.gst, pol.amount,
-		pol.price, pol.sub_total, pol.amount,pol.notes, pol.closure_status
-		FROM pos po,depts d, projects p, suppliers s, users u , , items i, uoms uom
-		WHERE po.dept_id=d.id
-		AND po.project_id=p.id
-		AND po.supplier_id=s.id
-		AND po.requestor_id=u.id
-		AND po.id = pol.pr_id
-		AND pol.item_id = i.id
-		AND pol.uom_id = uom.id
-		AND ". ($dept_id <> '' ? 'po.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
-		AND ". ($requestor_id <> '' ? 'po.requestor_id = '.$requestor_id.' ' : ' 1=1 ') ."
-		");
-
-
-		$dataArray = json_decode(json_encode($data), true);
-		// used Export Helper
-		return Export::csv('pos', $dataArray);
+		$writer = new Xls($spreadsheet);
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
+		$writer->save('php://output');
 	}
 
 	public function getPol($polId = 0)

@@ -36,7 +36,7 @@ return new class extends Migration
 			$table->decimal('tolerance_invoice', 15, 2)->default(1);		// Future
 			$table->decimal('tolerance_receipt', 15, 2)->default(1);		// Future
 			$table->decimal('tolerance_payment', 15, 2)->default(1);		// Future
-			$table->boolean('user_master_data_entry')->default(false); 	    // Future. Allow user to create master data
+			$table->boolean('user_master_data_entry')->default(false); 		// Future. Allow user to create master data
 			$table->string('ac_advance')->default('A500101');
 			$table->string('ac_ap_accrual')->default('A200101');
 			$table->string('ac_liability')->default('A200104');

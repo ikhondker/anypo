@@ -1,6 +1,6 @@
 
 update accounts
-set 
+set
 start_date = DATE_SUB(start_date, INTERVAL 28 DAY),
 end_date = DATE_SUB(end_date, INTERVAL 28 DAY)
 where id=1004
@@ -8,13 +8,13 @@ where id=1004
 DATE_SUB(curdate(), INTERVAL 30 DAY),
 
 update accounts
-update accounts 
+update accounts
 set start_date = DATE_SUB(start_date, INTERVAL 1 MONTH );
 set  start_date = curdate(), end_date= curdate()
 where account_id=1001
 
 
-# 3. TODO 
+# 3. TODO
 ==================================================
 
 	1. screnshto and isometric
@@ -29,11 +29,11 @@ where account_id=1001
 	15. faq
 	16. seperate fbadg for seprate ivnocie color
 
-# 2. OverAll case 
+# 2. OverAll case
 ==================================================
 1. This daily driver will create one log file per day in the format of laravel-YYYY-MM-DD.log
 
-# 1. Test Use case 
+# 1. Test Use case
 ==================================================
 1. chek LandlordNoticeAllTenants and LandlordNoticeOneTenant
 2. admin change other users password this is NOT needed! use will use forget passord. For tne it is there
@@ -52,7 +52,7 @@ where account_id=1001
 		ok 3. buy server a new user
 		ok 2. Buy server of a exists user
 		ok gnerate invocie
-		ok by new addon 
+		ok by new addon
 		ok. Bill generation
 		ok sitename uniq chek
 		ok stop checkout iwth exisitn email

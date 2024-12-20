@@ -1,9 +1,9 @@
-neo4j/pgadmin/qgis/FMEdata Inspector/FME Workbench/ 
+neo4j/pgadmin/qgis/FMEdata Inspector/FME Workbench/
 
 // IQBAL
 use Faker\Generator;
 
-# tenant 
+# tenant
 ---------------
 >> refresh
 php artisan tenants:migrate-fresh --tenants=demo1
@@ -21,7 +21,7 @@ php artisan tenants:seed --tenants=demo1
 php artisan tenants:seed --class=UserSeeder --tenants=demo1
 php artisan tenants:seed --class=MenuSeeder --tenants=demo1
 
-# landlord 
+# landlord
 ---------------
 delete from payments;
 delete from invoices;
@@ -97,9 +97,9 @@ Wfl
 Report
 
 Dashboard
-Activity 
+Activity
 Notification
-Attachment 
+Attachment
 Contact
 
 po/pol

@@ -14,7 +14,7 @@
 		- <<TABLE>> $invoice->save();
 
 - 2. pay subscription invoice
-	- invoice/invoice.blade.php 
+	- invoice/invoice.blade.php
 	- url('/payment-stripe') => HomeController.paymentStripe
 	- <<TABLE>> $payment->save();
 	- checkout.success-payment => HomeController.successPayment
@@ -23,7 +23,7 @@
 	- OK
 
 - 3. checkout (Table CHECKOUT)
-	- pricing.blade.php 
+	- pricing.blade.php
 	- route('home.checkout')  => HomeController.checkout => view('landlord.pages.checkout)
 	- route('checkout-stripe') => HomeController.checkoutStripe
 	- <<TABLE>> $checkout->save();
@@ -42,7 +42,7 @@
 	- route('accounts.add-addon', ['account_id' => $account->id, 'addon_id' => $addon->id]) }}
 	- AccountController.addAddon
 	- <<TABLE>> $checkout->save();
-	- set $checkout->end_date	
+	- set $checkout->end_date
 	- route('checkout.success-addon') => HomeController.successAddon
 	- AddAddon::dispatch($checkout->id);
 	- bo::createInvoiceForCheckout($this->checkout_id);
@@ -54,11 +54,11 @@
 
 
 - 5. Advance invoice and pay (Table CHECKOUT)
-	invoices/index.blade.php => 	route('invoices.generate') 
+	invoices/index.blade.php => 	route('invoices.generate')
 	- InvoiceController.generate => view('landlord.admin.invoices.generate'
-	- route('invoices.store') 
+	- route('invoices.store')
 	- <<TABLE>> $checkout->save();
-	- set $checkout->end_date	
+	- set $checkout->end_date
 	- route('checkout.success-advance') => HomeController.successAdvance
 	- Advance::dispatch($checkout->id);
 	- bo::createInvoiceForCheckout($this->checkout_id);
@@ -95,15 +95,15 @@ Payment
 
 			Source Helper						Called From
 			--------------		----------------	---------------------
-prBudgetBook		PrBudget		amount_pr_booked 	PrController->submit		
-prBudgetBookReverse	PrBudget		- amount_pr_booked 	WflController->rejected		
+prBudgetBook		PrBudget		amount_pr_booked 	PrController->submit
+prBudgetBookReverse	PrBudget		- amount_pr_booked 	WflController->rejected
 									WfController->wfResetPr
 
 prBudgetApprove+1	PrBudget					WflController->approved		update project and supplier
 prBudgetApproveCancel+1	PrBudget					WfController->wfResetPr 	TBD
 									PrController->cancel		TBD
-	
-poBudgetBook		PoBudget					PoController->submit	
+
+poBudgetBook		PoBudget					PoController->submit
 poBudgetBookReverse	PoBudget		- amount_po_booked	WflController->rejected
 									WfController->wfResetPo
 
@@ -123,7 +123,7 @@ invoice.cancel-1
 payment.store+1
 payment.cancel-1
 
-# PR 
+# PR
 ==================================================
 pr->	save	syncPrValues
 	update	syncPrValues
@@ -131,5 +131,5 @@ pr->	save	syncPrValues
 prl->	save	syncPrValues
 pr->	submit	syncPrValues
 
-#  PO 
+#  PO
 ==================================================

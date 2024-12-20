@@ -16,7 +16,7 @@ import "./modules/moment";
 // Charts (optional)
 //import "./modules/chartjs";
 // IQBAL 26-MAR-2024
-// default charjs with appstak4 is 2.9. which shows error 
+// default charjs with appstak4 is 2.9. which shows error
 // so don't import "./modules/chartjs"; install charjs4 and use vanilla one
 import Chart from 'chart.js/auto';
 window.Chart = Chart;

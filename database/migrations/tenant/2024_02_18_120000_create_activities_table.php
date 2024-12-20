@@ -14,11 +14,11 @@ return new class extends Migration
 		Schema::create('activities', function (Blueprint $table) {
 			$table->id()->startingValue(10001);
 			$table->string('object_name')->nullable();
-			$table->string('object_id')->nullable()->default(''); 
-			$table->string('event_name')->nullable(); 
-			$table->string('column_name')->nullable(); 
-			$table->string('prior_value')->nullable(); 
-			$table->enum('object_type', ['C','M','O','E','H'])->default('C'); 
+			$table->string('object_id')->nullable()->default('');
+			$table->string('event_name')->nullable();
+			$table->string('column_name')->nullable();
+			$table->string('prior_value')->nullable();
+			$table->enum('object_type', ['C','M','O','E','H'])->default('C');
 			$table->string('url');
 			$table->string('method');
 			$table->string('ip');
@@ -30,7 +30,7 @@ return new class extends Migration
 			$table->timestamp('created_at')->useCurrent();
 			$table->uuid('updated_by')->nullable();
 			$table->timestamp('updated_at')->useCurrent();
-			
+
 		});
 	}
 

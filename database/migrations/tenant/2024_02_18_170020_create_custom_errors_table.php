@@ -12,13 +12,13 @@ return new class extends Migration
 	public function up(): void
 	{
 		Schema::create('custom_errors', function (Blueprint $table) {
-			$table->string('code', 15);	// model: protected $primaryKey = 'code'; 
-			$table->string('entity',15); 
+			$table->string('code', 15);	// model: protected $primaryKey = 'code';
+			$table->string('entity',15);
 			/** ENUM */
 			//$table->string('entity')->default(EntityEnum::PR->value);
 			/** end ENUM */
 			$table->string('message')->nullable();
-			$table->boolean('enable')->default(true); 
+			$table->boolean('enable')->default(true);
 			$table->softDeletes();
 			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();

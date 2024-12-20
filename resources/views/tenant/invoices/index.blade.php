@@ -11,8 +11,7 @@
 			Invoice Lists
 		@endslot
 		@slot('buttons')
-			<a href="{{ route('invoices.create-for-po') }}" class="btn btn-primary float-end me-2"><i data-lucide="plus"></i> Create</a>
-			{{-- <x-tenant.buttons.header.create model="Invoice"/> --}}
+			<a href="{{ route('invoices.create-for-po') }}" class="btn btn-primary me-2"><i data-lucide="plus"></i> Create</a>
 			<x-tenant.actions.invoice-actions-index/>
 		@endslot
 	</x-tenant.page-header>

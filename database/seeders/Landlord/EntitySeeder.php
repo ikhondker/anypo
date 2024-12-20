@@ -88,7 +88,7 @@ class EntitySeeder extends Seeder
 							'directory'	=> 'contacts',
 						],
 					];
-				
+
 					Entity::insert($entities);
 		}
 }

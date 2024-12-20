@@ -11,7 +11,7 @@
 
 
 
-# 4. Functional Details 
+# 4. Functional Details
 ====================================================================
 1. new tenat is create form two places HomeController.Success and TenantController.store
 2. Only admin  user can be add add-on
@@ -26,7 +26,7 @@
 # 3. Design Consideration
 ====================================================================
 1. Intentionally kept index and all, have duplicate code. however keep separate so that back office can have separate interface. also export separate
-2. 
+2.
 
 # 2. Assumption and limitation
 ====================================================================
@@ -61,7 +61,7 @@
 	- can add and remove any time
 	- Everything is in services.index when account_id <> ''
 	- services.index -> <x-landlord.widgets.add-addon/> ->  route('accounts.add-addon', ['account_id' => $account->id, 'addon_id' => $addon->id])
-	- make sure no pending unpaid invoice 
+	- make sure no pending unpaid invoice
 	- need to prorate days based on config.days_addon_free
 	- add: free: AccountController.addAddon -> AddAddon::dispatch($checkout->id);
 	- add: payment: AccountController.addAddon -> Stripe -> HomeController.successAddon -> AddAddon::dispatch($checkout->id);

@@ -664,7 +664,7 @@ class InvoiceController extends Controller
 			");
 		$dataArray = json_decode(json_encode($data), true);
 		// used Export Helper
-		return Export::csv('depts', $dataArray);
+		return Export::csv('invoices', $dataArray);
 	}
 
 	 // user in prl and pol dropdown ajax

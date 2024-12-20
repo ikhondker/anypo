@@ -1,7 +1,8 @@
 # 33. TODO
 -------------------------------------------------------------------------------------------------
-http://demo1.localhost:8000/payments recept/ ovoce not found 404 after create 
+http://demo1.localhost:8000/payments recept/ ovoce not found 404 after create
 
+123. po requster functional decision. whether show it or not
 123. pr created by is empty
 x123. search pr/po on top
 x119. **search PO/PO by Number
@@ -96,7 +97,7 @@ x119. **search PO/PO by Number
 x123. enable/disable functionaly in tenant
 x123.<i class="fas fa-list"></i> remove
 x123. data-lucide="plus-circle" tp data-lucide="plus"
-x111. HeaderSearchExportBar -> object to Model 
+x111. HeaderSearchExportBar -> object to Model
 x128. pr po category in pr po crea/edit page
 x127. add approve PR to draft PO
 x118. disable prl/pol/invoice line edit by policy
@@ -116,7 +117,7 @@ x124. stop same emp in same hierarchy twice
 x123. show allowapprove=true for admin
 x124. reset Pr and po by admin
 x111. page-2 user list no impersonate
-x111. sales Po appover IT Hod can not see. Oka. Reset PO  
+x111. sales Po appover IT Hod can not see. Oka. Reset PO
 x159. user register page get start with domain name
 x158. clean akk.GUEST_USER_ID
 x134. tenancyforlaravel get domain name
@@ -127,7 +128,7 @@ x141. calculate-pr-amount.blade.php pr_amount during add line incorrect
 x125. calculate-pr-amount.blade hard-coded 1001
 x111. role update in user.edit tab for edit role dropdown
 x128. adding default T&C text in PO line break check
-x127. add start and end action date in wlfl 
+x127. add start and end action date in wlfl
 x154. export file name add export
 x151. paid_amount vs amount_paid landlord vs tenant (keep amount_paid)
 x147. disabe one buyer to submission by other buyer PO

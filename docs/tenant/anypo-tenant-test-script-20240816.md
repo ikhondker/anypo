@@ -1,5 +1,5 @@
 # TODO ----------------------
-- Info image aws upload 
+- Info image aws upload
 
 # Rates
 - tenant created at 4-may-24. next user login in july. Is the rate imported covering tJun-24?
@@ -19,7 +19,7 @@
 
 # PR
 - delete pr and prl
-- cancel pr: only approved. can not cancel if converted 
+- cancel pr: only approved. can not cancel if converted
 - reject
 - change currency and update line and save
 - in kpi: draft amount can not be shows as there might be non base current PR
@@ -30,8 +30,8 @@
 - cancel: only approved. reverse everything
 - reject: reverse booking
 - in kpi: draft amount can not be shows as there might be non base current PO
-- 
-- 
+-
+-
 # POL
 - line cancel is not allowed in approved PO. workaround cancel the PO then recreate.
 
@@ -54,18 +54,18 @@
 - Can not open next year if previous year is open - tested
 
 # Dept Budget
-- can not edit if budget is closed - 
-- can not edit if dept budget is closed - 
+- can not edit if budget is closed -
+- can not edit if dept budget is closed -
 
 # PROJECT
 - delete: No
-- 
+-
 
 # ADMIN
 - banner show
 
 # WF
-anypo test case wf user inactive, 
+anypo test case wf user inactive,
 no person in hierarchy? What happened
 
 

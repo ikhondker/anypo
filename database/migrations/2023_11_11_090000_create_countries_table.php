@@ -14,7 +14,7 @@ return new class extends Migration
 		Schema::create('countries', function (Blueprint $table) {
 			$table->string('country',2);
 			$table->string('name');
-			$table->boolean('enable')->default(true); 
+			$table->boolean('enable')->default(true);
 			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
 			$table->uuid('updated_by')->nullable();

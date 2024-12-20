@@ -4,8 +4,8 @@ Enum Change
 D:\laravel\anypo\app\Enum\Tenant
 
 AehEventEnum.php			use App\Enum\AehEventEnum; 		use App\Enum\Tenant\AehEventEnum;
-AehStatusEnum.php			use App\Enum\AehStatusEnum; 	use App\Enum\Tenant\AehStatusEnum;	
-AuthStatusEnum.php			use App\Enum\AuthStatusEnum;	use App\Enum\Tenant\AuthStatusEnum;	
+AehStatusEnum.php			use App\Enum\AehStatusEnum; 	use App\Enum\Tenant\AehStatusEnum;
+AuthStatusEnum.php			use App\Enum\AuthStatusEnum;	use App\Enum\Tenant\AuthStatusEnum;
 ClosureStatusEnum.php		use App\Enum\ClosureStatusEnum; use App\Enum\Tenant\ClosureStatusEnum;
 EntityEnum.php				use App\Enum\EntityEnum;		use App\Enum\Tenant\EntityEnum;
 EventEnum.php 				use App\Enum\EventEnum; 		use App\Enum\Tenant\EventEnum;

@@ -55,7 +55,7 @@ class WarehouseSeeder extends Seeder
 				'state'			=> 'ON',
 				'zip'			=> 'M1G1R9',
 			],
-			
+
 		];
 		//
 		Warehouse::insert($seededWarehouses);

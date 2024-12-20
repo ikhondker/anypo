@@ -26,7 +26,7 @@
 
 			<div class="card">
 				<div class="card-header">
-					<x-tenant.card.header-search-bar model="Po"/>
+                    <x-tenant.card.header-search-export-bar model="Po"/>
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-info">{{ request('term') }}</strong>

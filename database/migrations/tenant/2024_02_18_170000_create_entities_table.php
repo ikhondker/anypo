@@ -17,7 +17,7 @@ return new class extends Migration
 			$table->string('model')->unique();
 			$table->string('route')->nullable();
 			$table->string('directory');
-			$table->boolean('notification')->default(false); 
+			$table->boolean('notification')->default(false);
 			$table->boolean('enable')->default(true);
 			$table->softDeletes();
 			$table->uuid('created_by')->nullable();

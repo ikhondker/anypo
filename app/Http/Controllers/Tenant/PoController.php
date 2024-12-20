@@ -72,6 +72,9 @@ use App\Notifications\Tenant\PoActions;
 # 6. Mails
 # 7. Rules
 # 8. Packages
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xls;
+
 # 9. Exceptions
 # 10. Events
 # 11. Controller
@@ -758,18 +761,18 @@ class PoController extends Controller
 	public function exportForSupplier($supplier_id)
 	{
 		$this->authorize('export', Po::class);
-		return self::export($supplier_id,null,null);
+		return self::export($supplier_id, null, null);
 	}
 	public function exportForProject($project_id)
 	{
 		$this->authorize('export', Po::class);
-		return self::export(null, $project_id,null);
+		return self::export(null, $project_id, null);
 	}
 
 	public function exportForBuyer($buyer_id)
 	{
 		$this->authorize('export', Po::class);
-		return self::export(null, null,$buyer_id);
+		return self::export(null, null, $buyer_id);
 	}
 
 
@@ -777,56 +780,83 @@ class PoController extends Controller
 	{
 		$this->authorize('export', Po::class);
 
-		if ($supplier_id <> null) {
-			$whereSupplier = 'po.supplier_id = '. $supplier_id;
-		} else {
-			$whereSupplier = '1 = 1';
+        $fileName = 'export-pos-' . date('Ymd') . '.xls';
+		$pos = Po::with('dept')->with('project')->with('supplier')->with('requestor')->with('user_created_by')->with('user_updated_by')->where('auth_status',AuthStatusEnum::APPROVED->value);
+
+        if ($supplier_id <> null) {
+            $pos->where('supplier_id', $supplier_id);
 		}
-		if ( $project_id <> null ) {
-			$whereProject = 'po.project_id = '. $project_id;
-		} else {
-			$whereProject = '1 = 1';
+
+        if ( $project_id <> null ) {
+            $pos->where('project_id', $project_id);
 		}
 
 		if ( $buyer_id <> null ) {
-			$whereBuyer = 'po.buyer_id = '. $buyer_id;
-		} else {
-			$whereBuyer = '1 = 1';
+            $pos->where('buyer_id', $buyer_id);
 		}
 
-		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
-			$whereRequestor = 'po.requestor_id = '. auth()->user()->id;
-		} else {
-			$whereRequestor = '1 = 1';
-		}
-
+		// HoD sees only dept
 		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
-			//$dept_id 	= auth()->user()->dept_id;
-			$whereDept = 'po.dept_id = '. auth()->user()->dept_id;
-		} else {
-			$whereDept = '1 = 1';
+			$pos->where('dept_id',auth()->user()->dept_id);
+		}
+		$pos = $pos->get();
+
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+
+		$sheet->setCellValue('A1', 'PO#');
+		$sheet->setCellValue('B1', 'Summary');
+		$sheet->setCellValue('C1', 'Date');
+		$sheet->setCellValue('D1', 'need_by_date');
+		$sheet->setCellValue('E1', 'Requestor');
+		$sheet->setCellValue('F1', 'Dept');
+		$sheet->setCellValue('G1', 'Project');
+		$sheet->setCellValue('H1', 'Supplier_name');
+		$sheet->setCellValue('I1', 'Notes');
+		$sheet->setCellValue('J1', 'Currency');
+		$sheet->setCellValue('K1', 'Sub_total');
+		$sheet->setCellValue('L1', 'Tax');
+		$sheet->setCellValue('M1', 'GST');
+		$sheet->setCellValue('N1', 'Amount');
+		$sheet->setCellValue('O1', 'Status');
+		$sheet->setCellValue('P1', 'Auth_status');
+		$sheet->setCellValue('Q1', 'Auth_date');
+		// $sheet->setCellValue('R1', 'Created By');
+		// $sheet->setCellValue('S1', 'Created At');
+		// $sheet->setCellValue('T1', 'Updated By');
+		// $sheet->setCellValue('U1', 'Updated At');
+
+		$rows = 2;
+		foreach($pos as $po){
+			$sheet->setCellValue('A' . $rows, $po->id);
+			$sheet->setCellValue('B' . $rows, $po->summary);
+			$sheet->setCellValue('C' . $rows, $po->po_date);
+			$sheet->setCellValue('D' . $rows, $po->need_by_date);
+			$sheet->setCellValue('E' . $rows, $po->requestor->name);
+			$sheet->setCellValue('F' . $rows, $po->dept->name);
+			$sheet->setCellValue('G' . $rows, $po->project->name);
+			$sheet->setCellValue('H' . $rows, $po->supplier->name);
+			$sheet->setCellValue('I' . $rows, $po->notes);
+			$sheet->setCellValue('J' . $rows, $po->currency);
+			$sheet->setCellValue('K' . $rows, $po->sub_total);
+			$sheet->setCellValue('L' . $rows, $po->tax);
+			$sheet->setCellValue('M' . $rows, $po->gst);
+			$sheet->setCellValue('N' . $rows, $po->amount);
+			$sheet->setCellValue('O' . $rows, $po->status);
+			$sheet->setCellValue('P' . $rows, $po->auth_status);
+			$sheet->setCellValue('Q' . $rows, $po->auth_date);
+			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
+			// $sheet->setCellValue('S' . $rows, $pr->created_at);
+			// $sheet->setCellValue('T' . $rows, $pr->user_updated_by->name);
+			// $sheet->setCellValue('U' . $rows, $pr->updated_at);
+			$rows++;
 		}
 
-		$sql = "
-			SELECT po.id, po.summary, po.po_date, po.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name,
-			po.notes, po.currency, po.sub_total, po.tax, po.gst, po.amount, po.status, po.auth_status, po.auth_date
-			FROM pos po, depts d, projects p, suppliers s, users u
-			WHERE po.dept_id=d.id
-			AND po.project_id=p.id
-			AND po.supplier_id=s.id
-			AND po.requestor_id=u.id
-			AND ". $whereRequestor ."
-			AND ". $whereDept ."
-			AND ". $whereSupplier ."
-			AND ". $whereProject ."
-			AND ". $whereBuyer ."
-			ORDER BY po.id DESC	";
+		$writer = new Xls($spreadsheet);
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
+		$writer->save('php://output');
 
-		$data = DB::select($sql);
-
-		$dataArray = json_decode(json_encode($data), true);
-		// used Export Helper
-		return Export::csv('po-lists', $dataArray);
 	}
 
 	// add attachments

@@ -1,6 +1,6 @@
 [25-NOV-2023] : Instance Specific development Related Notes
 
-# 13. Use sequence 
+# 13. Use sequence
 ====================================================================
 1. Models
 2. Enums
@@ -14,7 +14,7 @@
 10. Events
 11. Controller
 12. Seeded
-13. FUTURE 
+13. FUTURE
 1. create a new role PM for projects
 2. layout change for edit user page role change
 
@@ -39,9 +39,9 @@
 		updatedBy="{{ $dept->user_updated_by->name }}"
 		updatedAt="{{ $dept->updated_at }}"
 	/>
-	
 
-# 12. Function Sequence in Controller 
+
+# 12. Function Sequence in Controller
 ====================================================================
 1. index
 2. create
@@ -55,7 +55,7 @@
 to
 <div class="small text-danger">{{ $message }}</div>
 
-# 11. Frequent 
+# 11. Frequent
 ====================================================================
 ~~~
 use Illuminate\Support\Facades\Log;
@@ -74,7 +74,7 @@ Log::info(print_r($dept_budget, true));
 ~~~
 
 
-# 8. Folders 
+# 8. Folders
 ====================================================================
 ### From CRUD perspective not from daily menu/link perspective
 1. lookup	- contains both lookup and master data
@@ -86,14 +86,14 @@ Log::info(print_r($dept_budget, true));
 7. ae		- Accounting entries
 
 
-# 7. Error Reporting 
+# 7. Error Reporting
 ====================================================================
-- custom error reporting in laravel.log warning and error 
+- custom error reporting in laravel.log warning and error
 - app/exceptions/Handler
 - write to: \App\Models\Landlord\Manage\ErrorLog();
 
 
-# 6. Learning 
+# 6. Learning
 ====================================================================
 1. for non id PK, define PK in model
 2. when column name and relation name equal error. Must be separated
@@ -106,11 +106,11 @@ Log::info(print_r($dept_budget, true));
 8. for ajax to works use <script type="module"> not <script type="text/javascript">
 9. sweetalert2 confirmation on form post account/generate.blade.php
 10. use config('app.url') or config('app.domain'). Not env(APP_DOMAIN) and env(APP_URL) . Remember APP_DOMAIN is added by iqbal in app.php. Ref: \resources\views\vendor\mail\text
-11. use trait to add a custoem function to all Model like App\Trait\CreatedUpdateBy 
+11. use trait to add a custoem function to all Model like App\Trait\CreatedUpdateBy
 12. The relationship is Tenant hasMany Domain. https://tenancyforlaravel.com/docs/v3/tenant-identification/
 13. Aliases is in app.php like 'UserRoleEnum'	=> App\Enum\UserRoleEnum::class,
 
-# 5. Set Environment 
+# 5. Set Environment
 ====================================================================
 ~~~
 .env =>  APP_DOMAIN=anypo.net # Custom
@@ -121,13 +121,13 @@ Log::debug("app.url= ".config('app.url') );
 D:\laravel\anypo\config/akk.php
 ~~~
 
-# 4. Authorization, CRUD and Homepage 
+# 4. Authorization, CRUD and Homepage
 ====================================================================
 - ref: laravel-CRUD.txt
 - https://laracasts.com/discuss/channels/laravel/make-my-root-login-page
 - Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('/login');
 
-# 3. Route 
+# 3. Route
 ====================================================================
 ~~~
 Route::post('password/email', [
@@ -141,7 +141,7 @@ Route::get('password/reset', [
 ]);
 ~~~
 
-# 2. Generate dummy chart data screenshot 
+# 2. Generate dummy chart data screenshot
 ====================================================================
 - TestController => run()
 - //ChartData::budget();
@@ -151,13 +151,13 @@ Route::get('password/reset', [
 - echo "Done";
 - exit;
 
-# 1. Interface and layout 
+# 1. Interface and layout
 ====================================================================
- - table 
+ - table
 		appstack4\docs\ecommerce-orders.html
 		<table id="datatables-orders" class="table w-100">
 
-# 1. Setup->config 
+# 1. Setup->config
 ====================================================================
 - $_landlord_setup -> _config
 

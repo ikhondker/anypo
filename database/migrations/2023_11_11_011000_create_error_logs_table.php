@@ -19,7 +19,7 @@ return new class extends Migration
 			$table->string('role')->nullable();
 			$table->string('e_class')->nullable();
 			$table->longText('message')->nullable();
-			$table->enum('status', ['new', 'review', 'ignore', 'fixed'])->default('new'); 
+			$table->enum('status', ['new', 'review', 'ignore', 'fixed'])->default('new');
 			$table->timestamps();
 		});
 	}

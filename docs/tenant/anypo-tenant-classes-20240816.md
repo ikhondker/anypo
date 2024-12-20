@@ -115,7 +115,7 @@ php artisan make:model Comment --all
 
 [?? php artisan make:model Hisotry --all]
 
-# Resue 
+# Resue
 ---------------------------
 ChartController.php
 HomeController.php

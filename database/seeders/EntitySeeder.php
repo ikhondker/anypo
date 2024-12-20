@@ -122,7 +122,7 @@ class EntitySeeder extends Seeder
 			],
 		];
 
-		
+
 		Entity::insert($entities);
 	}
 }

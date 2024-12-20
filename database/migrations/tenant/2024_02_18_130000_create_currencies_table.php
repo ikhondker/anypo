@@ -16,9 +16,9 @@ return new class extends Migration
 			$table->string('name');					// Don't put unique
 			$table->string('country')->nullable();
 			$table->string('symbol')->nullable();
-			$table->boolean('enable')->default(false); 
-			$table->boolean('rates')->default(true); 
-			$table->boolean('never')->default(true); 
+			$table->boolean('enable')->default(false);
+			$table->boolean('rates')->default(true);
+			$table->boolean('never')->default(true);
 			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();
 			$table->uuid('updated_by')->nullable();

@@ -65,13 +65,13 @@ php artisan make:model AccountService --all
 [?? php artisan make:model Hisotry --all]
 ~~~
 
-# Event and listener 
+# Event and listener
 ====================================================================
 ~~~
 PS D:\laravel\bo05> php artisan make:event PodcastProcessed
-INFO  Event [D:\laravel\bo05\app/Events/PodcastProcessed.php] created successfully.  
+INFO  Event [D:\laravel\bo05\app/Events/PodcastProcessed.php] created successfully.
 PS D:\laravel\bo05> php artisan make:listener SendPodcastNotification --event=PodcastProcessed
-INFO  Listener [D:\laravel\bo05\app/Listeners/SendPodcastNotification.php] created successfully.  
+INFO  Listener [D:\laravel\bo05\app/Listeners/SendPodcastNotification.php] created successfully.
 ~~~
 
 # Reusable Controllers

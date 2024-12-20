@@ -12,7 +12,7 @@ https://stackoverflow.com/questions/12683907/set-the-width-of-select2-input-thro
 
 sweetlater2 post confirmation
 -----------------------------
-where? sweet-alert2.txt 
+where? sweet-alert2.txt
 D:\laravel\anypo\resources\views\landlord\admin\invoices\generate.blade.php
 D:\laravel\anypo\resources\views\tenant\invoices\invoices\add-to-po.blade.php
 
@@ -26,8 +26,8 @@ Demo install limitation @if ($_setup->demo)
 -----------------------------
 1. app layout top 	<x-tenant.alerts.warning message="This is a Demo Instance" />
 1. tenant sidebar Purchase
-2. admin can not change password  
-2. user can not change profile password  
+2. admin can not change password
+2. user can not change profile password
 3. can not deactivate user usercontrolle.destroy
 	$setup = Setup::first();
 	if ($setup->demo){
@@ -122,7 +122,7 @@ $data = Invoice::select('id','currency','summary','supplier_id','po_id')->with('
 $data = Po::select('id','currency','supplier_id')->with('supplier:id,name')->where('id', $id)->first();
 
 
-enum 
+enum
 as alias both entity and user role
 
 

@@ -42,6 +42,8 @@ use App\Helpers\EventLog;
 # 6. Mails
 # 7. Rules
 # 8. Packages
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xls;
 # 9. Exceptions
 # 10. Events
 # 11. Controller
@@ -264,41 +266,91 @@ class PrlController extends Controller
 
 		$this->authorize('export', Prl::class);
 
+        $fileName = 'export-prls-' . date('Ymd') . '.xls';
+		$prls = Prl::with('item')->with('pr')->with('pr.dept')->with('pr.project')->with('pr.supplier')->with('pr.requestor')->with('user_created_by')->with('user_updated_by');
+        $prls->whereHas('pr', function ($q) {
+            $q->where('auth_status', AuthStatusEnum::APPROVED->value);
+        });
+
+		//User sees only owned
 		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
-			$requestor_id 	= auth()->user()->id;
-		} else {
-			$requestor_id 	= '';
-		}
+            $prls->whereHas('pr', function ($q) {
+                $q->where('requestor_id', auth()->user()->id);
+            });
 
+		}
+		// HoD sees only dept
 		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
-			$dept_id 	= auth()->user()->dept_id;
-		} else {
-			$dept_id 	= '';
+            $prls->whereHas('pr', function ($q) {
+                $q->where('dept_id', auth()->user()->dept_id);
+            });
+
+		}
+		$prls = $prls->get();
+
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+
+		$sheet->setCellValue('A1', 'PR#');
+		$sheet->setCellValue('B1', 'Summary');
+		$sheet->setCellValue('C1', 'Date');
+		$sheet->setCellValue('D1', 'Requestor');
+		$sheet->setCellValue('E1', 'Dept');
+		$sheet->setCellValue('F1', 'Project');
+		$sheet->setCellValue('G1', 'Supplier');
+		$sheet->setCellValue('H1', 'Currency');
+		$sheet->setCellValue('I1', 'PR Amount');
+		$sheet->setCellValue('J1', 'Status');
+		$sheet->setCellValue('K1', 'Auth_status');
+		$sheet->setCellValue('L1', 'Line#');
+        $sheet->setCellValue('M1', 'Item Description');
+        $sheet->setCellValue('N1', 'Code');
+        $sheet->setCellValue('O1', 'UoM');
+        $sheet->setCellValue('P1', 'Qty');
+        $sheet->setCellValue('Q1', 'Price');
+		$sheet->setCellValue('R1', 'Sub_total');
+		$sheet->setCellValue('S1', 'Tax');
+		$sheet->setCellValue('T1', 'GST');
+        $sheet->setCellValue('U1', 'Amount');
+		// $sheet->setCellValue('V1', 'Created By');
+		// $sheet->setCellValue('W1', 'Created At');
+		// $sheet->setCellValue('X1', 'Updated By');
+		// $sheet->setCellValue('Y1', 'Updated At');
+
+		$rows = 2;
+		foreach($prls as $prl){
+			$sheet->setCellValue('A' . $rows, $prl->id);
+			$sheet->setCellValue('B' . $rows, $prl->pr->summary);
+			$sheet->setCellValue('C' . $rows, $prl->pr->pr_date);
+			$sheet->setCellValue('D' . $rows, $prl->pr->requestor->name);
+			$sheet->setCellValue('E' . $rows, $prl->pr->dept->name);
+			$sheet->setCellValue('F' . $rows, $prl->pr->project->name);
+			$sheet->setCellValue('G' . $rows, $prl->pr->supplier->name);
+			$sheet->setCellValue('H' . $rows, $prl->pr->currency);
+			$sheet->setCellValue('I' . $rows, $prl->pr->amount);
+			$sheet->setCellValue('J' . $rows, $prl->pr->status);
+			$sheet->setCellValue('K' . $rows, $prl->pr->auth_status);
+            $sheet->setCellValue('L' . $rows, $prl->line_num);
+            $sheet->setCellValue('M' . $rows, $prl->item->name);
+            $sheet->setCellValue('N' . $rows, $prl->item->code);
+            $sheet->setCellValue('O' . $rows, $prl->uom->name);
+            $sheet->setCellValue('P' . $rows, $prl->qty);
+            $sheet->setCellValue('Q' . $rows, $prl->price);
+			$sheet->setCellValue('R' . $rows, $prl->sub_total);
+			$sheet->setCellValue('S' . $rows, $prl->tax);
+			$sheet->setCellValue('T' . $rows, $prl->gst);
+            $sheet->setCellValue('U' . $rows, $prl->amount);
+
+			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
+			// $sheet->setCellValue('S' . $rows, $pr->created_at);
+			// $sheet->setCellValue('T' . $rows, $pr->user_updated_by->name);
+			// $sheet->setCellValue('U' . $rows, $pr->updated_at);
+			$rows++;
 		}
 
-		$data = DB::select("
-			SELECT pr.id, pr.summary pr_summary, pr.pr_date, pr.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name,
-			pr.notes, pr.currency, pr.amount pr_amount, pr.status, pr.auth_status, pr.auth_date ,
-			prl.line_num, prl.item_description , i.code item_code, uom.name uom, prl.qty, prl.price, prl.sub_total, prl.tax, prl.gst, prl.amount,
-			prl.price, prl.sub_total, prl.amount,prl.notes, prl.closure_status
-			FROM prs pr, prls prl, depts d, projects p, suppliers s, users u , items i, uoms uom
-			WHERE pr.dept_id=d.id
-			AND pr.project_id=p.id
-			AND pr.supplier_id=s.id
-			AND pr.requestor_id=u.id
-			AND pr.id = prl.pr_id
-			AND prl.item_id = i.id
-			AND prl.uom_id = uom.id
-			AND ". ($dept_id <> '' ? 'pr.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
-			AND ". ($requestor_id <> '' ? 'pr.requestor_id = '.$requestor_id.' ' : ' 1=1 ') ."
-			ORDER BY pr.id DESC
-		");
-
-		$dataArray = json_decode(json_encode($data), true);
-		// used Export Helper
-		return Export::csv('prs', $dataArray);
+		$writer = new Xls($spreadsheet);
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
+		$writer->save('php://output');
 	}
-
-
-
 }

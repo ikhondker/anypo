@@ -10,7 +10,7 @@ use Faker\Generator;
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Workflow\Hierarchy;
 
-class DeptSeeder extends Seeder 
+class DeptSeeder extends Seeder
 {
 	/**
 	 * Run the database seeds.
@@ -21,7 +21,7 @@ class DeptSeeder extends Seeder
 		//Schema::disableForeignKeyConstraints();
 		//Dept::truncate();
 		//Schema::enableForeignKeyConstraints();
-		
+
 		$faker = app(Generator::class);
 
 		$depts = [
@@ -67,8 +67,8 @@ class DeptSeeder extends Seeder
 				'pr_hierarchy_id' 	=> 1001,
 				'po_hierarchy_id' 	=> 1002,
 		 	],
-			
-			
+
+
 		];
 		//
 		Dept::insert($depts);

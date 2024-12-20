@@ -24,9 +24,9 @@ return new class extends Migration
 			$table->boolean('checkouts')->default(false);
 			$table->boolean('invoices')->default(false);
 			$table->boolean('payments')->default(false);
-			$table->boolean('notify_user')->default(false); 
-			$table->boolean('email_user')->default(false); 
-			$table->boolean('enable')->default(true); 
+			$table->boolean('notify_user')->default(false);
+			$table->boolean('email_user')->default(false);
+			$table->boolean('enable')->default(true);
 			//$table->softDeletes();
 			$table->uuid('created_by')->nullable();
 			$table->timestamp('created_at')->useCurrent();

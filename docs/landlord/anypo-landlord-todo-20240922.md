@@ -14,7 +14,7 @@ x123. search ticket on top
 113. collapse top navbar when small screen <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 111. // Navbar brand $navbar-brand-padding-y: $spacer*0.875 !default; _app.scss
 111. <nav class="navbar navbar-expand-md navbar-dark bg-dark landing-navbar"> p-0 m-0
-110. change invoice description of advance payment 
+110. change invoice description of advance payment
 69. lock/cancel/archive account
 95. datetime-local value edit for maintenance start
 87. tenant table -> add columns. its inside data
@@ -47,12 +47,12 @@ x123. search ticket on top
 # 0. DONE
 ====================================================================
 xx96. invoice and receipt drop-down policy check
-x111. account level discount apply while creating invoice 
+x111. account level discount apply while creating invoice
 x111. request demo/bug report
 x111. AkkControel Policy
 x111. Topic and TicketTiopc Controller
 x222. tick first and last repsonse
-x116. rewrtie flow of invoice creation 
+x116. rewrtie flow of invoice creation
 x114. Invoice Date :	edit invoice.edit payments edit pay date
 x110. linebreak in invoice notes/description
 x79. ticket edit set/update category
