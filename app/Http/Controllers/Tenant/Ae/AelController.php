@@ -32,13 +32,15 @@ use App\Models\Tenant\Admin\Setup;
 use App\Enum\Tenant\EntityEnum;
 
 # 3. Helpers
-use App\Helpers\Export;
 use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
 # 7. Rules
 # 8. Packages
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xls;
+
 # 9. Exceptions
 # 10. Events
 # 11. Controller
@@ -76,19 +78,60 @@ class AelController extends Controller
 				break;
 			case 'export':
 				// Export model
-				$sql = "
-					SELECT id, source, entity, event, accounting_date, ac_code, line_description,
-					fc_currency currency, fc_dr_amount dr_amount, fc_cr_amount cr_amount,
-					po_id, reference
-					FROM aels
-					WHERE DATE(accounting_date) BETWEEN '".$start_date."' AND '".$end_date."'
-				";
-				//Log::debug('tenant.ae.ael.export'.$sql);
 
-				$data = DB::select($sql);
-				$dataArray = json_decode(json_encode($data), true);
-				// used Export Helper
-				return Export::csv('aels', $dataArray);
+				$fileName = 'export-aels-' . date('Ymd') . '.xls';
+				$aels = Ael::with('aeh')->with('user_created_by')->with('user_updated_by');
+				$aels->whereBetween('accounting_date', [$start_date, $end_date ]);
+				$aels = $aels->get();
+
+				$spreadsheet = new Spreadsheet();
+				$sheet = $spreadsheet->getActiveSheet();
+
+				$sheet->setCellValue('A1', 'AEL#');
+				$sheet->setCellValue('B1', 'Source');
+				$sheet->setCellValue('C1', 'Entity');
+				$sheet->setCellValue('D1', 'Event');
+				$sheet->setCellValue('E1', 'Line Num');
+				$sheet->setCellValue('F1', 'Date');
+				$sheet->setCellValue('G1', 'AC Code');
+				$sheet->setCellValue('H1', 'Line Desc');
+				$sheet->setCellValue('I1', 'Currency');
+				$sheet->setCellValue('J1', 'Dr');
+				$sheet->setCellValue('K1', 'Cr');
+				$sheet->setCellValue('L1', 'PO#');
+				$sheet->setCellValue('M1', 'Reference');
+				// $sheet->setCellValue('R1', 'Created By');
+				// $sheet->setCellValue('S1', 'Created At');
+				// $sheet->setCellValue('T1', 'Updated By');
+				// $sheet->setCellValue('U1', 'Updated At');
+
+				$rows = 2;
+				foreach($aels as $ael){
+					$sheet->setCellValue('A' . $rows, $ael->id);
+					$sheet->setCellValue('B' . $rows, $ael->aeh->source_app);
+					$sheet->setCellValue('C' . $rows, $ael->aeh->source_entity->value);
+					$sheet->setCellValue('D' . $rows, $ael->aeh->event->value);
+					$sheet->setCellValue('E' . $rows, $ael->line_num);
+					$sheet->setCellValue('F' . $rows, $ael->accounting_date);
+					$sheet->setCellValue('G' . $rows, $ael->ac_code);
+					$sheet->setCellValue('H' . $rows, $ael->line_description);
+					$sheet->setCellValue('I' . $rows, $ael->fc_currency);
+					$sheet->setCellValue('J' . $rows, $ael->fc_dr_amount);
+					$sheet->setCellValue('K' . $rows, $ael->fc_cr_amount);
+					$sheet->setCellValue('L' . $rows, $ael->aeh->po_i);
+					$sheet->setCellValue('M' . $rows, $ael->reference_no);
+					// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
+					// $sheet->setCellValue('S' . $rows, $pr->created_at);
+					// $sheet->setCellValue('T' . $rows, $pr->user_updated_by->name);
+					// $sheet->setCellValue('U' . $rows, $pr->updated_at);
+					$rows++;
+				}
+
+				$writer = new Xls($spreadsheet);
+				header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+				header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
+				$writer->save('php://output');
+
 				break;
 		}
 

@@ -12,7 +12,7 @@
 			Accounting Lines
 		@endslot
 		@slot('buttons')
-			<x-tenant.actions.ae.ael-actions/>
+			{{-- <x-tenant.actions.ae.ael-actions/> --}}
 		@endslot
 	</x-tenant.page-header>
 
@@ -52,7 +52,7 @@
 					Accounting Lines
 				@endif
 			</h5>
-			<h6 class="card-subtitle text-muted">List of Generated Accounting Lines</h6>
+			<h6 class="card-subtitle text-muted">List of Auto Generated Accounting Lines</h6>
 		</div>
 		<div class="card-body">
 			<table class="table">
@@ -80,8 +80,8 @@
 						<td class="text-end"><x-tenant.list.my-number :value="$ael->fc_dr_amount"/></td>
 						<td class="text-end"><x-tenant.list.my-number :value="$ael->fc_cr_amount"/></td>
 						<td>{{ $ael->fc_currency }}</td>
-						<td><x-tenant.common.link-po id="{{ $ael->po_id }}"/></td>
-						<td>{{ $ael->reference }}</td>
+						<td><x-tenant.common.link-po id="{{ $ael->aeh->po_id }}"/></td>
+						<td>{{ $ael->reference_no }}</td>
 						<td>
 							<a href="{{ route('aels.show',$ael->id) }}" class="btn btn-light"
 								data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View

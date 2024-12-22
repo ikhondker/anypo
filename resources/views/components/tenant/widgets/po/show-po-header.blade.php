@@ -60,7 +60,7 @@
 								data-bs-toggle="tooltip" data-bs-placement="top" title="Submit for Approval">
 								<i data-lucide="external-link" class="text-white"></i> Submit</a>
 						@else
-                                <button class="btn btn-pill btn-{{ $po->auth_status_badge->badge }} me-1" type="button"><i data-lucide="{{ $po->auth_status_badge->icon }}"></i> {{ $po->auth_status_badge->name }}</button>
+								<button class="btn btn-pill btn-{{ $po->auth_status_badge->badge }} me-1" type="button"><i data-lucide="{{ $po->auth_status_badge->icon }}"></i> {{ $po->auth_status_badge->name }}</button>
 								{{-- <span class="badge {{ $po->auth_status_badge->badge }}">{{ $po->auth_status_badge->name}}</span> --}}
 						@endcan
 					</div>

@@ -59,7 +59,6 @@ use App\Enum\Tenant\WflActionEnum;
 use App\Enum\Tenant\ClosureStatusEnum;
 use App\Enum\Tenant\AuthStatusEnum;
 # 3. Helpers
-use App\Helpers\Export;
 use App\Helpers\EventLog;
 use App\Helpers\Tenant\Workflow;
 use App\Helpers\Tenant\FileUpload;
@@ -780,19 +779,19 @@ class PoController extends Controller
 	{
 		$this->authorize('export', Po::class);
 
-        $fileName = 'export-pos-' . date('Ymd') . '.xls';
+		$fileName = 'export-pos-' . date('Ymd') . '.xls';
 		$pos = Po::with('dept')->with('project')->with('supplier')->with('requestor')->with('user_created_by')->with('user_updated_by')->where('auth_status',AuthStatusEnum::APPROVED->value);
 
-        if ($supplier_id <> null) {
-            $pos->where('supplier_id', $supplier_id);
+		if ($supplier_id <> null) {
+			$pos->where('supplier_id', $supplier_id);
 		}
 
-        if ( $project_id <> null ) {
-            $pos->where('project_id', $project_id);
+		if ( $project_id <> null ) {
+			$pos->where('project_id', $project_id);
 		}
 
 		if ( $buyer_id <> null ) {
-            $pos->where('buyer_id', $buyer_id);
+			$pos->where('buyer_id', $buyer_id);
 		}
 
 		// HoD sees only dept

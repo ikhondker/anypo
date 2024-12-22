@@ -266,24 +266,24 @@ class PrlController extends Controller
 
 		$this->authorize('export', Prl::class);
 
-        $fileName = 'export-prls-' . date('Ymd') . '.xls';
+		$fileName = 'export-prls-' . date('Ymd') . '.xls';
 		$prls = Prl::with('item')->with('pr')->with('pr.dept')->with('pr.project')->with('pr.supplier')->with('pr.requestor')->with('user_created_by')->with('user_updated_by');
-        $prls->whereHas('pr', function ($q) {
-            $q->where('auth_status', AuthStatusEnum::APPROVED->value);
-        });
+		$prls->whereHas('pr', function ($q) {
+			$q->where('auth_status', AuthStatusEnum::APPROVED->value);
+		});
 
 		//User sees only owned
 		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
-            $prls->whereHas('pr', function ($q) {
-                $q->where('requestor_id', auth()->user()->id);
-            });
+			$prls->whereHas('pr', function ($q) {
+				$q->where('requestor_id', auth()->user()->id);
+			});
 
 		}
 		// HoD sees only dept
 		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
-            $prls->whereHas('pr', function ($q) {
-                $q->where('dept_id', auth()->user()->dept_id);
-            });
+			$prls->whereHas('pr', function ($q) {
+				$q->where('dept_id', auth()->user()->dept_id);
+			});
 
 		}
 		$prls = $prls->get();
@@ -303,15 +303,15 @@ class PrlController extends Controller
 		$sheet->setCellValue('J1', 'Status');
 		$sheet->setCellValue('K1', 'Auth_status');
 		$sheet->setCellValue('L1', 'Line#');
-        $sheet->setCellValue('M1', 'Item Description');
-        $sheet->setCellValue('N1', 'Code');
-        $sheet->setCellValue('O1', 'UoM');
-        $sheet->setCellValue('P1', 'Qty');
-        $sheet->setCellValue('Q1', 'Price');
+		$sheet->setCellValue('M1', 'Item Description');
+		$sheet->setCellValue('N1', 'Code');
+		$sheet->setCellValue('O1', 'UoM');
+		$sheet->setCellValue('P1', 'Qty');
+		$sheet->setCellValue('Q1', 'Price');
 		$sheet->setCellValue('R1', 'Sub_total');
 		$sheet->setCellValue('S1', 'Tax');
 		$sheet->setCellValue('T1', 'GST');
-        $sheet->setCellValue('U1', 'Amount');
+		$sheet->setCellValue('U1', 'Amount');
 		// $sheet->setCellValue('V1', 'Created By');
 		// $sheet->setCellValue('W1', 'Created At');
 		// $sheet->setCellValue('X1', 'Updated By');
@@ -330,16 +330,16 @@ class PrlController extends Controller
 			$sheet->setCellValue('I' . $rows, $prl->pr->amount);
 			$sheet->setCellValue('J' . $rows, $prl->pr->status);
 			$sheet->setCellValue('K' . $rows, $prl->pr->auth_status);
-            $sheet->setCellValue('L' . $rows, $prl->line_num);
-            $sheet->setCellValue('M' . $rows, $prl->item->name);
-            $sheet->setCellValue('N' . $rows, $prl->item->code);
-            $sheet->setCellValue('O' . $rows, $prl->uom->name);
-            $sheet->setCellValue('P' . $rows, $prl->qty);
-            $sheet->setCellValue('Q' . $rows, $prl->price);
+			$sheet->setCellValue('L' . $rows, $prl->line_num);
+			$sheet->setCellValue('M' . $rows, $prl->item->name);
+			$sheet->setCellValue('N' . $rows, $prl->item->code);
+			$sheet->setCellValue('O' . $rows, $prl->uom->name);
+			$sheet->setCellValue('P' . $rows, $prl->qty);
+			$sheet->setCellValue('Q' . $rows, $prl->price);
 			$sheet->setCellValue('R' . $rows, $prl->sub_total);
 			$sheet->setCellValue('S' . $rows, $prl->tax);
 			$sheet->setCellValue('T' . $rows, $prl->gst);
-            $sheet->setCellValue('U' . $rows, $prl->amount);
+			$sheet->setCellValue('U' . $rows, $prl->amount);
 
 			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
 			// $sheet->setCellValue('S' . $rows, $pr->created_at);

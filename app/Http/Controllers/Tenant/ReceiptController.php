@@ -36,15 +36,14 @@ use App\Models\Tenant\Lookup\Supplier;
 
 use App\Models\Tenant\Admin\Setup;
 # 2. Enums
+use App\Enum\UserRoleEnum;
 use App\Enum\Tenant\EntityEnum;
 use App\Enum\Tenant\EventEnum;
-use App\Enum\UserRoleEnum;
 use App\Enum\Tenant\ReceiptStatusEnum;
 use App\Enum\Tenant\AuthStatusEnum;
 
 use App\Enum\Tenant\ClosureStatusEnum;
 # 3. Helpers
-use App\Helpers\Export;
 use App\Helpers\EventLog;
 use App\Helpers\Tenant\FileUpload;
 use App\Helpers\Tenant\ExchangeRate;
@@ -58,6 +57,8 @@ use App\Jobs\Tenant\ClosePo;
 # 7. Rules
 use App\Rules\Tenant\OverReceiptRule;
 # 8. Packages
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xls;
 # 9. Exceptions
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 # 10. Events
@@ -430,35 +431,60 @@ class ReceiptController extends Controller
 
 		$this->authorize('export', Receipt::class);
 
-		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
-			$requestor_id 	= auth()->user()->id;
-		} else {
-			$requestor_id 	= '';
-		}
+		$fileName = 'export-receipts-' . date('Ymd') . '.xls';
+		$receipts = Receipt::with('pol')->with('pol.po')->with('pol.po.dept')->with('pol.uom')->with('warehouse')->with('user_created_by')->with('user_updated_by');
 
+		// HoD sees only dept
 		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
-			$dept_id 	= auth()->user()->dept_id;
-		} else {
-			$dept_id 	= '';
+			$receipts->whereHas('pol.po', function ($q) {
+				$q->where('dept_id', auth()->user()->dept_id);
+			});
+
+		}
+		$receipts = $receipts->get();
+
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+
+		$sheet->setCellValue('A1', 'RECEIPT#');
+		$sheet->setCellValue('B1', 'Date');
+		$sheet->setCellValue('C1', 'Item Description');
+		$sheet->setCellValue('D1', 'Qty');
+		$sheet->setCellValue('E1', 'UoM');
+		$sheet->setCellValue('F1', 'Warehouse');
+		$sheet->setCellValue('G1', 'Receiver');
+		$sheet->setCellValue('H1', 'Notes');
+		$sheet->setCellValue('I1', 'PO#');
+		$sheet->setCellValue('J1', 'PO Line Num');
+		// $sheet->setCellValue('V1', 'Created By');
+		// $sheet->setCellValue('W1', 'Created At');
+		// $sheet->setCellValue('X1', 'Updated By');
+		// $sheet->setCellValue('Y1', 'Updated At');
+
+		$rows = 2;
+		foreach($receipts as $receipt){
+			$sheet->setCellValue('A' . $rows, $receipt->id);
+			$sheet->setCellValue('B' . $rows, $receipt->receive_date);
+			$sheet->setCellValue('C' . $rows, $receipt->pol->item_description);
+			$sheet->setCellValue('D' . $rows, $receipt->qty);
+			$sheet->setCellValue('E' . $rows, $receipt->pol->uom->name);
+			$sheet->setCellValue('F' . $rows, $receipt->warehouse->name);
+			$sheet->setCellValue('G' . $rows, $receipt->receiver->name);
+			$sheet->setCellValue('H' . $rows, $receipt->notes);
+			$sheet->setCellValue('I' . $rows, $receipt->pol->po_id);
+			$sheet->setCellValue('J' . $rows, $receipt->pol->line_num);
+
+			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
+			// $sheet->setCellValue('S' . $rows, $pr->created_at);
+			// $sheet->setCellValue('T' . $rows, $pr->user_updated_by->name);
+			// $sheet->setCellValue('U' . $rows, $pr->updated_at);
+			$rows++;
 		}
 
-		$data = DB::select("
-			SELECT r.id, r.receive_date, r.rcv_type,
-				po.id po_num, po.summary, pol.line_num, pol.item_description,
-				w.name warehouse_name,
-				u.name receiver_name,
-				r.qty, r.notes, r.status
-			FROM receipts r, pols pol, pos po , warehouses w, users u
-			WHERE r.pol_id=pol.id
-			AND pol.po_id =po.id
-			AND r.warehouse_id= w.id
-			AND r.receiver_id = u.id
-			AND ". ($dept_id <> '' ? 'po.dept_id='.$dept_id.' ' : ' 1=1 ') ."
-			AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ') ."
-		");
-		$dataArray = json_decode(json_encode($data), true);
-		// used Export Helper
-		return Export::csv('receipts', $dataArray);
+		$writer = new Xls($spreadsheet);
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
+		$writer->save('php://output');
 	}
 
 }

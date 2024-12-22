@@ -62,7 +62,7 @@
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Post Invoice">
 							<i data-lucide="external-link" class="text-white"></i> Post</a>
 					@else
-                        <button class="btn btn-pill btn-{{ $invoice->status_badge->badge }} me-1" type="button"><i data-lucide="{{ $invoice->status_badge->icon }}"></i> {{ $invoice->status_badge->name }}</button>
+						<button class="btn btn-pill btn-{{ $invoice->status_badge->badge }} me-1" type="button"><i data-lucide="{{ $invoice->status_badge->icon }}"></i> {{ $invoice->status_badge->name }}</button>
 						{{-- <span class="badge {{ $invoice->status_badge->badge }}">{{ $invoice->status_badge->name}}</span> --}}
 					@endcan
 				</div>

@@ -739,45 +739,45 @@ class PrController extends Controller
 
 		$fileName = 'export-prs-' . date('Ymd') . '.xls';
 
-        //$prs = Budget::query();
-        //$prs = Pr::with('dept');
-        //$prs = Pr::with('dept')->with('project')->with('supplier')->with('requestor')->with('user_created_by')->with('user_updated_by');
-        $prs = Pr::with('dept')->with('project')->with('supplier')->with('requestor')->with('user_created_by')->with('user_updated_by')->where('auth_status',AuthStatusEnum::APPROVED->value);
+		//$prs = Budget::query();
+		//$prs = Pr::with('dept');
+		//$prs = Pr::with('dept')->with('project')->with('supplier')->with('requestor')->with('user_created_by')->with('user_updated_by');
+		$prs = Pr::with('dept')->with('project')->with('supplier')->with('requestor')->with('user_created_by')->with('user_updated_by')->where('auth_status',AuthStatusEnum::APPROVED->value);
 		//$pr = Pr::with('dept')->with('project')->with('supplier')->with('user_created_by')->with('user_updated_by')->get();
 
-        if (auth()->user()->role->value == UserRoleEnum::USER->value ){
-            $prs->where('requestor_id',auth()->user()->id);
+		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
+			$prs->where('requestor_id',auth()->user()->id);
 		}
 
 		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
-            $prs->where('dept_id',auth()->user()->dept_id);
+			$prs->where('dept_id',auth()->user()->dept_id);
 		}
-        //$prs = Pr::with('dept');
-        $prs = $prs->get();
+		//$prs = Pr::with('dept');
+		$prs = $prs->get();
 
 		$spreadsheet = new Spreadsheet();
 		$sheet = $spreadsheet->getActiveSheet();
-        // SELECT pr.id, pr.summary, pr.pr_date, pr.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name,
-        // pr.notes, pr.currency, pr.sub_total, pr.tax, pr.gst, pr.amount, pr.status, pr.auth_status, pr.auth_date
-        // FROM prs pr,depts d, projects p, suppliers s, users u
+		// SELECT pr.id, pr.summary, pr.pr_date, pr.need_by_date, u.name requestor, d.name dept_name,p.name project_name, s.name supplier_name,
+		// pr.notes, pr.currency, pr.sub_total, pr.tax, pr.gst, pr.amount, pr.status, pr.auth_status, pr.auth_date
+		// FROM prs pr,depts d, projects p, suppliers s, users u
 
 		$sheet->setCellValue('A1', 'Id');
 		$sheet->setCellValue('B1', 'summary');
 		$sheet->setCellValue('C1', 'pr_date');
 		$sheet->setCellValue('D1', 'need_by_date');
 		$sheet->setCellValue('E1', 'requestor');
-        $sheet->setCellValue('F1', 'dept_name');
-        $sheet->setCellValue('G1', 'project_name');
-        $sheet->setCellValue('H1', 'supplier_name');
-        $sheet->setCellValue('I1', 'notes');
-        $sheet->setCellValue('J1', 'currency');
-        $sheet->setCellValue('K1', 'sub_total');
-        $sheet->setCellValue('L1', 'tax');
-        $sheet->setCellValue('M1', 'gst');
-        $sheet->setCellValue('N1', 'amount');
-        $sheet->setCellValue('O1', 'status');
-        $sheet->setCellValue('P1', 'auth_status');
-        $sheet->setCellValue('Q1', 'auth_date');
+		$sheet->setCellValue('F1', 'dept_name');
+		$sheet->setCellValue('G1', 'project_name');
+		$sheet->setCellValue('H1', 'supplier_name');
+		$sheet->setCellValue('I1', 'notes');
+		$sheet->setCellValue('J1', 'currency');
+		$sheet->setCellValue('K1', 'sub_total');
+		$sheet->setCellValue('L1', 'tax');
+		$sheet->setCellValue('M1', 'gst');
+		$sheet->setCellValue('N1', 'amount');
+		$sheet->setCellValue('O1', 'status');
+		$sheet->setCellValue('P1', 'auth_status');
+		$sheet->setCellValue('Q1', 'auth_date');
 		// $sheet->setCellValue('R1', 'Created By');
 		// $sheet->setCellValue('S1', 'Created At');
 		// $sheet->setCellValue('T1', 'Updated By');
@@ -789,19 +789,19 @@ class PrController extends Controller
 			$sheet->setCellValue('B' . $rows, $pr->summary);
 			$sheet->setCellValue('C' . $rows, $pr->pr_date);
 			$sheet->setCellValue('D' . $rows, $pr->need_by_date);
-            $sheet->setCellValue('E' . $rows, $pr->requestor->name);
-            $sheet->setCellValue('F' . $rows, $pr->dept->name);
-            $sheet->setCellValue('G' . $rows, $pr->project->name);
-            $sheet->setCellValue('H' . $rows, $pr->supplier->name);
-            $sheet->setCellValue('I' . $rows, $pr->notes);
-            $sheet->setCellValue('J' . $rows, $pr->currency);
-            $sheet->setCellValue('K' . $rows, $pr->sub_total);
-            $sheet->setCellValue('L' . $rows, $pr->tax);
-            $sheet->setCellValue('M' . $rows, $pr->gst);
-            $sheet->setCellValue('N' . $rows, $pr->amount);
-            $sheet->setCellValue('O' . $rows, $pr->status);
-            $sheet->setCellValue('P' . $rows, $pr->auth_status);
-            $sheet->setCellValue('Q' . $rows, $pr->auth_date);
+			$sheet->setCellValue('E' . $rows, $pr->requestor->name);
+			$sheet->setCellValue('F' . $rows, $pr->dept->name);
+			$sheet->setCellValue('G' . $rows, $pr->project->name);
+			$sheet->setCellValue('H' . $rows, $pr->supplier->name);
+			$sheet->setCellValue('I' . $rows, $pr->notes);
+			$sheet->setCellValue('J' . $rows, $pr->currency);
+			$sheet->setCellValue('K' . $rows, $pr->sub_total);
+			$sheet->setCellValue('L' . $rows, $pr->tax);
+			$sheet->setCellValue('M' . $rows, $pr->gst);
+			$sheet->setCellValue('N' . $rows, $pr->amount);
+			$sheet->setCellValue('O' . $rows, $pr->status);
+			$sheet->setCellValue('P' . $rows, $pr->auth_status);
+			$sheet->setCellValue('Q' . $rows, $pr->auth_date);
 			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
 			// $sheet->setCellValue('S' . $rows, $pr->created_at);
 			// $sheet->setCellValue('T' . $rows, $pr->user_updated_by->name);

@@ -2,6 +2,7 @@
 -------------------------------------------------------------------------------------------------
 http://demo1.localhost:8000/payments recept/ ovoce not found 404 after create
 
+consolidate exports
 123. po requster functional decision. whether show it or not
 123. pr created by is empty
 x123. search pr/po on top

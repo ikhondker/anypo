@@ -84,4 +84,12 @@ class InvoiceLinePolicy
 	{
 		//
 	}
+
+	/**
+	 * Determine whether the user can create models.
+	 */
+	public function export(User $user): bool
+	{
+		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
+	}
 }

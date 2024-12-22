@@ -99,9 +99,8 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'payments.ael','route_name'			=> 'payments.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'payments.timestamp','route_name'		=> 'payments.index', 'node_name' => 'workbench'],
 
-
-			[ 'raw_route_name' => 'aehs.index','route_name'				=> 'aehs.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'aehs.show','route_name'				=> 'aehs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'aels.index','route_name'				=> 'aels.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'aels.show','route_name'				=> 'aels.index', 'node_name' => 'workbench'],
 
 
 			/**
@@ -338,6 +337,8 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'templates.edit','route_name' 		=> 'templates.index', 'node_name' 	=> 'system'],
 			[ 'raw_route_name' => 'templates.create','route_name' 		=> 'templates.index', 'node_name' 	=> 'system'],
 
+            [ 'raw_route_name' => 'aehs.index','route_name'				=> 'aehs.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'aehs.show','route_name'				=> 'aehs.index', 'node_name' => 'system'],
 
 
 			/**
@@ -367,9 +368,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'users.profile','route_name' 			=> 'users.profile', 'node_name' 		=> 'profile'],
 			[ 'raw_route_name' => 'users.profile-edit','route_name' 	=> 'users.profile-edit', 'node_name' 	=> 'profile'],
 			[ 'raw_route_name' => 'users.profile-password','route_name' => 'users.profile-password', 'node_name'=> 'profile'],
-
-
-			;
+        ];
 		//
 		Menu::insert($menus);
 	}

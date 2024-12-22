@@ -14,8 +14,8 @@
 			Project Spend Summary
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists model="Project"/>
 			<x-tenant.buttons.header.create model="Project"/>
+			<x-tenant.buttons.header.lists model="Project"/>
 		@endslot
 	</x-tenant.page-header>
 

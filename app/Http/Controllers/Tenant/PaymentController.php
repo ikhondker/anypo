@@ -34,16 +34,15 @@ use App\Models\Tenant\Lookup\BankAccount;
 use App\Models\Tenant\Admin\Setup;
 use App\Models\Tenant\Lookup\Supplier;
 # 2. Enums
+use App\Enum\UserRoleEnum;
 use App\Enum\Tenant\EntityEnum;
 use App\Enum\Tenant\EventEnum;
-use App\Enum\UserRoleEnum;
 use App\Enum\Tenant\PaymentStatusEnum;
 use App\Enum\Tenant\InvoiceStatusEnum;
 use App\Enum\Tenant\ClosureStatusEnum;
 # 3. Helpers
 use App\Helpers\Tenant\FileUpload;
 use App\Helpers\Tenant\ExchangeRate;
-use App\Helpers\Export;
 use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
@@ -55,6 +54,8 @@ use App\Jobs\Tenant\CloseInvoice;
 # 7. Rules
 use App\Rules\Tenant\OverPaymentRule;
 # 8. Packages
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xls;
 # 9. Exceptions
 # 10. Events
 # 11. Controller
@@ -439,32 +440,67 @@ class PaymentController extends Controller
 
 		$this->authorize('export', Payment::class);
 
-		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
-			$requestor_id 	= auth()->user()->id;
-		} else {
-			$requestor_id 	= '';
-		}
 
+
+		$fileName = 'export-payments-' . date('Ymd') . '.xls';
+		$payments = Payment::with('bank_account')->with('payee')->with('invoice')->with('invoice.supplier')->with('user_created_by')->with('user_updated_by');
+
+
+		// HoD sees only dept
 		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
-			$dept_id 	= auth()->user()->dept_id;
-		} else {
-			$dept_id 	= '';
+			$payments->whereHas('invoice.po', function ($q) {
+				$q->where('dept_id', auth()->user()->dept_id);
+			});
+
+		}
+		$payments = $payments->get();
+
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+
+		$sheet->setCellValue('A1', 'PAY#');
+		$sheet->setCellValue('B1', 'Date');
+		$sheet->setCellValue('C1', 'Narration');
+		$sheet->setCellValue('D1', 'Supplier');
+		$sheet->setCellValue('E1', 'Bank Ac');
+		$sheet->setCellValue('F1', 'Cheque No');
+		$sheet->setCellValue('G1', 'Currency');
+		$sheet->setCellValue('H1', 'Amount');
+		$sheet->setCellValue('I1', 'Payee');
+		$sheet->setCellValue('J1', 'Invoice Num');
+		$sheet->setCellValue('J1', 'Invoice Date');
+		$sheet->setCellValue('K1', 'PO#');
+		// $sheet->setCellValue('V1', 'Created By');
+		// $sheet->setCellValue('W1', 'Created At');
+		// $sheet->setCellValue('X1', 'Updated By');
+		// $sheet->setCellValue('Y1', 'Updated At');
+
+		$rows = 2;
+		foreach($payments as $payment){
+			$sheet->setCellValue('A' . $rows, $payment->id);
+			$sheet->setCellValue('B' . $rows, $payment->pay_date);
+			$sheet->setCellValue('C' . $rows, $payment->summary);
+			$sheet->setCellValue('D' . $rows, $payment->invoice->supplier->name);
+			$sheet->setCellValue('E' . $rows, $payment->bank_account->name);
+			$sheet->setCellValue('F' . $rows, $payment->cheque_no);
+			$sheet->setCellValue('G' . $rows, $payment->currency);
+			$sheet->setCellValue('H' . $rows, $payment->amount);
+			$sheet->setCellValue('I' . $rows, $payment->payee->name);
+			$sheet->setCellValue('J' . $rows, $payment->invoice->invoice_no);
+			$sheet->setCellValue('J' . $rows, $payment->invoice->invoice_date);
+			$sheet->setCellValue('K' . $rows, $payment->po_id);
+			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
+			// $sheet->setCellValue('S' . $rows, $pr->created_at);
+			// $sheet->setCellValue('T' . $rows, $pr->user_updated_by->name);
+			// $sheet->setCellValue('U' . $rows, $pr->updated_at);
+			$rows++;
 		}
 
-		$data = DB::select("
-		SELECT p.id, p.invoice_id, p.pay_date, u.name payee_name, i.po_id,
-			b.ac_name , p.cheque_no, p.currency, p.amount, p.notes, p.status
-		FROM payments p, invoices i, pos po, users u, bank_accounts b
-		WHERE p.invoice_id = i.id
-		AND p.bank_account_id=b.id
-		AND p.payee_id = u.id
-		AND i.po_id=po.id
-		AND ". ($dept_id <> '' ? 'po.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
-		AND ". ($requestor_id <> '' ? 'po.requestor_id = '.$requestor_id.' ' : ' 1=1 ') ."
-		");
-		$dataArray = json_decode(json_encode($data), true);
-		// used Export Helper
-		return Export::csv('payments', $dataArray);
+		$writer = new Xls($spreadsheet);
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
+		$writer->save('php://output');
+
 	}
 
 }

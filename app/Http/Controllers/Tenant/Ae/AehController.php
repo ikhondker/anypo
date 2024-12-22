@@ -37,6 +37,9 @@ use App\Helpers\EventLog;
 # 6. Mails
 # 7. Rules
 # 8. Packages
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xls;
+
 # 9. Exceptions
 # 10. Events
 # 11. Controller
@@ -90,7 +93,7 @@ class AehController extends Controller
 			case 'export':
 				// TODO Export model by dep_id
 				$sql = "
-					SELECT id, source, entity, event, accounting_date, ac_code, line_description,
+					SELECT id, source_app, source_entity, event, accounting_date, ac_code, line_description,
 					fc_currency currency, fc_dr_amount dr_amount, fc_cr_amount cr_amount,
 					po_id, reference
 					FROM aehs

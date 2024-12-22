@@ -35,7 +35,6 @@ use App\Models\Tenant\Pol;
 use App\Enum\Tenant\AuthStatusEnum;
 use App\Enum\UserRoleEnum;
 # 3. Helpers
-use App\Helpers\Export;
 use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs
@@ -272,17 +271,17 @@ class PolController extends Controller
 
 		$this->authorize('export', Pol::class);
 
-        $fileName = 'export-pols-' . date('Ymd') . '.xls';
+		$fileName = 'export-pols-' . date('Ymd') . '.xls';
 		$pols = Pol::with('item')->with('po')->with('po.dept')->with('po.project')->with('po.supplier')->with('po.requestor')->with('user_created_by')->with('user_updated_by');
-        $pols->whereHas('po', function ($q) {
-            $q->where('auth_status', AuthStatusEnum::APPROVED->value);
-        });
+		$pols->whereHas('po', function ($q) {
+			$q->where('auth_status', AuthStatusEnum::APPROVED->value);
+		});
 
 		// HoD sees only dept
 		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
-            $pols->whereHas('po', function ($q) {
-                $q->where('dept_id', auth()->user()->dept_id);
-            });
+			$pols->whereHas('po', function ($q) {
+				$q->where('dept_id', auth()->user()->dept_id);
+			});
 
 		}
 		$pols = $pols->get();
@@ -302,15 +301,15 @@ class PolController extends Controller
 		$sheet->setCellValue('J1', 'Status');
 		$sheet->setCellValue('K1', 'Auth_status');
 		$sheet->setCellValue('L1', 'Line#');
-        $sheet->setCellValue('M1', 'Item Description');
-        $sheet->setCellValue('N1', 'Code');
-        $sheet->setCellValue('O1', 'UoM');
-        $sheet->setCellValue('P1', 'Qty');
-        $sheet->setCellValue('Q1', 'Price');
+		$sheet->setCellValue('M1', 'Item Description');
+		$sheet->setCellValue('N1', 'Code');
+		$sheet->setCellValue('O1', 'UoM');
+		$sheet->setCellValue('P1', 'Qty');
+		$sheet->setCellValue('Q1', 'Price');
 		$sheet->setCellValue('R1', 'Sub_total');
 		$sheet->setCellValue('S1', 'Tax');
 		$sheet->setCellValue('T1', 'GST');
-        $sheet->setCellValue('U1', 'Amount');
+		$sheet->setCellValue('U1', 'Amount');
 		// $sheet->setCellValue('V1', 'Created By');
 		// $sheet->setCellValue('W1', 'Created At');
 		// $sheet->setCellValue('X1', 'Updated By');
@@ -329,16 +328,16 @@ class PolController extends Controller
 			$sheet->setCellValue('I' . $rows, $pol->po->amount);
 			$sheet->setCellValue('J' . $rows, $pol->po->status);
 			$sheet->setCellValue('K' . $rows, $pol->po->auth_status);
-            $sheet->setCellValue('L' . $rows, $pol->line_num);
-            $sheet->setCellValue('M' . $rows, $pol->item->name);
-            $sheet->setCellValue('N' . $rows, $pol->item->code);
-            $sheet->setCellValue('O' . $rows, $pol->uom->name);
-            $sheet->setCellValue('P' . $rows, $pol->qty);
-            $sheet->setCellValue('Q' . $rows, $pol->price);
+			$sheet->setCellValue('L' . $rows, $pol->line_num);
+			$sheet->setCellValue('M' . $rows, $pol->item->name);
+			$sheet->setCellValue('N' . $rows, $pol->item->code);
+			$sheet->setCellValue('O' . $rows, $pol->uom->name);
+			$sheet->setCellValue('P' . $rows, $pol->qty);
+			$sheet->setCellValue('Q' . $rows, $pol->price);
 			$sheet->setCellValue('R' . $rows, $pol->sub_total);
 			$sheet->setCellValue('S' . $rows, $pol->tax);
 			$sheet->setCellValue('T' . $rows, $pol->gst);
-            $sheet->setCellValue('U' . $rows, $pol->amount);
+			$sheet->setCellValue('U' . $rows, $pol->amount);
 
 			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
 			// $sheet->setCellValue('S' . $rows, $pr->created_at);

@@ -12,8 +12,8 @@
 			Supplier Spends
 		@endslot
 		@slot('buttons')
-			<x-tenant.buttons.header.lists model="Supplier"/>
 			<x-tenant.buttons.header.create model="Supplier"/>
+			<x-tenant.buttons.header.lists model="Supplier"/>
 		@endslot
 	</x-tenant.page-header>
 

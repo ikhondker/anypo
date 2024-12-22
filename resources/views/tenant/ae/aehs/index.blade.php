@@ -1,15 +1,15 @@
 @extends('layouts.tenant.app')
-@section('title','Accounting')
+@section('title','Accounting Headers')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item active">Accounting Entries</li>
+	<li class="breadcrumb-item active">Accounting Headers</li>
 @endsection
 
 @section('content')
 
 	<x-tenant.page-header>
 		@slot('title')
-			Accounting Entries
+			Accounting Headers
 		@endslot
 		@slot('buttons')
 			<x-tenant.actions.ae.aeh-actions/>
@@ -50,10 +50,10 @@
 				@if (request('term'))
 					Search result for: <strong class="text-info">{{ request('term') }}</strong>
 				@else
-					Accounting Entries
+					Accounting Headers
 				@endif
 			</h5>
-			<h6 class="card-subtitle text-muted">List of Generated Accounting Entries</h6>
+			<h6 class="card-subtitle text-muted">List of Generated Accounting Headers</h6>
 		</div>
 		<div class="card-body">
 			<table class="table">

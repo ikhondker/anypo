@@ -59,6 +59,8 @@ use App\Jobs\Tenant\AehInvoice;
 # 7. Rules
 use App\Rules\Tenant\OverInvoiceRule;
 # 8. Packages
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xls;
 # 9. Exceptions
 # 10. Events
 # 11. Controller
@@ -635,36 +637,79 @@ class InvoiceController extends Controller
 
 		$this->authorize('export', Invoice::class);
 
-		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
-			$requestor_id 	= auth()->user()->id;
-		} else {
-			$requestor_id 	= '';
-		}
 
+		$fileName = 'export-invoices-' . date('Ymd') . '.xls';
+		$invoices = Invoice::with('po')->with('po.dept')->with('po.project')->with('po.supplier')->with('po.requestor')->with('user_created_by')->with('user_updated_by');
+
+		// $pols->whereHas('po', function ($q) {
+		// 		$q->where('auth_status', AuthStatusEnum::APPROVED->value);
+		// });
+
+		// HoD sees only dept
 		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
-			$dept_id 	= auth()->user()->dept_id;
-		} else {
-			$dept_id 	= '';
+			$invoices->whereHas('po', function ($q) {
+				$q->where('dept_id', auth()->user()->dept_id);
+			});
+
+		}
+		$invoices = $invoices->get();
+
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+
+		//	i.fc_exchange_rate, i.fc_sub_total, i.fc_tax, i.fc_gst, i.fc_amount, i.fc_amount_paid,
+		//	i.notes, i.status, i.payment_status
+		$sheet->setCellValue('A1', 'ID#');
+		$sheet->setCellValue('B1', 'Invoice No');
+		$sheet->setCellValue('C1', 'Date');
+		$sheet->setCellValue('D1', 'PO#');
+		$sheet->setCellValue('E1', 'PO Summary');
+		$sheet->setCellValue('F1', 'Supplier');
+		$sheet->setCellValue('G1', 'PoC Name');
+		$sheet->setCellValue('H1', 'Currency');
+		$sheet->setCellValue('I1', 'Sub_total');
+		$sheet->setCellValue('J1', 'Tax');
+		$sheet->setCellValue('K1', 'GST');
+		$sheet->setCellValue('L1', 'Amount');
+		$sheet->setCellValue('M1', 'Paid Amount');
+		$sheet->setCellValue('N1', 'Notes');
+		$sheet->setCellValue('O1', 'Status');
+		// $sheet->setCellValue('V1', 'Created By');
+		// $sheet->setCellValue('W1', 'Created At');
+		// $sheet->setCellValue('X1', 'Updated By');
+		// $sheet->setCellValue('Y1', 'Updated At');
+
+		$rows = 2;
+		foreach($invoices as $invoice){
+			$sheet->setCellValue('A' . $rows, $invoice->id);
+			$sheet->setCellValue('B' . $rows, $invoice->invoice_no);
+			$sheet->setCellValue('C' . $rows, $invoice->invoice_date);
+			$sheet->setCellValue('D' . $rows, $invoice->po->id);
+			$sheet->setCellValue('E' . $rows, $invoice->po->summary);
+			$sheet->setCellValue('F' . $rows, $invoice->po->supplier->name);
+			$sheet->setCellValue('G' . $rows, $invoice->poc->name);
+
+			$sheet->setCellValue('H' . $rows, $invoice->currency);
+			$sheet->setCellValue('I' . $rows, $invoice->sub_total);
+			$sheet->setCellValue('J' . $rows, $invoice->tax);
+			$sheet->setCellValue('K' . $rows, $invoice->gst);
+			$sheet->setCellValue('L' . $rows, $invoice->amount);
+			$sheet->setCellValue('M' . $rows, $invoice->amount_paid);
+			$sheet->setCellValue('N' . $rows, $invoice->notes);
+			$sheet->setCellValue('O' . $rows, $invoice->status);
+
+			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
+			// $sheet->setCellValue('S' . $rows, $pr->created_at);
+			// $sheet->setCellValue('T' . $rows, $pr->user_updated_by->name);
+			// $sheet->setCellValue('U' . $rows, $pr->updated_at);
+			$rows++;
 		}
 
-		$data = DB::select("
-		SELECT i.id, i.invoice_no, i.invoice_date,
-				i.po_id po_id,
-				s.name supplier_name,
-				i.summary, u.name poc_name,
-				i.currency, i.sub_total, i.tax, i.gst, i.amount, i.amount_paid,
-				i.fc_exchange_rate, i.fc_sub_total, i.fc_tax, i.fc_gst, i.fc_amount, i.fc_amount_paid,
-				i.notes, i.status, i.payment_status
-			FROM invoices i, pos po, suppliers s, users u
-			WHERE i.po_id =po.id
-			AND i.supplier_id= s.id
-			AND i.poc_id = u.id
-			AND ". ($dept_id <> '' ? 'po.dept_id = '.$dept_id.' ' : ' 1=1 ') ."
-			AND ". ($requestor_id <> '' ? 'po.requestor_id='.$requestor_id.' ' : ' 1=1 ') ."
-			");
-		$dataArray = json_decode(json_encode($data), true);
-		// used Export Helper
-		return Export::csv('invoices', $dataArray);
+		$writer = new Xls($spreadsheet);
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
+		$writer->save('php://output');
+
 	}
 
 	 // user in prl and pol dropdown ajax
