@@ -86,9 +86,8 @@ use App\Http\Controllers\Tenant\InvoiceController;
 use App\Http\Controllers\Tenant\InvoiceLineController;
 use App\Http\Controllers\Tenant\PaymentController;
 
-
 use App\Http\Controllers\Tenant\ReportController;
-
+use App\Http\Controllers\Tenant\ExportController;
 
 use App\Http\Controllers\Tenant\HomeController;
 // TODO Check
@@ -298,6 +297,11 @@ Route::middleware([
 
 		/* ======================== Report ========================================  */
 		Route::get('/report/pr/{id}',[ReportController::class, 'pr'])->name('reports.pr');
+
+   		/* ======================== Export ======================================== */
+		Route::resource('exports', ExportController::class);
+        Route::get('/exports/parameter/{export}',[ExportController::class,'parameter'])->name('exports.parameter');
+		Route::put('/exports/run/{export}',[ExportController::class,'run'])->name('exports.run');
 
 	});
 

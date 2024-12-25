@@ -49,6 +49,7 @@ php artisan make:model Wfl --all
 php artisan make:model Report --all
 php artisan make:model DeptBudget --all
 php artisan make:model Tenant\Dbu --all		<< DeptBudgetUsages
+php artisan make:model Tenant\Export --all	<< All export
 
 php artisan make:model Pr --all
 php artisan make:model Prl --all

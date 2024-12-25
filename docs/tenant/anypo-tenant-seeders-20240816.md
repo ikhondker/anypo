@@ -37,7 +37,9 @@ delete from attachments;
 Database\Seeders\Landlord\
 php artisan tenants:seed --class="Database\Seeders\Share\TemplateSeeder" --tenants=demo1
 
-php artisan tenants:seed --class=TimestampSeeder --tenants=a3db8d28-7b4b-4525-ac46-d11ee5c1658d
+php artisan tenants:seed --class=TimestampSeeder --tenants='96061cbc-30bb-4d74-b0a7-f5f555ac3f97'
+php artisan tenants:seed --class=ExportSeeder --tenants='96061cbc-30bb-4d74-b0a7-f5f555ac3f97'
+
 
 php artisan tenants:seed --class=UserSeeder --tenants=demo1
 php artisan tenants:seed --class=SetupSeeder --tenants=demo1

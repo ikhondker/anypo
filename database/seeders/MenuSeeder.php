@@ -247,6 +247,17 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'upload-items.check','route_name' 	=> 'upload-items.index', 'node_name' 	=> 'interface'],
 			[ 'raw_route_name' => 'upload-items.import','route_name'	=> 'upload-items.index', 'node_name' 	=> 'interface'],
 
+            /**
+			* ==================================================================================
+			* 7. Export
+			* ==================================================================================
+			*/
+            // TODO
+            [ 'raw_route_name' => 'exports.index','route_name' 			=> 'exports.index', 'node_name' 	=> 'system'],
+			[ 'raw_route_name' => 'exports.show','route_name' 			=> 'exports.index', 'node_name' 	=> 'system'],
+			[ 'raw_route_name' => 'exports.edit','route_name' 			=> 'exports.index', 'node_name' 	=> 'system'],
+			[ 'raw_route_name' => 'exports.create','route_name' 		=> 'exports.index', 'node_name' 	=> 'system'],
+			[ 'raw_route_name' => 'exports.timestamp','route_name' 		=> 'exports.index', 'node_name' 	=> 'system'],
 
 			/**
 			* ==================================================================================
