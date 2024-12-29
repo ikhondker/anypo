@@ -22,13 +22,13 @@ return new class extends Migration
 			$table->boolean('end_date')->default(true);
 			//$table->boolean('end_date_required')->default(false);
 			$table->boolean('supplier_id')->default(true);
-			$table->boolean('supplier_id_required')->default(true);
+			$table->boolean('supplier_id_required')->default(false);
 			$table->boolean('project_id')->default(true);
-			$table->boolean('project_id_required')->default(true);
+			$table->boolean('project_id_required')->default(false);
 			$table->boolean('dept_id')->default(true);
-			$table->boolean('dept_id_required')->default(true);
+			$table->boolean('dept_id_required')->default(false);
 			$table->boolean('user_id')->default(true);
-			$table->boolean('user_id_required')->default(true);
+			$table->boolean('user_id_required')->default(false);
 			$table->boolean('warehouse_id')->default(false);
 			$table->boolean('warehouse_id_required')->default(false);
 			$table->boolean('bank_account_id')->default(false);

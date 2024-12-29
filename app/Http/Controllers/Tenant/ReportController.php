@@ -1165,10 +1165,6 @@ class ReportController extends Controller
 	}
 
 
-
-
-
-
 	function increaseRunCounter($reportCode)
 	{
 		// Increase reports run_count

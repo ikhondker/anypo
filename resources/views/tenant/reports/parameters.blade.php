@@ -96,7 +96,7 @@
 								<div class="mb-3 row">
 									<label class="col-form-label col-sm-2 text-sm-right">Supplier</label>
 									<div class="col-sm-10">
-										<select class="form-control" name="supplier_id" required>
+										<select class="form-control" name="supplier_id" {{ $report->supplier_id_required ? "required" : "" }}>
 											<option value=""><< Supplier >> </option>
 											@foreach ($suppliers as $supplier)
 												<option value="{{ $supplier->id }}" {{ $supplier->id == old('pm_id') ? 'selected' : '' }} >{{ $supplier->name }}</option>
@@ -112,7 +112,7 @@
 								<div class="mb-3 row">
 									<label class="col-form-label col-sm-2 text-sm-right">Project</label>
 									<div class="col-sm-10">
-										<select class="form-control" name="project_id" required>
+										<select class="form-control" name="project_id" {{ $report->project_id_required ? "required" : "" }}>
 											<option value=""><< Project >> </option>
 											@foreach ($projects as $project)
 												<option value="{{ $project->id }}" {{ $project->id == old('pm_id') ? 'selected' : '' }} >{{ $project->name }}</option>
@@ -128,7 +128,7 @@
 								<div class="mb-3 row">
 									<label class="col-form-label col-sm-2 text-sm-right">Warehouse</label>
 									<div class="col-sm-10">
-										<select class="form-control" name="warehouse_id" required>
+										<select class="form-control" name="warehouse_id" {{ $report->warehouse_id_required ? "required" : "" }}>
 											<option value=""><< Warehouse >> </option>
 											@foreach ($warehouses as $warehouse)
 												<option value="{{ $warehouse->id }}" {{ $warehouse->id == old('pm_id') ? 'selected' : '' }} >{{ $warehouse->name }}</option>
@@ -144,7 +144,7 @@
 								<div class="mb-3 row">
 									<label class="col-form-label col-sm-2 text-sm-right">Bank Account</label>
 									<div class="col-sm-10">
-										<select class="form-control" name="bank_account_id" required>
+										<select class="form-control" name="bank_account_id" {{ $report->bank_account_id_required ? "required" : "" }}>
 											<option value=""><< Bank Account >> </option>
 											@foreach ($bank_accounts as $bank_account)
 												<option value="{{ $bank_account->id }}" {{ $bank_account->id == old('pm_id') ? 'selected' : '' }} >{{ $bank_account->name }}</option>
@@ -161,7 +161,7 @@
 								<div class="mb-3 row">
 									<label class="col-form-label col-sm-2 text-sm-right">Project Manager </label>
 									<div class="col-sm-10">
-										<select class="form-control" name="pm_id" required>
+										<select class="form-control" name="pm_id" {{ $report->pm_id_required ? "required" : "" }}>
 											<option value=""><< Project Manager >> </option>
 											@foreach ($pms as $user)
 												<option value="{{ $user->id }}" {{ $user->id == old('pm_id') ? 'selected' : '' }} >{{ $user->name }}</option>

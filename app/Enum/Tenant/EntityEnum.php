@@ -27,11 +27,14 @@ enum EntityEnum: string{
 	case BUDGET		= 'BUDGET';
 	case DEPTBUDGET	= 'DEPTBUDGET';
 	case PR			= 'PR';
+    case PRL		= 'PRL';
 	case PO			= 'PO';
+    case POL		= 'POL';
 	case RECEIPT	= 'RECEIPT';
 	case INVOICE	= 'INVOICE';
 	case PAYMENT	= 'PAYMENT';
 	case AEH		= 'AEH';
+    case AEL		= 'AEL';
 	case TEMPLATE	= 'TEMPLATE';
 	case TICKET		= 'TICKET';		// Support Ticket raise from Tenant
 	case CONTACT	= 'CONTACT';	// Home Controlled

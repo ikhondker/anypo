@@ -127,7 +127,7 @@ class AuthServiceProvider extends ServiceProvider
 		'App\Models\Tenant\Payment'				=> 'App\Policies\Tenant\PaymentPolicy',
 		'App\Models\Tenant\Receipt' 			=> 'App\Policies\Tenant\ReceiptPolicy',
 		'App\Models\Tenant\Report' 				=> 'App\Policies\Tenant\ReportPolicy',
-        'App\Models\Tenant\Export' 				=> 'App\Policies\Tenant\ExportPolicy',
+		'App\Models\Tenant\Export' 				=> 'App\Policies\Tenant\ExportPolicy',
 
 		// 'App\Models\Tenant' => 'App\Policies\TenantPolicy',
 		// 'App\Models\User' => 'App\Policies\UserPolicy',

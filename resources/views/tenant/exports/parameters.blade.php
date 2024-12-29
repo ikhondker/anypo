@@ -2,8 +2,8 @@
 @section('title','Report Parameter')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('reports.index') }}">Reports</a></li>
-	<li class="breadcrumb-item active">{{ $report->name }}</li>
+	<li class="breadcrumb-item"><a href="{{ route('exports.index') }}">Exports</a></li>
+	<li class="breadcrumb-item active">{{ $export->name }}</li>
 @endsection
 
 
@@ -11,15 +11,15 @@
 
 	<x-tenant.page-header>
 		@slot('title')
-			Report Parameter
+			Export Parameter
 		@endslot
 		@slot('buttons')
-			<a href="{{ route('reports.index') }}" class="btn btn-primary float-end me-2"><i data-lucide="list"></i> Reports List</a>
+			<a href="{{ route('exports.index') }}" class="btn btn-primary float-end me-2"><i data-lucide="list"></i> Exports List</a>
 		@endslot
 	</x-tenant.page-header>
 
 	<!-- form start -->
-	<form id="myform" action="{{ route('reports.run', $report->code) }}" method="POST">
+	<form id="myform" action="{{ route('exports.run', $export->entity) }}" method="POST">
 		@csrf
 		@method('PUT')
 
@@ -27,15 +27,15 @@
 			<div class="col-6">
 				<div class="card">
 					<div class="card-header">
-						<h5 class="card-title"> {{ $report->name }}</h5>
-						<h6 class="card-subtitle text-muted">Please enter reports parameter and click on 'Run Report'.</h6>
+						<h5 class="card-title"> {{ $export->name }}</h5>
+						<h6 class="card-subtitle text-muted">Please enter exports parameter and click on 'Run Export'.</h6>
 					</div>
 					<div class="card-body">
-							{{-- <input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id',$report->id ) }}"> --}}
+							{{-- <input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id',$export->id ) }}"> --}}
 
-							@if ($report->article_id_required)
+							@if ($export->article_id_required)
 								<div class="mb-3 row">
-									<label class="col-form-label col-sm-2 text-sm-right">{{ $report->entity }} ID :</label>
+									<label class="col-form-label col-sm-2 text-sm-right">{{ $export->entity }} ID :</label>
 									<div class="col-sm-10">
 											<input type="text" class="form-control @error('article_id') is-invalid @enderror"
 												name="article_id" id="article_id" placeholder=""
@@ -48,7 +48,7 @@
 								</div>
 							@endif
 
-							@if ($report->start_date)
+							@if ($export->start_date)
 								<div class="mb-3 row">
 									<label class="col-form-label col-sm-2 text-sm-right">Start Date </label>
 									<div class="col-sm-10">
@@ -62,7 +62,7 @@
 									</div>
 								</div>
 							@endif
-							@if ($report->end_date)
+							@if ($export->end_date)
 								<div class="mb-3 row">
 									<label class="col-form-label col-sm-2 text-sm-right">End Date </label>
 									<div class="col-sm-10">
@@ -76,11 +76,11 @@
 									</div>
 								</div>
 							@endif
-							@if ($report->dept_id)
+							@if ($export->dept_id)
 								<div class="mb-3 row">
 									<label class="col-form-label col-sm-2 text-sm-right">Department</label>
 									<div class="col-sm-10">
-										<select class="form-control" name="dept_id" {{ $report->dept_id_required ? "required" : "" }}>
+										<select class="form-control" name="dept_id" {{ $export->dept_id_required ? "required" : "" }}>
 											<option value=""><< Department >> </option>
 											@foreach ($depts as $dept)
 												<option value="{{ $dept->id }}" {{ $dept->id == old('pm_id') ? 'selected' : '' }} >{{ $dept->name }}</option>
@@ -92,11 +92,11 @@
 									</div>
 								</div>
 							@endif
-							@if ($report->supplier_id)
+							@if ($export->supplier_id)
 								<div class="mb-3 row">
 									<label class="col-form-label col-sm-2 text-sm-right">Supplier</label>
 									<div class="col-sm-10">
-										<select class="form-control" name="supplier_id" required>
+										<select class="form-control" name="supplier_id" {{ $export->supplier_id_required ? "required" : "" }}>
 											<option value=""><< Supplier >> </option>
 											@foreach ($suppliers as $supplier)
 												<option value="{{ $supplier->id }}" {{ $supplier->id == old('pm_id') ? 'selected' : '' }} >{{ $supplier->name }}</option>
@@ -108,11 +108,11 @@
 									</div>
 								</div>
 							@endif
-							@if ($report->project_id)
+							@if ($export->project_id)
 								<div class="mb-3 row">
 									<label class="col-form-label col-sm-2 text-sm-right">Project</label>
 									<div class="col-sm-10">
-										<select class="form-control" name="project_id" required>
+										<select class="form-control" name="project_id" {{ $export->project_id_required ? "required" : "" }}>
 											<option value=""><< Project >> </option>
 											@foreach ($projects as $project)
 												<option value="{{ $project->id }}" {{ $project->id == old('pm_id') ? 'selected' : '' }} >{{ $project->name }}</option>
@@ -124,11 +124,11 @@
 									</div>
 								</div>
 							@endif
-							@if ($report->warehouse_id)
+							@if ($export->warehouse_id)
 								<div class="mb-3 row">
 									<label class="col-form-label col-sm-2 text-sm-right">Warehouse</label>
 									<div class="col-sm-10">
-										<select class="form-control" name="warehouse_id" required>
+										<select class="form-control" name="warehouse_id" {{ $export->warehouse_id_required ? "required" : "" }}>
 											<option value=""><< Warehouse >> </option>
 											@foreach ($warehouses as $warehouse)
 												<option value="{{ $warehouse->id }}" {{ $warehouse->id == old('pm_id') ? 'selected' : '' }} >{{ $warehouse->name }}</option>
@@ -140,11 +140,11 @@
 									</div>
 								</div>
 							@endif
-							@if ($report->bank_account_id)
+							@if ($export->bank_account_id)
 								<div class="mb-3 row">
 									<label class="col-form-label col-sm-2 text-sm-right">Bank Account</label>
 									<div class="col-sm-10">
-										<select class="form-control" name="bank_account_id" required>
+										<select class="form-control" name="bank_account_id" {{ $export->bank_account_id_required ? "required" : "" }}>
 											<option value=""><< Bank Account >> </option>
 											@foreach ($bank_accounts as $bank_account)
 												<option value="{{ $bank_account->id }}" {{ $bank_account->id == old('pm_id') ? 'selected' : '' }} >{{ $bank_account->name }}</option>
@@ -157,11 +157,11 @@
 								</div>
 							@endif
 
-							@if ($report->pm_id)
+							@if ($export->pm_id)
 								<div class="mb-3 row">
 									<label class="col-form-label col-sm-2 text-sm-right">Project Manager </label>
 									<div class="col-sm-10">
-										<select class="form-control" name="pm_id" required>
+										<select class="form-control" name="pm_id" {{ $export->pm_id_required ? "required" : "" }}>
 											<option value=""><< Project Manager >> </option>
 											@foreach ($pms as $user)
 												<option value="{{ $user->id }}" {{ $user->id == old('pm_id') ? 'selected' : '' }} >{{ $user->name }}</option>
@@ -173,32 +173,6 @@
 									</div>
 								</div>
 							@endif
-
-							{{-- <fieldset class="mb-3">
-								<div class="row">
-									<label class="col-form-label col-sm-2 text-sm-right pt-sm-0">Radios</label>
-									<div class="col-sm-10">
-										<label class="form-check">
-											<input name="radio-3" type="radio" class="form-check-input" checked>
-											<span class="form-check-label">Default radio</span>
-										</label>
-										<label class="form-check">
-											<input name="radio-3" type="radio" class="form-check-input">
-											<span class="form-check-label">Second default radio</span>
-										</label>
-									</div>
-								</div>
-							</fieldset>
-
-							<div class="mb-3 row">
-								<label class="col-form-label col-sm-2 text-sm-right pt-sm-0">Checkbox</label>
-								<div class="col-sm-10">
-									<label class="form-check m-0">
-										<input type="checkbox" class="form-check-input">
-										<span class="form-check-label">Check me out</span>
-									</label>
-								</div>
-							</div> --}}
 
 							<div class="mb-3 row">
 								<label class="col-form-label col-sm-2 text-sm-right pt-sm-0">&nbsp;</label>
@@ -222,30 +196,6 @@
 
 	</form>
 	<!-- /.form end -->
-
-
-	{{-- <script type="module">
-		$( "#datepicker" ).datepicker();
-	</script> --}}
-
-
-	{{-- <script type="module">
-		$('.date').datepicker({
-		format: dd-mm-yyyy'
-		});
-	</script>--}}
-
-	{{-- <script type="module">
-		$(function() {
-			$('#datetimepicker').datetimepicker();
-		});
-	</script>	--}}
-
-	{{-- <script type="module">
-		$( function() {
-			$(".datepicker" ).datepicker();
-		});
-	</script> --}}
 
 
 @endsection

@@ -182,10 +182,5 @@ class PrPolicy
 		return ($user->isSupport() && ($pr->auth_status <> AuthStatusEnum::APPROVED->value) ) ;
 	}
 
-	public function export(User $user): bool
-	{
-		return true;
-	}
-
 
 }

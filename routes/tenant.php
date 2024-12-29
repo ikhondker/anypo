@@ -300,6 +300,14 @@ Route::middleware([
 
    		/* ======================== Export ======================================== */
 		Route::resource('exports', ExportController::class);
+        Route::get('/export/pr',[ExportController::class,'pr'])->name('exports.pr');
+        Route::get('/export/po',[ExportController::class,'po'])->name('exports.po');
+        Route::get('/export/budget',[ExportController::class,'po'])->name('exports.budget');
+        Route::get('/export/dept-budget',[ExportController::class,'deptBudget'])->name('exports.deptbudget');
+        Route::get('/export/invoice',[ExportController::class,'invoice'])->name('exports.invoice');
+        Route::get('/export/payment',[ExportController::class,'payment'])->name('exports.payment');
+        Route::get('/export/receipt',[ExportController::class,'receipt'])->name('exports.receipt');
+        Route::get('/export/export',[ExportController::class,'export'])->name('exports.export');
         Route::get('/exports/parameter/{export}',[ExportController::class,'parameter'])->name('exports.parameter');
 		Route::put('/exports/run/{export}',[ExportController::class,'run'])->name('exports.run');
 
