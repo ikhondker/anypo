@@ -93,9 +93,5 @@ class PolPolicy
 		//
 	}
 
-	public function export(User $user): bool
-	{
-		return true;
-	}
 
 }

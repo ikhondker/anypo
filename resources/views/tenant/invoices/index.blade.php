@@ -21,7 +21,7 @@
 
 			<div class="card">
 				<div class="card-header">
-					 <x-tenant.card.header-search-export-bar model="Invoice"/>
+					 <x-tenant.card.header-search-export-xls entity="Invoice"/>
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-info">{{ request('term') }}</strong>

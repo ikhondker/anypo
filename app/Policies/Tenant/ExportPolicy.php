@@ -87,6 +87,30 @@ class ExportPolicy
 	}
 
 
+	public function po(User $user): bool
+	{
+		return true;
+	}
 
+
+    public function pol(User $user): bool
+	{
+		return true;
+	}
+
+    public function invoice(User $user): bool
+	{
+		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
+	}
+
+    public function payment(User $user): bool
+	{
+		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
+	}
+
+    public function receipt(User $user): bool
+	{
+		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
+	}
 
 }

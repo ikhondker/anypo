@@ -26,8 +26,7 @@
 				@if ( auth()->user()->isSystem() )
 					<a class="btn btn-sm btn-danger text-white" href="{{ route('exports.edit', $export->entity ) }}"><i data-lucide="edit"></i> Edit</a>
 				@endif
-					<a class="btn btn-sm btn-light" href="{{ route('exports.parameter', $export->entity ) }}"><i data-lucide="printer"></i> Run</a>
-
+					<a class="btn btn-sm btn-light" href="{{ route('exports.'.Str::lower($export->entity).'') }}"><i data-lucide="download-cloud"></i> Export</a>
 
 			</div>
 			<h5 class="card-title">Exports Detail</h5>

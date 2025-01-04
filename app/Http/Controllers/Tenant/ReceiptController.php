@@ -426,65 +426,6 @@ class ReceiptController extends Controller
 	}
 
 
-	public function export()
-	{
 
-		$this->authorize('export', Receipt::class);
-
-		$fileName = 'export-receipts-' . date('Ymd') . '.xls';
-		$receipts = Receipt::with('pol')->with('pol.po')->with('pol.po.dept')->with('pol.uom')->with('warehouse')->with('user_created_by')->with('user_updated_by');
-
-		// HoD sees only dept
-		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
-			$receipts->whereHas('pol.po', function ($q) {
-				$q->where('dept_id', auth()->user()->dept_id);
-			});
-
-		}
-		$receipts = $receipts->get();
-
-		$spreadsheet = new Spreadsheet();
-		$sheet = $spreadsheet->getActiveSheet();
-
-		$sheet->setCellValue('A1', 'RECEIPT#');
-		$sheet->setCellValue('B1', 'Date');
-		$sheet->setCellValue('C1', 'Item Description');
-		$sheet->setCellValue('D1', 'Qty');
-		$sheet->setCellValue('E1', 'UoM');
-		$sheet->setCellValue('F1', 'Warehouse');
-		$sheet->setCellValue('G1', 'Receiver');
-		$sheet->setCellValue('H1', 'Notes');
-		$sheet->setCellValue('I1', 'PO#');
-		$sheet->setCellValue('J1', 'PO Line Num');
-		// $sheet->setCellValue('V1', 'Created By');
-		// $sheet->setCellValue('W1', 'Created At');
-		// $sheet->setCellValue('X1', 'Updated By');
-		// $sheet->setCellValue('Y1', 'Updated At');
-
-		$rows = 2;
-		foreach($receipts as $receipt){
-			$sheet->setCellValue('A' . $rows, $receipt->id);
-			$sheet->setCellValue('B' . $rows, $receipt->receive_date);
-			$sheet->setCellValue('C' . $rows, $receipt->pol->item_description);
-			$sheet->setCellValue('D' . $rows, $receipt->qty);
-			$sheet->setCellValue('E' . $rows, $receipt->pol->uom->name);
-			$sheet->setCellValue('F' . $rows, $receipt->warehouse->name);
-			$sheet->setCellValue('G' . $rows, $receipt->receiver->name);
-			$sheet->setCellValue('H' . $rows, $receipt->notes);
-			$sheet->setCellValue('I' . $rows, $receipt->pol->po_id);
-			$sheet->setCellValue('J' . $rows, $receipt->pol->line_num);
-
-			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
-			// $sheet->setCellValue('S' . $rows, $pr->created_at);
-			// $sheet->setCellValue('T' . $rows, $pr->user_updated_by->name);
-			// $sheet->setCellValue('U' . $rows, $pr->updated_at);
-			$rows++;
-		}
-
-		$writer = new Xls($spreadsheet);
-		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-		header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
-		$writer->save('php://output');
-	}
 
 }

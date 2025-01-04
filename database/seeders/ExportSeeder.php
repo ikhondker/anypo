@@ -22,30 +22,47 @@ class ExportSeeder extends Seeder
 				'entity' 				=> EntityEnum::PR->value,
 				'name' 					=> 'Purchase Requisition',
 			],
-			[
-				'entity' 				=> EntityEnum::PO->value,
-				'name' 					=> 'Purchase Requisition',
+            [
+				'entity' 				=> EntityEnum::PRL->value,
+				'name' 					=> 'Purchase Requisition Line',
 			],
 			[
+				'entity' 				=> EntityEnum::PO->value,
+				'name' 					=> 'Purchase Order',
+			],
+			[
+				'entity' 				=> EntityEnum::POL->value,
+				'name' 					=> 'Purchase Order Line',
+			],
+            [
 				'entity' 				=> EntityEnum::RECEIPT->value,
-				'name' 					=> 'Purchase Requisition',
+				'name' 					=> 'Receipts',
 			],
 			[
 				'entity' 				=> EntityEnum::INVOICE->value,
-				'name' 					=> 'Purchase Requisition',
+				'name' 					=> 'Invoice',
+			],
+            [
+				'entity' 				=> EntityEnum::INVOICELINE->value,
+				'name' 					=> 'Invoice Line',
 			],
 			[
 				'entity' 				=> EntityEnum::PAYMENT->value,
-				'name' 					=> 'Purchase Requisition',
+				'name' 					=> 'Payment',
 			],
 			[
 				'entity' 				=> EntityEnum::BUDGET->value,
-				'name' 					=> 'Purchase Requisition',
+				'name' 					=> 'Budget',
 			],
 			[
 				'entity' 				=> EntityEnum::DEPTBUDGET->value,
-				'name' 					=> 'Purchase Requisition',
+				'name' 					=> 'Dept Budget',
 			],
+			[
+				'entity' 				=> EntityEnum::AEL->value,
+				'name' 					=> 'Accounting Line',
+			],
+
 
 		];
 		Export::insert($exports);

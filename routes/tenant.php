@@ -271,7 +271,7 @@ Route::middleware([
 		Route::get('/pr/my-prs',[PrController::class,'myPr'])->name('prs.my-prs');
 		Route::get('/prs/attachments/{pr}',[PrController::class,'attachments'])->name('prs.attachments');
 		Route::post('/pr/attach',[PrController::class,'attach'])->name('prs.attach');
-		Route::get('/pr/export',[PrController::class,'export'])->name('prs.export');
+		//Route::get('/pr/export',[PrController::class,'export'])->name('prs.export');
 		Route::get('/prs/pdf/{pr}',[PrController::class,'pdf'])->name('prs.pdf');
 		Route::get('/prs/delete/{pr}',[PrController::class,'destroy'])->name('prs.destroy');
 		Route::get('/prs/cancel/{pr}',[PrController::class,'cancel'])->name('prs.cancel');
@@ -284,7 +284,7 @@ Route::middleware([
 
 		/* ======================== Prl ======================================== */
 		Route::resource('prls', PrlController::class);
-		Route::get('/prl/export',[PrlController::class,'export'])->name('prls.export');
+		//Route::get('/prl/export',[PrlController::class,'export'])->name('prls.export');
 		Route::get('/prls/delete/{prl}',[PrlController::class,'destroy'])->name('prls.destroy');
 		Route::get('/prls/add-line/{pr}',[PrlController::class, 'addLine'])->name('prls.add-line');
 		// TODO prl cancel here
@@ -300,17 +300,25 @@ Route::middleware([
 
    		/* ======================== Export ======================================== */
 		Route::resource('exports', ExportController::class);
+        //Route::get('/exports/parameter/{export}',[ExportController::class,'parameter'])->name('exports.parameter');
+		Route::put('/exports/run/{export}',[ExportController::class,'run'])->name('exports.run');
+        Route::get('/export/export',[ExportController::class,'export'])->name('exports.export');
+
         Route::get('/export/pr',[ExportController::class,'pr'])->name('exports.pr');
+        Route::get('/export/prl',[ExportController::class,'prl'])->name('exports.prl');
         Route::get('/export/po',[ExportController::class,'po'])->name('exports.po');
-        Route::get('/export/budget',[ExportController::class,'po'])->name('exports.budget');
+        Route::get('/export/pol',[ExportController::class,'pol'])->name('exports.pol');
+        Route::get('/export/budget',[ExportController::class,'budget'])->name('exports.budget');
         Route::get('/export/dept-budget',[ExportController::class,'deptBudget'])->name('exports.deptbudget');
         Route::get('/export/invoice',[ExportController::class,'invoice'])->name('exports.invoice');
+        Route::get('/export/invoice-line',[ExportController::class,'invoiceLine'])->name('exports.invoice-line');
         Route::get('/export/payment',[ExportController::class,'payment'])->name('exports.payment');
         Route::get('/export/receipt',[ExportController::class,'receipt'])->name('exports.receipt');
-        Route::get('/export/export',[ExportController::class,'export'])->name('exports.export');
-        Route::get('/exports/parameter/{export}',[ExportController::class,'parameter'])->name('exports.parameter');
-		Route::put('/exports/run/{export}',[ExportController::class,'run'])->name('exports.run');
-
+        Route::get('/export/ael',[ExportController::class,'ael'])->name('exports.ael');
+        // Route::get('/export/project-po',[ExportController::class,'projectPo'])->name('exports.projectpo');
+        // Route::get('/export/project-po-lines',[ExportController::class,'projectPoLine'])->name('exports.projectpoline');
+        // Route::get('/export/supplier-po',[ExportController::class,'supplierPo'])->name('exports.supplierpo');
+        // Route::get('/export/supplier-po-lines',[ExportController::class,'supplierPoLine'])->name('exports.supplierpoline');
 	});
 
 /**
@@ -345,10 +353,10 @@ Route::middleware([
 		//Route::get('/pos/pdf/{po}',[PoController::class,'pdf'])->name('pos.pdf');
 		Route::get('/pos/attachments/{po}',[PoController::class,'attachments'])->name('pos.attachments');
 		Route::post('/po/attach',[PoController::class,'attach'])->name('pos.attach');
-		Route::get('/po/export',[PoController::class,'export'])->name('pos.export');
-		Route::get('/pos/export-for-supplier/{supplier}',[PoController::class,'exportForSupplier'])->name('pos.export-for-supplier');
-		Route::get('/pos/export-for-project/{project}',[PoController::class,'exportForProject'])->name('pos.export-for-project');
-		Route::get('/pos/export-for-buyer/{user}',[PoController::class,'exportForBuyer'])->name('pos.export-for-buyer');
+		//Route::get('/po/export',[PoController::class,'export'])->name('pos.export');
+		// Route::get('/pos/export-for-supplier/{supplier}',[PoController::class,'exportForSupplier'])->name('pos.export-for-supplier');
+		// Route::get('/pos/export-for-project/{project}',[PoController::class,'exportForProject'])->name('pos.export-for-project');
+		// Route::get('/pos/export-for-buyer/{user}',[PoController::class,'exportForBuyer'])->name('pos.export-for-buyer');
 		Route::get('/pos/get-po/{po}',[PoController::class, 'getPo'])->name('pos.get-po');
 
 		Route::get('/pos/delete/{po}',[PoController::class,'destroy'])->name('pos.destroy');
@@ -368,7 +376,7 @@ Route::middleware([
 
 		/* ======================== Pol ======================================== */
 		Route::resource('pols', PolController::class);
-		Route::get('/pol/export',[PolController::class,'export'])->name('pols.export');
+		//Route::get('/pol/export',[PolController::class,'export'])->name('pols.export');
 		Route::get('/pols/delete/{pol}',[PolController::class,'destroy'])->name('pols.destroy');
 		Route::get('/pols/add-line/{po}',[PolController::class, 'addLine'])->name('pols.add-line');
 		Route::get('/pols/receipt/{pol}',[PolController::class,'receipt'])->name('pols.receipt');
@@ -378,7 +386,7 @@ Route::middleware([
 		/* ======================== Receipt ======================================== */
 		Route::resource('receipts', ReceiptController::class);
 		Route::get('/receipt/my-receipts',[ReceiptController::class,'myReceipts'])->name('receipts.my-receipts');
-		Route::get('/receipt/export',[ReceiptController::class,'export'])->name('receipts.export');
+		//Route::get('/receipt/export',[ReceiptController::class,'export'])->name('receipts.export');
 		Route::get('/receipts/delete/{receipt}',[ReceiptController::class,'destroy'])->name('receipts.destroy');
 		Route::get('/receipts/cancel/{receipt}',[ReceiptController::class,'cancel'])->name('receipts.cancel');
 		Route::get('/receipts/ael/{receipt}',[ReceiptController::class,'ael'])->name('receipts.ael');
@@ -388,7 +396,7 @@ Route::middleware([
 		Route::resource('invoices', InvoiceController::class);
 		Route::get('/invoice/my-invoices',[InvoiceController::class,'myInvoices'])->name('invoices.my-invoices');
 		Route::post('/invoice/attach',[InvoiceController::class,'attach'])->name('invoices.attach');
-		Route::get('/invoice/export',[InvoiceController::class,'export'])->name('invoices.export');
+		//Route::get('/invoice/export',[InvoiceController::class,'export'])->name('invoices.export');
 		Route::get('/invoices/payments/{invoice}',[InvoiceController::class,'payments'])->name('invoices.payments');
 		Route::get('/invoices/attachments/{invoice}',[InvoiceController::class,'attachments'])->name('invoices.attachments');
 		Route::get('/invoices/get-invoices/{po}',[InvoiceController::class, 'getInvoice'])->name('invoices.get-invoice');
@@ -401,16 +409,15 @@ Route::middleware([
 
 		/* ======================== InvoiceLines ======================================== */
 		Route::resource('invoice-lines', InvoiceLineController::class);
-        Route::get('/invoice-line/export',[InvoiceLineController::class,'export'])->name('invoice-lines.export'); //TODO
+        //Route::get('/invoice-line/export',[InvoiceLineController::class,'export'])->name('invoice-lines.export'); //TODO
 		Route::get('/invoice-lines/delete/{invoiceLine}',[InvoiceLineController::class,'destroy'])->name('invoice-lines.destroy');
 		Route::get('/invoice-lines/add-line/{invoice}',[InvoiceLineController::class, 'addLine'])->name('invoice-lines.add-line');
 
 		/* ======================== Payment ======================================== */
 		Route::resource('payments', PaymentController::class);
 		Route::get('/payment/my-payments',[PaymentController::class,'myPayments'])->name('payments.my-payments');
-		Route::get('/payment/export',[PaymentController::class,'export'])->name('payments.export');
+		//Route::get('/payment/export',[PaymentController::class,'export'])->name('payments.export');
 		Route::get('/payment/cancel/{payment}',[PaymentController::class, 'cancel'])->name('payments.cancel');
-
 		Route::get('/payments/delete/{payment}',[PaymentController::class,'destroy'])->name('payments.destroy');
 		Route::get('/payments/ael/{payment}',[PaymentController::class,'ael'])->name('payments.ael');
 		Route::get('/payments/timestamp/{payment}',[PaymentController::class, 'timestamp'])->name('payments.timestamp');

@@ -45,16 +45,16 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'prs.edit','route_name'				=> 'prs.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'prs.create','route_name' 			=> 'prs.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'prs.attachments','route_name'		=> 'prs.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'prs.timestamp','route_name'				=> 'prs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'prs.timestamp','route_name'			=> 'prs.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'exports.pr','route_name' 			=> 'prs.index', 'node_name'	=> 'workbench'],
 
 			[ 'raw_route_name' => 'prls.edit','route_name'				=> 'prs.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'prls.add-line','route_name'			=> 'prs.index', 'node_name' => 'workbench'],
-
+			[ 'raw_route_name' => 'exports.prl','route_name' 			=> 'prs.index', 'node_name'	=> 'workbench'],
 
 			[ 'raw_route_name' => 'pos.index','route_name'				=> 'pos.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'pos.my-pos','route_name' 			=> 'pos.index', 'node_name' => 'workbench'],
-
-			[ 'raw_route_name' => 'pos.show','route_name'				=> 'pos.index', 'node_name' => 'workbench'],
+						[ 'raw_route_name' => 'pos.show','route_name'				=> 'pos.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'pos.edit','route_name'				=> 'pos.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'pos.create','route_name' 			=> 'pos.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'pos.history','route_name'			=> 'pos.index', 'node_name' => 'workbench'],
@@ -62,13 +62,14 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'pos.invoice','route_name'			=> 'pos.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'pos.attachments','route_name'		=> 'pos.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'pos.timestamp','route_name'			=> 'pos.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'exports.po','route_name' 			=> 'pos.index', 'node_name'	=> 'workbench'],
 
 
 			[ 'raw_route_name' => 'pols.show','route_name'				=> 'pos.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'pols.edit','route_name'				=> 'pos.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'pols.receipt','route_name'			=> 'pos.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'pols.add-line','route_name'			=> 'pos.index', 'node_name' => 'workbench'],
-
+			[ 'raw_route_name' => 'exports.pol','route_name' 			=> 'pos.index', 'node_name'	=> 'workbench'],
 
 			[ 'raw_route_name' => 'receipts.index','route_name' 		=> 'receipts.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'receipts.my-receipts','route_name'	=> 'receipts.index', 'node_name' => 'workbench'],
@@ -76,7 +77,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'receipts.create-for-pol','route_name'=> 'receipts.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'receipts.ael','route_name'			=> 'receipts.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'receipts.timestamp','route_name' 	=> 'receipts.index', 'node_name' => 'workbench'],
-
+			[ 'raw_route_name' => 'exports.receipt','route_name'		=> 'receipts.index', 'node_name'    => 'workbench'],
 
 			[ 'raw_route_name' => 'invoices.index','route_name' 		=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoices.my-invoices','route_name'	=> 'invoices.index', 'node_name' => 'workbench'],
@@ -87,10 +88,10 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'invoices.payments','route_name'		=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoices.attachments','route_name'	=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoices.timestamp','route_name'		=> 'invoices.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'exports.invoice','route_name'		=> 'invoices.index', 'node_name'    => 'workbench'],
 
 			[ 'raw_route_name' => 'invoice-lines.add-line','route_name'	=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoice-lines.edit','route_name'		=> 'invoices.index', 'node_name' => 'workbench'],
-
 
 			[ 'raw_route_name' => 'payments.index','route_name'			=> 'payments.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'payments.my-payments','route_name'	=> 'payments.index', 'node_name' => 'workbench'],
@@ -98,44 +99,47 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'payments.create-for-invoice','route_name'	=> 'payments.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'payments.ael','route_name'			=> 'payments.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'payments.timestamp','route_name'		=> 'payments.index', 'node_name' => 'workbench'],
+			[ 'raw_route_name' => 'exports.payment','route_name'		=> 'payments.index', 'node_name'    => 'workbench'],
 
 			[ 'raw_route_name' => 'aels.index','route_name'				=> 'aels.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'aels.show','route_name'				=> 'aels.index', 'node_name' => 'workbench'],
-
+			[ 'raw_route_name' => 'exports.ael','route_name'		=> 'aels.index', 'node_name'    => 'workbench'],
 
 			/**
 			* ==================================================================================
 			* 2. Budget
 			* ==================================================================================
 			*/
-			[ 'raw_route_name' => 'budgets.index','route_name' 			=> 'budgets.index', 'node_name' 		=> 'budget'],
-			[ 'raw_route_name' => 'budgets.show','route_name' 			=> 'budgets.index', 'node_name' 		=> 'budget'],
-			[ 'raw_route_name' => 'budgets.edit','route_name' 			=> 'budgets.index', 'node_name' 		=> 'budget'],
-			[ 'raw_route_name' => 'budgets.create','route_name' 		=> 'budgets.index', 'node_name' 		=> 'budget'],
-			[ 'raw_route_name' => 'budgets.attachments','route_name'	=> 'budgets.index', 'node_name' 		=> 'budget'],
-			[ 'raw_route_name' => 'budgets.revisions','route_name'		=> 'budgets.index', 'node_name' 		=> 'budget'],
-			[ 'raw_route_name' => 'budgets.revisions-all','route_name'	=> 'budgets.revisions-all', 'node_name'	=> 'budget'],
-			[ 'raw_route_name' => 'budgets.timestamp','route_name' 		=> 'budgets.index', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'budgets.index','route_name' 				=> 'budgets.index', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'budgets.show','route_name' 				=> 'budgets.index', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'budgets.edit','route_name' 				=> 'budgets.index', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'budgets.create','route_name' 			=> 'budgets.index', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'budgets.attachments','route_name'		=> 'budgets.index', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'budgets.revisions','route_name'			=> 'budgets.index', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'budgets.revisions-all','route_name'		=> 'budgets.revisions-all', 'node_name'	=> 'budget'],
+			[ 'raw_route_name' => 'budgets.timestamp','route_name' 			=> 'budgets.index', 'node_name' 		=> 'budget'],
 
-			[ 'raw_route_name' => 'dept-budgets.index','route_name' 	=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
-			[ 'raw_route_name' => 'dept-budgets.show','route_name' 		=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
-			[ 'raw_route_name' => 'dept-budgets.edit','route_name' 		=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
-			[ 'raw_route_name' => 'dept-budgets.create','route_name' 	=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
-			[ 'raw_route_name' => 'dept-budgets.attachments','route_name' => 'dept-budgets.index', 'node_name' => 'budget'],
-			[ 'raw_route_name' => 'dept-budgets.budget','route_name'	=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
-			[ 'raw_route_name' => 'dept-budgets.revisions','route_name'	=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
-			[ 'raw_route_name' => 'dept-budgets.revisions-all','route_name'	=> 'dept-budgets.revisions-all', 'node_name' 	=> 'budget'],
+			[ 'raw_route_name' => 'dept-budgets.index','route_name' 		=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
+			[ 'raw_route_name' => 'dept-budgets.show','route_name' 			=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
+			[ 'raw_route_name' => 'dept-budgets.edit','route_name' 			=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
+			[ 'raw_route_name' => 'dept-budgets.create','route_name' 		=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
+			[ 'raw_route_name' => 'dept-budgets.attachments','route_name' 	=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
+			[ 'raw_route_name' => 'dept-budgets.budget','route_name'		=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
+			[ 'raw_route_name' => 'dept-budgets.revisions','route_name'		=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
+			[ 'raw_route_name' => 'dept-budgets.revisions-all','route_name'	=> 'dept-budgets.revisions-all', 'node_name' 		=> 'budget'],
 			[ 'raw_route_name' => 'dept-budgets.revision-detail','route_name'	=> 'dept-budgets.revisions-all', 'node_name' 	=> 'budget'],
-			[ 'raw_route_name' => 'dept-budgets.timestamp','route_name' => 'dept-budgets.index', 'node_name' 	=> 'budget'],
+			[ 'raw_route_name' => 'dept-budgets.timestamp','route_name' 	=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
 
-			[ 'raw_route_name' => 'suppliers.spends','route_name' 		=> 'suppliers.spends', 'node_name' 		=> 'budget'],
-			[ 'raw_route_name' => 'suppliers.po','route_name' 			=> 'suppliers.spends', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'suppliers.spends','route_name' 			=> 'suppliers.spends', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'suppliers.po','route_name' 				=> 'suppliers.spends', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'exports.supplier-po','route_name'		=> 'suppliers.index', 'node_name'		=> 'workbench'],
 
-			[ 'raw_route_name' => 'projects.spends','route_name' 		=> 'projects.spends', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'projects.spends','route_name' 			=> 'projects.spends', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'exports.project-po','route_name'		    => 'projects.index', 'node_name'    	=> 'workbench'],
 
-			[ 'raw_route_name' => 'dbus.index','route_name' 			=> 'dbus.index', 'node_name' 			=> 'budget'],
-			[ 'raw_route_name' => 'dbus.show','route_name' 				=> 'dbus.index', 'node_name' 			=> 'budget'],
-			[ 'raw_route_name' => 'dbus.edit','route_name' 				=> 'dbus.index', 'node_name' 			=> 'budget'],
+			[ 'raw_route_name' => 'dbus.index','route_name' 				=> 'dbus.index', 'node_name' 			=> 'budget'],
+			[ 'raw_route_name' => 'dbus.show','route_name' 					=> 'dbus.index', 'node_name' 			=> 'budget'],
+			[ 'raw_route_name' => 'dbus.edit','route_name' 					=> 'dbus.index', 'node_name' 			=> 'budget'],
 
 			/**
 			* ==================================================================================
@@ -197,7 +201,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'item-categories.show','route_name' 	=> 'item-categories.index', 'node_name' 	=> 'lookups'],
 			[ 'raw_route_name' => 'item-categories.edit','route_name' 	=> 'item-categories.index', 'node_name' 	=> 'lookups'],
 			[ 'raw_route_name' => 'item-categories.create','route_name' => 'item-categories.index', 'node_name' 	=> 'lookups'],
-			[ 'raw_route_name' => 'item-categories.timestamp','route_name' 	=> 'item-categories.index', 'node_name' 	=> 'lookups'],
+			[ 'raw_route_name' => 'item-categories.timestamp','route_name' 	=> 'item-categories.index', 'node_name'	=> 'lookups'],
 
 			[ 'raw_route_name' => 'uoms.index','route_name' 			=> 'uoms.index', 'node_name' 		=> 'lookups'],
 			[ 'raw_route_name' => 'uoms.show','route_name' 				=> 'uoms.index', 'node_name' 		=> 'lookups'],
@@ -259,6 +263,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'exports.create','route_name' 		=> 'exports.index', 'node_name' 	=> 'system'],
 			[ 'raw_route_name' => 'exports.timestamp','route_name' 		=> 'exports.index', 'node_name' 	=> 'system'],
 
+
 			/**
 			* ==================================================================================
 			* 7. Admin
@@ -298,7 +303,7 @@ class MenuSeeder extends Seeder
 			* ==================================================================================
 			*/
 
-			[ 'raw_route_name' => 'notifications.full','route_name' 	=> 'notifications.full', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'notifications.full','route_name' 	=> 'notifications.full', 'node_name'=> 'system'],
 
 			[ 'raw_route_name' => 'tables.index','route_name' 			=> 'tables.index', 'node_name' 		=> 'system'],
 
@@ -310,8 +315,8 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'activities.index','route_name' 		=> 'activities.index', 'node_name' 	=> 'system'],
 			[ 'raw_route_name' => 'activities.show','route_name' 		=> 'activities.index', 'node_name' 	=> 'system'],
 
-			[ 'raw_route_name' => 'attachments.all','route_name' 		=> 'attachments.all', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'attachments.show','route_name' 		=> 'attachments.all', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'attachments.all','route_name' 		=> 'attachments.all', 'node_name' 	=> 'system'],
+			[ 'raw_route_name' => 'attachments.show','route_name' 		=> 'attachments.all', 'node_name' 	=> 'system'],
 
 			[ 'raw_route_name' => 'menus.index','route_name' 			=> 'menus.index', 'node_name' 		=> 'system'],
 			[ 'raw_route_name' => 'menus.show','route_name' 			=> 'menus.index', 'node_name' 		=> 'system'],
@@ -348,8 +353,8 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'templates.edit','route_name' 		=> 'templates.index', 'node_name' 	=> 'system'],
 			[ 'raw_route_name' => 'templates.create','route_name' 		=> 'templates.index', 'node_name' 	=> 'system'],
 
-			[ 'raw_route_name' => 'aehs.index','route_name'				=> 'aehs.index', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'aehs.show','route_name'				=> 'aehs.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'aehs.index','route_name'				=> 'aehs.index', 'node_name' 		=> 'system'],
+			[ 'raw_route_name' => 'aehs.show','route_name'				=> 'aehs.index', 'node_name' 		=> 'system'],
 
 
 			/**
@@ -361,8 +366,8 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'prls.index','route_name' 			=> 'prls.index', 'node_name' 		=> 'system'],
 			[ 'raw_route_name' => 'prls.show','route_name' 				=> 'prls.index', 'node_name' 		=> 'system'],
 
-			[ 'raw_route_name' => 'aels.index','route_name' 			=> 'aels.index', 'node_name' 		=> 'system'],
-			[ 'raw_route_name' => 'aels.show','route_name' 				=> 'aels.index', 'node_name' 		=> 'system'],
+			// [ 'raw_route_name' => 'aels.index','route_name' 			=> 'aels.index', 'node_name' 		=> 'system'],
+			// [ 'raw_route_name' => 'aels.show','route_name' 				=> 'aels.index', 'node_name' 		=> 'system'],
 
 
 

@@ -6,7 +6,7 @@
 		<a class="dropdown-item" href="{{ route('invoices.my-invoices') }}"><i class="align-middle me-1" data-lucide="user-plus"></i> My Invoice's</a>
 		<a class="dropdown-item" href="{{ route('invoices.index') }}"><i class="align-middle me-1" data-lucide="database"></i> All Invoice's</a>
 		<div class="dropdown-divider"></div>
-		<a class="dropdown-item" href="{{ route('invoices.export') }}"><i class="align-middle me-1" data-lucide="download-cloud"></i> Download Invoices to CSV</a>
-		<a class="dropdown-item" href="{{ route('invoice-lines.export') }}"><i class="align-middle me-1" data-lucide="download-cloud"></i> Download Invoices Lines (Hide)**</a>
+        <a class="dropdown-item" href="{{ route('exports.invoice') }}"><i class="align-middle me-1" data-lucide="download-cloud"></i> * Export Invoices</a>
+        <a class="dropdown-item" href="{{ route('exports.invoice-line') }}"><i class="align-middle me-1" data-lucide="download-cloud"></i> * Export Invoices Lines (Hide)**</a>
 	</div>
 </div>

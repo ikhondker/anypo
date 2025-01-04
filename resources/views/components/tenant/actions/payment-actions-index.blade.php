@@ -6,7 +6,6 @@
 		<a class="dropdown-item" href="{{ route('payments.my-payments') }}"><i class="align-middle me-1" data-lucide="user-plus"></i> My Payment's</a>
 		<a class="dropdown-item" href="{{ route('payments.index') }}"><i class="align-middle me-1" data-lucide="database"></i> All Payment's</a>
 		<div class="dropdown-divider"></div>
-		<a class="dropdown-item" href="{{ route('payments.export') }}"><i class="align-middle me-1" data-lucide="download-cloud"></i> Download Payments to CSV</a>
-
+        <a class="dropdown-item" href="{{ route('exports.payment') }}"><i class="align-middle me-1" data-lucide="download-cloud"></i> * Export Payments</a>
 	</div>
 </div>

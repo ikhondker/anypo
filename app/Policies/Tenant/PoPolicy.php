@@ -169,9 +169,4 @@ class PoPolicy
 		return $user->isBuyer();
 	}
 
-	public function export(User $user): bool
-	{
-		return true;
-	}
-
 }

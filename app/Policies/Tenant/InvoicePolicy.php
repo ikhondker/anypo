@@ -100,15 +100,9 @@ class InvoicePolicy
 		return ($invoice->status == AuthStatusEnum::DRAFT->value) && ($user->isBuyer() || $user->isSupport());
 	}
 
-	/**
-	 * Determine whether the user can create models.
-	 */
-	public function export(User $user): bool
-	{
-		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
-	}
 
-/**
+
+    /**
 	 * Determine whether the user can recalculate models.
 	 */
 	public function recalculate(User $user): bool

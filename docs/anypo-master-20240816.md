@@ -6,6 +6,12 @@
 2. Split resource route and separate into gate middle routes in web and tenant.php
 3.
 
+# Model and Entity
+====================================================================
+Both Model and Entity and entit i used. Model when Model exists
+Entity should be => Model Name (Both Exists or Non Exists)
+
+
 # Steps
 ====================================================================
 Laravel Strict Mode: https://coderflex.com/blog/laravel-strict-mode-all-what-you-need-to-know

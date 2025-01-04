@@ -44,7 +44,7 @@
 									<td>{{ $export->summary }}</td>
 									<td class="">
 										<a href="{{ route('exports.parameter',$export->entity) }}" class="btn btn-light"
-											data-bs-toggle="tooltip" data-bs-placement="top" title="View"> <i data-lucide="printer"></i> Run Export
+											data-bs-toggle="tooltip" data-bs-placement="top" title="View"> <i data-lucide="download-cloud"></i> Run Export
 										</a>
 									</td>
 								</tr>

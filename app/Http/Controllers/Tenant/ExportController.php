@@ -101,30 +101,40 @@ class ExportController extends Controller
 		}
 	}
 
-    public function pr()
+	public function pr()
 	{
-        Log::debug('I AM HERE');
-       //self::parameter(Str::lower(EntityEnum::PR->value));
-       self::parameter(EntityEnum::PR->value);
+		return view('tenant.prs.export');
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 */
-	public function parameter($entity)
+	public function prl()
 	{
-        Log::debug('I AM HERE before');
-        $export         = Export::where('entity', $entity)->firstOrFail();
-        Log::debug('I AM HERE after');
-		$depts 			= Dept::Primary()->get();
-		$suppliers 		= Supplier::Primary()->get();
-		$projects 		= Project::Primary()->get();
-		$warehouses 	= Warehouse::Primary()->get();
-		$bank_accounts 	= BankAccount::Primary()->get();
-		$pms 			= User::Tenant()->get();
-		return view('tenant.exports.parameters', compact('export','depts','suppliers','projects','warehouses','bank_accounts','pms'));
+		return view('tenant.prls.export');
 	}
 
+	public function po()
+	{
+		return view('tenant.pos.export');
+	}
+
+	public function pol()
+	{
+		return view('tenant.pols.export');
+	}
+
+	public function invoice()
+	{
+		return view('tenant.invoices.export');
+	}
+
+	public function payment()
+	{
+		return view('tenant.payments.export');
+	}
+
+	public function receipt()
+	{
+		return view('tenant.receipts.export');
+	}
 
 	/**
 	 * Update the specified resource in storage.
@@ -132,117 +142,64 @@ class ExportController extends Controller
 	public function run(UpdateExportRequest $request, Export $export)
 	{
 
-		//$report_id		= $request->input('report_id');
+		$entity			    = $request->input('entity');
 		$article_id			= $request->input('article_id');
 		$start_date			= $request->input('start_date');
 		$end_date			= $request->input('end_date');
+		$currency			= $request->input('currency');
 		$dept_id			= $request->input('dept_id');
 		$supplier_id		= $request->input('supplier_id');
 		$project_id			= $request->input('project_id');
 		$warehouse_id		= $request->input('warehouse_id');
 		$bank_account_id	= $request->input('bank_account_id');
-		$pm_id				= $request->input('pm_id');
+		$user_id			= $request->input('user_id');
 
 		Log::debug('tenant.export.run article_id = '.$article_id);
 		Log::debug('tenant.export.run start_date = '.$start_date);
 		Log::debug('tenant.export.run end_date = '.$end_date);
-		Log::debug('tenant.export.run pm_id = '.$pm_id);
-
+		Log::debug('tenant.export.run user_id = '.$user_id);
 		Log::debug('tenant.export.run entity = '.$export->entity);
 
 		// Increase exports run_count -------------------------
 		self::increaseRunCounter(Str::lower($export->entity));
 
-		// article_id validation
-		if ($export->article_id_required){
-			try {
-				switch ($export->entity) {
-					case EntityEnum::PR->value:
-						$pr = Pr::where('id', $article_id)->firstOrFail();
-						break;
-					case EntityEnum::PO->value:
-						$po = Po::where('id', $article_id)->firstOrFail();
-						break;
-					case EntityEnum::INVOICE->value:
-						$invoice = Invoice::where('id', $article_id)->firstOrFail();
-						break;
-					case EntityEnum::PAYMENT->value:
-						$payment = Payment::where('id', $article_id)->firstOrFail();
-						break;
-					case EntityEnum::RECEIPT->value:
-						$receipt = Receipt::where('id', $article_id)->firstOrFail();
-						break;
-					default:
-						Log::error(tenant('id'). 'tenant.ReportController.run entity = '.$export->entity.' article_id = ' . $article_id);
-						return redirect()->back()->with('error', 'Unknown Error!');
-				}
-			} catch (ModelNotFoundException $exception) {
-				throw ValidationException::withMessages(['article_id' => $export->entity.' ID #'.$article_id.' not found!']);
-			}
-		}
-
-
 		switch ($export->entity) {
 			case EntityEnum::PR->value:
+				return self::exportPr($start_date, $end_date, $currency, $dept_id, $supplier_id, $project_id, $warehouse_id, $bank_account_id, $user_id);
 			case EntityEnum::PRL->value:
-				return self::pr($start_date, $end_date, $dept_id);
-				break;
-			case 'prlist':
-				return self::prlist($start_date, $end_date, $dept_id);
-				break;
-			case EntityEnum::POL->value:
-				return self::prllist($start_date, $end_date, $dept_id);
+				return self::exportPrl($start_date, $end_date, $currency, $dept_id, $supplier_id, $project_id, $warehouse_id, $bank_account_id, $user_id);
 				break;
 			case EntityEnum::PO->value:
-				return self::po($article_id);
+				return self::exportPo($start_date, $end_date, $currency, $dept_id, $supplier_id, $project_id, $warehouse_id, $bank_account_id, $user_id);
 				break;
-			case 'polist':
-				return self::polist($start_date, $end_date, $dept_id);
+			case EntityEnum::POL->value:
+				return self::exportPol($start_date, $end_date, $currency, $dept_id, $supplier_id, $project_id, $warehouse_id, $bank_account_id, $user_id);
 				break;
-			case 'pollist':
-				return self::pollist($start_date, $end_date, $dept_id);
+			case EntityEnum::INVOICE->value:
+				return self::exportInvoice($start_date, $end_date, $currency, $dept_id, $supplier_id, $project_id, $warehouse_id, $bank_account_id, $user_id);
 				break;
-
-				case EntityEnum::INVOICE->value:
-					return self::invoice($article_id);
-					break;
-			case 'invoicelist':
-				return self::invoicelist($start_date, $end_date, $dept_id);
+			case EntityEnum::PAYMENT->value:
+				return self::exportPayment($start_date, $end_date, $currency, $dept_id, $supplier_id, $project_id, $warehouse_id, $bank_account_id, $user_id);
 				break;
-
-				case EntityEnum::PAYMENT->value:
-					return self::payment($article_id);
-					break;
-			case 'paymentlist':
-				return self::paymentlist($start_date, $end_date, $dept_id);
+			case EntityEnum::RECEIPT->value:
+				return self::exportReceipt($start_date, $end_date, $currency, $dept_id, $supplier_id, $project_id, $warehouse_id, $bank_account_id, $user_id);
 				break;
-
-				case EntityEnum::RECEIPT->value:
-					return self::receipt($article_id);
-					break;
-			case 'receiptlist':
-					return self::receiptlist($start_date, $end_date, $dept_id);
-					break;
-			case 'projectspend':
-				return self::projectspend($start_date, $end_date, $project_id);
+			case EntityEnum::AEL->value:
+				return self::exportAel($start_date, $end_date, $dept_id, $supplier_id,	$project_id, $warehouse_id, $bank_account_id, $user_id);
 				break;
-
-			case 'supplierspend':
-				return self::supplierspend($start_date, $end_date, $supplier_id);
-				break;
-
-			case 'taxregister':
-				return self::taxregister($start_date, $end_date, $dept_id);
-				break;
-
-			case 'aellist':
-				return self::aellist($start_date, $end_date);
-				break;
-
 			default:
-				Log::warning(tenant('id').' tenant.export.run entity = '.$export->entity.' not found!');
+				Log::warning('tenant.export.run entity = '.$export->entity.' not found!');
 		}
 	}
+
+	function increaseRunCounter($entity)
+	{
+		// Increase export run_count
+		DB::statement("UPDATE exports SET
+			run_count	= run_count + 1
+			WHERE entity 	= '".$entity."'");
+	}
+
 
 	/**
 	 * Show the form for creating a new resource.
@@ -334,27 +291,45 @@ class ExportController extends Controller
 		//
 	}
 
-	public function exportPr($start_date, $end_date, $dept_id)
+	public function exportPr($start_date, $end_date, $currency, $dept_id, $supplier_id, $project_id, $warehouse_id, $bank_account_id, $user_id)
 	{
-
 
 		$this->authorize('pr', Export::class);
 
 		$fileName = 'export-prs-' . date('Ymd') . '.xls';
 		$prs = Pr::with('dept')->with('project')->with('supplier')->with('requestor')->with('user_created_by')->with('user_updated_by')->where('auth_status',AuthStatusEnum::APPROVED->value);
+
+		// Filter based on input
 		$prs->whereBetween('pr_date', [$start_date, $end_date ]);
 
-		if ($dept_id <> ''){
-			$prs->where('dept_id',$dept_id);
+		if ($currency <> ''){
+			$prs->where('currency', $currency);
 		}
 
+		if ($dept_id <> ''){
+			$prs->where('dept_id', $dept_id);
+		}
+
+		if ($supplier_id <> ''){
+			$prs->where('supplier_id',$supplier_id);
+		}
+
+		if ($project_id <> ''){
+			$prs->where('project_id',$project_id);
+		}
+
+		if ($user_id <> ''){
+			$prs->where('requestor_id',$user_id);
+		}
+
+		// Seeded Filter
 		// User sees only owned
 		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
 			$prs->where('requestor_id',auth()->user()->id);
 		}
 		// HoD sees only dept
 		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
-			$prs->where('dept_id',auth()->user()->dept_id);
+			$prs->where('dept_id', auth()->user()->dept_id);
 		}
 		$prs = $prs->get();
 
@@ -416,13 +391,631 @@ class ExportController extends Controller
 
 	}
 
-	function increaseRunCounter($entity)
+	public function exportPrl($start_date, $end_date, $currency, $dept_id, $supplier_id, $project_id, $warehouse_id, $bank_account_id, $user_id)
 	{
-		// Increase export run_count
-		DB::statement("UPDATE exports SET
-			run_count	= run_count + 1
-			WHERE entity 	= '".$entity."'");
+
+		$this->authorize('prl', Export::class);
+
+		$fileName = 'export-prls-' . date('Ymd') . '.xls';
+		$prls = Prl::with('item')->with('pr')->with('pr.dept')->with('pr.project')->with('pr.supplier')->with('pr.requestor')->with('user_created_by')->with('user_updated_by');
+		$prls->whereHas('pr', function ($q) {
+			$q->where('auth_status', AuthStatusEnum::APPROVED->value);
+		});
+
+		// Filter based on input
+		$prls->whereHas('pr', function ($q) use ($start_date,$end_date)  {
+			$q->whereBetween('pr_date', [$start_date, $end_date ]);
+		});
+
+		if ($currency <> ''){
+			$prls->whereHas('pr', function ($q) use ($currency)  {
+				$q->where('currency', $currency);
+			});
+		}
+
+		if ($dept_id <> ''){
+			$prls->whereHas('pr', function ($q) use ($dept_id)  {
+				$q->where('dept_id', $dept_id);
+			});
+		}
+
+		if ($supplier_id <> ''){
+			$prls->whereHas('pr', function ($q) use ($supplier_id)  {
+				$q->where('supplier_id',$supplier_id);
+			});
+		}
+
+		if ($project_id <> ''){
+			$prls->whereHas('pr', function ($q) use ($project_id) {
+				$q->where('project_id',$project_id);
+			});
+		}
+
+		if ($user_id <> ''){
+			$prls->whereHas('pr', function ($q) use ($user_id) {
+				$q->where('requestor_id',$user_id);
+			});
+		}
+
+		// Seeded Filter
+		// User sees only owned
+		if (auth()->user()->role->value == UserRoleEnum::USER->value ){
+			$prls->whereHas('pr', function ($q) {
+				$q->where('requestor_id', auth()->user()->id);
+			});
+
+		}
+		// HoD sees only dept
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$prls->whereHas('pr', function ($q) {
+				$q->where('dept_id', auth()->user()->dept_id);
+			});
+
+		}
+		$prls = $prls->get();
+
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+
+		$sheet->setCellValue('A1', 'PR#');
+		$sheet->setCellValue('B1', 'Summary');
+		$sheet->setCellValue('C1', 'Date');
+		$sheet->setCellValue('D1', 'Requestor');
+		$sheet->setCellValue('E1', 'Dept');
+		$sheet->setCellValue('F1', 'Project');
+		$sheet->setCellValue('G1', 'Supplier');
+		$sheet->setCellValue('H1', 'Currency');
+		$sheet->setCellValue('I1', 'PR Amount');
+		$sheet->setCellValue('J1', 'Status');
+		$sheet->setCellValue('K1', 'Auth_status');
+		$sheet->setCellValue('L1', 'Line#');
+		$sheet->setCellValue('M1', 'Item Description');
+		$sheet->setCellValue('N1', 'Code');
+		$sheet->setCellValue('O1', 'UoM');
+		$sheet->setCellValue('P1', 'Qty');
+		$sheet->setCellValue('Q1', 'Price');
+		$sheet->setCellValue('R1', 'Sub_total');
+		$sheet->setCellValue('S1', 'Tax');
+		$sheet->setCellValue('T1', 'GST');
+		$sheet->setCellValue('U1', 'Amount');
+		// $sheet->setCellValue('V1', 'Created By');
+		// $sheet->setCellValue('W1', 'Created At');
+		// $sheet->setCellValue('X1', 'Updated By');
+		// $sheet->setCellValue('Y1', 'Updated At');
+
+		$rows = 2;
+		foreach($prls as $prl){
+			$sheet->setCellValue('A' . $rows, $prl->id);
+			$sheet->setCellValue('B' . $rows, $prl->pr->summary);
+			$sheet->setCellValue('C' . $rows, $prl->pr->pr_date);
+			$sheet->setCellValue('D' . $rows, $prl->pr->requestor->name);
+			$sheet->setCellValue('E' . $rows, $prl->pr->dept->name);
+			$sheet->setCellValue('F' . $rows, $prl->pr->project->name);
+			$sheet->setCellValue('G' . $rows, $prl->pr->supplier->name);
+			$sheet->setCellValue('H' . $rows, $prl->pr->currency);
+			$sheet->setCellValue('I' . $rows, $prl->pr->amount);
+			$sheet->setCellValue('J' . $rows, $prl->pr->status);
+			$sheet->setCellValue('K' . $rows, $prl->pr->auth_status);
+			$sheet->setCellValue('L' . $rows, $prl->line_num);
+			$sheet->setCellValue('M' . $rows, $prl->item->name);
+			$sheet->setCellValue('N' . $rows, $prl->item->code);
+			$sheet->setCellValue('O' . $rows, $prl->uom->name);
+			$sheet->setCellValue('P' . $rows, $prl->qty);
+			$sheet->setCellValue('Q' . $rows, $prl->price);
+			$sheet->setCellValue('R' . $rows, $prl->sub_total);
+			$sheet->setCellValue('S' . $rows, $prl->tax);
+			$sheet->setCellValue('T' . $rows, $prl->gst);
+			$sheet->setCellValue('U' . $rows, $prl->amount);
+
+			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
+			// $sheet->setCellValue('S' . $rows, $pr->created_at);
+			// $sheet->setCellValue('T' . $rows, $pr->user_updated_by->name);
+			// $sheet->setCellValue('U' . $rows, $pr->updated_at);
+			$rows++;
+		}
+
+		$writer = new Xls($spreadsheet);
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
+		$writer->save('php://output');
 	}
 
+	public function exportPo($start_date, $end_date, $currency, $dept_id, $supplier_id, $project_id, $warehouse_id, $bank_account_id, $user_id)
+	{
+
+		$this->authorize('po', Export::class);
+
+		$fileName = 'export-pos-' . date('Ymd') . '.xls';
+		$pos = Po::with('dept')->with('project')->with('supplier')->with('requestor')->with('user_created_by')->with('user_updated_by')->where('auth_status',AuthStatusEnum::APPROVED->value);
+
+		// Filter based on input
+		$pos->whereBetween('pr_date', [$start_date, $end_date ]);
+
+		if ($currency <> ''){
+			$pos->where('currency', $currency);
+		}
+
+		if ($supplier_id <> null) {
+			$pos->where('supplier_id', $supplier_id);
+		}
+
+		if ( $project_id <> null ) {
+			$pos->where('project_id', $project_id);
+		}
+
+		if ( $user_id <> null ) {
+			$pos->where('buyer_id', $user_id);
+		}
+
+		// Seeded Filter
+		// HoD sees only dept
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$pos->where('dept_id',auth()->user()->dept_id);
+		}
+		$pos = $pos->get();
+
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+
+		$sheet->setCellValue('A1', 'PO#');
+		$sheet->setCellValue('B1', 'Summary');
+		$sheet->setCellValue('C1', 'Date');
+		$sheet->setCellValue('D1', 'need_by_date');
+		$sheet->setCellValue('E1', 'Requestor');
+		$sheet->setCellValue('F1', 'Dept');
+		$sheet->setCellValue('G1', 'Project');
+		$sheet->setCellValue('H1', 'Supplier_name');
+		$sheet->setCellValue('I1', 'Notes');
+		$sheet->setCellValue('J1', 'Currency');
+		$sheet->setCellValue('K1', 'Sub_total');
+		$sheet->setCellValue('L1', 'Tax');
+		$sheet->setCellValue('M1', 'GST');
+		$sheet->setCellValue('N1', 'Amount');
+		$sheet->setCellValue('O1', 'Status');
+		$sheet->setCellValue('P1', 'Auth_status');
+		$sheet->setCellValue('Q1', 'Auth_date');
+		// $sheet->setCellValue('R1', 'Created By');
+		// $sheet->setCellValue('S1', 'Created At');
+		// $sheet->setCellValue('T1', 'Updated By');
+		// $sheet->setCellValue('U1', 'Updated At');
+
+		$rows = 2;
+		foreach($pos as $po){
+			$sheet->setCellValue('A' . $rows, $po->id);
+			$sheet->setCellValue('B' . $rows, $po->summary);
+			$sheet->setCellValue('C' . $rows, $po->po_date);
+			$sheet->setCellValue('D' . $rows, $po->need_by_date);
+			$sheet->setCellValue('E' . $rows, $po->requestor->name);
+			$sheet->setCellValue('F' . $rows, $po->dept->name);
+			$sheet->setCellValue('G' . $rows, $po->project->name);
+			$sheet->setCellValue('H' . $rows, $po->supplier->name);
+			$sheet->setCellValue('I' . $rows, $po->notes);
+			$sheet->setCellValue('J' . $rows, $po->currency);
+			$sheet->setCellValue('K' . $rows, $po->sub_total);
+			$sheet->setCellValue('L' . $rows, $po->tax);
+			$sheet->setCellValue('M' . $rows, $po->gst);
+			$sheet->setCellValue('N' . $rows, $po->amount);
+			$sheet->setCellValue('O' . $rows, $po->status);
+			$sheet->setCellValue('P' . $rows, $po->auth_status);
+			$sheet->setCellValue('Q' . $rows, $po->auth_date);
+			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
+			// $sheet->setCellValue('S' . $rows, $pr->created_at);
+			// $sheet->setCellValue('T' . $rows, $pr->user_updated_by->name);
+			// $sheet->setCellValue('U' . $rows, $pr->updated_at);
+			$rows++;
+		}
+
+		$writer = new Xls($spreadsheet);
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
+		$writer->save('php://output');
+
+	}
+
+	public function exportPol($start_date, $end_date, $currency, $dept_id, $supplier_id, $project_id, $warehouse_id, $bank_account_id, $user_id)
+	{
+
+		$this->authorize('pol', Export::class);
+
+		$fileName = 'export-pols-' . date('Ymd') . '.xls';
+		$pols = Pol::with('item')->with('po')->with('po.dept')->with('po.project')->with('po.supplier')->with('po.requestor')->with('user_created_by')->with('user_updated_by');
+		$pols->whereHas('po', function ($q) {
+			$q->where('auth_status', AuthStatusEnum::APPROVED->value);
+		});
+
+
+		// Filter based on input
+		$pols->whereHas('po', function ($q) use ($start_date,$end_date)  {
+			$q->whereBetween('po_date', [$start_date, $end_date ]);
+		});
+
+		if ($currency <> ''){
+			$pols->whereHas('po', function ($q) use ($currency)  {
+				$q->where('currency', $currency);
+			});
+		}
+
+		if ($dept_id <> ''){
+			$pols->whereHas('po', function ($q) use ($dept_id)  {
+				$q->where('dept_id', $dept_id);
+			});
+		}
+
+		if ($supplier_id <> ''){
+			$pols->whereHas('po', function ($q) use ($supplier_id)  {
+				$q->where('supplier_id',$supplier_id);
+			});
+		}
+
+		if ($project_id <> ''){
+			$pols->whereHas('po', function ($q) use ($project_id) {
+				$q->where('project_id',$project_id);
+			});
+		}
+
+
+		if ( $user_id <> null ) {
+			$pols->whereHas('po', function ($q) use ($user_id) {
+				$q->where('buyer_id',$user_id);
+			});
+		}
+
+		// Seeded Filter
+		// HoD sees only dept
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$pols->whereHas('po', function ($q) {
+				$q->where('dept_id', auth()->user()->dept_id);
+			});
+
+		}
+		$pols = $pols->get();
+
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+
+		$sheet->setCellValue('A1', 'PO#');
+		$sheet->setCellValue('B1', 'Summary');
+		$sheet->setCellValue('C1', 'Date');
+		$sheet->setCellValue('D1', 'Requestor');
+		$sheet->setCellValue('E1', 'Dept');
+		$sheet->setCellValue('F1', 'Project');
+		$sheet->setCellValue('G1', 'Supplier');
+		$sheet->setCellValue('H1', 'Currency');
+		$sheet->setCellValue('I1', 'PO Amount');
+		$sheet->setCellValue('J1', 'Status');
+		$sheet->setCellValue('K1', 'Auth_status');
+		$sheet->setCellValue('L1', 'Line#');
+		$sheet->setCellValue('M1', 'Item Description');
+		$sheet->setCellValue('N1', 'Code');
+		$sheet->setCellValue('O1', 'UoM');
+		$sheet->setCellValue('P1', 'Qty');
+		$sheet->setCellValue('Q1', 'Price');
+		$sheet->setCellValue('R1', 'Sub_total');
+		$sheet->setCellValue('S1', 'Tax');
+		$sheet->setCellValue('T1', 'GST');
+		$sheet->setCellValue('U1', 'Amount');
+		// $sheet->setCellValue('V1', 'Created By');
+		// $sheet->setCellValue('W1', 'Created At');
+		// $sheet->setCellValue('X1', 'Updated By');
+		// $sheet->setCellValue('Y1', 'Updated At');
+
+		$rows = 2;
+		foreach($pols as $pol){
+			$sheet->setCellValue('A' . $rows, $pol->id);
+			$sheet->setCellValue('B' . $rows, $pol->po->summary);
+			$sheet->setCellValue('C' . $rows, $pol->po->po_date);
+			$sheet->setCellValue('D' . $rows, $pol->po->requestor->name);
+			$sheet->setCellValue('E' . $rows, $pol->po->dept->name);
+			$sheet->setCellValue('F' . $rows, $pol->po->project->name);
+			$sheet->setCellValue('G' . $rows, $pol->po->supplier->name);
+			$sheet->setCellValue('H' . $rows, $pol->po->currency);
+			$sheet->setCellValue('I' . $rows, $pol->po->amount);
+			$sheet->setCellValue('J' . $rows, $pol->po->status);
+			$sheet->setCellValue('K' . $rows, $pol->po->auth_status);
+			$sheet->setCellValue('L' . $rows, $pol->line_num);
+			$sheet->setCellValue('M' . $rows, $pol->item->name);
+			$sheet->setCellValue('N' . $rows, $pol->item->code);
+			$sheet->setCellValue('O' . $rows, $pol->uom->name);
+			$sheet->setCellValue('P' . $rows, $pol->qty);
+			$sheet->setCellValue('Q' . $rows, $pol->price);
+			$sheet->setCellValue('R' . $rows, $pol->sub_total);
+			$sheet->setCellValue('S' . $rows, $pol->tax);
+			$sheet->setCellValue('T' . $rows, $pol->gst);
+			$sheet->setCellValue('U' . $rows, $pol->amount);
+
+			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
+			// $sheet->setCellValue('S' . $rows, $pr->created_at);
+			// $sheet->setCellValue('T' . $rows, $pr->user_updated_by->name);
+			// $sheet->setCellValue('U' . $rows, $pr->updated_at);
+			$rows++;
+		}
+
+		$writer = new Xls($spreadsheet);
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
+		$writer->save('php://output');
+	}
+
+	public function exportInvoice($start_date, $end_date, $currency, $dept_id, $supplier_id, $project_id, $warehouse_id, $bank_account_id, $user_id)
+	{
+
+		$this->authorize('invoice', Export::class);
+
+		$fileName = 'export-invoices-' . date('Ymd') . '.xls';
+		$invoices = Invoice::with('po')->with('po.dept')->with('po.project')->with('po.supplier')->with('po.requestor')->with('user_created_by')->with('user_updated_by');
+
+		// $pols->whereHas('po', function ($q) {
+		// 		$q->where('auth_status', AuthStatusEnum::APPROVED->value);
+		// });
+
+
+		// Filter based on input
+		$invoices->whereBetween('pr_date', [$start_date, $end_date ]);
+
+		if ($currency <> ''){
+			$invoices->where('currency', $currency);
+		}
+
+		if ($dept_id <> ''){
+			$prs->where('dept_id', $dept_id);
+		}
+
+		if ($supplier_id <> ''){
+			$prs->where('supplier_id',$supplier_id);
+		}
+
+		if ($project_id <> ''){
+			$prs->where('project_id',$project_id);
+		}
+
+		if ($user_id <> ''){
+			$prs->where('requestor_id',$user_id);
+		}
+
+		// Seeded Filter
+
+		// HoD sees only dept
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$invoices->whereHas('po', function ($q) {
+				$q->where('dept_id', auth()->user()->dept_id);
+			});
+
+		}
+		$invoices = $invoices->get();
+
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+
+		//	i.fc_exchange_rate, i.fc_sub_total, i.fc_tax, i.fc_gst, i.fc_amount, i.fc_amount_paid,
+		//	i.notes, i.status, i.payment_status
+		$sheet->setCellValue('A1', 'ID#');
+		$sheet->setCellValue('B1', 'Invoice No');
+		$sheet->setCellValue('C1', 'Date');
+		$sheet->setCellValue('D1', 'PO#');
+		$sheet->setCellValue('E1', 'PO Summary');
+		$sheet->setCellValue('F1', 'Supplier');
+		$sheet->setCellValue('G1', 'PoC Name');
+		$sheet->setCellValue('H1', 'Currency');
+		$sheet->setCellValue('I1', 'Sub_total');
+		$sheet->setCellValue('J1', 'Tax');
+		$sheet->setCellValue('K1', 'GST');
+		$sheet->setCellValue('L1', 'Amount');
+		$sheet->setCellValue('M1', 'Paid Amount');
+		$sheet->setCellValue('N1', 'Notes');
+		$sheet->setCellValue('O1', 'Status');
+		// $sheet->setCellValue('V1', 'Created By');
+		// $sheet->setCellValue('W1', 'Created At');
+		// $sheet->setCellValue('X1', 'Updated By');
+		// $sheet->setCellValue('Y1', 'Updated At');
+
+		$rows = 2;
+		foreach($invoices as $invoice){
+			$sheet->setCellValue('A' . $rows, $invoice->id);
+			$sheet->setCellValue('B' . $rows, $invoice->invoice_no);
+			$sheet->setCellValue('C' . $rows, $invoice->invoice_date);
+			$sheet->setCellValue('D' . $rows, $invoice->po->id);
+			$sheet->setCellValue('E' . $rows, $invoice->po->summary);
+			$sheet->setCellValue('F' . $rows, $invoice->po->supplier->name);
+			$sheet->setCellValue('G' . $rows, $invoice->poc->name);
+
+			$sheet->setCellValue('H' . $rows, $invoice->currency);
+			$sheet->setCellValue('I' . $rows, $invoice->sub_total);
+			$sheet->setCellValue('J' . $rows, $invoice->tax);
+			$sheet->setCellValue('K' . $rows, $invoice->gst);
+			$sheet->setCellValue('L' . $rows, $invoice->amount);
+			$sheet->setCellValue('M' . $rows, $invoice->amount_paid);
+			$sheet->setCellValue('N' . $rows, $invoice->notes);
+			$sheet->setCellValue('O' . $rows, $invoice->status);
+
+			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
+			// $sheet->setCellValue('S' . $rows, $pr->created_at);
+			// $sheet->setCellValue('T' . $rows, $pr->user_updated_by->name);
+			// $sheet->setCellValue('U' . $rows, $pr->updated_at);
+			$rows++;
+		}
+
+		$writer = new Xls($spreadsheet);
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
+		$writer->save('php://output');
+
+	}
+
+
+	public function exportPayment($start_date, $end_date, $currency, $dept_id, $supplier_id, $project_id, $warehouse_id, $bank_account_id, $user_id)
+	{
+
+		$this->authorize('payment', Export::class);
+
+
+
+		$fileName = 'export-payments-' . date('Ymd') . '.xls';
+		$payments = Payment::with('bank_account')->with('payee')->with('invoice')->with('invoice.supplier')->with('user_created_by')->with('user_updated_by');
+
+		// Filter based on input
+		$prs->whereBetween('pr_date', [$start_date, $end_date ]);
+
+		if ($currency <> ''){
+			$prs->where('currency', $currency);
+		}
+
+		if ($dept_id <> ''){
+			$prs->where('dept_id', $dept_id);
+		}
+
+		if ($supplier_id <> ''){
+			$prs->where('supplier_id',$supplier_id);
+		}
+
+		if ($project_id <> ''){
+			$prs->where('project_id',$project_id);
+		}
+
+		if ($user_id <> ''){
+			$prs->where('requestor_id',$user_id);
+		}
+
+		// Seeded Filter
+		// HoD sees only dept
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$payments->whereHas('invoice.po', function ($q) {
+				$q->where('dept_id', auth()->user()->dept_id);
+			});
+
+		}
+		$payments = $payments->get();
+
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+
+		$sheet->setCellValue('A1', 'PAY#');
+		$sheet->setCellValue('B1', 'Date');
+		$sheet->setCellValue('C1', 'Narration');
+		$sheet->setCellValue('D1', 'Supplier');
+		$sheet->setCellValue('E1', 'Bank Ac');
+		$sheet->setCellValue('F1', 'Cheque No');
+		$sheet->setCellValue('G1', 'Currency');
+		$sheet->setCellValue('H1', 'Amount');
+		$sheet->setCellValue('I1', 'Payee');
+		$sheet->setCellValue('J1', 'Invoice Num');
+		$sheet->setCellValue('J1', 'Invoice Date');
+		$sheet->setCellValue('K1', 'PO#');
+		// $sheet->setCellValue('V1', 'Created By');
+		// $sheet->setCellValue('W1', 'Created At');
+		// $sheet->setCellValue('X1', 'Updated By');
+		// $sheet->setCellValue('Y1', 'Updated At');
+
+		$rows = 2;
+		foreach($payments as $payment){
+			$sheet->setCellValue('A' . $rows, $payment->id);
+			$sheet->setCellValue('B' . $rows, $payment->pay_date);
+			$sheet->setCellValue('C' . $rows, $payment->summary);
+			$sheet->setCellValue('D' . $rows, $payment->invoice->supplier->name);
+			$sheet->setCellValue('E' . $rows, $payment->bank_account->name);
+			$sheet->setCellValue('F' . $rows, $payment->cheque_no);
+			$sheet->setCellValue('G' . $rows, $payment->currency);
+			$sheet->setCellValue('H' . $rows, $payment->amount);
+			$sheet->setCellValue('I' . $rows, $payment->payee->name);
+			$sheet->setCellValue('J' . $rows, $payment->invoice->invoice_no);
+			$sheet->setCellValue('J' . $rows, $payment->invoice->invoice_date);
+			$sheet->setCellValue('K' . $rows, $payment->po_id);
+			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
+			// $sheet->setCellValue('S' . $rows, $pr->created_at);
+			// $sheet->setCellValue('T' . $rows, $pr->user_updated_by->name);
+			// $sheet->setCellValue('U' . $rows, $pr->updated_at);
+			$rows++;
+		}
+
+		$writer = new Xls($spreadsheet);
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
+		$writer->save('php://output');
+
+	}
+
+	public function exportReceipt($start_date, $end_date, $currency, $dept_id, $supplier_id, $project_id, $warehouse_id, $bank_account_id, $user_id)
+	{
+
+		$this->authorize('receipt', Export::class);
+
+		$fileName = 'export-receipts-' . date('Ymd') . '.xls';
+		$receipts = Receipt::with('pol')->with('pol.po')->with('pol.po.dept')->with('pol.uom')->with('warehouse')->with('user_created_by')->with('user_updated_by');
+
+		// Filter based on input
+		$prs->whereBetween('pr_date', [$start_date, $end_date ]);
+
+		if ($currency <> ''){
+			$prs->where('currency', $currency);
+		}
+
+		if ($dept_id <> ''){
+			$prs->where('dept_id', $dept_id);
+		}
+
+		if ($supplier_id <> ''){
+			$prs->where('supplier_id',$supplier_id);
+		}
+
+		if ($project_id <> ''){
+			$prs->where('project_id',$project_id);
+		}
+
+		if ($user_id <> ''){
+			$prs->where('requestor_id',$user_id);
+		}
+
+		// Seeded Filter
+		// HoD sees only dept
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$receipts->whereHas('pol.po', function ($q) {
+				$q->where('dept_id', auth()->user()->dept_id);
+			});
+
+		}
+		$receipts = $receipts->get();
+
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+
+		$sheet->setCellValue('A1', 'RECEIPT#');
+		$sheet->setCellValue('B1', 'Date');
+		$sheet->setCellValue('C1', 'Item Description');
+		$sheet->setCellValue('D1', 'Qty');
+		$sheet->setCellValue('E1', 'UoM');
+		$sheet->setCellValue('F1', 'Warehouse');
+		$sheet->setCellValue('G1', 'Receiver');
+		$sheet->setCellValue('H1', 'Notes');
+		$sheet->setCellValue('I1', 'PO#');
+		$sheet->setCellValue('J1', 'PO Line Num');
+		// $sheet->setCellValue('V1', 'Created By');
+		// $sheet->setCellValue('W1', 'Created At');
+		// $sheet->setCellValue('X1', 'Updated By');
+		// $sheet->setCellValue('Y1', 'Updated At');
+
+		$rows = 2;
+		foreach($receipts as $receipt){
+			$sheet->setCellValue('A' . $rows, $receipt->id);
+			$sheet->setCellValue('B' . $rows, $receipt->receive_date);
+			$sheet->setCellValue('C' . $rows, $receipt->pol->item_description);
+			$sheet->setCellValue('D' . $rows, $receipt->qty);
+			$sheet->setCellValue('E' . $rows, $receipt->pol->uom->name);
+			$sheet->setCellValue('F' . $rows, $receipt->warehouse->name);
+			$sheet->setCellValue('G' . $rows, $receipt->receiver->name);
+			$sheet->setCellValue('H' . $rows, $receipt->notes);
+			$sheet->setCellValue('I' . $rows, $receipt->pol->po_id);
+			$sheet->setCellValue('J' . $rows, $receipt->pol->line_num);
+
+			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
+			// $sheet->setCellValue('S' . $rows, $pr->created_at);
+			// $sheet->setCellValue('T' . $rows, $pr->user_updated_by->name);
+			// $sheet->setCellValue('U' . $rows, $pr->updated_at);
+			$rows++;
+		}
+
+		$writer = new Xls($spreadsheet);
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
+		$writer->save('php://output');
+	}
 
 }

@@ -14,7 +14,6 @@ php artisan tenants:rollback --tenants='96061cbc-30bb-4d74-b0a7-f5f555ac3f97'
 php artisan tenants:migrate --tenants='96061cbc-30bb-4d74-b0a7-f5f555ac3f97'
 php artisan tenants:seed --class=TenantSeeder --tenants='96061cbc-30bb-4d74-b0a7-f5f555ac3f97'
 
-php artisan tenants:seed --class=MenuSeeder --tenants='96061cbc-30bb-4d74-b0a7-f5f555ac3f97'
 
 php artisan queue:listen
 php artisan tenants:seed --tenants=demo1
@@ -39,7 +38,7 @@ php artisan tenants:seed --class="Database\Seeders\Share\TemplateSeeder" --tenan
 
 php artisan tenants:seed --class=TimestampSeeder --tenants='96061cbc-30bb-4d74-b0a7-f5f555ac3f97'
 php artisan tenants:seed --class=ExportSeeder --tenants='96061cbc-30bb-4d74-b0a7-f5f555ac3f97'
-
+php artisan tenants:seed --class=MenuSeeder --tenants='96061cbc-30bb-4d74-b0a7-f5f555ac3f97'
 
 php artisan tenants:seed --class=UserSeeder --tenants=demo1
 php artisan tenants:seed --class=SetupSeeder --tenants=demo1

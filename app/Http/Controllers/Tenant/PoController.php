@@ -757,106 +757,25 @@ class PoController extends Controller
 
 	}
 
-	public function exportForSupplier($supplier_id)
-	{
-		$this->authorize('export', Po::class);
-		return self::export($supplier_id, null, null);
-	}
-	public function exportForProject($project_id)
-	{
-		$this->authorize('export', Po::class);
-		return self::export(null, $project_id, null);
-	}
+	// public function exportForSupplier($supplier_id)
+	// {
+	// 	$this->authorize('export', Po::class);
+	// 	return self::export($supplier_id, null, null);
+	// }
+	// public function exportForProject($project_id)
+	// {
+	// 	$this->authorize('export', Po::class);
+	// 	return self::export(null, $project_id, null);
+	// }
 
-	public function exportForBuyer($buyer_id)
-	{
-		$this->authorize('export', Po::class);
-		return self::export(null, null, $buyer_id);
-	}
+	// public function exportForBuyer($buyer_id)
+	// {
+	// 	$this->authorize('export', Po::class);
+	// 	return self::export(null, null, $buyer_id);
+	// }
 
 
-	public function export($supplier_id = null, $project_id = null, $buyer_id = null)
-	{
-		$this->authorize('export', Po::class);
 
-		$fileName = 'export-pos-' . date('Ymd') . '.xls';
-		$pos = Po::with('dept')->with('project')->with('supplier')->with('requestor')->with('user_created_by')->with('user_updated_by')->where('auth_status',AuthStatusEnum::APPROVED->value);
-
-		if ($supplier_id <> null) {
-			$pos->where('supplier_id', $supplier_id);
-		}
-
-		if ( $project_id <> null ) {
-			$pos->where('project_id', $project_id);
-		}
-
-		if ( $buyer_id <> null ) {
-			$pos->where('buyer_id', $buyer_id);
-		}
-
-		// HoD sees only dept
-		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
-			$pos->where('dept_id',auth()->user()->dept_id);
-		}
-		$pos = $pos->get();
-
-		$spreadsheet = new Spreadsheet();
-		$sheet = $spreadsheet->getActiveSheet();
-
-		$sheet->setCellValue('A1', 'PO#');
-		$sheet->setCellValue('B1', 'Summary');
-		$sheet->setCellValue('C1', 'Date');
-		$sheet->setCellValue('D1', 'need_by_date');
-		$sheet->setCellValue('E1', 'Requestor');
-		$sheet->setCellValue('F1', 'Dept');
-		$sheet->setCellValue('G1', 'Project');
-		$sheet->setCellValue('H1', 'Supplier_name');
-		$sheet->setCellValue('I1', 'Notes');
-		$sheet->setCellValue('J1', 'Currency');
-		$sheet->setCellValue('K1', 'Sub_total');
-		$sheet->setCellValue('L1', 'Tax');
-		$sheet->setCellValue('M1', 'GST');
-		$sheet->setCellValue('N1', 'Amount');
-		$sheet->setCellValue('O1', 'Status');
-		$sheet->setCellValue('P1', 'Auth_status');
-		$sheet->setCellValue('Q1', 'Auth_date');
-		// $sheet->setCellValue('R1', 'Created By');
-		// $sheet->setCellValue('S1', 'Created At');
-		// $sheet->setCellValue('T1', 'Updated By');
-		// $sheet->setCellValue('U1', 'Updated At');
-
-		$rows = 2;
-		foreach($pos as $po){
-			$sheet->setCellValue('A' . $rows, $po->id);
-			$sheet->setCellValue('B' . $rows, $po->summary);
-			$sheet->setCellValue('C' . $rows, $po->po_date);
-			$sheet->setCellValue('D' . $rows, $po->need_by_date);
-			$sheet->setCellValue('E' . $rows, $po->requestor->name);
-			$sheet->setCellValue('F' . $rows, $po->dept->name);
-			$sheet->setCellValue('G' . $rows, $po->project->name);
-			$sheet->setCellValue('H' . $rows, $po->supplier->name);
-			$sheet->setCellValue('I' . $rows, $po->notes);
-			$sheet->setCellValue('J' . $rows, $po->currency);
-			$sheet->setCellValue('K' . $rows, $po->sub_total);
-			$sheet->setCellValue('L' . $rows, $po->tax);
-			$sheet->setCellValue('M' . $rows, $po->gst);
-			$sheet->setCellValue('N' . $rows, $po->amount);
-			$sheet->setCellValue('O' . $rows, $po->status);
-			$sheet->setCellValue('P' . $rows, $po->auth_status);
-			$sheet->setCellValue('Q' . $rows, $po->auth_date);
-			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
-			// $sheet->setCellValue('S' . $rows, $pr->created_at);
-			// $sheet->setCellValue('T' . $rows, $pr->user_updated_by->name);
-			// $sheet->setCellValue('U' . $rows, $pr->updated_at);
-			$rows++;
-		}
-
-		$writer = new Xls($spreadsheet);
-		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-		header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
-		$writer->save('php://output');
-
-	}
 
 	// add attachments
 	public function attach(FormRequest $request)

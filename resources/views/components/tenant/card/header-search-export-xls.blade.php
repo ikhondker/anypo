@@ -10,7 +10,7 @@
 						<i class="align-middle" data-lucide="refresh-cw"></i>
 					</a>
 					@if ($export)
-						<a href="{{ route( $route.'.export' ) }}" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
+						<a href="{{ route( 'exports.'.Str::lower($entity)) }}" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
 							<i class="align-middle" data-lucide="download-cloud"></i>
 						</a>
 					@endif

@@ -38,9 +38,7 @@
 							<tr>
 								<th>ID</th>
 								<th>Entity</th>
-								<th>Code</th>
 								<th>Name</th>
-								<th>Summary</th>
 								<th>Run Count</th>
 								<th>Access</th>
 								<th>Start Date</th>
@@ -56,9 +54,7 @@
 							<tr>
 								<td>{{ $exports->firstItem() + $loop->index }}</td>
 								<td>{{ $export->entity }}</td>
-								<td>{{ $export->entity }}</td>
 								<td>{{ $export->name }}</td>
-								<td>{{ $export->summary }}</td>
 								<td>{{ $export->run_count }}</td>
 								<td>{{ $export->access }}</td>
 								<td><x-tenant.list.my-boolean :value="$export->start_date"/></td>
@@ -75,9 +71,8 @@
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($export->enable ? 'Disable' : 'Enable') }}">
 										<i class="align-middle text-muted" data-lucide="{{ ($export->enable ? 'bell-off' : 'bell') }}"></i>
 									</a>
-									<a href="{{ route('exports.'.Str::lower($export->entity).'') }}" class="btn btn-light"
                                     <a href="{{ route('exports.'.Str::lower($export->entity).'') }}" class="btn btn-light"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="View"> <i data-lucide="printer"></i> Run Export
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View"> <i data-lucide="download-cloud"></i> Run Export
 									</a>
 								</td>
 							</tr>

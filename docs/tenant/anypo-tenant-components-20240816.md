@@ -143,12 +143,13 @@ php artisan make:component Tenant\Notifications\Unread
 
 # Card
 -------------------------------------
-php artisan make:component Tenant\Cards\HeaderSearchExportBar  <x-tenant.cards.header-search-export-bar object="Activity"/>
-php artisan make:component Tenant\Cards\HeaderSearchBar 		<x-tenant.cards.header-search-bar object="Po"/>
+php artisan make:component Tenant\Card\HeaderSearchExportXls  <x-tenant.cards.header-search-export-xls object="Activity"/>
+php artisan make:component Tenant\Card\HeaderSearchExportBar  <x-tenant.cards.header-search-export-bar object="Activity"/>
+php artisan make:component Tenant\Card\HeaderSearchBar 		<x-tenant.cards.header-search-bar object="Po"/>
 
-php artisan make:component Cards/HeaderExportButton 	<x-cards.header-export-button route="activities"/>
-?php artisan make:component Cards/Header/Search	<x-cards.header-with-simple-search object="Dept" title="Department" :export="true"/>
-?php artisan make:component Cards/Header/WithSearch
+php artisan make:component Card/HeaderExportButton 	<x-cards.header-export-button route="activities"/>
+?php artisan make:component Card/Header/Search	<x-cards.header-with-simple-search object="Dept" title="Department" :export="true"/>
+?php artisan make:component Card/Header/WithSearch
 
 # List
 -------------------------------------
@@ -362,7 +363,7 @@ php artisan make:component Tenant/Info/PaymentInfo
 php artisan make:component Tenant/Info/ReceiptInfo
 php artisan make:component Tenant/Info/SupplierInfo
 
-# Tabl
+# Table
 e-------------------------------------
 php artisan make:component Tenant/Table/Folders
 
@@ -395,6 +396,7 @@ php artisan make:component Tenant/Ael/AelForReceipt
 php artisan make:component Tenant/Widgets/InvoiceLine/CardTableRow
 php artisan make:component Tenant/Widgets/InvoiceLine/ListAllLines
 
+php artisan make:component Tenant/ExportParam
 
 --Dashboard-------------------------------------
 php artisan make:component Tenant/Dashboards/PrCounts				<x-tenant.dashboards.pr-counts/>
