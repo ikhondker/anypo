@@ -30,8 +30,8 @@ https://www.brevo.com/pricing/
 23. 0.23 stop duplicate emp in hierarchy , due/pending is wfl getNextApproverId to setNextApproverDue, AllNotification, Enum Rearrange, timezone column, wfl start and end date, inv/payment and grs create jquery population, budget and deptBudget tax, gst, dbu amount add and budget created by , budget and deptBudget revisions, decimal back to 2, close po and invoice automatically, landlord invoice pwop and discount, account lifetime discount field
 24. 0.24 Rearrange invoice & payment into single AkkControler, Reject PR/PO,  ticket first_response_at , last_response_at,  report level pdf security. ticket topics, and pivot
 25. 0.25 demo request etc, bug request, ticket Topics, ReplyTemplate, ItemCategory add, UploadItem
-26. 0.26 [ongoing] Upgrade all component to latest, Timestamp action, testing, LandlordSync, remove FontAwsome, demo limitations, seeded to backend, status icon landlord and tenant, rewrite export using phpspreadsheet pkg, merge all export in export Controller and parametereized,
-
+26. 0.26 Upgrade all component to latest, Timestamp action, testing, LandlordSync, remove FontAwsome, demo limitations, seeded to backend, status icon landlord and tenant, rewrite export using phpspreadsheet pkg, merge all export in export Controller and parameterized
+26. 0.27 [ongoing] Entity lowercase and syb with Model Name, bg_color form dept and budget
 
 
 # 12. Key Configuration

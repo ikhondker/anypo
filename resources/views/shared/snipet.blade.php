@@ -76,6 +76,9 @@ $po->po_date		= now();
 
 value="{{ old('invoice_date', date('Y-m-d',strtotime($invoice->invoice_date)) ) }}"
 
+$colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info'];
+$budget->bg_color	= array_rand($colors);
+
 
 <i class="fa fa-check-circle fa-5x text-success"></i>
 <i data-lucide="eye"></i>

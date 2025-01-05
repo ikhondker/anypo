@@ -2,6 +2,8 @@
 -------------------------------------------------------------------------------------------------
 http://demo1.localhost:8000/payments recept/ ovoce not found 404 after create
 
+
+124. budget revisionsAll -> revisions->revisionDetail merge
 consolidate exports
 123. po requster functional decision. whether show it or not
 123. pr created by is empty

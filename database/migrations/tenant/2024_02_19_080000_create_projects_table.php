@@ -37,8 +37,7 @@ return new class extends Migration
 			$table->biginteger('count_invoice')->default(0);
 			$table->biginteger('count_payment')->default(0);
 			$table->text('notes')->nullable();
-			$table->string('text_color')->nullable();
-			$table->string('bg_color')->nullable();
+			$table->string('bg_color')->default('primary');
 			$table->string('icon')->nullable();
 			$table->boolean('closed')->default(false);
 			$table->softDeletes();

@@ -44,6 +44,7 @@ use App\Helpers\EventLog;
 # 10. Events
 # 11. Controller
 # 12. Seeded
+use Illuminate\Support\Arr;
 use DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Http\FormRequest;
@@ -80,7 +81,7 @@ class BudgetController extends Controller
 		if (request('term')) {
 			$budgets->where('name', 'Like', '%'.request('term').'%');
 		}
-		$budgets = $budgets->where('revision',true)->orderBy('id', 'DESC')->paginate(10);
+		$budgets = $budgets->where('revision',true)->orderBy('updated_at', 'DESC')->paginate(10);
 		return view('tenant.budgets.revisions-all', compact('budgets'));
 	}
 
@@ -88,14 +89,34 @@ class BudgetController extends Controller
 	/**
 	 * Display a listing of the resource.
 	 */
-	public function revisions(Budget $budget)
+	public function revisions(Budget $budget = null)
 	{
-		$this->authorize('viewAny', Budget::class);
+		//$this->authorize('viewAny', Budget::class);
 
-		$budgets = Budget::where('parent_id',$budget->id)
+		// $budgets = Budget::where('parent_id',$budget->id)
+		// 			->where('revision',true)
+		// 		 	->orderBy('id', 'DESC')->paginate(10);
+		// return view('tenant.budgets.revisions', compact('budgets','budget'));
+
+		$budgets = Budget::query();
+		if (request('term')) {
+			$budgets->where('name', 'Like', '%'.request('term').'%');
+			$budgets = $budgets->where('revision',true)->orderBy('updated_at', 'DESC')->paginate(10);
+			return view('tenant.budgets.revisions', compact('budgets'));
+		} else {
+			if(empty($budget)){
+				Log::debug('tenant.budgets.revisions No Budget Selected!');
+				$budgets = $budgets->where('revision',true)->orderBy('updated_at', 'DESC')->paginate(10);
+				return view('tenant.budgets.revisions', compact('budgets'));
+			} else {
+				Log::debug('tenant.budgets.revisions showing revision for budget_id = ' . $budget->id);
+				$budgets = Budget::where('parent_id',$budget->id)
 					->where('revision',true)
-				 	->orderBy('id', 'DESC')->paginate(10);
-		return view('tenant.budgets.revisions', compact('budgets','budget'));
+					->orderBy('id', 'DESC')->paginate(10);
+				return view('tenant.budgets.revisions', compact('budgets','budget'));
+			}
+		}
+
 	}
 
 	/**
@@ -124,6 +145,9 @@ class BudgetController extends Controller
 		$budget->start_date	= Carbon::parse($budget->fy.'-01-01');
 		$budget->end_date	= Carbon::parse($budget->fy.'-12-31');
 		$budget->notes		= 'Budget for ' .$budget->fy;
+		// set random color for budget
+		$colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info'];
+		$budget->bg_color	= Arr::random($colors);
 
 		$budget->closed	= false;
 		$budget->save();
@@ -137,7 +161,7 @@ class BudgetController extends Controller
 				FROM depts
 				WHERE enable = 1 ;");
 
-		return redirect()->route('budgets.index')->with('success', 'Next Year Budget opened successfully');
+		return redirect()->route('budgets.index')->with('success', 'Next Year Budget opened successfully. Please add Dept Budget before proceed.');
 
 	}
 
@@ -232,10 +256,12 @@ class BudgetController extends Controller
 				return redirect()->route('budgets.index')->with('error', 'Please close the open budget, before opening new budget.');
 			}
 		}
+
 		$budget->fill(['closed' => ! $budget->closed]);
 		$budget->update();
 
 		// Write to Log
+		Log::debug('tenant.budget.destory Budget Status= '. $budget->closed);
 		EventLog::event('budget', $budget->id, 'status', 'closed', $budget->closed);
 
 		return redirect()->route('budgets.index')->with('success', 'Budget status Updated successfully');

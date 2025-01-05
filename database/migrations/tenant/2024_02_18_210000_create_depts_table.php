@@ -17,7 +17,7 @@ return new class extends Migration
 			$table->biginteger('pr_hierarchy_id')->default(1001);
 			$table->biginteger('po_hierarchy_id')->default(1001);
 			$table->string('text_color')->nullable();
-			$table->string('bg_color')->nullable();
+			$table->string('bg_color')->default('primary');
 			$table->string('icon')->nullable();
 			$table->uuid('hod_id')->nullable();
 			$table->boolean('enable')->default(true);

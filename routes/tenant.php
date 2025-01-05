@@ -528,8 +528,9 @@ Route::middleware([
 		Route::get('/budgets/delete/{budget}',[BudgetController::class,'destroy'])->name('budgets.destroy');
 		Route::post('/budget/attach',[BudgetController::class,'attach'])->name('budgets.attach');
 		Route::get('/budgets/attachments/{budget}',[BudgetController::class,'attachments'])->name('budgets.attachments');
-		Route::get('/budget/revisions-all',[BudgetController::class,'revisionsAll'])->name('budgets.revisions-all');
-		Route::get('/budgets/revisions/{budget}',[BudgetController::class,'revisions'])->name('budgets.revisions');
+
+        Route::get('/budget/revisions-all',[BudgetController::class,'revisionsAll'])->name('budgets.revisions-all');
+		Route::get('/budget/revisions/{budget?}',[BudgetController::class,'revisions'])->name('budgets.revisions');
         Route::get('/budgets/timestamp/{budget}',[BudgetController::class, 'timestamp'])->name('budgets.timestamp');
 
 	});

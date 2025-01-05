@@ -163,24 +163,20 @@
 										{{-- <a wire:ignore href="{{ route('users.leave-impersonate') }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Leave Impersonate">
 											<i class="align-middle text-success" data-lucide="log-in"></i>
 										</a> --}}
+
 									@else
 										@can('impersonate', $user)
 											@if (! $user->isBackend() )
-												<a href="{{ route('users.impersonate',$user->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
+												<a href="{{ route('users.impersonate', $user->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 												data-bs-placement="top" title="Impersonate"><i data-lucide="log-in" class="text-danger"></i></a>
 											@else
 												@if (auth()->user()->isSystem())
-													<a href="{{ route('users.impersonate',$user->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
+													<a href="{{ route('users.impersonate', $user->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 														data-bs-placement="top" title="Impersonate"><i data-lucide="log-in" class="text-danger"></i></a>
 												@endif
 											@endif
 										@endcan
 									@endif
-
-									{{-- <a href="{{ route('users.impersonate', $user->id) }}" class="btn btn-warning btn-sm">Impersonate</a>
-									@if(session('original_user'))
-										<a href="{{ route('users.leave-impersonate') }}" class="btn btn-outline-light me-2">Leave Impersonation</a>
-									@endif --}}
 								</td>
 							</tr>
 							@endforeach

@@ -19,7 +19,7 @@ return new class extends Migration
 			//$table->integer('group_id')->nullable()->default(1001);
 			$table->foreignId('group_id')->default(1001)->constrained('groups');
 			$table->string('text_color')->nullable();
-			$table->string('bg_color')->nullable();
+			$table->string('bg_color')->default('primary');
 			$table->string('icon')->nullable();
 			$table->boolean('enable')->default(true);
 			$table->softDeletes();

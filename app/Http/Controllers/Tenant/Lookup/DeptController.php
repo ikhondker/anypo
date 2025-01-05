@@ -46,6 +46,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 # 9. Exceptions
 # 10. Events
 # 11. Seeded
+use Illuminate\Support\Arr;
 use DB;
 use Illuminate\Support\Facades\Log;
 # 12. FUTURE
@@ -92,7 +93,11 @@ class DeptController extends Controller
 
 		$this->authorize('create', Dept::class);
 
-		$dept = Dept::create($request->all());
+        // set random color for budget
+        $colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info'];
+        $request->merge(['bg_color' => Arr::random($colors) ]);
+
+        $dept = Dept::create($request->all());
 		// Write to Log
 		EventLog::event('dept', $dept->id, 'create');
 

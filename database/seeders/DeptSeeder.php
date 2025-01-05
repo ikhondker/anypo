@@ -30,45 +30,50 @@ class DeptSeeder extends Seeder
 				'name' 				=> 'IT',
 				'pr_hierarchy_id' 	=> 1001,
 				'po_hierarchy_id' 	=> 1002,
+				'bg_color'			=> 'primary',
 			],
 			[
 				'id' 				=> 1002,
 				'name' 				=> 'Finance',
 				'pr_hierarchy_id' 	=> 1001,
 				'po_hierarchy_id' 	=> 1002,
+				'bg_color'			=> 'secondary',
 			],
 			[
 				'id' 				=> 1003,
 				'name' 				=> 'Management',
 				'pr_hierarchy_id' 	=> 1001,
 				'po_hierarchy_id' 	=> 1002,
+				'bg_color'			=> 'success',
 			],
 			[
 				'id' 				=> 1004,
 				'name' 				=> 'HR & Admin',
 				'pr_hierarchy_id' 	=> 1001,
 				'po_hierarchy_id' 	=> 1002,
+				'bg_color'			=> 'danger',
 			],
 			[
 				'id' 				=> 1005,
 				'name' 				=> 'Sales',
 				'pr_hierarchy_id' 	=> 1001,
 				'po_hierarchy_id' 	=> 1002,
+				'bg_color'			=> 'warning',
 			],
 			[
 				'id' 				=> 1006,
 				'name' 				=> 'Marketing',
 				'pr_hierarchy_id' 	=> 1001,
 				'po_hierarchy_id' 	=> 1002,
+				'bg_color'			=> 'info',
 			],
 			[
 				'id' 				=> 1007,
 				'name' 				=> 'Production',
 				'pr_hierarchy_id' 	=> 1001,
 				'po_hierarchy_id' 	=> 1002,
+				'bg_color'			=> 'primary',
 		 	],
-
-
 		];
 		//
 		Dept::insert($depts);

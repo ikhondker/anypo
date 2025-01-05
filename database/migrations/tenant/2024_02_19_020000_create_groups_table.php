@@ -15,7 +15,7 @@ return new class extends Migration
 			$table->id()->startingValue(1001);
 			$table->string('name')->unique();
 			$table->string('text_color')->nullable();
-			$table->string('bg_color')->nullable();
+			$table->string('bg_color')->default('primary');
 			$table->string('icon')->nullable();
 			$table->boolean('enable')->default(true);
 			$table->uuid('created_by')->nullable();

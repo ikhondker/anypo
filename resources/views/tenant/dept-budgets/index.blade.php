@@ -61,8 +61,8 @@
 							@foreach ($dept_budgets as $dept_budget)
 							<tr>
 								<td>{{ $dept_budgets->firstItem() + $loop->index }}</td>
-								<td>{{ $dept_budget->budget->fy }}</td>
-								<td><a href="{{ route('dept-budgets.show',$dept_budget->id) }}"><strong>{{ $dept_budget->dept->name }}</a></strong></td>
+								<td><span class="badge rounded-pill badge-subtle-{{ $dept_budget->budget->bg_color }}">{{ $dept_budget->budget->fy }}</span></td>
+								<td><a href="{{ route('dept-budgets.show',$dept_budget->id) }}"><span class="badge rounded-pill badge-subtle-{{ $dept_budget->dept->bg_color }}">{{ $dept_budget->dept->name }}</span></a></td>
 
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$dept_budget->amount_pr_booked + $dept_budget->amount_pr"/></td>

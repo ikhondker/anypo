@@ -21,30 +21,30 @@ namespace App\Enum\Tenant;
 
 //          NAME => Model
 enum EntityEnum: string{
-	case CORE			= 'CORE';
-	case PROJECT		= 'PROJECT';
+	case CORE			= 'Core';
+	case PROJECT		= 'Project';
+	case ITEM			= 'Item';
+	case SUPPLIER		= 'Ssupplier';
 	// case PROJECTPO		= 'PROJECTPO';
 	// case PROJECTPOLINE	= 'PROJECTPOLINE';
-	case ITEM			= 'ITEM';
-	case SUPPLIER		= 'SUPPLIER';
 	// case SUPPLIERPO		= 'SUPPLIERPO';
 	// case SUPPLIERPOLINE	= 'SUPPLIERPOLINE';
-	case BUDGET			= 'BUDGET';
-	case DEPTBUDGET		= 'DEPTBUDGET';
-	case PR				= 'PR';
-	case PRL			= 'PRL';
-	case PO				= 'PO';
-	case POL			= 'POL';
-	case RECEIPT		= 'RECEIPT';
-	case INVOICE		= 'INVOICE';
-	case INVOICELINE	= 'INVOICELINE';
-	case PAYMENT		= 'PAYMENT';
-	case AEH			= 'AEH';
-	case AEL			= 'AEL';
-	case TEMPLATE		= 'TEMPLATE';
-	case TICKET			= 'TICKET';		// Support Ticket raise from Tenant
-	case CONTACT		= 'CONTACT';	// Home Controlled
-	case TAX			= 'TAX';		// Not used
+	case BUDGET			= 'Budget';
+	case DEPTBUDGET		= 'DeptBudget';
+	case PR				= 'Pr';
+	case PRL			= 'Prl';
+	case PO				= 'Po';
+	case POL			= 'Pol';
+	case RECEIPT		= 'Receipt';
+	case INVOICE		= 'Invoice';
+	case INVOICELINE	= 'InvoiceLine';
+	case PAYMENT		= 'Payment';
+	case AEH			= 'Aeh';
+	case AEL			= 'Ael';
+	case TEMPLATE		= 'Template';
+	case TICKET			= 'Ticket';		// Support Ticket raise from Tenant
+	case CONTACT		= 'Contact';	// Home Controlled
+	case TAX			= 'Tax';		// Not used
 
 }
 

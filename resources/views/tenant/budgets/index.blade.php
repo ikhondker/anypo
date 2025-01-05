@@ -37,6 +37,7 @@
 						<thead>
 							<tr>
 								<th>FY</th>
+                                <th>Name</th>
 								<th class="text-end">Budget</th>
 								<th class="text-end">PR (Book)</th>
 								<th class="text-end">PR (Appr.)</th>
@@ -55,7 +56,8 @@
 						<tbody>
 							@foreach ($budgets as $budget)
 							<tr>
-								<td><a href="{{ route('budgets.show',$budget->id) }}"><strong>{{ $budget->fy }}</strong></a></td>
+								<td><a href="{{ route('budgets.show',$budget->id) }}"><span class="badge rounded-pill badge-subtle-{{ $budget->bg_color }}">{{ $budget->fy }}</span></a></td>
+                                <td>{{ $budget->name }}</td>
 								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount_pr_booked"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount_pr"/></td>
@@ -66,11 +68,11 @@
 								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount_grs"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount_invoice"/></td>
 								<td class="text-end"><x-tenant.list.my-number :value="$budget->amount_payment"/></td>
-								<td class="text-start"><x-tenant.list.my-closed :value="$budget->closed"/></td>
+								<td><x-tenant.list.my-closed :value="$budget->closed"/></td>
 								<td>
-										<a href="{{ route('budgets.show',$budget->id) }}" class="btn btn-light"
-											data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
-										</a>
+									<a href="{{ route('budgets.show',$budget->id) }}" class="btn btn-light"
+										data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View
+									</a>
 								</td>
 							</tr>
 							@endforeach

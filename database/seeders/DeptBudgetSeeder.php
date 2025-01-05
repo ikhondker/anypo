@@ -80,6 +80,33 @@ class DeptBudgetSeeder extends Seeder
 			],
 		];
 
+        $deptBudget25 = [
+			[
+				'budget_id'			=> '1003',
+				'dept_id'			=> '1001',
+				'amount'			=> 100000,
+				'notes'				=> $faker->paragraph,
+			],
+			[
+				'budget_id'			=> '1003',
+				'dept_id'			=> '1002',
+				'amount'			=> 100000,
+				'notes'				=> $faker->paragraph,
+			],
+			[
+				'budget_id'			=> '1003',
+				'dept_id'			=> '1004',
+				'amount'			=> 100000,
+				'notes'				=> $faker->paragraph,
+			],
+			[
+				'budget_id'			=> '1003',
+				'dept_id'			=> '1005',
+				'amount'			=> 100000,
+				'notes'				=> $faker->paragraph,
+			],
+		];
+
 		$deptBudget23Dummy = [
 			[
 				'budget_id'			=> '1001',
@@ -322,6 +349,7 @@ class DeptBudgetSeeder extends Seeder
 
 		DeptBudget::insert($deptBudget23);
 		DeptBudget::insert($deptBudget24);
+        DeptBudget::insert($deptBudget25);
 		//DeptBudget::insert($deptBudget23Dummy);
 		//DeptBudget::insert($deptBudget24Dummy);
 

@@ -25,7 +25,7 @@
 				<a class="btn btn-sm btn-light" href="{{ route('dept-budgets.revisions',$deptBudget->parent_id) }}" ><i data-lucide="database"></i> View all</a>
 			</div>
 			<h5 class="card-title">Dept Budget Revision Detail</h5>
-			<h6 class="card-subtitle text-muted">Dept Budget Revision Detail detail.</h6>
+			<h6 class="card-subtitle text-muted">Dept Budget Revision Detail detail. Amount shows values before revision.</h6>
 		</div>
 		<div class="card-body">
 			<table class="table table-sm my-2">
@@ -38,9 +38,10 @@
 						<th>FY :</th>
 						<td><a href="{{ route('budgets.show',$deptBudget->budget_id) }}"><strong>{{ $deptBudget->budget->fy }}</strong></a></td>
 					</tr>
-					<x-tenant.show.my-text			value="{{ $deptBudget->budget->name }}"/>
-					<x-tenant.show.my-number			value="{{ $deptBudget->amount }}"/>
-					<x-tenant.show.my-text-area			value="{{ $deptBudget->notes }}"/>
+					<x-tenant.show.my-text			value="{{ $deptBudget->budget->name }}" label="Budget"/>
+                    <x-tenant.show.my-text			value="{{ $deptBudget->dept->name }}" label="Dept"/>
+					<x-tenant.show.my-number		value="{{ $deptBudget->amount }}"/>
+					<x-tenant.show.my-text-area		value="{{ $deptBudget->notes }}"/>
 
 					<tr>
 						<th>Created By :</th>

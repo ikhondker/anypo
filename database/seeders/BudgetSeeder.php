@@ -44,6 +44,7 @@ class BudgetSeeder extends Seeder
 				'count_grs'			=> $faker->numberBetween(3,30),
 				'count_invoice'		=> $faker->numberBetween(3,30),
 				'count_payment'		=> $faker->numberBetween(3,30),
+                'bg_color'		    => 'primary',
 			],
 			[
 				'fy'				=> '2024',
@@ -64,6 +65,7 @@ class BudgetSeeder extends Seeder
 				'count_grs'			=> $faker->numberBetween(3,20),
 				'count_invoice'		=> $faker->numberBetween(3,20),
 				'count_payment'		=> $faker->numberBetween(3,20),
+                'bg_color'		    => 'secondary',
 			],
 
 
@@ -76,7 +78,8 @@ class BudgetSeeder extends Seeder
 				'start_date'	=> Carbon::parse('2023-01-01'),
 				'end_date'		=> Carbon::parse('2023-12-31'),
 				'amount'		=> 400000, //TODO remove
-				'notes'			=> 'Budget for 2023',
+                'notes'			=> $faker->paragraph,
+                'bg_color'		=> 'info',
 			],
 		];
 
@@ -87,13 +90,27 @@ class BudgetSeeder extends Seeder
 				'start_date'	=> Carbon::parse('2024-01-01'),
 				'end_date'		=> Carbon::parse('2024-12-31'),
 				'amount'		=> 400000, //TODO remove
-				'notes'			=> 'Budget for 2024',
+                'notes'			=> $faker->paragraph,
+                'bg_color'		=> 'secondary',
 			],
 		];
+
+        $budgets25 = [
+			[
+				'fy'			=> '2025',
+				'name'			=> 'Budget for 2025',
+				'start_date'	=> Carbon::parse('2025-01-01'),
+				'end_date'		=> Carbon::parse('2025-12-31'),
+				'amount'		=> 400000, //TODO remove
+                'notes'			=> $faker->paragraph,
+                'bg_color'		=> 'primary',
+			],
+		];
+
 
 		//Budget::insert($dummyBudgets);
 		Budget::insert($budgets23);
 		Budget::insert($budgets24);
-
+        Budget::insert($budgets25);
 	}
 }
