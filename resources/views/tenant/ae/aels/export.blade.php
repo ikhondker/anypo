@@ -1,8 +1,8 @@
 @extends('layouts.tenant.app')
-@section('title','Export Requisitions')
+@section('title','Export Accounting Lines')
 
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('prs.index') }}" class="text-muted">Requisitions</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('aels.index') }}" class="text-muted">Accounting</a></li>
 	<li class="breadcrumb-item active">Export</li>
 @endsection
 
@@ -18,6 +18,6 @@
 		@endslot
 	</x-tenant.page-header>
 
-    <x-tenant.export-param entity="{{  App\Enum\Tenant\EntityEnum::PR->value }}"/>
+    <x-tenant.export-param entity="{{  App\Enum\Tenant\EntityEnum::AEL->value }}"/>
 
 @endsection

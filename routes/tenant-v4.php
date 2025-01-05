@@ -315,9 +315,6 @@ Route::middleware([
         Route::get('/export/payment',[ExportController::class,'payment'])->name('exports.payment');
         Route::get('/export/receipt',[ExportController::class,'receipt'])->name('exports.receipt');
         Route::get('/export/ael',[ExportController::class,'ael'])->name('exports.ael');
-
-        Route::get('/ael/export-for-po/{id}',[ExportController::class,'aelForPo'])->name('exports.ael-for-po');
-
         // Route::get('/export/project-po',[ExportController::class,'projectPo'])->name('exports.projectpo');
         // Route::get('/export/project-po-lines',[ExportController::class,'projectPoLine'])->name('exports.projectpoline');
         // Route::get('/export/supplier-po',[ExportController::class,'supplierPo'])->name('exports.supplierpo');
@@ -427,6 +424,7 @@ Route::middleware([
 
 		/* ======================== Ael ======================================== */
 		Route::resource('aels', AelController::class);
+		Route::get('/ael/export-for-po/{id}',[AelController::class,'exportForPo'])->name('aels.export-for-po');
 
 		/* ======================== Report ========================================  */
 		// PR Report is moved elsewhere

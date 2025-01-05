@@ -75,9 +75,4 @@ class AelPolicy
 		//return ( $user->isBuyer() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
-	public function export(User $user): bool
-	{
-		return ( $user->isBuyer() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
-	}
-
 }

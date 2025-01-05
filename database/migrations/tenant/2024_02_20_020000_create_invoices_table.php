@@ -23,7 +23,7 @@ return new class extends Migration
 			$table->foreignId('supplier_id')->constrained('suppliers');
 			$table->string('summary');
 			$table->foreignUuid('poc_id')->constrained('users');
-			$table->string('currency',3);
+			$table->string('currency', 3);
 			$table->decimal('sub_total', 19, 2)->default(0);
 			$table->decimal('tax', 19, 2)->default(0);
 			$table->decimal('gst', 19, 2)->default(0);

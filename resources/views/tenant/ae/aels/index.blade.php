@@ -31,14 +31,13 @@
 								name="end_date" id="end_date" placeholder=""
 								value="{{ old('end_date', date('Y-m-d') ) }}"
 								required/>
-							<button type="submit" name="action" value="search" class="btn btn-info me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Search..."> <i class="align-middle" data-lucide="search"></i></button>
-							<a href="{{ route( 'aels.index') }}" class="btn btn-info text-white me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
+							<button type="submit" name="action" value="search" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Search..."> <i class="align-middle" data-lucide="search"></i></button>
+							<a href="{{ route( 'aels.index') }}" class="btn btn-light me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
 								<i class="align-middle" data-lucide="refresh-cw"></i>
 							</a>
-							<button type="submit" name="action" value="export" class="btn btn-info me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
-								<i class="align-middle" data-lucide="download-cloud"></i>
-							</button>
-
+                            <a href="{{ route( 'exports.ael') }}" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
+							    <i class="align-middle" data-lucide="download-cloud"></i>
+						    </a>
 						</div>
 					</div>
 				</form>

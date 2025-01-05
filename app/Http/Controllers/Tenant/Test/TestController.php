@@ -400,7 +400,6 @@ class TestController extends Controller
 		//return view('errors.404');
 		// Send notification on new purchase
 
-		Log::debug("I AM HERE INSIDE RUN");
 
 		return redirect('/login')
 			->with('error','Account updated successfully');

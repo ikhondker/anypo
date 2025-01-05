@@ -159,7 +159,6 @@ class RecordDeptBudgetUsage implements ShouldQueue
 				}
 				break;
 				case EntityEnum::INVOICE->value:
-					//Log::debug('I AM HERE 3');
 					$invoice				= Invoice::with('po')->where('id', $this->article_id)->firstOrFail();
 					$dbu->user_id			= $invoice->created_by;
 					$invoice_dept_budget_id = $invoice->po->dept_budget_id;
@@ -171,14 +170,11 @@ class RecordDeptBudgetUsage implements ShouldQueue
 					$dbu->supplier_id		= $invoice->po->supplier_id;
 
 
-					//Log::debug('I AM HERE 3b');
 					switch ($this->event) {
 						case EventEnum::POST->value:
-							//Log::debug('I AM HERE 4');
 							$dbu->amount_invoice	= $this->fc_amount;
 							break;
 						case EventEnum::CANCEL->value:
-							//Log::debug('I AM HERE 4a');
 							$dbu->amount_invoice	= - $this->fc_amount;
 							break;
 						default:

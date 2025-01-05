@@ -28,7 +28,6 @@ use App\Models\Tenant\Export;
 use App\Http\Requests\Tenant\StoreExportRequest;
 use App\Http\Requests\Tenant\UpdateExportRequest;
 
-
 # 1. Models
 use App\Models\User;
 use App\Models\Tenant\Pr;
@@ -41,6 +40,8 @@ use App\Models\Tenant\Invoice;
 use App\Models\Tenant\InvoiceLine;
 use App\Models\Tenant\Payment;
 use App\Models\Tenant\Receipt;
+
+use App\Models\Tenant\Ae\Ael;
 
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Lookup\Project;
@@ -136,6 +137,11 @@ class ExportController extends Controller
 		return view('tenant.receipts.export');
 	}
 
+	public function ael()
+	{
+		return view('tenant.ae.aels.export');
+	}
+
 	/**
 	 * Update the specified resource in storage.
 	 */
@@ -185,7 +191,7 @@ class ExportController extends Controller
 				return self::exportReceipt($start_date, $end_date, $currency, $dept_id, $supplier_id, $project_id, $warehouse_id, $bank_account_id, $user_id);
 				break;
 			case EntityEnum::AEL->value:
-				return self::exportAel($start_date, $end_date, $dept_id, $supplier_id,	$project_id, $warehouse_id, $bank_account_id, $user_id);
+				return self::exportAel($start_date, $end_date, $currency, $dept_id, $supplier_id, $project_id, $warehouse_id, $bank_account_id, $user_id);
 				break;
 			default:
 				Log::warning('tenant.export.run entity = '.$export->entity.' not found!');
@@ -643,20 +649,20 @@ class ExportController extends Controller
 
 		if ($supplier_id <> ''){
 			$pols->whereHas('po', function ($q) use ($supplier_id)  {
-				$q->where('supplier_id',$supplier_id);
+				$q->where('supplier_id', $supplier_id);
 			});
 		}
 
 		if ($project_id <> ''){
 			$pols->whereHas('po', function ($q) use ($project_id) {
-				$q->where('project_id',$project_id);
+				$q->where('project_id', $project_id);
 			});
 		}
 
 
 		if ( $user_id <> null ) {
 			$pols->whereHas('po', function ($q) use ($user_id) {
-				$q->where('buyer_id',$user_id);
+				$q->where('buyer_id', $user_id);
 			});
 		}
 
@@ -750,30 +756,29 @@ class ExportController extends Controller
 
 
 		// Filter based on input
-		$invoices->whereBetween('pr_date', [$start_date, $end_date ]);
+		$invoices->whereBetween('invoice_date', [$start_date, $end_date ]);
 
 		if ($currency <> ''){
 			$invoices->where('currency', $currency);
 		}
 
-		if ($dept_id <> ''){
-			$prs->where('dept_id', $dept_id);
-		}
+		// if ($dept_id <> ''){
+		// 	$invoices->where('dept_id', $dept_id);
+		// }
 
 		if ($supplier_id <> ''){
-			$prs->where('supplier_id',$supplier_id);
+			$invoices->where('supplier_id', $supplier_id);
 		}
 
-		if ($project_id <> ''){
-			$prs->where('project_id',$project_id);
-		}
+		// if ($project_id <> ''){
+		// 	$invoices->where('project_id', $project_id);
+		// }
 
-		if ($user_id <> ''){
-			$prs->where('requestor_id',$user_id);
-		}
+		// if ($user_id <> ''){
+		// 	$invoices->where('requestor_id', $user_id);
+		// }
 
 		// Seeded Filter
-
 		// HoD sees only dept
 		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
 			$invoices->whereHas('po', function ($q) {
@@ -847,33 +852,35 @@ class ExportController extends Controller
 
 		$this->authorize('payment', Export::class);
 
-
-
 		$fileName = 'export-payments-' . date('Ymd') . '.xls';
 		$payments = Payment::with('bank_account')->with('payee')->with('invoice')->with('invoice.supplier')->with('user_created_by')->with('user_updated_by');
 
 		// Filter based on input
-		$prs->whereBetween('pr_date', [$start_date, $end_date ]);
+		$payments->whereBetween('pay_date', [$start_date, $end_date ]);
 
 		if ($currency <> ''){
-			$prs->where('currency', $currency);
+			$payments->where('currency', $currency);
 		}
 
-		if ($dept_id <> ''){
-			$prs->where('dept_id', $dept_id);
+		// if ($dept_id <> ''){
+		// 	$payments->where('dept_id', $dept_id);
+		// }
+
+		// if ($supplier_id <> ''){
+		// 	$payments->where('supplier_id', $supplier_id);
+		// }
+
+		if ($bank_account_id <> ''){
+			$payments->where('bank_account_id', $bank_account_id);
 		}
 
-		if ($supplier_id <> ''){
-			$prs->where('supplier_id',$supplier_id);
-		}
+		// if ($project_id <> ''){
+		// 	$payments->where('project_id', $project_id);
+		// }
 
-		if ($project_id <> ''){
-			$prs->where('project_id',$project_id);
-		}
-
-		if ($user_id <> ''){
-			$prs->where('requestor_id',$user_id);
-		}
+		// if ($user_id <> ''){
+		// 	$payments->where('payee_id', $user_id);
+		// }
 
 		// Seeded Filter
 		// HoD sees only dept
@@ -942,26 +949,30 @@ class ExportController extends Controller
 		$receipts = Receipt::with('pol')->with('pol.po')->with('pol.po.dept')->with('pol.uom')->with('warehouse')->with('user_created_by')->with('user_updated_by');
 
 		// Filter based on input
-		$prs->whereBetween('pr_date', [$start_date, $end_date ]);
+		$receipts->whereBetween('receive_date', [$start_date, $end_date ]);
 
 		if ($currency <> ''){
-			$prs->where('currency', $currency);
+			$receipts->where('currency', $currency);
 		}
 
 		if ($dept_id <> ''){
-			$prs->where('dept_id', $dept_id);
+			$receipts->where('dept_id', $dept_id);
 		}
 
 		if ($supplier_id <> ''){
-			$prs->where('supplier_id',$supplier_id);
+			$receipts->where('supplier_id', $supplier_id);
 		}
 
 		if ($project_id <> ''){
-			$prs->where('project_id',$project_id);
+			$receipts->where('project_id', $project_id);
+		}
+
+		if ($warehouse_id <> ''){
+			$receipts->where('warehouse_id', $warehouse_id);
 		}
 
 		if ($user_id <> ''){
-			$prs->where('requestor_id',$user_id);
+			$receipts->where('requestor_id', $user_id);
 		}
 
 		// Seeded Filter
@@ -1017,5 +1028,96 @@ class ExportController extends Controller
 		header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
 		$writer->save('php://output');
 	}
+
+
+	public function exportAel($start_date, $end_date, $currency, $dept_id, $supplier_id, $project_id, $warehouse_id, $bank_account_id, $user_id)
+	{
+
+		$this->authorize('ael', Export::class);
+
+		$aels = Ael::with('aeh')->with('user_created_by')->with('user_updated_by');
+
+		// Filter based on input
+		$aels->whereBetween('accounting_date', [$start_date, $end_date ]);
+
+		$aels = $aels->get();
+		// generate xls
+		self::xlsAel($aels);
+
+	}
+
+    public function aelForPo($po_id)
+	{
+		$this->authorize('ael', Export::class);
+
+		$this->authorize('ael', Export::class);
+		$aels = Ael::with('aeh')->with('user_created_by')->with('user_updated_by');
+
+        // Filter based on input
+        $aels->whereHas('aeh', function ($q) use ($po_id)  {
+            $q->where('po_id', $po_id);
+        });
+
+		$aels = $aels->get();
+		// generate xls
+		self::xlsAel($aels);
+
+	}
+
+
+	public function xlsAel( $aels)
+	{
+		$fileName = 'export-aels-' . date('Ymd') . '.xls';
+
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+
+		$sheet->setCellValue('A1', 'AEL#');
+		$sheet->setCellValue('B1', 'Source');
+		$sheet->setCellValue('C1', 'Entity');
+		$sheet->setCellValue('D1', 'Event');
+		$sheet->setCellValue('E1', 'Line Num');
+		$sheet->setCellValue('F1', 'Date');
+		$sheet->setCellValue('G1', 'AC Code');
+		$sheet->setCellValue('H1', 'Line Desc');
+		$sheet->setCellValue('I1', 'Currency');
+		$sheet->setCellValue('J1', 'Dr');
+		$sheet->setCellValue('K1', 'Cr');
+		$sheet->setCellValue('L1', 'PO#');
+		$sheet->setCellValue('M1', 'Reference');
+		// $sheet->setCellValue('R1', 'Created By');
+		// $sheet->setCellValue('S1', 'Created At');
+		// $sheet->setCellValue('T1', 'Updated By');
+		// $sheet->setCellValue('U1', 'Updated At');
+
+		$rows = 2;
+		foreach($aels as $ael){
+			$sheet->setCellValue('A' . $rows, $ael->id);
+			$sheet->setCellValue('B' . $rows, $ael->aeh->source_app);
+			$sheet->setCellValue('C' . $rows, $ael->aeh->source_entity->value);
+			$sheet->setCellValue('D' . $rows, $ael->aeh->event->value);
+			$sheet->setCellValue('E' . $rows, $ael->line_num);
+			$sheet->setCellValue('F' . $rows, $ael->accounting_date);
+			$sheet->setCellValue('G' . $rows, $ael->ac_code);
+			$sheet->setCellValue('H' . $rows, $ael->line_description);
+			$sheet->setCellValue('I' . $rows, $ael->fc_currency);
+			$sheet->setCellValue('J' . $rows, $ael->fc_dr_amount);
+			$sheet->setCellValue('K' . $rows, $ael->fc_cr_amount);
+			$sheet->setCellValue('L' . $rows, $ael->aeh->po_i);
+			$sheet->setCellValue('M' . $rows, $ael->reference_no);
+			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
+			// $sheet->setCellValue('S' . $rows, $pr->created_at);
+			// $sheet->setCellValue('T' . $rows, $pr->user_updated_by->name);
+			// $sheet->setCellValue('U' . $rows, $pr->updated_at);
+			$rows++;
+		}
+
+		$writer = new Xls($spreadsheet);
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
+		$writer->save('php://output');
+	}
+
+
 
 }

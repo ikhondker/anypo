@@ -24,7 +24,7 @@
 
 	{{-- @include('tenant.includes.pr.view-pr-header-basic') --}}
 
-	<x-tenant.widgets.po.payments :id="$po->id" />
+	<x-tenant.widgets.po.payments poId="{{ $po->id }}"/>
 
 @endsection
 

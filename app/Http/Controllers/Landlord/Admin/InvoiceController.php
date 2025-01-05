@@ -159,7 +159,7 @@ class InvoiceController extends Controller
 	public function oldstore(StoreInvoiceRequest $request)
 	{
 
-		Log::debug('landlord.invoice.store I AM HERE!');
+
 		exit;
 
 		//

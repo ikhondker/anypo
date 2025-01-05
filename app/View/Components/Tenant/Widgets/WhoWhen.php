@@ -116,7 +116,6 @@ class WhoWhen extends Component
 				$this->article = DeptBudget::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
 				break;
 			case 'Setup':
-				//Log::debug('I AM HERE');
 				$this->article = Setup::where('id', $articleId)->with('user_created_by')->with('user_updated_by')->get()->firstOrFail();
 				//Log::debug('Article id = '.$this->article->name);
 				break;

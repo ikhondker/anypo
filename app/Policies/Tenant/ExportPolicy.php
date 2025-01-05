@@ -113,4 +113,10 @@ class ExportPolicy
 		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
+	public function ael(User $user): bool
+	{
+		return ( $user->isBuyer() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
+	}
+
+
 }
