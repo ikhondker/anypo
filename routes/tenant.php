@@ -308,15 +308,15 @@ Route::middleware([
         Route::get('/export/prl',[ExportController::class,'prl'])->name('exports.prl');
         Route::get('/export/po',[ExportController::class,'po'])->name('exports.po');
         Route::get('/export/pol',[ExportController::class,'pol'])->name('exports.pol');
-        Route::get('/export/budget',[ExportController::class,'budget'])->name('exports.budget');
-        Route::get('/export/dept-budget',[ExportController::class,'deptBudget'])->name('exports.deptbudget');
         Route::get('/export/invoice',[ExportController::class,'invoice'])->name('exports.invoice');
         Route::get('/export/invoice-line',[ExportController::class,'invoiceLine'])->name('exports.invoice-line');
         Route::get('/export/payment',[ExportController::class,'payment'])->name('exports.payment');
         Route::get('/export/receipt',[ExportController::class,'receipt'])->name('exports.receipt');
         Route::get('/export/ael',[ExportController::class,'ael'])->name('exports.ael');
-
         Route::get('/ael/export-for-po/{id}',[ExportController::class,'aelForPo'])->name('exports.ael-for-po');
+
+        Route::get('/export/budget/{revision?}/{parent?}',[ExportController::class,'exportBudget'])->name('exports.budget');
+        Route::get('/export/dept-budget',[ExportController::class,'exportDeptBudget'])->name('exports.dept-budget');
 
         // Route::get('/export/project-po',[ExportController::class,'projectPo'])->name('exports.projectpo');
         // Route::get('/export/project-po-lines',[ExportController::class,'projectPoLine'])->name('exports.projectpoline');
@@ -484,7 +484,7 @@ Route::middleware([
 		Route::get('/dept-budgets/attachments/{deptBudget}',[DeptBudgetController::class,'attachments'])->name('dept-budgets.attachments');
 		Route::get('/dept-budgets/dbu/{deptBudget}',[DeptBudgetController::class,'dbu'])->name('dept-budgets.dbu');
 		Route::get('/dept-budget/revisions-all',[DeptBudgetController::class,'revisionsAll'])->name('dept-budgets.revisions-all');
-		Route::get('/dept-budgets/revisions/{deptBudget}',[DeptBudgetController::class,'revisions'])->name('dept-budgets.revisions');
+		Route::get('/dept-budget/revisions/{deptBudget?}',[DeptBudgetController::class,'revisions'])->name('dept-budgets.revisions');
 		Route::get('/dept-budgets/revision-detail/{deptBudget}',[DeptBudgetController::class,'revisionDetail'])->name('dept-budgets.revision-detail');
         Route::get('/dept-budgets/timestamp/{deptBudget}',[DeptBudgetController::class, 'timestamp'])->name('dept-budgets.timestamp');
 	});
@@ -529,7 +529,7 @@ Route::middleware([
 		Route::post('/budget/attach',[BudgetController::class,'attach'])->name('budgets.attach');
 		Route::get('/budgets/attachments/{budget}',[BudgetController::class,'attachments'])->name('budgets.attachments');
 
-        Route::get('/budget/revisions-all',[BudgetController::class,'revisionsAll'])->name('budgets.revisions-all');
+        //Route::get('/budget/revisions-all',[BudgetController::class,'revisionsAll'])->name('budgets.revisions-all');
 		Route::get('/budget/revisions/{budget?}',[BudgetController::class,'revisions'])->name('budgets.revisions');
         Route::get('/budgets/timestamp/{budget}',[BudgetController::class, 'timestamp'])->name('budgets.timestamp');
 

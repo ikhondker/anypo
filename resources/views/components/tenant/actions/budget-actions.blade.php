@@ -14,7 +14,7 @@
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('budgets.attachments',$budget->id) }}"><i class="align-middle me-1" data-lucide="paperclip"></i> View Attachments</a>
 		<a class="dropdown-item" href="{{ route('budgets.revisions', $budget->id) }}"><i class="align-middle me-1" data-lucide="edit-3"></i> View Revisions (*)</a>
-
+		<a class="dropdown-item" href="{{ route('budgets.revisions', $budget->id) }}"><i class="align-middle me-1" data-lucide="edit-3"></i> Export Revisions (*)</a>
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('budgets.index') }}"><i class="align-middle me-1" data-lucide="database"></i> View All</a>
 

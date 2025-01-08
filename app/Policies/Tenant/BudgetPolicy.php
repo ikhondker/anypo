@@ -78,8 +78,4 @@ class BudgetPolicy
 		//
 	}
 
-	public function export(User $user): bool
-	{
-		return ( $user->isCxO() || $user->isAdmin() || $user->isSupport());
-	}
 }

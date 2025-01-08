@@ -62,10 +62,10 @@
 				@endcan
 
 				@can('viewAny', App\Models\Tenant\Budget::class)
-					<li class="sidebar-item {{ ($_route_name == 'budgets.revisions-all' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('budgets.revisions-all') }}"><i class="align-middle" data-lucide="circle"></i>Budget Revision</a></li>
+					<li class="sidebar-item {{ ($_route_name == 'budgets.revisions' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('budgets.revisions') }}"><i class="align-middle" data-lucide="circle"></i>Budget Revision</a></li>
 				@endcan
 				@can('viewAny', App\Models\Tenant\DeptBudget::class)
-					<li class="sidebar-item {{ ($_route_name == 'dept-budgets.revisions-all' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('dept-budgets.revisions-all') }}"><i class="align-middle" data-lucide="circle"></i>DeptBudget Revision</a></li>
+					<li class="sidebar-item {{ ($_route_name == 'dept-budgets.revisions' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('dept-budgets.revisions') }}"><i class="align-middle" data-lucide="circle"></i>DeptBudget Revision</a></li>
 				@endcan
 
 			</ul>

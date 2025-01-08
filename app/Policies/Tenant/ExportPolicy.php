@@ -119,4 +119,9 @@ class ExportPolicy
 	}
 
 
+	public function budget(User $user): bool
+	{
+		return ( $user->isCxO() || $user->isAdmin() || $user->isSupport());
+	}
+
 }

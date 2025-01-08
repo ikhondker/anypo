@@ -115,8 +115,8 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'budgets.edit','route_name' 				=> 'budgets.index', 'node_name' 		=> 'budget'],
 			[ 'raw_route_name' => 'budgets.create','route_name' 			=> 'budgets.index', 'node_name' 		=> 'budget'],
 			[ 'raw_route_name' => 'budgets.attachments','route_name'		=> 'budgets.index', 'node_name' 		=> 'budget'],
-			[ 'raw_route_name' => 'budgets.revisions','route_name'			=> 'budgets.index', 'node_name' 		=> 'budget'],
-			[ 'raw_route_name' => 'budgets.revisions-all','route_name'		=> 'budgets.revisions-all', 'node_name'	=> 'budget'],
+			[ 'raw_route_name' => 'budgets.revisions','route_name'			=> 'budgets.revisions', 'node_name' 		=> 'budget'],
+			//[ 'raw_route_name' => 'budgets.revisions-all','route_name'		=> 'budgets.revisions-all', 'node_name'	=> 'budget'],
 			[ 'raw_route_name' => 'budgets.timestamp','route_name' 			=> 'budgets.index', 'node_name' 		=> 'budget'],
 
 			[ 'raw_route_name' => 'dept-budgets.index','route_name' 		=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
@@ -125,9 +125,10 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'dept-budgets.create','route_name' 		=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
 			[ 'raw_route_name' => 'dept-budgets.attachments','route_name' 	=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
 			[ 'raw_route_name' => 'dept-budgets.budget','route_name'		=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
-			[ 'raw_route_name' => 'dept-budgets.revisions','route_name'		=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
-			[ 'raw_route_name' => 'dept-budgets.revisions-all','route_name'	=> 'dept-budgets.revisions-all', 'node_name' 		=> 'budget'],
-			[ 'raw_route_name' => 'dept-budgets.revision-detail','route_name'	=> 'dept-budgets.revisions-all', 'node_name' 	=> 'budget'],
+			[ 'raw_route_name' => 'dept-budgets.revisions','route_name'		=> 'dept-budgets.revisions', 'node_name' 	=> 'budget'],
+            // TODO
+			//[ 'raw_route_name' => 'dept-budgets.revisions-all','route_name'	=> 'dept-budgets.revisions-all', 'node_name' 		=> 'budget'],
+			[ 'raw_route_name' => 'dept-budgets.revision-detail','route_name'	=> 'dept-budgets.revisions', 'node_name' 	=> 'budget'],
 			[ 'raw_route_name' => 'dept-budgets.timestamp','route_name' 	=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
 
 			[ 'raw_route_name' => 'suppliers.spends','route_name' 			=> 'suppliers.spends', 'node_name' 		=> 'budget'],

@@ -73,7 +73,7 @@ class BudgetController extends Controller
 	/**
 	 * Display a listing of the resource.
 	 */
-	public function revisionsAll()
+	public function xxrevisionsAll()
 	{
 		$this->authorize('viewAny', Budget::class);
 
@@ -101,7 +101,7 @@ class BudgetController extends Controller
 		$budgets = Budget::query();
 		if (request('term')) {
 			$budgets->where('name', 'Like', '%'.request('term').'%');
-			$budgets = $budgets->where('revision',true)->orderBy('updated_at', 'DESC')->paginate(10);
+			$budgets = $budgets->where('revision', true)->orderBy('updated_at', 'DESC')->paginate(10);
 			return view('tenant.budgets.revisions', compact('budgets'));
 		} else {
 			if(empty($budget)){
