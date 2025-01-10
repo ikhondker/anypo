@@ -48,7 +48,7 @@
 						<td>{{ $bankAccount->ac_number }}</td>
 						<td>{{ $bankAccount->routing_number }}</td>
 						<td>{{ $bankAccount->bank_name }}</td>
-						<td>{{ $bankAccount->currency }}</td>
+                        <td><x-tenant.list.my-badge :value="$bankAccount->currency"/></td>
 						<td><x-tenant.list.my-boolean :value="$bankAccount->enable"/></td>
 						<td>
 							<a href="{{ route('bank-accounts.show',$bankAccount->id) }}" class="btn btn-light"

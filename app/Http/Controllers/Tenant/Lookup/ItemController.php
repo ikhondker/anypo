@@ -35,9 +35,11 @@ use App\Models\Tenant\Lookup\GlType;
 
 use App\Models\Tenant\Manage\UomClass;
 # 2. Enums
+use App\Enum\Tenant\EntityEnum;
 # 3. Helpers
 use App\Helpers\EventLog;
 use App\Helpers\Export;
+use App\Helpers\Tenant\FileUpload;
 # 4. Notifications
 # 5. Jobs
 # 6. Mails
@@ -49,6 +51,8 @@ use App\Helpers\Export;
 use DB;
 use Str;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Foundation\Http\FormRequest;
+use Exception;
 # 12. FUTURE
 # 1. dependent dropdown for uom
 
@@ -133,6 +137,32 @@ class ItemController extends Controller
 		return view('tenant.lookup.items.timestamp', compact('item'));
 	}
 
+
+    // add attachments
+	public function attach(FormRequest $request)
+	{
+		$this->authorize('create', Item::class);
+
+		try {
+			$item = Item::where('id', $request->input('attach_item_id'))->get()->firstOrFail();
+		} catch (Exception $e) {
+			Log::error(' tenant.item.attach user_id = '. auth()->user()->id.' request = '. $request. ' class = '.get_class($e). ' Message = '. $e->getMessage());
+			return redirect()->back()->with(['error' => 'Item Not Found!']);
+		}
+		if ($file = $request->file('file_to_upload')) {
+			$request->merge(['article_id'	=> $request->input('attach_item_id')]);
+			$request->merge(['entity'		=> EntityEnum::ITEM->value ]);
+			$attid = FileUpload::aws($request);
+		}
+		return redirect()->back()->with('success', 'File Uploaded successfully.');
+	}
+
+    public function attachments(Item $item)
+	{
+		$this->authorize('view', $item);
+		$item = Item::where('id', $item->id)->get()->firstOrFail();
+		return view('tenant.lookup.items.attachments', compact('item'));
+	}
 
 	/**
 	 * Show the form for editing the specified resource.

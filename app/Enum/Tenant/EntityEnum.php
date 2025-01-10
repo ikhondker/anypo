@@ -19,7 +19,7 @@
 */
 namespace App\Enum\Tenant;
 
-//          NAME => Model
+//	NAME => Model
 enum EntityEnum: string{
 	case CORE			= 'Core';
 	case PROJECT		= 'Project';

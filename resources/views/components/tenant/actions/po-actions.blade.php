@@ -17,18 +17,18 @@
 		@endcan
 
 
-		@if ( $po->auth_status ==  App\Enum\Tenant\AuthStatusEnum::APPROVED->value )
+		@if ( $po->auth_status == App\Enum\Tenant\AuthStatusEnum::APPROVED->value )
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="{{ route('pos.invoices', $po->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Invoices</a>
 		@endif
 
-		@if ( ($po->auth_status ==  App\Enum\Tenant\AuthStatusEnum::APPROVED->value) && ($po->status ==  App\Enum\Tenant\ClosureStatusEnum::OPEN->value) )
+		@if ( ($po->auth_status == App\Enum\Tenant\AuthStatusEnum::APPROVED->value) && ($po->status == App\Enum\Tenant\ClosureStatusEnum::OPEN->value) )
 			@can('createForPo', App\Models\Tenant\Invoice::class)
 				<a class="dropdown-item" href="{{ route('invoices.create-for-po', $po->id) }}"><i class="align-middle me-1" data-lucide="plus"></i> Create Invoice</a>
 			@endcan
 		@endif
 
-		@if ( $po->auth_status ==  App\Enum\Tenant\AuthStatusEnum::APPROVED->value )
+		@if ( $po->auth_status == App\Enum\Tenant\AuthStatusEnum::APPROVED->value )
 		<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="{{ route('pos.payments', $po->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Payments</a>
 			<a class="dropdown-item" href="{{ route('pos.ael', $po->id) }}"><i class="align-middle me-1" data-lucide="eye"></i> View All Accounting **</a>

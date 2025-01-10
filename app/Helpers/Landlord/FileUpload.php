@@ -100,7 +100,7 @@ class FileUpload
 				$attachment->summary		= ' File Uploaded by '. (auth()->check() ? auth()->user()->name : 'Guest'). ' on ' . now();
 			}
 			$attachment->save();
-			$attachment_id				=$attachment->id;
+			$attachment_id				= $attachment->id;
 		} catch (Exception $e) {
 			// Log the message locally OR use a tool like Bugsnag/Flare to log the error
 			Log::error('Helpers.LandlordFileUpload.aws '.$e->getMessage());
@@ -144,7 +144,7 @@ class FileUpload
 			$attachment->upload_date	= now(); //date('Y-m-d H:i:s');
 
 			$attachment->save();
-			$attachment_id				=$attachment->id;
+			$attachment_id				= $attachment->id;
 		} catch (Exception $e) {
 			// Log the message locally OR use a tool like Bugsnag/Flare to log the error
 			Log::error('Helpers.LandlordFileUpload.upload '.$e->getMessage());

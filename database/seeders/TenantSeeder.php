@@ -70,7 +70,7 @@ class TenantSeeder extends Seeder
 		$this->call(\Database\Seeders\DemoSeeder::class);
 		// ========================================================
 
- 		// This seeder set create_by and updated_by to default
+ 		// This seeder set created_by and updated_by to default
 		$this->call(\Database\Seeders\TimestampSeeder::class);
 	}
 }

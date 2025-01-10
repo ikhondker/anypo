@@ -94,7 +94,7 @@
 	</div>
 </div>
 
-@if ( (auth()->user()->isAdmin() || auth()->user()->isSupport() ) && (auth()->user()->id <> $user->id) )
+@if ( (auth()->user()->isAdmin() || auth()->user()->isSupport() ) && (auth()->user()->id <> $user->id) && (! auth()->user()->isBackend()))
 	<div class="card">
 		<div class="card-header">
 			<h5 class="card-title">Role Modify :</h5>

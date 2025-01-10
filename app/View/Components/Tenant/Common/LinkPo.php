@@ -14,7 +14,7 @@ class LinkPo extends Component
 		 */
 		public function __construct(public string $id='1001')
 		{
-		//$this->id =$id;
+
 		}
 
 		/**

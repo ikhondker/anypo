@@ -41,6 +41,7 @@ use App\Helpers\Export;
 # 9. Exceptions
 # 10. Events
 # 11. Seeded
+use Illuminate\Support\Arr;
 use DB;
 use Illuminate\Support\Facades\Log;
 # 12. FUTURE
@@ -80,6 +81,10 @@ class UomController extends Controller
 	public function store(StoreUomRequest $request)
 	{
 		$this->authorize('create', Uom::class);
+
+		 // set color from class
+		$uomClass = UomClass::where('id', $request->input('uom_class_id') )->first();
+		$request->merge(['bg_color'     => $uomClass->bg_color ]);
 
 		$uom = Uom::create($request->all());
 		// Write to Log

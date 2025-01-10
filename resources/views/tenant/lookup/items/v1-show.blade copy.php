@@ -46,14 +46,31 @@
                     <tr>
 							<th>Attachments :</th>
 							<td>
-								<x-tenant.attachment.all entity="{{ App\Enum\Tenant\EntityEnum::ITEM->value }}" articleId="{{ $item->id }}"/>
+								<x-tenant.attachment.all entity="ITEM" articleId="{{ $item->id }}"/>
 							</td>
 						</tr>
 						<tr>
 							<th>&nbsp;</th>
 							<td>
 								@can('update', $item)
-                                    <x-tenant.attachment.add entity="{{ App\Enum\Tenant\EntityEnum::ITEM->value }}" articleId="{{ $item->id }}"/>
+                                    <x-tenant.attachment.add entity="ITEM" articleId="{{ $item->id }}"/>
+
+
+									{{-- <!-- form start -->
+									<form action="{{ route('items.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
+										@csrf
+										<input type="text" name="attach_item_id" id="attach_item_id" class="form-control" placeholder="1001" value="{{ old('id', $item->id ) }}" hidden>
+										<div class="row">
+											<div class="col-sm-3 text-end">
+
+											</div>
+											<div class="col-sm-9 text-end">
+												<input type="file" id="file_to_upload" name="file_to_upload" onchange="mySubmit()" style="display:none;" />
+												<a href="" class="text-warning d-inline-block" onclick="document.getElementById('file_to_upload').click(); return false">Add Attachment</a>
+											</div>
+										</div>
+									</form>
+									<!-- /.form end --> --}}
 								@endcan
 							</td>
 						</tr>
@@ -63,6 +80,13 @@
 		</div>
 	</div>
 	<x-tenant.widgets.back-to-list model="Item"/>
+
+<script type="text/javascript">
+	function mySubmit() {
+		document.getElementById('frm1').submit();
+	}
+</script>
+
 
 @endsection
 

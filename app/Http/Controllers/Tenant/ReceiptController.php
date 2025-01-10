@@ -167,7 +167,7 @@ class ReceiptController extends Controller
 	{
 		$this->authorize('createForPol', Receipt::class);
 
-		$pol_id =$request->input('pol_id');
+		$pol_id = $request->input('pol_id');
 		$pol = Pol::where('id', $pol_id)->first();
 
 		// Check over Receipt

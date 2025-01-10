@@ -38,9 +38,9 @@ class ConsolidateBudget implements ShouldQueue, ShouldBeUnique
 		//Log::debug('ConsolidateBudget.jobs Value of budget_id=' . $this->budget_id);
 		// get sum of DeptBudget for a specific budget
 		$result= DeptBudget::where('budget_id', $this->budget_id)
-			->where('revision',false)
+			->where('revision', false)
 			->get( array(
-			DB::raw('SUM(amount) as amount'),
+			DB::raw('SUM(amount)            as amount'),
 			DB::raw('SUM(amount_pr_booked) 	as amount_pr_booked'),
 			DB::raw('SUM(amount_pr) 		as amount_pr'),
 			DB::raw('SUM(amount_po_booked) 	as amount_po_booked'),
@@ -62,14 +62,15 @@ class ConsolidateBudget implements ShouldQueue, ShouldBeUnique
 		// get and budget to update based on DeptBudgetUsages table
 		// populate Company Budget
 		$budget = Budget::where('id', $this->budget_id)
-			->where('revision',false)->firstOrFail();
+			->where('revision', false)->firstOrFail();
+
 		foreach($result as $row) {
 			$budget->amount				= $row['amount'] ;
 			$budget->amount_pr_booked	= $row['amount_pr_booked'] ;
 			$budget->amount_pr			= $row['amount_pr'] ;
 			$budget->amount_po_booked	= $row['amount_po_booked'];
-			$budget->amount_po_tax			= $row['amount_po_tax'];
-			$budget->amount_po_gst			= $row['amount_po_gst'];
+			$budget->amount_po_tax		= $row['amount_po_tax'];
+			$budget->amount_po_gst		= $row['amount_po_gst'];
 			$budget->amount_po			= $row['amount_po'];
 			$budget->amount_grs			= $row['amount_grs'];
 			$budget->amount_invoice		= $row['amount_invoice'];
@@ -81,6 +82,7 @@ class ConsolidateBudget implements ShouldQueue, ShouldBeUnique
 			$budget->count_grs			= $row['count_grs'];
 			$budget->count_invoice		= $row['count_invoice'];
 			$budget->count_payment		= $row['count_payment'];
+
 		}
 			$budget->save();
 

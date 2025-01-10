@@ -73,7 +73,7 @@ class NotificationController extends Controller
 	public function full()
 	{
 		// show full notifications for tenant
-		$notifications = Notification::orderBy('created_at', 'DESC')->paginate(10);;
+		$notifications = Notification::orderBy('created_at', 'DESC')->paginate(10);
 		return view('tenant.notifications.full', compact('notifications'));
 	}
 

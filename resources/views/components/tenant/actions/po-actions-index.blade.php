@@ -10,7 +10,7 @@
 		<a class="dropdown-item" href="{{ route('pos.create') }}"><i class="align-middle me-1" data-lucide="plus"></i> Create Purchase Order</a>
 
 		<div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="{{ route('exports.po') }}"><i class="align-middle me-1" data-lucide="download-cloud"></i> * Export PO</a>
-        <a class="dropdown-item" href="{{ route('exports.pol') }}"><i class="align-middle me-1" data-lucide="download-cloud"></i> * Export PO Lines</a>
+		<a class="dropdown-item" href="{{ route('exports.po') }}"><i class="align-middle me-1" data-lucide="download-cloud"></i> * Export PO</a>
+		<a class="dropdown-item" href="{{ route('exports.pol') }}"><i class="align-middle me-1" data-lucide="download-cloud"></i> * Export PO Lines</a>
 	</div>
 </div>

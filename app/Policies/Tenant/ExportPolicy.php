@@ -81,7 +81,7 @@ class ExportPolicy
 		return true;
 	}
 
-    public function prl(User $user): bool
+	public function prl(User $user): bool
 	{
 		return true;
 	}
@@ -93,22 +93,22 @@ class ExportPolicy
 	}
 
 
-    public function pol(User $user): bool
+	public function pol(User $user): bool
 	{
 		return true;
 	}
 
-    public function invoice(User $user): bool
+	public function invoice(User $user): bool
 	{
 		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
-    public function payment(User $user): bool
+	public function payment(User $user): bool
 	{
 		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
-    public function receipt(User $user): bool
+	public function receipt(User $user): bool
 	{
 		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
@@ -122,6 +122,11 @@ class ExportPolicy
 	public function budget(User $user): bool
 	{
 		return ( $user->isCxO() || $user->isAdmin() || $user->isSupport());
+	}
+
+	public function deptBudget(User $user): bool
+	{
+		return ( $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
 }

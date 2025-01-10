@@ -14,7 +14,7 @@
 		<a class="dropdown-item" href="{{ route('dept-budgets.dbu', $deptBudget->id) }}"><i class="align-middle me-1" data-lucide="dollar-sign"></i> View Budget Usage</a>
 		<a class="dropdown-item" href="{{ route('dept-budgets.attachments',$deptBudget->id) }}"><i class="align-middle me-1" data-lucide="paperclip"></i> View Attachments</a>
 		<a class="dropdown-item" href="{{ route('dept-budgets.revisions', $deptBudget->id) }}"><i class="align-middle me-1" data-lucide="edit-3"></i> View Revisions (*)</a>
-        <a class="dropdown-item" href="{{ route('dept-budgets.revisions', $deptBudget->id) }}"><i class="align-middle me-1" data-lucide="edit-3"></i> Export Revisions (*)</a>
+		<a class="dropdown-item" href="{{ route('exports.dept-budget',['revision'=>true,'parent'=>$deptBudget->id]) }}"><i class="align-middle me-1" data-lucide="download-cloud"></i> Export Revisions (*)</a>
 
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('dept-budgets.index') }}"><i class="align-middle me-1" data-lucide="database"></i> View All</a>

@@ -1,4 +1,4 @@
-    <!-- form start -->
+	<!-- form start -->
 	<form id="myform" action="{{ route('exports.run', $export->entity) }}" method="POST">
 		@csrf
 		@method('PUT')
@@ -12,7 +12,7 @@
 					</div>
 					<div class="card-body">
 							{{-- <input type="text" name="id" id="id" class="form-control" placeholder="ID" value="{{ old('id',$export->id ) }}"> --}}
-                            <input type="text" name="entity" id="entity" class="form-control" placeholder="entity" value="{{ old('entity', $entity ) }}" hidden>
+							<input type="text" name="entity" id="entity" class="form-control" placeholder="entity" value="{{ old('entity', $entity ) }}" hidden>
 							@if ($export->article_id_required)
 								<div class="mb-3 row">
 									<label class="col-form-label col-sm-2 text-sm-right">{{ $export->entity }} ID :</label>
@@ -57,7 +57,7 @@
 								</div>
 							@endif
 
-                            @if ($export->currency)
+							@if ($export->currency)
 								<div class="mb-3 row">
 									<label class="col-form-label col-sm-2 text-sm-right">Currency</label>
 									<div class="col-sm-10">

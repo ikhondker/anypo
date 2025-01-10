@@ -102,7 +102,7 @@ class InvoicePolicy
 
 
 
-    /**
+	/**
 	 * Determine whether the user can recalculate models.
 	 */
 	public function recalculate(User $user): bool

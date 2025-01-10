@@ -55,8 +55,8 @@
 						<td>{{ $item->id }}</td>
 						<td>{{ $item->code }}</td>
 						<td><a href="{{ route('items.show',$item->id) }}"><strong>{{ $item->name }}</strong></a></td>
-						<td>{{ $item->item_category->name }}</td>
-						<td>{{ $item->uom->name }}</td>
+                        <td><span class="badge rounded-pill badge-subtle-{{ $item->item_category->bg_color }}">{{$item->item_category->name }}</span></td>
+                        <td><span class="badge rounded-pill badge-subtle-{{  $item->uom->bg_color }}">{{  $item->uom->name }}</span></td>
 						<td>{{ $item->oem->name }}</td>
 						<td class="text-end"><x-tenant.list.my-number :value="$item->price"/></td>
 						<td>{{ $item->glType->name }}</td>

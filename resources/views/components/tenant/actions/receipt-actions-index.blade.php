@@ -6,6 +6,6 @@
 		<a class="dropdown-item" href="{{ route('receipts.my-receipts') }}"><i class="align-middle me-1" data-lucide="user-plus"></i> My Receipt's</a>
 		<a class="dropdown-item" href="{{ route('receipts.index') }}"><i class="align-middle me-1" data-lucide="database"></i> All Receipts's</a>
 		<div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="{{ route('exports.receipt') }}"><i class="align-middle me-1" data-lucide="download-cloud"></i> * Export Receipts</a>
+		<a class="dropdown-item" href="{{ route('exports.receipt') }}"><i class="align-middle me-1" data-lucide="download-cloud"></i> * Export Receipts</a>
 	</div>
 </div>

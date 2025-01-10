@@ -18,6 +18,6 @@
 		@endslot
 	</x-tenant.page-header>
 
-    <x-tenant.export-param entity="{{  App\Enum\Tenant\EntityEnum::INVOICE->value }}"/>
+	<x-tenant.export-param entity="{{ App\Enum\Tenant\EntityEnum::INVOICE->value }}"/>
 
 @endsection

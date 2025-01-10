@@ -151,7 +151,7 @@ class ExportController extends Controller
 	public function run(UpdateExportRequest $request, Export $export)
 	{
 
-		$entity			    = $request->input('entity');
+		$entity				= $request->input('entity');
 		$article_id			= $request->input('article_id');
 		$start_date			= $request->input('start_date');
 		$end_date			= $request->input('end_date');
@@ -1049,17 +1049,17 @@ class ExportController extends Controller
 
 	}
 
-    public function aelForPo($po_id)
+	public function aelForPo($po_id)
 	{
 		$this->authorize('ael', Export::class);
 
 		$this->authorize('ael', Export::class);
 		$aels = Ael::with('aeh')->with('user_created_by')->with('user_updated_by');
 
-        // Filter based on input
-        $aels->whereHas('aeh', function ($q) use ($po_id)  {
-            $q->where('po_id', $po_id);
-        });
+		// Filter based on input
+		$aels->whereHas('aeh', function ($q) use ($po_id)  {
+			$q->where('po_id', $po_id);
+		});
 
 		$aels = $aels->get();
 		// generate xls
@@ -1121,25 +1121,25 @@ class ExportController extends Controller
 		$writer->save('php://output');
 	}
 
-    public function exportBudget($revision = null, $parent = null)
+	public function exportBudget($revision = null, $parent = null)
 	{
 
-        $this->authorize('budget', Export::class);
-        $setup = Setup::first();
+		$this->authorize('budget', Export::class);
+		$setup = Setup::first();
 
-        if(empty($revision)){
-            $fileName = 'export-budgets-' . date('Ymd') . '.xls';
-		    $budgets = Budget::where('revision', false);
-        } else {
-            $fileName = 'export-budget-revisions-all' . date('Ymd') . '.xls';
-            $budgets = Budget::where('revision', true);
-        }
+		if(empty($revision)){
+			$fileName = 'export-budgets-' . date('Ymd') . '.xls';
+			$budgets = Budget::where('revision', false);
+		} else {
+			$fileName = 'export-budget-revisions-all' . date('Ymd') . '.xls';
+			$budgets = Budget::where('revision', true);
+		}
 
-        if(!empty($parent)){
-            $fileName = 'export-budget-revision-' . date('Ymd') . '.xls';
-            $budgets = Budget::where('revision', true);
-            $budgets->where('parent_id', $parent);
-        }
+		if(!empty($parent)){
+			$fileName = 'export-budget-revision-' . date('Ymd') . '.xls';
+			$budgets = Budget::where('revision', true);
+			$budgets->where('parent_id', $parent);
+		}
 
 		$budgets = $budgets->get();
 
@@ -1147,22 +1147,22 @@ class ExportController extends Controller
 		$sheet = $spreadsheet->getActiveSheet();
 
 		$sheet->setCellValue('A1', 'ID#');
-        $sheet->setCellValue('B1', 'FY');
-        $sheet->setCellValue('C1', 'Name');
+		$sheet->setCellValue('B1', 'FY');
+		$sheet->setCellValue('C1', 'Name');
 		$sheet->setCellValue('D1', 'Start Date');
-        $sheet->setCellValue('E1', 'End Date');
-        $sheet->setCellValue('F1', 'Currency');
-        $sheet->setCellValue('G1', 'Amount');
-        $sheet->setCellValue('H1', 'Amount PR Booked');
-        $sheet->setCellValue('I1', 'Amount PR');
-        $sheet->setCellValue('J1', 'Amount PO Booked');
-        $sheet->setCellValue('K1', 'Amount Po');
-        $sheet->setCellValue('L1', 'Amount Grs');
-        $sheet->setCellValue('M1', 'Amount Invoice');
-        $sheet->setCellValue('N1', 'Amount Payment');
-        $sheet->setCellValue('O1', 'Revision');
-        $sheet->setCellValue('P1', 'Closed');
-        $sheet->setCellValue('Q1', 'Notes');
+		$sheet->setCellValue('E1', 'End Date');
+		$sheet->setCellValue('F1', 'Currency');
+		$sheet->setCellValue('G1', 'Amount');
+		$sheet->setCellValue('H1', 'Amount PR Booked');
+		$sheet->setCellValue('I1', 'Amount PR');
+		$sheet->setCellValue('J1', 'Amount PO Booked');
+		$sheet->setCellValue('K1', 'Amount Po');
+		$sheet->setCellValue('L1', 'Amount Grs');
+		$sheet->setCellValue('M1', 'Amount Invoice');
+		$sheet->setCellValue('N1', 'Amount Payment');
+		$sheet->setCellValue('O1', 'Revision');
+		$sheet->setCellValue('P1', 'Closed');
+		$sheet->setCellValue('Q1', 'Notes');
 		// $sheet->setCellValue('V1', 'Created By');
 		// $sheet->setCellValue('W1', 'Created At');
 		// $sheet->setCellValue('X1', 'Updated By');
@@ -1178,15 +1178,15 @@ class ExportController extends Controller
 			$sheet->setCellValue('F' . $rows, $setup->currency);
 			$sheet->setCellValue('G' . $rows, $budget->amount);
 			$sheet->setCellValue('H' . $rows, $budget->amount_pr_booked);
-            $sheet->setCellValue('I' . $rows, $budget->amount_pr);
-            $sheet->setCellValue('J' . $rows, $budget->amount_po_booked);
-            $sheet->setCellValue('K' . $rows, $budget->amount_po);
-            $sheet->setCellValue('L' . $rows, $budget->amount_grs);
-            $sheet->setCellValue('M' . $rows, $budget->amount_invoice);
-            $sheet->setCellValue('N' . $rows, $budget->amount_payment);
-            $sheet->setCellValue('O' . $rows, $budget->revision == 1 ? "Yes" : "No" );
-            $sheet->setCellValue('P' . $rows, $budget->closed == 1 ? "Yes" : "No" );
-            $sheet->setCellValue('Q' . $rows, $budget->notes);
+			$sheet->setCellValue('I' . $rows, $budget->amount_pr);
+			$sheet->setCellValue('J' . $rows, $budget->amount_po_booked);
+			$sheet->setCellValue('K' . $rows, $budget->amount_po);
+			$sheet->setCellValue('L' . $rows, $budget->amount_grs);
+			$sheet->setCellValue('M' . $rows, $budget->amount_invoice);
+			$sheet->setCellValue('N' . $rows, $budget->amount_payment);
+			$sheet->setCellValue('O' . $rows, $budget->revision == 1 ? "Yes" : "No" );
+			$sheet->setCellValue('P' . $rows, $budget->closed == 1 ? "Yes" : "No" );
+			$sheet->setCellValue('Q' . $rows, $budget->notes);
 			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
 			// $sheet->setCellValue('S' . $rows, $pr->created_at);
 			// $sheet->setCellValue('T' . $rows, $pr->user_updated_by->name);
@@ -1201,4 +1201,84 @@ class ExportController extends Controller
 	}
 
 
+	public function exportDeptBudget($revision = null, $parent = null)
+	{
+
+		$this->authorize('deptBudget', Export::class);
+		$setup 				= Setup::first();
+
+		if(empty($revision)){
+			$fileName 		= 'export-dept-budgets-' . date('Ymd') . '.xls';
+			$deptBudgets 	= DeptBudget::with('budget')->with('dept')->where('revision', false);
+		} else {
+			$fileName 		= 'export-dept-budget-revisions-all' . date('Ymd') . '.xls';
+			$deptBudgets 	= DeptBudget::with('budget')->with('dept')->where('revision', true);
+		}
+
+		if(!empty($parent)){
+			$fileName 		= 'export-dept-budget-revision-' . date('Ymd') . '.xls';
+			$deptBudgets 	= DeptBudget::with('budget')->with('dept')->where('revision', true);
+			$deptBudgets->where('parent_id', $parent);
+		}
+
+		$deptBudgets 		= $deptBudgets->get();
+
+		$spreadsheet 		= new Spreadsheet();
+		$sheet 				= $spreadsheet->getActiveSheet();
+
+		$sheet->setCellValue('A1', 'ID#');
+		$sheet->setCellValue('B1', 'FY');
+		$sheet->setCellValue('C1', 'Name');
+		$sheet->setCellValue('D1', 'Start Date');
+		$sheet->setCellValue('E1', 'End Date');
+		$sheet->setCellValue('F1', 'Currency');
+		$sheet->setCellValue('G1', 'Dept');
+		$sheet->setCellValue('H1', 'Amount');
+		$sheet->setCellValue('I1', 'Amount PR Booked');
+		$sheet->setCellValue('J1', 'Amount PR');
+		$sheet->setCellValue('K1', 'Amount PO Booked');
+		$sheet->setCellValue('L1', 'Amount Po');
+		$sheet->setCellValue('M1', 'Amount Grs');
+		$sheet->setCellValue('N1', 'Amount Invoice');
+		$sheet->setCellValue('O1', 'Amount Payment');
+		$sheet->setCellValue('P1', 'Revision');
+		$sheet->setCellValue('Q1', 'Closed');
+		$sheet->setCellValue('R1', 'Notes');
+		// $sheet->setCellValue('V1', 'Created By');
+		// $sheet->setCellValue('W1', 'Created At');
+		// $sheet->setCellValue('X1', 'Updated By');
+		// $sheet->setCellValue('Y1', 'Updated At');
+
+		$rows = 2;
+		foreach($deptBudgets as $deptBudget){
+			$sheet->setCellValue('A' . $rows, $deptBudget->id);
+			$sheet->setCellValue('B' . $rows, $deptBudget->budget->fy);
+			$sheet->setCellValue('C' . $rows, $deptBudget->budget->name);
+			$sheet->setCellValue('D' . $rows, $deptBudget->budget->start_date);
+			$sheet->setCellValue('E' . $rows, $deptBudget->budget->end_date);
+			$sheet->setCellValue('F' . $rows, $setup->currency);
+			$sheet->setCellValue('G' . $rows, $deptBudget->dept->name);
+			$sheet->setCellValue('H' . $rows, $deptBudget->amount);
+			$sheet->setCellValue('I' . $rows, $deptBudget->amount_pr_booked);
+			$sheet->setCellValue('J' . $rows, $deptBudget->amount_pr);
+			$sheet->setCellValue('K' . $rows, $deptBudget->amount_po_booked);
+			$sheet->setCellValue('L' . $rows, $deptBudget->amount_po);
+			$sheet->setCellValue('M' . $rows, $deptBudget->amount_grs);
+			$sheet->setCellValue('N' . $rows, $deptBudget->amount_invoice);
+			$sheet->setCellValue('O' . $rows, $deptBudget->amount_payment);
+			$sheet->setCellValue('P' . $rows, $deptBudget->revision == 1 ? "Yes" : "No" );
+			$sheet->setCellValue('Q' . $rows, $deptBudget->closed == 1 ? "Yes" : "No" );
+			$sheet->setCellValue('R' . $rows, $deptBudget->notes);
+			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
+			// $sheet->setCellValue('S' . $rows, $pr->created_at);
+			// $sheet->setCellValue('T' . $rows, $pr->user_updated_by->name);
+			// $sheet->setCellValue('U' . $rows, $pr->updated_at);
+			$rows++;
+		}
+
+		$writer = new Xls($spreadsheet);
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
+		$writer->save('php://output');
+	}
 }

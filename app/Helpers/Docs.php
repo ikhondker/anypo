@@ -99,13 +99,13 @@ class Docs
 			$data[$i]['fname'] = $fname;
 			$data[$i]['bname'] = $bname;
 			$data[$i]['dname'] = $dname;
-			$data[$i]['last_modified_human'] =$last_modified_human;
-			$data[$i]['last_modified_date'] =$last_modified_date;
+			$data[$i]['last_modified_human'] = $last_modified_human;
+			$data[$i]['last_modified_date'] = $last_modified_date;
 			$data[$i]['days'] = $days;
 			$data[$i]['removed'] = $removed;
 			$data[$i]['route'] = $route;
 
-			$i=$i+1;
+			$i = $i+1;
 		}
 		return $data;
 	}

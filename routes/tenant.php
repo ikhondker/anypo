@@ -233,6 +233,7 @@ Route::middleware([
 
 		/* ======================== Attachment ======================================== */
 		Route::resource('attachments', AttachmentController::class);
+        Route::post('/attachment/add/{entity}/{articleId}',[AttachmentController::class,'add'])->name('attachments.add');
 		Route::get('/attachments/delete/{attachment}',[AttachmentController::class,'destroy'])->name('attachments.destroy');
 		Route::get('/attachments/download/{attachment}', [AttachmentController::class, 'download'])->name('attachments.download');
 
@@ -249,6 +250,8 @@ Route::middleware([
 		/* ======================== Supplier ======================================== */
 		Route::resource('suppliers', SupplierController::class);
 		Route::get('/supplier/export',[SupplierController::class,'export'])->name('suppliers.export');
+        Route::post('/supplier/attach',[SupplierController::class,'attach'])->name('suppliers.attach');
+		Route::get('/suppliers/attachments/{supplier}',[SupplierController::class,'attachments'])->name('suppliers.attachments');
 		Route::get('/suppliers/timestamp/{supplier}',[SupplierController::class, 'timestamp'])->name('suppliers.timestamp');
 
 		/* ======================== Uom ======================================== */
@@ -257,20 +260,23 @@ Route::middleware([
 		/* ======================== Item ======================================== */
 		Route::resource('items', ItemController::class);
 		Route::get('/item/export',[ItemController::class,'export'])->name('items.export');
-		Route::get('/items/get-item/{item}',[ItemController::class, 'getItem'])->name('items.get-item');
+        Route::post('/item/attach',[ItemController::class,'attach'])->name('items.attach');
+		Route::get('/items/attachments/{item}',[ItemController::class,'attachments'])->name('items.attachments');
+        Route::get('/items/get-item/{item}',[ItemController::class, 'getItem'])->name('items.get-item');
 		Route::get('/items/timestamp/{item}',[ItemController::class, 'timestamp'])->name('items.timestamp');
 
 		/* ======================== Project ======================================== */
 		Route::resource('projects', ProjectController::class);
 		Route::get('/project/export',[ProjectController::class,'export'])->name('projects.export');
+        Route::post('/project/attach',[ProjectController::class,'attach'])->name('projects.attach');
 		Route::get('/projects/attachments/{project}',[ProjectController::class,'attachments'])->name('projects.attachments');
 		Route::get('/projects/timestamp/{project}',[ProjectController::class, 'timestamp'])->name('projects.timestamp');
 
 		/* ======================== Pr ======================================== */
 		Route::resource('prs', PrController::class);
 		Route::get('/pr/my-prs',[PrController::class,'myPr'])->name('prs.my-prs');
-		Route::get('/prs/attachments/{pr}',[PrController::class,'attachments'])->name('prs.attachments');
 		Route::post('/pr/attach',[PrController::class,'attach'])->name('prs.attach');
+		Route::get('/prs/attachments/{pr}',[PrController::class,'attachments'])->name('prs.attachments');
 		//Route::get('/pr/export',[PrController::class,'export'])->name('prs.export');
 		Route::get('/prs/pdf/{pr}',[PrController::class,'pdf'])->name('prs.pdf');
 		Route::get('/prs/delete/{pr}',[PrController::class,'destroy'])->name('prs.destroy');
@@ -316,7 +322,7 @@ Route::middleware([
         Route::get('/ael/export-for-po/{id}',[ExportController::class,'aelForPo'])->name('exports.ael-for-po');
 
         Route::get('/export/budget/{revision?}/{parent?}',[ExportController::class,'exportBudget'])->name('exports.budget');
-        Route::get('/export/dept-budget',[ExportController::class,'exportDeptBudget'])->name('exports.dept-budget');
+        Route::get('/export/dept-budget/{revision?}/{parent?}',[ExportController::class,'exportDeptBudget'])->name('exports.dept-budget');
 
         // Route::get('/export/project-po',[ExportController::class,'projectPo'])->name('exports.projectpo');
         // Route::get('/export/project-po-lines',[ExportController::class,'projectPoLine'])->name('exports.projectpoline');
@@ -524,7 +530,7 @@ Route::middleware([
 
 		/* ======================== Budget ======================================== */
 		Route::resource('budgets', BudgetController::class);
-		Route::get('/budget/export',[BudgetController::class,'export'])->name('budgets.export');
+		//Route::get('/budget/export',[BudgetController::class,'export'])->name('budgets.export');
 		Route::get('/budgets/delete/{budget}',[BudgetController::class,'destroy'])->name('budgets.destroy');
 		Route::post('/budget/attach',[BudgetController::class,'attach'])->name('budgets.attach');
 		Route::get('/budgets/attachments/{budget}',[BudgetController::class,'attachments'])->name('budgets.attachments');

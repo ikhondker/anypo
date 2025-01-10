@@ -108,27 +108,27 @@ class DeptBudgetController extends Controller
 		$deptBudgets = DeptBudget::query();
 
 		if (request('term')) {
-            $deptBudgets->where('name', 'Like', '%'.request('term').'%');
-            // don't search in dept name
+			$deptBudgets->where('name', 'Like', '%'.request('term').'%');
+			// don't search in dept name
 			// $deptBudgets->whereHas('dept', function ($q) {
 			// 	$q->where('name', 'LIKE', '%' .request('term'). '%');
 			// });
 
-            // for HoD restrict to his dept
-            switch (auth()->user()->role->value) {
-                case UserRoleEnum::HOD->value:
-                    $deptBudgets = $deptBudgets->where('dept_id', auth()->user()->dept_id );
-                    break;
-                case UserRoleEnum::BUYER->value:
-                case UserRoleEnum::CXO->value:
-                case UserRoleEnum::ADMIN->value:
-                case UserRoleEnum::SYSTEM->value:
-                    break;
-                default:
-                    Log::warning(tenant('id'). 'tenant.DeptBudget.revisions Other role = '. auth()->user()->role->value);
-                    abort(403);
-            }
-            $deptBudgets = $deptBudgets->where('revision', true)->orderBy('updated_at', 'DESC')->paginate(10);
+			// for HoD restrict to his dept
+			switch (auth()->user()->role->value) {
+				case UserRoleEnum::HOD->value:
+					$deptBudgets = $deptBudgets->where('dept_id', auth()->user()->dept_id );
+					break;
+				case UserRoleEnum::BUYER->value:
+				case UserRoleEnum::CXO->value:
+				case UserRoleEnum::ADMIN->value:
+				case UserRoleEnum::SYSTEM->value:
+					break;
+				default:
+					Log::warning(tenant('id'). 'tenant.DeptBudget.revisions Other role = '. auth()->user()->role->value);
+					abort(403);
+			}
+			$deptBudgets = $deptBudgets->where('revision', true)->orderBy('updated_at', 'DESC')->paginate(10);
 			return view('tenant.dept-budgets.revisions', compact('deptBudgets'));
 
 		} else {
@@ -153,26 +153,26 @@ class DeptBudgetController extends Controller
 				return view('tenant.dept-budgets.revisions', compact('deptBudgets'));
 			} else {
 				Log::debug('tenant.deptBudget.revisions showing revision for dept_budget_id = ' . $deptBudget->id);
-                // show revisions of a deptBudget but limit to dept for HoD
-                switch (auth()->user()->role->value) {
-                    case UserRoleEnum::HOD->value:
-                        $deptBudgets = DeptBudget::where('parent_id',$deptBudgets->id)
-                            ->where('dept_id', auth()->user()->dept_id )
-                            ->where('revision',true)
-                            ->orderBy('id', 'DESC')->paginate(10);
-                        break;
-                    case UserRoleEnum::BUYER->value:
-                    case UserRoleEnum::CXO->value:
-                    case UserRoleEnum::ADMIN->value:
-                    case UserRoleEnum::SYSTEM->value:
-                        $deptBudgets = DeptBudget::where('parent_id',$deptBudget->id)
-                            ->where('revision',true)
-                            ->orderBy('id', 'DESC')->paginate(10);
-                        break;
-                    default:
-                        Log::warning('tenant.DeptBudget.revisions Other role = '. auth()->user()->role->value);
-                        abort(403);
-                }
+				// show revisions of a deptBudget but limit to dept for HoD
+				switch (auth()->user()->role->value) {
+					case UserRoleEnum::HOD->value:
+						$deptBudgets = DeptBudget::where('parent_id',$deptBudgets->id)
+							->where('dept_id', auth()->user()->dept_id )
+							->where('revision',true)
+							->orderBy('id', 'DESC')->paginate(10);
+						break;
+					case UserRoleEnum::BUYER->value:
+					case UserRoleEnum::CXO->value:
+					case UserRoleEnum::ADMIN->value:
+					case UserRoleEnum::SYSTEM->value:
+						$deptBudgets = DeptBudget::where('parent_id',$deptBudget->id)
+							->where('revision',true)
+							->orderBy('id', 'DESC')->paginate(10);
+						break;
+					default:
+						Log::warning('tenant.DeptBudget.revisions Other role = '. auth()->user()->role->value);
+						abort(403);
+				}
 
 				return view('tenant.dept-budgets.revisions', compact('deptBudget','deptBudgets'));
 			}
@@ -344,59 +344,59 @@ class DeptBudgetController extends Controller
 
 		Log::debug(tenant('id'). 'tenant.DeptBudget.update creating revision row for dept_budgets_id = '.$deptBudget->id);
 
-        // TODO only create revision if amount changes
-        // can not mark original line as revision as child row exists
-        if ($request->input('amount') <> $old_dept_budget_amount) {
+		// TODO only create revision if amount changes
+		// can not mark original line as revision as child row exists
+		if ($request->input('amount') <> $old_dept_budget_amount) {
 
-            // 1. create revision row for dep_budget
-            $revDeptBudget				= $deptBudget->replicate();
-            $revDeptBudget->closed		= true;
-            $revDeptBudget->revision	= true;
-            $revDeptBudget->parent_id	= $deptBudget->id;
-            $revDeptBudget->created_by	= $who ;
-            $revDeptBudget->created_at	= now();
-            $revDeptBudget->updated_by	= $who ;
-            $revDeptBudget->updated_at	= now();
-            $revDeptBudget->save();
-            $revision_dept_budget_id    = $revDeptBudget->id;
-            Log::debug(tenant('id'). 'tenant.DeptBudget.update revision_dept_budget_id = '. $revision_dept_budget_id);
+			// 1. create revision row for dep_budget
+			$revDeptBudget				= $deptBudget->replicate();
+			$revDeptBudget->closed		= true;
+			$revDeptBudget->revision	= true;
+			$revDeptBudget->parent_id	= $deptBudget->id;
+			$revDeptBudget->created_by	= $who ;
+			$revDeptBudget->created_at	= now();
+			$revDeptBudget->updated_by	= $who ;
+			$revDeptBudget->updated_at	= now();
+			$revDeptBudget->save();
+			$revision_dept_budget_id	= $revDeptBudget->id;
+			Log::debug(tenant('id'). 'tenant.DeptBudget.update revision_dept_budget_id = '. $revision_dept_budget_id);
 
-            // attach the same document with $revision_dept_budget_id
-            if ($file = $request->file('file_to_upload')) {
-                $request->merge(['article_id'	=> $revision_dept_budget_id ]);
-                $request->merge(['entity'		=> EntityEnum::DEPTBUDGET->value ]);
-                $attid = FileUpload::aws($request);
-            }
+			// attach the same document with $revision_dept_budget_id
+			if ($file = $request->file('file_to_upload')) {
+				$request->merge(['article_id'	=> $revision_dept_budget_id ]);
+				$request->merge(['entity'		=> EntityEnum::DEPTBUDGET->value ]);
+				$attid = FileUpload::aws($request);
+			}
 
-            // 2. create revision for budget and link to revision_dept_budget_id
-            Log::debug(tenant('id'). 'tenant.DeptBudget.update creating revision row for budgets_id = '.$deptBudget->budget_id);
-            $sql= "INSERT INTO budgets(
-                fy, name, start_date, end_date,
-                amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po_tax, amount_po_gst, amount_po, amount_grs, amount_invoice, amount_payment,
-                count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment,
-                bg_color,
-                notes,closed, revision, parent_id, revision_dept_budget_id,
-                created_by, created_at, updated_by, updated_at
-                )
-            SELECT
-                fy, name, start_date, end_date,
-                amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po_tax, amount_po_gst, amount_po, amount_grs, amount_invoice, amount_payment,
-                count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment,
-                bg_color,
-                notes,true, true, ".$deptBudget->budget_id.",". $revision_dept_budget_id .",
-                '". $who ."', now(), '". $who ."', now()
-            FROM budgets
-            WHERE id= ".$deptBudget->budget_id." ;";
-            //Log::warning(tenant('id'). 'tenant.DeptBudget.update budgets sql = '. $sql);
-            DB::INSERT($sql);
+			// 2. create revision for budget and link to revision_dept_budget_id
+			Log::debug(tenant('id'). 'tenant.DeptBudget.update creating revision row for budgets_id = '.$deptBudget->budget_id);
+			$sql= "INSERT INTO budgets(
+				fy, name, start_date, end_date,
+				amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po_tax, amount_po_gst, amount_po, amount_grs, amount_invoice, amount_payment,
+				count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment,
+				bg_color,
+				notes,closed, revision, parent_id, revision_dept_budget_id,
+				created_by, created_at, updated_by, updated_at
+				)
+			SELECT
+				fy, name, start_date, end_date,
+				amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po_tax, amount_po_gst, amount_po, amount_grs, amount_invoice, amount_payment,
+				count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment,
+				bg_color,
+				notes,true, true, ".$deptBudget->budget_id.",". $revision_dept_budget_id .",
+				'". $who ."', now(), '". $who ."', now()
+			FROM budgets
+			WHERE id= ".$deptBudget->budget_id." ;";
+			//Log::warning(tenant('id'). 'tenant.DeptBudget.update budgets sql = '. $sql);
+			DB::INSERT($sql);
 
-            //update company budget for that year
-            ConsolidateBudget::dispatch($deptBudget->budget_id);
+			//update company budget for that year
+			ConsolidateBudget::dispatch($deptBudget->budget_id);
 
 			EventLog::event('deptBudget', $deptBudget->id, 'update', 'amount', $deptBudget->amount);
 		}
 
-        // update dept_budget row
+		// update dept_budget row
 		$deptBudget->update($request->all());
 
 		return redirect()->route('dept-budgets.show',$deptBudget->id)->with('success', 'DeptBudget updated successfully');

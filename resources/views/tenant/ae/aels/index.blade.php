@@ -35,9 +35,9 @@
 							<a href="{{ route( 'aels.index') }}" class="btn btn-light me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
 								<i class="align-middle" data-lucide="refresh-cw"></i>
 							</a>
-                            <a href="{{ route( 'exports.ael') }}" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
-							    <i class="align-middle" data-lucide="download-cloud"></i>
-						    </a>
+							<a href="{{ route( 'exports.ael') }}" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
+								<i class="align-middle" data-lucide="download-cloud"></i>
+							</a>
 						</div>
 					</div>
 				</form>

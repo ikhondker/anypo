@@ -126,7 +126,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'dept-budgets.attachments','route_name' 	=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
 			[ 'raw_route_name' => 'dept-budgets.budget','route_name'		=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
 			[ 'raw_route_name' => 'dept-budgets.revisions','route_name'		=> 'dept-budgets.revisions', 'node_name' 	=> 'budget'],
-            // TODO
+			// TODO
 			//[ 'raw_route_name' => 'dept-budgets.revisions-all','route_name'	=> 'dept-budgets.revisions-all', 'node_name' 		=> 'budget'],
 			[ 'raw_route_name' => 'dept-budgets.revision-detail','route_name'	=> 'dept-budgets.revisions', 'node_name' 	=> 'budget'],
 			[ 'raw_route_name' => 'dept-budgets.timestamp','route_name' 	=> 'dept-budgets.index', 'node_name' 	=> 'budget'],
@@ -160,12 +160,14 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'items.show','route_name' 			=> 'items.index', 'node_name' 			=> 'master'],
 			[ 'raw_route_name' => 'items.edit','route_name' 			=> 'items.index', 'node_name' 			=> 'master'],
 			[ 'raw_route_name' => 'items.create','route_name' 			=> 'items.index', 'node_name' 			=> 'master'],
+			[ 'raw_route_name' => 'items.attachments','route_name'		=> 'items.index', 'node_name'           => 'master'],
 			[ 'raw_route_name' => 'items.timestamp','route_name' 		=> 'items.index', 'node_name' 			=> 'master'],
 
 			[ 'raw_route_name' => 'suppliers.index','route_name' 		=> 'suppliers.index', 'node_name' 		=> 'master'],
 			[ 'raw_route_name' => 'suppliers.show','route_name' 		=> 'suppliers.index', 'node_name' 		=> 'master'],
 			[ 'raw_route_name' => 'suppliers.edit','route_name' 		=> 'suppliers.index', 'node_name' 		=> 'master'],
 			[ 'raw_route_name' => 'suppliers.create','route_name' 		=> 'suppliers.index', 'node_name' 		=> 'master'],
+			[ 'raw_route_name' => 'suppliers.attachments','route_name'	=> 'suppliers.index', 'node_name'		=> 'master'],
 			[ 'raw_route_name' => 'suppliers.timestamp','route_name' 	=> 'suppliers.index', 'node_name' 		=> 'master'],
 
 			[ 'raw_route_name' => 'projects.index','route_name' 		=> 'projects.index', 'node_name' 		=> 'master'],

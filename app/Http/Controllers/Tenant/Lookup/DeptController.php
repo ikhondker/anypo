@@ -93,11 +93,11 @@ class DeptController extends Controller
 
 		$this->authorize('create', Dept::class);
 
-        // set random color for budget
-        $colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info'];
-        $request->merge(['bg_color' => Arr::random($colors) ]);
+		// set random color for dept
+		$colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info'];
+		$request->merge(['bg_color' => Arr::random($colors) ]);
 
-        $dept = Dept::create($request->all());
+		$dept = Dept::create($request->all());
 		// Write to Log
 		EventLog::event('dept', $dept->id, 'create');
 

@@ -39,7 +39,7 @@
 						<td><a href="{{ route('budgets.show',$deptBudget->budget_id) }}"><strong>{{ $deptBudget->budget->fy }}</strong></a></td>
 					</tr>
 					<x-tenant.show.my-text			value="{{ $deptBudget->budget->name }}" label="Budget"/>
-                    <x-tenant.show.my-text			value="{{ $deptBudget->dept->name }}" label="Dept"/>
+					<x-tenant.show.my-text			value="{{ $deptBudget->dept->name }}" label="Dept"/>
 					<x-tenant.show.my-number		value="{{ $deptBudget->amount }}"/>
 					<x-tenant.show.my-text-area		value="{{ $deptBudget->notes }}"/>
 

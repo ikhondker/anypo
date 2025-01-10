@@ -228,7 +228,7 @@ class CreateTenant implements ShouldQueue
 	{
 		Log::channel('bo')->info('Copying Default Logo and Avatar png copied.');
 		$checkout 		= Checkout::where('id', $checkout_id)->first();
-		$subdir 		=$checkout->site;
+		$subdir 		= $checkout->site;
 
 		// Copy avatar.png to newly created tenant
 		$path = public_path("tenant\\".$subdir."\avatar");

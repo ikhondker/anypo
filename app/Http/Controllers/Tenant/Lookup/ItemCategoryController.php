@@ -38,6 +38,7 @@ use App\Helpers\EventLog;
 # 9. Exceptions
 # 10. Events
 # 11. Seeded
+use Illuminate\Support\Arr;
 use DB;
 # 12. FUTURE
 
@@ -76,6 +77,9 @@ class ItemCategoryController extends Controller
 	{
 		$this->authorize('create', ItemCategory::class);
 
+        // set random color for dept
+		$colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info'];
+		$request->merge(['bg_color' => Arr::random($colors) ]);
 		$itemCategory = ItemCategory::create($request->all());
 		// Write to Log
 		EventLog::event('item_category', $itemCategory->id, 'create');

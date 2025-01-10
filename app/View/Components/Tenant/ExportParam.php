@@ -21,9 +21,9 @@ use App\Models\Tenant\Lookup\BankAccount;
 class ExportParam extends Component
 {
 
-    public $export;
-    public $currencies;
-    public $depts;
+	public $export;
+	public $currencies;
+	public $depts;
 	public $suppliers;
 	public $projects;
 	public $warehouses;
@@ -35,14 +35,14 @@ class ExportParam extends Component
 	 */
 	public function __construct(public string $entity)
 	{
-		$this->export           = Export::where('entity', $entity)->firstOrFail();
-        $this->currencies 		= Currency::Primary()->get();
+		$this->export			= Export::where('entity', $entity)->firstOrFail();
+		$this->currencies 		= Currency::Primary()->get();
 		$this->depts 			= Dept::Primary()->get();
 		$this->suppliers 		= Supplier::Primary()->get();
 		$this->projects 		= Project::Primary()->get();
-		$this->warehouses 	    = Warehouse::Primary()->get();
+		$this->warehouses 	 	= Warehouse::Primary()->get();
 		$this->bankAccounts 	= BankAccount::Primary()->get();
-		$this->users		    = User::Tenant()->get();
+		$this->users			= User::Tenant()->get();
 	}
 
 	/**

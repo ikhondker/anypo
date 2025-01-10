@@ -93,9 +93,6 @@ class DeptBudgetPolicy
 		//
 	}
 
-	public function export(User $user): bool
-	{
-		return ( $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
-	}
+
 
 }

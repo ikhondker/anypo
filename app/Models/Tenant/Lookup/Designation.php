@@ -15,7 +15,7 @@ class Designation extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'name','enable','updated_at','updated_by'
+		'name', 'text_color', 'bg_color', 'icon', 'enable', 'updated_by', 'updated_at',
 	];
 
 	/* ----------------- Functions ---------------------- */

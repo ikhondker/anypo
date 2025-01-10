@@ -15,8 +15,8 @@ class ProjectLink extends Component
 	 */
 	public function __construct(public string $id='1001',public string $label='')
 	{
-		//$this->id =$id;
-		//$this->label =$label;
+		//$this->id = $id;
+		//$this->label = $label;
 	}
 
 	/**

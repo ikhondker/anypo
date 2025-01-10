@@ -97,14 +97,6 @@ class Access
 					}
 				}
 				break;
-			case EntityEnum::PROJECT->value:
-				$project = Project::where('id', $attachment->article_id)->get()->firstOrFail();
-				if (!$project->closed) {
-					if (auth()->user()->id == $attachment->owner_id){
-						$editable		= true;
-					}
-				}
-				break;
 			case EntityEnum::RECEIPT->value:
 				$editable			= false;
 				break;
@@ -119,6 +111,16 @@ class Access
 			case EntityEnum::PAYMENT->value:
 				$editable			= false;
 				break;
+			case EntityEnum::ITEM->value:
+				$editable			= true;
+				break;
+			case EntityEnum::PROJECT->value:
+				$editable			= true;
+				break;
+			case EntityEnum::SUPPLIER->value:
+				$editable			= true;
+				break;
+
 			default:
 				$editable			= false;
 		}

@@ -38,6 +38,7 @@ use App\Helpers\EventLog;
 # 9. Exceptions
 # 10. Events
 # 11. Seeded
+use Illuminate\Support\Arr;
 use DB;
 # 12. FUTURE
 
@@ -75,6 +76,11 @@ class CategoryController extends Controller
 	public function store(StoreCategoryRequest $request)
 	{
 		$this->authorize('create', Category::class);
+
+        // set random color for budget
+		$colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info'];
+		$request->merge(['bg_color' => Arr::random($colors) ]);
+
 
 		$category = Category::create($request->all());
 		// Write to Log

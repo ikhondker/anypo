@@ -21,7 +21,7 @@
 			<td>{{ $po->id }}</td>
 			<td><x-tenant.list.my-date value="{{ $po->po_date }}"/></td>
 			<td><a href="{{ route('pos.show',$po->id) }}"><strong>{{ $po->summary }}</strong></a></td>
-			<td>{{ $po->dept->name }}</td>
+            <td><span class="badge rounded-pill badge-subtle-{{ $po->dept->bg_color }}">{{  $po->dept->name}}</span></td>
 			<td>{{ $po->supplier->name }}</td>
 			<td>{{ $po->project->code }}</td>
 			<td class="text-end">{{ number_format($po->amount, 2) }}</td>

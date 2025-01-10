@@ -111,19 +111,20 @@ class AttachmentController extends Controller
 		Log::debug('entity=' . $entity);
 		Log::debug('articleId=' . $articleId);
 		//if(empty($deptBudget)){
+
 		// $this->authorize('create', Item::class);
 
 		switch ($entity) {
 			case EntityEnum::ITEM->value:
 				try {
-					$item = Item::where('id', $articleId)->get()->firstOrFail();
+					$item = Item::where('id', $request->input('attach_item_id'))->get()->firstOrFail();
 				} catch (Exception $e) {
 					Log::error(' tenant.item.attach user_id = '. auth()->user()->id.' request = '. $request. ' class = '.get_class($e). ' Message = '. $e->getMessage());
 					return redirect()->back()->with(['error' => 'Item Not Found!']);
 				}
 				break;
-			default:
-                return redirect()->back()->with('error', 'File Upload Error!');
+			 default:
+             return redirect()->back()->with('error', 'File Uploaded Error.');
 		}
 
 		if ($file = $request->file('file_to_upload')) {

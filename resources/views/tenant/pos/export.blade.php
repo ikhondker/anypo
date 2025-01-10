@@ -2,7 +2,7 @@
 @section('title','Export Purchase Orders')
 
 @section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{ route('pos.index') }}" class="text-muted">Purchase Orders</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('pos.index') }}" class="text-muted">Purchase Orders</a></li>
 	<li class="breadcrumb-item active">Export</li>
 @endsection
 
@@ -18,6 +18,6 @@
 		@endslot
 	</x-tenant.page-header>
 
-    <x-tenant.export-param entity="{{  App\Enum\Tenant\EntityEnum::PO->value }}"/>
+	<x-tenant.export-param entity="{{ App\Enum\Tenant\EntityEnum::PO->value }}"/>
 
 @endsection

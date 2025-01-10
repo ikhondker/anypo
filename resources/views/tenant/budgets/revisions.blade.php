@@ -43,7 +43,7 @@
 											<i class="align-middle" data-lucide="download-cloud"></i>
 										</a>
 									@else
-										<a href="{{ route( 'exports.budget','true' ) }}" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
+										<a href="{{ route( 'exports.budget',['revision'=>true]) }}" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
 											<i class="align-middle" data-lucide="download-cloud"></i>
 										</a>
 									@endif
@@ -68,7 +68,7 @@
 						<th class="text-end">Amount</th>
 						<th>Notes</th>
 						<th>Updated By</th>
-						<th>Source</th>
+						<th>History</th>
 					</tr>
 				</thead>
 
@@ -84,7 +84,7 @@
 						<td class=""> {{ $budget->user_created_by->name }}</td>
 						<td>
 							<a href="{{ route('dept-budgets.revision-detail',$budget->revision_dept_budget_id) }}" class="btn btn-light"
-								data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View Source
+								data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i data-lucide="eye"></i> View Change History
 							</a>
 						</td>
 					</tr>

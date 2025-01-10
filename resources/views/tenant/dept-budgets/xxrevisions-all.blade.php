@@ -32,7 +32,7 @@
 						<th>Name</th>
 						<th>Dept</th>
 						<th class="text-end">Amount</th>
-                        <th>Notes</th>
+						<th>Notes</th>
 						<th>Updated By</th>
 						<th>Updated At</th>
 						<th>Action</th>
@@ -47,7 +47,7 @@
 						<td>{{ $deptBudget->budget->name }}</td>
 						<td><a href="{{ route('dept-budgets.show',$deptBudget->id) }}"><span class="badge rounded-pill badge-subtle-{{ $deptBudget->dept->bg_color }}">{{ $deptBudget->dept->name }}</span></a></td>
 						<td class="text-end"><x-tenant.list.my-number :value="$deptBudget->amount"/></td>
-                        <td width="20%">{{ $deptBudget->notes }}</td>
+						<td width="20%">{{ $deptBudget->notes }}</td>
 						<td> {{ $deptBudget->user_created_by->name }}</td>
 						<td><x-tenant.list.my-date-time :value="$deptBudget->created_at"/></td>
 						<td>

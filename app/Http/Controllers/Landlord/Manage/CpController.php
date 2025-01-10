@@ -159,7 +159,7 @@ class CpController extends Controller
 				</div>
 			</div>
 			';
-			$text=$text . '' . $single;
+			$text = $text . '' . $single;
 		}
 
 		// {!! $text !!}

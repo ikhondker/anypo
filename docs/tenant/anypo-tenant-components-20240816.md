@@ -343,6 +343,7 @@ php artisan make:component Notifications\Unread		<x-tenant.notifications.unread/
 # Attachments
 -------------------------------------
 php artisan make:component Tenant\Attachment\Create	<x-tenant.attachment.create />
+php artisan make:component Tenant\Attachment\Add	<x-tenant.attachment.add />
 php artisan make:component Tenant\Attachment\Single	<x-tenant.attachment.single id="{{ $attachment->id }}"/>
 php artisan make:component Tenant\Attachment\All	<x-tenant.attachment.all entity="{{ $entity }}" aid="{{ $pr->id }}"/>
 php artisan make:component Tenant\Attachment\ListAllByArticle

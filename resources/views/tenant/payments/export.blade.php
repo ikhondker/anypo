@@ -2,7 +2,7 @@
 @section('title','Export Payments')
 
 @section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{ route('payments.index') }}" class="text-muted">Payments</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('payments.index') }}" class="text-muted">Payments</a></li>
 	<li class="breadcrumb-item active">Export</li>
 @endsection
 
@@ -18,6 +18,6 @@
 		@endslot
 	</x-tenant.page-header>
 
-    <x-tenant.export-param entity="{{  App\Enum\Tenant\EntityEnum::PAYMENT->value }}"/>
+	<x-tenant.export-param entity="{{ App\Enum\Tenant\EntityEnum::PAYMENT->value }}"/>
 
 @endsection

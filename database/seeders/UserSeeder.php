@@ -100,6 +100,32 @@ class UserSeeder extends Seeder
 			],
 		];
 
+        // used only form system generated who columns
+        $usersAnonymous = [
+			[
+				'id'				=> Str::uuid(),
+				'name'				=> 'ANONYMOUS',
+				'email'				=> config('akk.ANONYMOUS_EMAIL_ID'),	// Don't change. Used in Seeder
+				'designation_id'	=> '1001',
+				'dept_id'			=> '1001',
+				'role'				=> 'guest',
+				//'email_verified_at' => '',
+				'password'			=> bcrypt('password') , // password
+				'remember_token'	=> '',
+				'cell'				=> '01911358620',
+				'address1'			=> $faker->address,
+				'address2'			=> $faker->address,
+				'city'				=> $faker->city,
+				'zip'				=> $faker->postcode,
+				'facebook'			=> $faker->url,
+				'linkedin'			=> $faker->url,
+				'enable'			=> false,
+				'backend'			=> true,
+				'avatar'			=> 'anonymous.png',
+			],
+        ];
+
+
 		$usersDemo = [
 			[
 				'id'				=> Str::uuid(),
@@ -315,6 +341,7 @@ class UserSeeder extends Seeder
 		];
 
 		User::insert($usersSeeded);
+        User::insert($usersAnonymous);
 		// TODO Must comment in Production
 		User::insert($usersDemo);
 

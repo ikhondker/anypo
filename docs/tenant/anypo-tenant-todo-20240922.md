@@ -1,8 +1,13 @@
 # 33. TODO
 -------------------------------------------------------------------------------------------------
 http://demo1.localhost:8000/payments recept/ ovoce not found 404 after create
-
-
+project attechments
+supplier atahments
+check ->get()->first
+item attaments
+project end date edit optional
+create seede anonymous user with role guest
+125. 23/2/25budget seded create by null
 124. budget revisionsAll -> revisions->revisionDetail merge
 consolidate exports
 123. po requster functional decision. whether show it or not

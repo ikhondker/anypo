@@ -71,7 +71,7 @@
 										data-bs-toggle="tooltip" data-bs-placement="top" title="{{ ($export->enable ? 'Disable' : 'Enable') }}">
 										<i class="align-middle text-muted" data-lucide="{{ ($export->enable ? 'bell-off' : 'bell') }}"></i>
 									</a>
-                                    <a href="{{ route('exports.'.Str::lower($export->entity).'') }}" class="btn btn-light"
+									<a href="{{ route('exports.'.Str::lower($export->entity).'') }}" class="btn btn-light"
 										data-bs-toggle="tooltip" data-bs-placement="top" title="View"> <i data-lucide="download-cloud"></i> Run Export
 									</a>
 								</td>
