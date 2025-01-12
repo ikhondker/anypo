@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 use App\Models\Tenant\Export;
-use App\Enum\Tenant\EntityEnum;
+use App\Enum\EntityEnum;
 
 
 

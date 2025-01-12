@@ -23,7 +23,7 @@
 	<x-tenant.info.dept-budget-info deptBudgetId="{{ $deptBudget->id }}"/>
 
 
-	<x-tenant.attachment.list-all-by-article entity="{{ App\Enum\Tenant\EntityEnum::DEPTBUDGET->value }}" articleId="{{ $deptBudget->id }}"/>
+	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::DEPTBUDGET->value }}" articleId="{{ $deptBudget->id }}"/>
 
 
 

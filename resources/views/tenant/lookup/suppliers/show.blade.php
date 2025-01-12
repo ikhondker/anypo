@@ -43,7 +43,21 @@
 					<x-tenant.show.my-text value="{{ $supplier->city.', '.$supplier->state.', '.$supplier->zip }}" label="City"/>
 					<x-tenant.show.my-text value="{{ $supplier->relCountry->name }}" label="Country"/>
 					<x-tenant.show.my-boolean	value="{{ $supplier->enable }}"/>
-					<x-tenant.show.my-date-time value="{{ $supplier->created_at }}" label="Created At" />
+
+                    <tr>
+                        <th>Attachments :</th>
+                        <td>
+                            <x-tenant.attachment.all entity="{{ EntityEnum::SUPPLIER->value }}" articleId="{{ $supplier->id }}"/>
+                        </td>
+					</tr>
+					<tr>
+                        <th>&nbsp;</th>
+                        <td>
+                            @can('update', $supplier)
+                                <x-tenant.attachment.add entity="{{ EntityEnum::SUPPLIER->value }}" articleId="{{ $supplier->id }}"/>
+                            @endcan
+                        </td>
+					</tr>
 				</tbody>
 			</table>
 		</div>

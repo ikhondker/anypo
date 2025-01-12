@@ -8,7 +8,7 @@ use Illuminate\View\Component;
 use App\Models\Tenant\Ae\Aeh;
 use App\Models\Tenant\Ae\Ael;
 use Exception;
-use App\Enum\Tenant\EntityEnum;
+use App\Enum\EntityEnum;
 
 class AelForReceipt extends Component
 {

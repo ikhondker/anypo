@@ -7,7 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use App\Models\Tenant\Ae\Aeh;
 use App\Models\Tenant\Ae\Ael;
-use App\Enum\Tenant\EntityEnum;
+use App\Enum\EntityEnum;
 use Exception;
 class AelForPayment extends Component
 {

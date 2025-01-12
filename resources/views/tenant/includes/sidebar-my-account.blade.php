@@ -10,9 +10,9 @@
 	</ul>
 </li>
 
-<li class="sidebar-item {{ ($_route_name == 'help' ? 'active' : '') }}">
-	<a class="sidebar-link" href="{{ route('help') }}">
-		<i class="align-middle" data-lucide="help-circle"></i><span class="align-middle">Help</span>
+<li class="sidebar-item {{ ($_route_name == 'docs.index' ? 'active' : '') }}">
+	<a class="sidebar-link" href="{{ route('docs.index') }}" target="_blank">
+		<i class="align-middle" data-lucide="book-open-text"></i><span class="align-middle">Documentation</span>
 	</a>
 </li>
 {{-- <li class="sidebar-item {{ ($_route_name == 'tickets.create' ? 'active' : '') }}">

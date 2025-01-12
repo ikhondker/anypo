@@ -35,6 +35,8 @@
 <i data-lucide="circle-user-round"></i>
 <i data-lucide="eye"></i>
 <i data-lucide="shopping-cart"></i>
+<i data-lucide="book-open-text"></i>
+
 
 Call support {{ config('akk.SUPPORT_PHONE_NO') }}</a>
 {{ env('APP_NAME') }}

@@ -30,7 +30,7 @@ use App\Models\Tenant\Budget;
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Attachment;
 # 2. Enums
-use App\Enum\Tenant\EntityEnum;
+use App\Enum\EntityEnum;
 use App\Enum\UserRoleEnum;
 use App\Helpers\Tenant\FileUpload;
 # 3. Helpers

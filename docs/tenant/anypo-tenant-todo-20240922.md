@@ -4,7 +4,13 @@ http://demo1.localhost:8000/payments recept/ ovoce not found 404 after create
 project attechments
 supplier atahments
 check ->get()->first
-item attaments
+move documntatsion screenshots to provate places
+item attavhments
+bootstrap documentatsion tmaplte
+    https://github.com/eriktailor/bootstrap-documentation-template
+    https://wrapbootstrap.com/tag/bootstrap-documentation?compatible-with=bootstrap
+
+Route::get('/get-started', function () {return view('tenant.pages.get-started');})->name('get-started');
 project end date edit optional
 create seede anonymous user with role guest
 125. 23/2/25budget seded create by null

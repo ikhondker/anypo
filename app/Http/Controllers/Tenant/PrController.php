@@ -52,7 +52,7 @@ use App\Models\Tenant\Workflow\Hierarchyl;
 use App\Models\Tenant\Workflow\Wfl;
 # 2. Enums
 use App\Enum\UserRoleEnum;
-use App\Enum\Tenant\EntityEnum;
+use App\Enum\EntityEnum;
 use App\Enum\Tenant\WflActionEnum;
 use App\Enum\Tenant\ClosureStatusEnum;
 use App\Enum\Tenant\AuthStatusEnum;

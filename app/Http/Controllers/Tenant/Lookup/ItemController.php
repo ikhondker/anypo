@@ -35,7 +35,7 @@ use App\Models\Tenant\Lookup\GlType;
 
 use App\Models\Tenant\Manage\UomClass;
 # 2. Enums
-use App\Enum\Tenant\EntityEnum;
+use App\Enum\EntityEnum;
 # 3. Helpers
 use App\Helpers\EventLog;
 use App\Helpers\Export;
@@ -139,7 +139,7 @@ class ItemController extends Controller
 
 
     // add attachments
-	public function attach(FormRequest $request)
+	public function chk_attach(FormRequest $request)
 	{
 		$this->authorize('create', Item::class);
 

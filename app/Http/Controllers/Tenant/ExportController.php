@@ -54,7 +54,7 @@ use App\Models\Tenant\Lookup\BankAccount;
 
 use App\Models\Tenant\Admin\Setup;
 # 2. Enums
-use App\Enum\Tenant\EntityEnum;
+use App\Enum\EntityEnum;
 use App\Enum\UserRoleEnum;
 use App\Enum\Tenant\AuthStatusEnum;
 use App\Enum\Tenant\InvoiceStatusEnum;

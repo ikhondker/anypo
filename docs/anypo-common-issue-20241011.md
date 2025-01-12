@@ -122,7 +122,7 @@ $data = Invoice::select('id','currency','summary','supplier_id','po_id')->with('
 $data = Po::select('id','currency','supplier_id')->with('supplier:id,name')->where('id', $id)->first();
 
 
-enum
+enum. where? /config/App.php
 as alias both entity and user role
 
 

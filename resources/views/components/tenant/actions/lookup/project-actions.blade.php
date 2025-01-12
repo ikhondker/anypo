@@ -11,6 +11,11 @@
 				<a class="dropdown-item" href="{{ route('projects.edit', $project->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Project</a>
 			@endcan
 		@endif
+
+        <a class="dropdown-item" href="{{ route('projects.attachments',$project->id) }}"><i class="align-middle me-1" data-lucide="paperclip"></i> View Attachments</a>
+		<div class="dropdown-divider"></div>
+
+
 		@can('spends', App\Models\Tenant\Lookup\Project::class)
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="{{ route('projects.po', $project->id) }}"><i class="align-middle me-1" data-lucide="list"></i> View Project PO</a>

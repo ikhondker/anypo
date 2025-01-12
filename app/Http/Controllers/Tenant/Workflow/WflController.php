@@ -33,7 +33,7 @@ use App\Models\User;
 use App\Enum\Tenant\AuthStatusEnum;
 use App\Enum\Tenant\WfStatusEnum;
 use App\Enum\Tenant\WflActionEnum;
-use App\Enum\Tenant\EntityEnum;
+use App\Enum\EntityEnum;
 use App\Enum\Tenant\EventEnum;
 # 3. Helpers
 use App\Helpers\Tenant\PrBudget;

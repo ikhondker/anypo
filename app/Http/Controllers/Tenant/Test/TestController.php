@@ -54,7 +54,7 @@ use Str;
 
 use Illuminate\Support\Facades\Http;
 
-use App\Enum\Tenant\EntityEnum;
+use App\Enum\EntityEnum;
 use App\Enum\Tenant\EventEnum;
 use App\Helpers\Tenant\ChartData;
 
@@ -79,6 +79,7 @@ class TestController extends Controller
 		//https://stackoverflow.com/questions/41758870/how-to-convert-result-table-to-json-array-in-mysql
 
 
+        return view('tenant.documentations.index');
 
 
 		Log::debug('Value of config(app.domain)=' . config('app.domain'));

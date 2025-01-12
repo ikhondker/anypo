@@ -17,14 +17,21 @@
 * DD-MON-YYYY	v1.0.1	Iqbal H Khondker	Modification brief
 * =====================================================================================
 */
-namespace App\Enum\Tenant;
+namespace App\Enum;
 
 //	NAME => Model
 enum EntityEnum: string{
+
+
+    // ---------- Common ------------------------------
+
+    // ---------- Landlord ------------------------------
+
+    // ---------- Tenant ------------------------------
 	case CORE			= 'Core';
 	case PROJECT		= 'Project';
 	case ITEM			= 'Item';
-	case SUPPLIER		= 'Ssupplier';
+	case SUPPLIER		= 'Supplier';
 	// case PROJECTPO		= 'PROJECTPO';
 	// case PROJECTPOLINE	= 'PROJECTPOLINE';
 	// case SUPPLIERPO		= 'SUPPLIERPO';

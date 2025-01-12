@@ -12,7 +12,7 @@ use App\Models\Tenant\Budget;
 use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Lookup\Project;
 
-use App\Enum\Tenant\EntityEnum;
+use App\Enum\EntityEnum;
 use App\Enum\Tenant\EventEnum;
 
 use Illuminate\Database\Eloquent\Builder;

@@ -77,13 +77,13 @@ class ViewServiceProvider extends ServiceProvider
 		// 	$view->with('_logo_dir',"tenant\\".tenant('id')."\\".config('akk.DIR_LOGO')."\\");
 		// });
 
-		view()->composer('layouts.tenant.app', function ($view) {
+		view()->composer(['layouts.tenant.app'], function ($view) {
 			$raw_route_name = \Request::route()->getName();
 			$menu	= new Menu;
-			//Log::debug("ViewServiceProvider.boot.tenant raw_route_name = ".$raw_route_name);
+			Log::debug("ViewServiceProvider.boot.tenant raw_route_name = ".$raw_route_name);
 			try {
-				$menu = Menu::where('raw_route_name',$raw_route_name)
-					->where('enable',true)
+				$menu = Menu::where('raw_route_name', $raw_route_name)
+					->where('enable', true)
 					->firstOrFail();
 			} catch (ModelNotFoundException $exception) {
 				// Log::debug("node_name not Found! raw_route_name =".$raw_route_name);

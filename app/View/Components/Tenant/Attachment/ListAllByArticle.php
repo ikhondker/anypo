@@ -19,7 +19,7 @@ use App\Models\Tenant\Invoice;
 use App\Models\Tenant\Attachment;
 
 # Enums
-use App\Enum\Tenant\EntityEnum;
+use App\Enum\EntityEnum;
 use App\Enum\Tenant\AuthStatusEnum;
 use App\Enum\Tenant\InvoiceStatusEnum;
 

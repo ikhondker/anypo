@@ -30,7 +30,7 @@ use App\Models\Tenant\Admin\Setup;
 use App\Models\Tenant\Attachment;
 
 # 2. Enums
-use App\Enum\Tenant\EntityEnum;
+use App\Enum\EntityEnum;
 # 3. Helpers
 use App\Helpers\Tenant\FileUpload;
 use App\Helpers\Export;

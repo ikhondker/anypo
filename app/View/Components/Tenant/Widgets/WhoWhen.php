@@ -34,7 +34,7 @@ use App\Models\Tenant\Admin\Setup;
 use App\Models\Tenant\Workflow\Hierarchy;
 
 # 2. Enums
-use App\Enum\Tenant\EntityEnum;
+use App\Enum\EntityEnum;
 use Illuminate\Support\Facades\Log;
 
 use Str;

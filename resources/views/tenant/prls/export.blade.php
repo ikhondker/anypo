@@ -18,6 +18,6 @@
 		@endslot
 	</x-tenant.page-header>
 
-	<x-tenant.export-param entity="{{ App\Enum\Tenant\EntityEnum::PRL->value }}"/>
+	<x-tenant.export-param entity="{{ EntityEnum::PRL->value }}"/>
 
 @endsection

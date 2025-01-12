@@ -120,6 +120,13 @@ class SupplierController extends Controller
 		return view('tenant.lookup.suppliers.edit', compact('supplier'));
 	}
 
+    public function attachments(Supplier $supplier)
+	{
+		$this->authorize('view', $supplier);
+		$supplier = Supplier::where('id', $supplier->id)->get()->firstOrFail();
+		return view('tenant.lookup.suppliers.attachments', compact('supplier'));
+	}
+
 	/**
 	 * Update the specified resource in storage.
 	 */

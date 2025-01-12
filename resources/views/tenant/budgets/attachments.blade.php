@@ -49,7 +49,7 @@
 		</div>
 
 
-	<x-tenant.attachment.list-all-by-article entity="{{ App\Enum\Tenant\EntityEnum::BUDGET->value }}" articleId="{{ $budget->id }}"/>
+	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::BUDGET->value }}" articleId="{{ $budget->id }}"/>
 
 
 @endsection

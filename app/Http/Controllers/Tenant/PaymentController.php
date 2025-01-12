@@ -35,7 +35,7 @@ use App\Models\Tenant\Admin\Setup;
 use App\Models\Tenant\Lookup\Supplier;
 # 2. Enums
 use App\Enum\UserRoleEnum;
-use App\Enum\Tenant\EntityEnum;
+use App\Enum\EntityEnum;
 use App\Enum\Tenant\EventEnum;
 use App\Enum\Tenant\PaymentStatusEnum;
 use App\Enum\Tenant\InvoiceStatusEnum;

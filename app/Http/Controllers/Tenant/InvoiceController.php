@@ -37,7 +37,7 @@ use App\Models\Tenant\Admin\Setup;
 use App\Models\Tenant\Lookup\Supplier;
 use App\Models\Tenant\Manage\CustomError;
 # 2. Enums
-use App\Enum\Tenant\EntityEnum;
+use App\Enum\EntityEnum;
 use App\Enum\Tenant\EventEnum;
 use App\Enum\UserRoleEnum;
 use App\Enum\Tenant\InvoiceStatusEnum;

@@ -31,7 +31,7 @@ use App\Http\Requests\Tenant\Lookup\UpdateProjectRequest;
 use App\Models\User;
 use App\Models\Tenant\Attachment;
 # 2. Enums
-use App\Enum\Tenant\EntityEnum;
+use App\Enum\EntityEnum;
 use App\Enum\UserRoleEnum;
 # 3. Helpers
 use App\Helpers\Export;

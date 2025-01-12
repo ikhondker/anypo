@@ -21,7 +21,7 @@
 
 	<x-tenant.info.po-info poId="{{ $po->id }}"/>
 
-	<x-tenant.attachment.list-all-by-article entity="{{ App\Enum\Tenant\EntityEnum::PO->value }}" articleId="{{ $po->id }}"/>
+	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::PO->value }}" articleId="{{ $po->id }}"/>
 
 	<div class="row">
 		<div class="col-sm-6">

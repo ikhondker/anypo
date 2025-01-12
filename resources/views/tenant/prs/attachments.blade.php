@@ -20,7 +20,7 @@
 
 	{{-- <x-tenant.info.pr-info prId="{{ $pr->id }}"/> --}}
 
-	<x-tenant.attachment.list-all-by-article entity="{{ App\Enum\Tenant\EntityEnum::PR->value }}" articleId="{{ $pr->id }}"/>
+	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::PR->value }}" articleId="{{ $pr->id }}"/>
 
 	<div class="row">
 		<div class="col-sm-6">

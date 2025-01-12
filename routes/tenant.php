@@ -207,17 +207,18 @@ Route::middleware([
 	PreventAccessFromCentralDomains::class,
 	])->group(function () {
 
-        // TODO Remove
-        Route::get('/ui', function () {
+		// TODO Remove
+		Route::get('/ui', function () {
 			return view('tenant.manage.ui');
 		})->name('ui');
 
 		/* ======================== Home Controller ======================================== */
 		Route::get('/home', [DashboardController::class, 'index'])->name('home');
-		Route::get('/help', [HomeController::class, 'help'])->name('help');
-		Route::get('/get-started', function () {
-			return view('tenant.pages.get-started');
-		})->name('get-started');
+		//Route::get('/help', [HomeController::class, 'help'])->name('help');
+		// TODO check
+        // Route::get('/get-started', function () {
+		// 	return view('tenant.pages.get-started');
+		// })->name('get-started');
 
 		/* ======================== Dashboard ========================================  */
 		Route::resource('dashboards', DashboardController::class);
@@ -233,7 +234,7 @@ Route::middleware([
 
 		/* ======================== Attachment ======================================== */
 		Route::resource('attachments', AttachmentController::class);
-        Route::post('/attachment/add/{entity}/{articleId}',[AttachmentController::class,'add'])->name('attachments.add');
+		Route::post('/attachment/add/{entity}/{articleId}',[AttachmentController::class,'add'])->name('attachments.add');
 		Route::get('/attachments/delete/{attachment}',[AttachmentController::class,'destroy'])->name('attachments.destroy');
 		Route::get('/attachments/download/{attachment}', [AttachmentController::class, 'download'])->name('attachments.download');
 
@@ -250,7 +251,7 @@ Route::middleware([
 		/* ======================== Supplier ======================================== */
 		Route::resource('suppliers', SupplierController::class);
 		Route::get('/supplier/export',[SupplierController::class,'export'])->name('suppliers.export');
-        Route::post('/supplier/attach',[SupplierController::class,'attach'])->name('suppliers.attach');
+		Route::post('/supplier/attach',[SupplierController::class,'attach'])->name('suppliers.attach');
 		Route::get('/suppliers/attachments/{supplier}',[SupplierController::class,'attachments'])->name('suppliers.attachments');
 		Route::get('/suppliers/timestamp/{supplier}',[SupplierController::class, 'timestamp'])->name('suppliers.timestamp');
 
@@ -260,15 +261,15 @@ Route::middleware([
 		/* ======================== Item ======================================== */
 		Route::resource('items', ItemController::class);
 		Route::get('/item/export',[ItemController::class,'export'])->name('items.export');
-        Route::post('/item/attach',[ItemController::class,'attach'])->name('items.attach');
+		Route::post('/item/attach',[ItemController::class,'attach'])->name('items.attach');
 		Route::get('/items/attachments/{item}',[ItemController::class,'attachments'])->name('items.attachments');
-        Route::get('/items/get-item/{item}',[ItemController::class, 'getItem'])->name('items.get-item');
+		Route::get('/items/get-item/{item}',[ItemController::class, 'getItem'])->name('items.get-item');
 		Route::get('/items/timestamp/{item}',[ItemController::class, 'timestamp'])->name('items.timestamp');
 
 		/* ======================== Project ======================================== */
 		Route::resource('projects', ProjectController::class);
 		Route::get('/project/export',[ProjectController::class,'export'])->name('projects.export');
-        Route::post('/project/attach',[ProjectController::class,'attach'])->name('projects.attach');
+		Route::post('/project/attach',[ProjectController::class,'attach'])->name('projects.attach');
 		Route::get('/projects/attachments/{project}',[ProjectController::class,'attachments'])->name('projects.attachments');
 		Route::get('/projects/timestamp/{project}',[ProjectController::class, 'timestamp'])->name('projects.timestamp');
 
@@ -306,28 +307,52 @@ Route::middleware([
 
    		/* ======================== Export ======================================== */
 		Route::resource('exports', ExportController::class);
-        //Route::get('/exports/parameter/{export}',[ExportController::class,'parameter'])->name('exports.parameter');
+		//Route::get('/exports/parameter/{export}',[ExportController::class,'parameter'])->name('exports.parameter');
 		Route::put('/exports/run/{export}',[ExportController::class,'run'])->name('exports.run');
-        Route::get('/export/export',[ExportController::class,'export'])->name('exports.export');
+		Route::get('/export/export',[ExportController::class,'export'])->name('exports.export');
 
-        Route::get('/export/pr',[ExportController::class,'pr'])->name('exports.pr');
-        Route::get('/export/prl',[ExportController::class,'prl'])->name('exports.prl');
-        Route::get('/export/po',[ExportController::class,'po'])->name('exports.po');
-        Route::get('/export/pol',[ExportController::class,'pol'])->name('exports.pol');
-        Route::get('/export/invoice',[ExportController::class,'invoice'])->name('exports.invoice');
-        Route::get('/export/invoice-line',[ExportController::class,'invoiceLine'])->name('exports.invoice-line');
-        Route::get('/export/payment',[ExportController::class,'payment'])->name('exports.payment');
-        Route::get('/export/receipt',[ExportController::class,'receipt'])->name('exports.receipt');
-        Route::get('/export/ael',[ExportController::class,'ael'])->name('exports.ael');
-        Route::get('/ael/export-for-po/{id}',[ExportController::class,'aelForPo'])->name('exports.ael-for-po');
+		Route::get('/export/pr',[ExportController::class,'pr'])->name('exports.pr');
+		Route::get('/export/prl',[ExportController::class,'prl'])->name('exports.prl');
+		Route::get('/export/po',[ExportController::class,'po'])->name('exports.po');
+		Route::get('/export/pol',[ExportController::class,'pol'])->name('exports.pol');
+		Route::get('/export/invoice',[ExportController::class,'invoice'])->name('exports.invoice');
+		Route::get('/export/invoice-line',[ExportController::class,'invoiceLine'])->name('exports.invoice-line');
+		Route::get('/export/payment',[ExportController::class,'payment'])->name('exports.payment');
+		Route::get('/export/receipt',[ExportController::class,'receipt'])->name('exports.receipt');
+		Route::get('/export/ael',[ExportController::class,'ael'])->name('exports.ael');
+		Route::get('/ael/export-for-po/{id}',[ExportController::class,'aelForPo'])->name('exports.ael-for-po');
 
-        Route::get('/export/budget/{revision?}/{parent?}',[ExportController::class,'exportBudget'])->name('exports.budget');
-        Route::get('/export/dept-budget/{revision?}/{parent?}',[ExportController::class,'exportDeptBudget'])->name('exports.dept-budget');
+		Route::get('/export/budget/{revision?}/{parent?}',[ExportController::class,'exportBudget'])->name('exports.budget');
+		Route::get('/export/dept-budget/{revision?}/{parent?}',[ExportController::class,'exportDeptBudget'])->name('exports.dept-budget');
 
-        // Route::get('/export/project-po',[ExportController::class,'projectPo'])->name('exports.projectpo');
-        // Route::get('/export/project-po-lines',[ExportController::class,'projectPoLine'])->name('exports.projectpoline');
-        // Route::get('/export/supplier-po',[ExportController::class,'supplierPo'])->name('exports.supplierpo');
-        // Route::get('/export/supplier-po-lines',[ExportController::class,'supplierPoLine'])->name('exports.supplierpoline');
+		// Route::get('/export/project-po',[ExportController::class,'projectPo'])->name('exports.projectpo');
+		// Route::get('/export/project-po-lines',[ExportController::class,'projectPoLine'])->name('exports.projectpoline');
+		// Route::get('/export/supplier-po',[ExportController::class,'supplierPo'])->name('exports.supplierpo');
+		// Route::get('/export/supplier-po-lines',[ExportController::class,'supplierPoLine'])->name('exports.supplierpoline');
+
+		/* ======================== Documentation  ========================================  */
+		Route::get('/docs', function () { return view('tenant.documentations.index'); })->name('docs.index');
+		Route::get('/docs/template', function () { return view('tenant.documentations.template'); })->name('docs.template');
+		Route::get('/docs/start', function () { return view('tenant.documentations.start'); })->name('docs.start');
+		Route::get('/docs/faq', function () { return view('tenant.documentations.faq'); })->name('docs.faq');
+		Route::get('/docs/pr', function () { return view('tenant.documentations.pr'); })->name('docs.pr');
+		Route::get('/docs/po', function () { return view('tenant.documentations.po'); })->name('docs.po');
+		Route::get('/docs/receipt', function () { return view('tenant.documentations.receipt'); })->name('docs.receipt');
+		Route::get('/docs/invoice', function () { return view('tenant.documentations.invoice'); })->name('docs.invoice');
+		Route::get('/docs/payment', function () { return view('tenant.documentations.payment'); })->name('docs.payment');
+		Route::get('/docs/budget', function () { return view('tenant.documentations.budget'); })->name('docs.budget');
+	  	Route::get('/docs/dept-budget', function () { return view('tenant.documentations.dept-budget'); })->name('docs.dept-budget');
+	  	Route::get('/docs/master', function () { return view('tenant.documentations.master'); })->name('docs.master');
+	  	Route::get('/docs/user', function () { return view('tenant.documentations.user'); })->name('docs.user');
+		Route::get('/docs/hierarchy', function () { return view('tenant.documentations.hierarchy'); })->name('docs.hierarchy');
+		Route::get('/docs/approval', function () { return view('tenant.documentations.approval'); })->name('docs.approval');
+		Route::get('/docs/workflow', function () { return view('tenant.documentations.workflow'); })->name('docs.workflow');
+		Route::get('/docs/interface', function () { return view('tenant.documentations.interface'); })->name('docs.interface');
+		Route::get('/docs/currency', function () { return view('tenant.documentations.currency'); })->name('docs.currency');
+		Route::get('/docs/accounting', function () { return view('tenant.documentations.accounting'); })->name('docs.accounting');
+		Route::get('/docs/setup', function () { return view('tenant.documentations.setup'); })->name('docs.setup');
+
+
 	});
 
 /**
@@ -349,7 +374,7 @@ Route::middleware([
 		Route::get('/projects/delete/{project}',[ProjectController::class,'destroy'])->name('projects.destroy');
 		Route::get('/projects/budget/{project}',[ProjectController::class,'budget'])->name('projects.budget');
 		Route::get('/projects/po/{project}',[ProjectController::class,'po'])->name('projects.po');
-        Route::get('/projects/pbu/{project}',[ProjectController::class,'pbu'])->name('projects.pbu');
+		Route::get('/projects/pbu/{project}',[ProjectController::class,'pbu'])->name('projects.pbu');
 
 		/* ======================== Dbu ======================================== */
 		Route::resource('dbus', DbuController::class);
@@ -418,7 +443,7 @@ Route::middleware([
 
 		/* ======================== InvoiceLines ======================================== */
 		Route::resource('invoice-lines', InvoiceLineController::class);
-        //Route::get('/invoice-line/export',[InvoiceLineController::class,'export'])->name('invoice-lines.export'); //TODO
+		//Route::get('/invoice-line/export',[InvoiceLineController::class,'export'])->name('invoice-lines.export'); //TODO
 		Route::get('/invoice-lines/delete/{invoiceLine}',[InvoiceLineController::class,'destroy'])->name('invoice-lines.destroy');
 		Route::get('/invoice-lines/add-line/{invoice}',[InvoiceLineController::class, 'addLine'])->name('invoice-lines.add-line');
 
@@ -492,7 +517,7 @@ Route::middleware([
 		Route::get('/dept-budget/revisions-all',[DeptBudgetController::class,'revisionsAll'])->name('dept-budgets.revisions-all');
 		Route::get('/dept-budget/revisions/{deptBudget?}',[DeptBudgetController::class,'revisions'])->name('dept-budgets.revisions');
 		Route::get('/dept-budgets/revision-detail/{deptBudget}',[DeptBudgetController::class,'revisionDetail'])->name('dept-budgets.revision-detail');
-        Route::get('/dept-budgets/timestamp/{deptBudget}',[DeptBudgetController::class, 'timestamp'])->name('dept-budgets.timestamp');
+		Route::get('/dept-budgets/timestamp/{deptBudget}',[DeptBudgetController::class, 'timestamp'])->name('dept-budgets.timestamp');
 	});
 
 
@@ -535,9 +560,9 @@ Route::middleware([
 		Route::post('/budget/attach',[BudgetController::class,'attach'])->name('budgets.attach');
 		Route::get('/budgets/attachments/{budget}',[BudgetController::class,'attachments'])->name('budgets.attachments');
 
-        //Route::get('/budget/revisions-all',[BudgetController::class,'revisionsAll'])->name('budgets.revisions-all');
+		//Route::get('/budget/revisions-all',[BudgetController::class,'revisionsAll'])->name('budgets.revisions-all');
 		Route::get('/budget/revisions/{budget?}',[BudgetController::class,'revisions'])->name('budgets.revisions');
-        Route::get('/budgets/timestamp/{budget}',[BudgetController::class, 'timestamp'])->name('budgets.timestamp');
+		Route::get('/budgets/timestamp/{budget}',[BudgetController::class, 'timestamp'])->name('budgets.timestamp');
 
 	});
 
@@ -601,7 +626,7 @@ Route::middleware([
 	Route::post('/users/password-update/{user}', [UserController::class, 'updatePassword'])->name('users.password-update');
 	Route::get('/users/delete/{user}',[UserController::class, 'destroy'])->name('users.destroy');
 	Route::get('/user/export',[UserController::class, 'export'])->name('users.export');
-    Route::get('/users/timestamp/{user}',[UserController::class, 'timestamp'])->name('users.timestamp');
+	Route::get('/users/timestamp/{user}',[UserController::class, 'timestamp'])->name('users.timestamp');
 	//Route::get('/user/profile',[UserController::class, 'profile'])->name('users.profile');
 	// Route::get('/users/password/{user}',[UserController::class, 'password'])->name('users.password');
 	// Route::post('/users/change-pass/{user}',[UserController::class, 'changepass'])->name('users.change-pass');
@@ -685,7 +710,7 @@ Route::middleware([
 	Route::get('setups/tc/{setup}', [SetupController::class, 'tc'])->name('setups.tc');
 	Route::post('setups/update-tc/{setup}', [SetupController::class, 'updateTc'])->name('setups.update-tc');
 	Route::post('setups/freeze/{setup}', [SetupController::class, 'freeze'])->name('setups.freeze');
-    Route::get('/setups/timestamp/{setup}',[SetupController::class, 'timestamp'])->name('setups.timestamp');
+	Route::get('/setups/timestamp/{setup}',[SetupController::class, 'timestamp'])->name('setups.timestamp');
 
 	/* ======================== Hierarchy ======================================== */
 	Route::resource('hierarchies', HierarchyController::class);

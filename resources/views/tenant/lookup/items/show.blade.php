@@ -44,19 +44,19 @@
 					<x-tenant.show.my-created_at value="{{ $item->created_at }}"/>
 					<x-tenant.show.my-updated_at value="{{ $item->updated_at }}"/>
                     <tr>
-							<th>Attachments :</th>
-							<td>
-								<x-tenant.attachment.all entity="{{ App\Enum\Tenant\EntityEnum::ITEM->value }}" articleId="{{ $item->id }}"/>
-							</td>
-						</tr>
-						<tr>
-							<th>&nbsp;</th>
-							<td>
-								@can('update', $item)
-                                    <x-tenant.attachment.add entity="{{ App\Enum\Tenant\EntityEnum::ITEM->value }}" articleId="{{ $item->id }}"/>
-								@endcan
-							</td>
-						</tr>
+                        <th>Attachments :</th>
+                        <td>
+                            <x-tenant.attachment.all entity="{{ EntityEnum::ITEM->value }}" articleId="{{ $item->id }}"/>
+                        </td>
+					</tr>
+					<tr>
+                        <th>&nbsp;</th>
+                        <td>
+                            @can('update', $item)
+                                <x-tenant.attachment.add entity="{{ EntityEnum::ITEM->value }}" articleId="{{ $item->id }}"/>
+                            @endcan
+                        </td>
+					</tr>
 
 				</tbody>
 			</table>

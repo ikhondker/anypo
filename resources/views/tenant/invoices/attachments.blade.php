@@ -22,7 +22,7 @@
 
 	<x-tenant.info.invoice-info invoiceId="{{ $invoice->id }}"/>
 
-	<x-tenant.attachment.list-all-by-article entity="{{ App\Enum\Tenant\EntityEnum::INVOICE->value }}" articleId="{{ $invoice->id }}"/>
+	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::INVOICE->value }}" articleId="{{ $invoice->id }}"/>
 
 	<div class="row">
 		<div class="col-sm-6">

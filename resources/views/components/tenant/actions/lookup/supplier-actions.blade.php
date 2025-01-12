@@ -12,6 +12,11 @@
 				<a class="dropdown-item" href="{{ route('suppliers.edit', $supplier->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Supplier</a>
 			@endcan
 		@endif
+
+        <a class="dropdown-item" href="{{ route('suppliers.attachments',$supplier->id) }}"><i class="align-middle me-1" data-lucide="paperclip"></i> View Attachments</a>
+		<div class="dropdown-divider"></div>
+
+
 		@can('spends', App\Models\Tenant\Lookup\Supplier::class)
 			<a class="dropdown-item" href="{{ route('suppliers.po', $supplier->id) }}"><i class="align-middle me-1" data-lucide="list"></i> View Supplier PO</a>
 			<a class="dropdown-item" href="{{ route('suppliers.spends') }}"><i class="align-middle me-1" data-lucide="pie-chart"></i> Supplier Spends</a>

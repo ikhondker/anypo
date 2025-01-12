@@ -7,7 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 use Str;
-use App\Enum\Tenant\EntityEnum;
+use App\Enum\EntityEnum;
 use Illuminate\Support\Facades\Log;
 class ArticleLink extends Component
 {

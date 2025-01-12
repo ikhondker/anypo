@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Log;
 use App\Traits\AddCreatedUpdatedBy;
 
-use App\Enum\Tenant\EntityEnum;
+use App\Enum\EntityEnum;
 
 class Ael extends Model
 {

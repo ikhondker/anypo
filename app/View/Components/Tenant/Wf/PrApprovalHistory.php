@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-use App\Enum\Tenant\EntityEnum;
+use App\Enum\EntityEnum;
 use App\Models\Tenant\Workflow\Wfl;
 
 

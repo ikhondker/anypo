@@ -13,7 +13,7 @@
 </form> --}}
 <!-- /.form end -->
 {{-- <form action="{{ route( $route.'.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data"> --}}
-<form action="{{ route( 'attachments.add',['entity'=>$entity,'articleId'=>$articleId]) }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
+<form action="{{ route( 'attachments.add',['entity' => $entity,'articleId' = >$articleId]) }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
 	@csrf
 	{{-- <input type="text" name="attach_{{ strtolower($entity) }}_id" id="attach_{{ strtolower($entity) }}_id" class="form-control" placeholder="ID" value="{{ old('id', $articleId ) }}" hidden> --}}
 	<input type="file" id="file_to_upload" name="file_to_upload" onchange="mySubmit()" style="display:none;" />

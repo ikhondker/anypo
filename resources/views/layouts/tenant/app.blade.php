@@ -21,7 +21,7 @@
 	<meta name="author" content="Iqbal H Khondker">
 
 	<!-- Title -->
-	<title>@yield('title', 'ANYPO.NET')</title>
+	<title>@yield('title', env('APP_NAME'))</title>
 
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}">
@@ -45,7 +45,7 @@
 				<div class="sidebar-brand">
 					@auth
 						<a class="" href="{{ route('home') }}">
-							<img src="{{ Storage::disk('s3t')->url('logo/'.$_setup->logo) }}" width="90px" height="90px" class="rounded-circle rounded" alt="{{ $_setup->name }}"/>
+							<img src="{{ Storage::disk('s3t')->url('logo/'.$_setup->logo) }}" width="90px" height="90px" alt="{{ $_setup->name }}"/>
 							<h4 class="text-info">{{ $_setup->name}}</h4>
 						</a>
 						<a class="" href="{{ route('users.profile') }}">
@@ -54,7 +54,7 @@
 						{{-- <p class="small text-muted m-0 p-0">{{ auth()->user()->email }}</p> --}}
 					@endauth
 					@guest
-						<img src="{{ Storage::disk('s3t')->url('logo/logo.png') }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="{{ $_setup->name }}"/>
+						<img src="{{ Storage::disk('s3t')->url('logo/logow.png') }}" width="90px" height="90px" class="me-2 mb-2" alt="{{ $_setup->name }}"/>
 						<h4 class="text-info">{{ env('APP_NAME') }}</h4>
 						<h6 class="text-danger">Guest!</h6>
 					@endguest
@@ -241,7 +241,7 @@
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="{{ route('dashboards.index') }}"><i class="align-middle me-1" data-lucide="pie-chart"></i> Dashboard</a>
 								<a class="dropdown-item" href="{{ route('notifications.index') }}"><i class="align-middle me-1" data-lucide="message-square"></i> Notifications</a>
-								<a class="dropdown-item" href="{{ route('help') }}"> <i class="align-middle me-1" data-lucide="help-circle"></i> Help</a>
+								<a class="dropdown-item" href="{{ route('docs.index') }}" target="_blank"> <i class="align-middle me-1" data-lucide="book-open-text"></i> Documentations</a>
 								<a class="dropdown-item" href="{{ route('tickets.create') }}"><i class="align-middle me-1" data-lucide="message-circle"></i> Support</a>
 								<a class="dropdown-item" href="{{ route('logout') }}"><i class="align-middle text-danger me-1" data-lucide="power"></i> Sign out</a>
 								@if (auth()->user()->isSystem())
@@ -329,43 +329,9 @@
 
 				</div>
 			</main>
-			<footer class="footer">
-				<div class="container-fluid">
-					<div class="row text-muted">
-						<div class="col-6 text-start">
-							<ul class="list-inline">
-								<li class="list-inline-item">
-									<a class="text-muted" href="{{ route('tickets.create') }}">Support</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="{{ route('help') }}">Help Center</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="{{ route('privacy') }}">Privacy Policy</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="{{ route('tos') }}">Terms of Service</a>
-								</li>
-
-								@guest
-									Welcome Guest. Please <a class="list-inline-item" href="{{ route('login') }}" class="text-primary">Login</a> here.
-								@endguest
-							</ul>
-						</div>
-						<div class="col-6 text-end">
-							<p class="mb-0">
-								@if ( (auth()->user()->role->value == UserRoleEnum::SYSTEM->value))
-									<a class="text-muted" href="http://localhost:8080/phpmyadmin/index.php?route=/database/structure&db=tenant{{ tenant('id') }}" target="_blank"> {{ tenant('id') }}</a> |
-									<a class="text-muted" href="{{ route('tables.index') }}" target="_blank">Tables</a> |
-									<a class="text-muted" href="{{ route('cps.ui') }}" target="_blank">UI</a> |
-									Laravel v{{ app()->version() }} (PHP v{{ phpversion() }})
-								@endif
-								<script>document.write(new Date().getFullYear())</script> © <a href="https://anypo.net/" target="_blank" class="text-reset">{{ env('APP_NAME') }}</a></p>
-							</p>
-						</div>
-					</div>
-				</div>
-			</footer>
+            <!-- ========== Footer ========== -->
+			@include('tenant.includes.footer')
+			<!-- ========== End Footer ========== -->
 		</div>
 	</div>
 

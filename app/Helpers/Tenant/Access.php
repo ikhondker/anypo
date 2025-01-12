@@ -32,7 +32,7 @@ use App\Models\Tenant\Budget;
 use App\Models\Tenant\DeptBudget;
 use App\Models\Tenant\Invoice;
 # 2. Enums
-use App\Enum\Tenant\EntityEnum;
+use App\Enum\EntityEnum;
 use App\Enum\Tenant\AuthStatusEnum;
 use App\Enum\Tenant\InvoiceStatusEnum;
 # 3. Helpers

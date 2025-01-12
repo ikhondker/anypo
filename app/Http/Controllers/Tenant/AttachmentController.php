@@ -39,7 +39,7 @@ use App\Models\Tenant\Budget;
 use App\Models\Tenant\DeptBudget;
 use App\Models\Tenant\Invoice;
 # 2. Enums
-use App\Enum\Tenant\EntityEnum;
+use App\Enum\EntityEnum;
 use App\Enum\Tenant\AuthStatusEnum;
 use App\Enum\Tenant\InvoiceStatusEnum;
 # 3. Helpers
@@ -107,24 +107,36 @@ class AttachmentController extends Controller
 	// add attachments
 	public function add(FormRequest $request, $entity, $articleId)
 	{
-
 		Log::debug('entity=' . $entity);
 		Log::debug('articleId=' . $articleId);
 		//if(empty($deptBudget)){
 		// $this->authorize('create', Item::class);
 
-		switch ($entity) {
-			case EntityEnum::ITEM->value:
-				try {
-					$item = Item::where('id', $articleId)->get()->firstOrFail();
-				} catch (Exception $e) {
-					Log::error(' tenant.item.attach user_id = '. auth()->user()->id.' request = '. $request. ' class = '.get_class($e). ' Message = '. $e->getMessage());
-					return redirect()->back()->with(['error' => 'Item Not Found!']);
+		try {
+			switch ($entity) {
+				case EntityEnum::ITEM->value:
+					$item = Item::where('id', $articleId)->first();
+					if ($item === null) {
+						// Item doesn't exist
+						return redirect()->back()->with(['error' => 'Items Not Found!']);
+					}
+					break;
+				case EntityEnum::SUPPLIER->value:
+					$supplier = Supplier::where('id', $articleId)->first();
+					if ($supplier === null) {
+						// Item doesn't exist
+						return redirect()->back()->with(['error' => 'Supplier Not Found!']);
+					}
+					break;
+
+				default:
+					return redirect()->back()->with('error', 'File Upload Error!');
 				}
-				break;
-			default:
-                return redirect()->back()->with('error', 'File Upload Error!');
-		}
+			} catch (Exception $e) {
+				Log::error(' tenant.item.attach user_id = '. auth()->user()->id.' request = '. $request. ' class = '.get_class($e). ' Message = '. $e->getMessage());
+				return redirect()->back()->with(['error' => 'Article Not Found!']);
+			}
+
 
 		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $articleId]);
