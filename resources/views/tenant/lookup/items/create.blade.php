@@ -52,7 +52,7 @@
 						<x-tenant.create.price-fc/>
 
 						<tr>
-							<th>Category</th>
+							<th>Category :</th>
 							<td>
 								<select class="form-control" name="item_category_id" required>
 									<option value=""><< Category >> </option>
@@ -65,8 +65,6 @@
 								@enderror
 							</td>
 						</tr>
-
-
 						<tr>
 							<th>UoM Class</th>
 							<td>
@@ -81,9 +79,8 @@
 								@enderror
 							</td>
 						</tr>
-
 						<tr>
-							<th>UoM</th>
+							<th>UoM :</th>
 							<td>
 								<select class="form-control" name="uom_id" id="uom_id" required>
 									<option value=""><< UoM >> </option>
@@ -96,11 +93,8 @@
 								@enderror
 							</td>
 						</tr>
-
-
-
 						<tr>
-							<th>OEM</th>
+							<th>OEM :</th>
 							<td>
 								<select class="form-control" name="oem_id" required>
 									<option value=""><< OEM >> </option>
@@ -113,10 +107,8 @@
 								@enderror
 							</td>
 						</tr>
-
-
 						<tr>
-							<th>GL Type</th>
+							<th>GL Type :</th>
 							<td>
 								<select class="form-control" name="gl_type" required>
 									<option value=""><< GL Type >> </option>
@@ -129,10 +121,8 @@
 								@enderror
 							</td>
 						</tr>
-
-
 						<tr>
-							<th>Expense GL Code</th>
+							<th>Expense GL Code :</th>
 							<td>
 								<input type="text" class="form-control @error('ac_expense') is-invalid @enderror"
 								name="ac_expense" id="ac_expense" placeholder="A600001" maxlength="25"
@@ -144,12 +134,9 @@
 							@enderror
 							</td>
 						</tr>
-
-
 						<x-tenant.create.notes/>
+                        <x-tenant.attachment.create/>
 						<x-tenant.create.save/>
-
-
 					</tbody>
 				</table>
 			</div>

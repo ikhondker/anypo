@@ -76,6 +76,7 @@
 							@enderror
 							</td>
 						</tr>
+                        <x-tenant.attachment.create/>
 						<x-tenant.create.save/>
 
 					</tbody>

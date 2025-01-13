@@ -168,7 +168,7 @@ class WflController extends Controller
 
 		// update related entity+article status
 		switch($wf->entity) {
-			case('PR'):
+			case EntityEnum::PR->value:
 				// reverse Booking
 				$pr = Pr::where('id', $wf->article_id)->first();
 				$retcode = PrBudget::prBudgetBookReverse(EventEnum::REJECT->value,$pr->id);
@@ -185,7 +185,7 @@ class WflController extends Controller
 				$requestor = User::where('id', $pr->requestor_id)->first();
 				$requestor->notify(new PrActions($requestor, $pr, $action, $actionURL));
 				break;
-			case('PO'):
+            case EntityEnum::PO->value:
 				// reverse Booking
 				$po = Po::where('id', $wf->article_id)->first();
 				$retcode = PoBudget::poBudgetBookReverse(EventEnum::REJECT->value,$po->id);
@@ -218,7 +218,7 @@ class WflController extends Controller
 		// send approved mail
 		// update related entity status
 		switch($wf->entity) {
-			case('PR'):
+            case EntityEnum::PR->value:
 				$pr = Pr::where('id', $wf->article_id)->first();
 				$pr->auth_status	= AuthStatusEnum::APPROVED->value;
 				$pr->auth_date		= date('Y-m-d H:i:s');
@@ -235,7 +235,7 @@ class WflController extends Controller
 				$requestor			= User::where('id', $pr->requestor_id)->first();
 				$requestor->notify(new PrActions($requestor, $pr, $action, $actionURL));
 				break;
-			case('PO'):
+            case EntityEnum::PO->value:
 				$po = Po::where('id', $wf->article_id)->first();
 				$po->auth_status	= AuthStatusEnum::APPROVED->value;
 				$po->auth_date		= date('Y-m-d H:i:s');
@@ -277,7 +277,7 @@ class WflController extends Controller
 		}
 
 		switch($wf->entity) {
-			case('PR'):
+			case EntityEnum::PR->value:
 				// Send notification to Next Approver
 				$action 	= WflActionEnum::DUE->value;
 				$pr 		= Pr::where('id', $wf->article_id)->first();
@@ -285,7 +285,7 @@ class WflController extends Controller
 				$approver 	= User::where('id', $next_approver_id)->first();
 				$approver->notify(new PrActions($approver, $pr, $action, $actionURL));
 				break;
-			case('PO'):
+            case EntityEnum::PO->value:
 				// Send notification to Next Approver
 				$action 	= WflActionEnum::DUE->value;
 				$po 		= Po::where('id', $wf->article_id)->first();

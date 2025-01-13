@@ -88,7 +88,6 @@
 				<div class="card-body">
 					<table class="table table-sm my-2">
 						<tbody>
-
 							<tr>
 								<th>Attachments</th>
 								<td><x-tenant.attachment.all entity="BUDGET" articleId="{{ $budget->id }}"/></td>
@@ -97,21 +96,7 @@
 								<th></th>
 								<td>
 									@if (! $budget->closed)
-										<form action="{{ route('budgets.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
-											@csrf
-											{{-- <x-tenant.attachment.create /> --}}
-											<input type="text" name="attach_budget_id" id="attach_budget_id" class="form-control" placeholder="ID" value="{{ old('id', $budget->id ) }}" hidden>
-											<div class="row">
-												<div class="col-sm-3 text-end">
-
-												</div>
-												<div class="col-sm-9 text-end">
-													<input type="file" id="file_to_upload" name="file_to_upload" onchange="mySubmit()" style="display:none;" />
-													<a href="" class="text-warning d-inline-block" onclick="document.getElementById('file_to_upload').click(); return false">Add Attachment</a>
-												</div>
-											</div>
-										</form>
-										<!-- /.form end -->
+                                        <x-tenant.attachment.add entity="{{ EntityEnum::BUDGET->value }}" articleId="{{ $budget->id }}"/>
 									@endif
 								</td>
 							</tr>
@@ -185,25 +170,6 @@
 		<!-- end col-6 -->
 	</div>
 	<!-- end row -->
-
-	<div class="row">
-		<div class="col-6">
-
-		</div>
-		<!-- end col-6 -->
-		<div class="col-6">
-
-		</div>
-		<!-- end col-6 -->
-	</div>
-	<!-- end row -->
-
-	<script type="text/javascript">
-		function mySubmit() {
-			document.getElementById('frm1').submit();
-		}
-	</script>
-
 
 
 @endsection

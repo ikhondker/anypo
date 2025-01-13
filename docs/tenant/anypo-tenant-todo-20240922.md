@@ -9,7 +9,7 @@ item attavhments
 bootstrap documentatsion tmaplte
     https://github.com/eriktailor/bootstrap-documentation-template
     https://wrapbootstrap.com/tag/bootstrap-documentation?compatible-with=bootstrap
-
+reordr function in controller. seeded first and custoem later
 Route::get('/get-started', function () {return view('tenant.pages.get-started');})->name('get-started');
 project end date edit optional
 create seede anonymous user with role guest

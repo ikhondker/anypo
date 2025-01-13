@@ -418,7 +418,7 @@ class DeptBudgetController extends Controller
 		return redirect()->route('dept-budgets.show',$deptBudget->id)->with('success', 'DeptBudget status Updated successfully');
 	}
 
-	public function export()
+	public function xxexport()
 	{
 		$this->authorize('export', DeptBudget::class);
 

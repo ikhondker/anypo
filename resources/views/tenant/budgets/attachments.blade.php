@@ -2,7 +2,9 @@
 @section('title','Budget Attachments')
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('budgets.index') }}" class="text-muted">Budgets</a></li>
-	<li class="breadcrumb-item active">{{ $budget->name }}</li>
+	<li class="breadcrumb-item"><a href="{{ route('budgets.show',$budget->id) }}" class="text-muted">{{ $budget->name }}</a></li>
+	<li class="breadcrumb-item active">Attachments</li>
+
 @endsection
 
 
@@ -21,36 +23,16 @@
 		@endslot
 	</x-tenant.page-header>
 
-		<div class="card">
-			<div class="card-header">
-				<div class="card-actions float-end">
-					<a class="btn btn-sm btn-light" href="{{ route('budgets.edit', $budget->id ) }}"><i data-lucide="edit"></i> Edit</a>
-					<a class="btn btn-sm btn-light" href="{{ route('budgets.index') }}" ><i data-lucide="database"></i> View all</a>
-				</div>
-				<h5 class="card-title">Budget Period</h5>
-				<h6 class="card-subtitle text-muted">Budget Brief Information.</h6>
-			</div>
-			<div class="card-body">
-				<table class="table table-sm my-2">
-					<tbody>
-						<x-tenant.show.my-badge		value="{{ $budget->id }}"/>
-						<x-tenant.show.my-text		value="{{ $budget->name }}"/>
-						<x-tenant.show.my-date		value="{{ $budget->start_date }}"/>
-						<x-tenant.show.my-date		value="{{ $budget->end_date }}"/>
-						<tr>
-							<th>Budget</th>
-							<td>{{number_format($budget->amount, 2)}} {{ $_setup->currency }}</td>
-						</tr>
-						<x-tenant.show.my-text-area		value="{{ $budget->notes }}" label="Notes"/>
-						<x-tenant.show.my-closed	value="{{ $budget->closed }}" label="Closed?"/>
-					</tbody>
-				</table>
-			</div>
-		</div>
-
-
 	<x-tenant.attachment.list-all-by-article entity="{{ EntityEnum::BUDGET->value }}" articleId="{{ $budget->id }}"/>
 
+    <div class="row">
+		<div class="col-sm-6">
+                <x-tenant.attachment.add entity="{{ EntityEnum::BUDGET->value }}" articleId="{{ $budget->id }}"/>
+			</div>
+		<div class="col-sm-6 text-end">
+				<a class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Back" href="{{ route('budgets.show', $budget->id) }}"><i data-lucide="arrow-left-circle"></i> Back to Budgets</a>
+		</div>
+	</div>
 
 @endsection
 

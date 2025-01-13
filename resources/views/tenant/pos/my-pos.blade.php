@@ -25,6 +25,9 @@
 	<div class="card">
 		<div class="card-header">
 			<x-tenant.card.header-search-bar model="Po"/>
+            <a href="{{ route('pos.export-for-buyer',auth()->user()->id) }}" class="btn btn-info text-white me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
+					<i class="align-middle" data-lucide="download-cloud"></i>
+				</a>
 			<h5 class="card-title">
 				@if (request('term'))
 					Search result for: <strong class="text-info">{{ request('term') }}</strong>

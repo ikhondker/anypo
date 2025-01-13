@@ -108,20 +108,7 @@
 								<th>&nbsp;</th>
 								<td>
 									@if (! $deptBudget->closed)
-										<form action="{{ route('dept-budgets.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
-											@csrf
-											<input type="text" name="attach_dept_budget_id" id="attach_dept_budget_id" class="form-control" placeholder="ID" value="{{ old('id', $deptBudget->id ) }}" hidden>
-											<div class="row">
-												<div class="col-sm-3 text-end">
-
-												</div>
-												<div class="col-sm-9 text-end">
-													<input type="file" id="file_to_upload" name="file_to_upload" onchange="mySubmit()" style="display:none;" />
-													<a href="" class="text-warning d-inline-block" onclick="document.getElementById('file_to_upload').click(); return false">Add Attachment</a>
-												</div>
-											</div>
-										</form>
-										<!-- /.form end -->
+                                        <x-tenant.attachment.add entity="{{ EntityEnum::DEPTBUDGET->value }}" articleId="{{ $deptBudget->id }}"/>
 									@endif
 								</td>
 							</tr>
@@ -191,26 +178,6 @@
 		<!-- end col-6 -->
 	</div>
 	<!-- end row -->
-
-	<div class="row">
-		<div class="col-6">
-
-		</div>
-		<!-- end col-6 -->
-		<div class="col-6">
-
-		</div>
-		<!-- end col-6 -->
-	</div>
-	<!-- end row -->
-
-
-
-	<script type="text/javascript">
-		function mySubmit() {
-			document.getElementById('frm1').submit();
-		}
-	</script>
 
 
 @endsection

@@ -314,6 +314,8 @@ Route::middleware([
 		Route::get('/export/pr',[ExportController::class,'pr'])->name('exports.pr');
 		Route::get('/export/prl',[ExportController::class,'prl'])->name('exports.prl');
 		Route::get('/export/po',[ExportController::class,'po'])->name('exports.po');
+        Route::get('/export/po-for-buyer/{id}',[ExportController::class,'poForBuyer'])->name('exports.po-for-buyer');
+
 		Route::get('/export/pol',[ExportController::class,'pol'])->name('exports.pol');
 		Route::get('/export/invoice',[ExportController::class,'invoice'])->name('exports.invoice');
 		Route::get('/export/invoice-line',[ExportController::class,'invoiceLine'])->name('exports.invoice-line');
@@ -390,7 +392,7 @@ Route::middleware([
 		//Route::get('/po/export',[PoController::class,'export'])->name('pos.export');
 		// Route::get('/pos/export-for-supplier/{supplier}',[PoController::class,'exportForSupplier'])->name('pos.export-for-supplier');
 		// Route::get('/pos/export-for-project/{project}',[PoController::class,'exportForProject'])->name('pos.export-for-project');
-		// Route::get('/pos/export-for-buyer/{user}',[PoController::class,'exportForBuyer'])->name('pos.export-for-buyer');
+		Route::get('/pos/export-for-buyer/{user}',[PoController::class,'exportForBuyer'])->name('pos.export-for-buyer');
 		Route::get('/pos/get-po/{po}',[PoController::class, 'getPo'])->name('pos.get-po');
 
 		Route::get('/pos/delete/{po}',[PoController::class,'destroy'])->name('pos.destroy');

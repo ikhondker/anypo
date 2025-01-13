@@ -106,6 +106,13 @@ class ProjectController extends Controller
 		// Write to Log
 		EventLog::event('project', $project->id, 'create');
 
+        // Upload File
+        if ($file = $request->file('file_to_upload')) {
+			$request->merge(['article_id'	=> $project->id ]);
+			$request->merge(['entity'		=> EntityEnum::PROJECT->value ]);
+			$attid = FileUpload::aws($request);
+		}
+
 		return redirect()->route('projects.index')->with('success', 'Project created successfully.');
 	}
 

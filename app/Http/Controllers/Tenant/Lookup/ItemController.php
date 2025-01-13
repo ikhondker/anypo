@@ -113,6 +113,13 @@ class ItemController extends Controller
 		// Write to Log
 		EventLog::event('item', $item->id, 'create');
 
+        // Upload File
+        if ($file = $request->file('file_to_upload')) {
+			$request->merge(['article_id'	=> $item->id ]);
+			$request->merge(['entity'		=> EntityEnum::ITEM->value ]);
+			$attid = FileUpload::aws($request);
+		}
+
 		return redirect()->route('items.index')->with('success', 'Item created successfully.');
 	}
 

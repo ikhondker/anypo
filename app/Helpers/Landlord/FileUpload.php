@@ -49,13 +49,13 @@ class FileUpload
 		if ($request->hasFile('file_to_upload')) {
 			$file 			= $request->file('file_to_upload');
 		} else {
-			Log::error('Helpers.LandlordFileUpload.aws No file uploaded!');
+			Log::error('Helpers.Landlord.FileUpload.aws No file uploaded!');
 			$attachment_id = 0;
 			return $attachment_id;
 		}
 
 		if (! $file->isValid()) {
-			Log::debug('Helpers.LandlordFileUpload.aws file is invalid!');
+			Log::debug('Helpers.Landlord.FileUpload.aws file is invalid!');
 			$attachment_id = 0;
 			return $attachment_id;
 		}

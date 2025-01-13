@@ -107,8 +107,8 @@ class AttachmentController extends Controller
 	// add attachments
 	public function add(FormRequest $request, $entity, $articleId)
 	{
-		Log::debug('entity=' . $entity);
-		Log::debug('articleId=' . $articleId);
+		Log::debug('tenant.attachment.add entity=' . $entity);
+		Log::debug('tenant.attachment.add articleId=' . $articleId);
 		//if(empty($deptBudget)){
 		// $this->authorize('create', Item::class);
 
@@ -128,9 +128,37 @@ class AttachmentController extends Controller
 						return redirect()->back()->with(['error' => 'Supplier Not Found!']);
 					}
 					break;
-
+				case EntityEnum::PROJECT->value:
+					$project = Project::where('id', $articleId)->first();
+					if ($project === null) {
+						// Item doesn't exist
+						return redirect()->back()->with(['error' => 'Project Not Found!']);
+					}
+					break;
+                case EntityEnum::BUDGET->value:
+                    $budget = Budget::where('id',$articleId)->get()->firstOrFail();
+                    if ($budget === null) {
+                        // Budget doesn't exist
+                        return redirect()->back()->with(['error' => 'Budget Not Found!']);
+                    } else {
+                        if ($budget->closed){
+                            return redirect()->route('budgets.show', $budget->id)->with('error', 'Add attachment is allowed only for open Budget.');
+                        }
+                    }
+                    break;
+                    case EntityEnum::DEPTBUDGET->value:
+                        $deptBudget = DeptBudget::where('id', $articleId)->get()->firstOrFail();
+                        if ($deptBudget === null) {
+                            // BuddeptBudgetget doesn't exist
+                            return redirect()->back()->with(['error' => 'Dept Budget Not Found!']);
+                        } else {
+                            if ($deptBudget->closed){
+                                return redirect()->route('dept-budgets.show', $deptBudget->id)->with('error', 'Add attachment is only allowed for open Budget.');
+                            }
+                        }
+                        break;
 				default:
-					return redirect()->back()->with('error', 'File Upload Error!');
+					return redirect()->back()->with('error', 'Unknown Entity. File Upload Error!');
 				}
 			} catch (Exception $e) {
 				Log::error(' tenant.item.attach user_id = '. auth()->user()->id.' request = '. $request. ' class = '.get_class($e). ' Message = '. $e->getMessage());

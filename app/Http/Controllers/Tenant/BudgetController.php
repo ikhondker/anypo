@@ -267,7 +267,7 @@ class BudgetController extends Controller
 		return redirect()->route('budgets.index')->with('success', 'Budget status Updated successfully');
 	}
 
-	public function export()
+	public function xxexport()
 	{
 		$this->authorize('export', Budget::class);
 		$sql = "
@@ -290,7 +290,7 @@ class BudgetController extends Controller
 	}
 
 	// add attachments
-	public function attach(FormRequest $request)
+	public function xxattach(FormRequest $request)
 	{
 
 		$this->authorize('create', Budget::class);

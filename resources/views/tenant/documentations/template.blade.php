@@ -23,6 +23,10 @@
 						<img src="{{ asset('img/screenshots/theme-default.jpg') }}" class="img-fluid rounded-3 landing-img" alt="Bootstrap 5 Dashboard Theme">
 					</a>
 				</p>
+
+                <img src="{{ Storage::disk('s3lf')->url('screenshots/theme-default.jpg') }}" class="img-fluid rounded-3 landing-img" alt="Bootstrap 5 Dashboard Theme">
+                <img src="{{ Storage::disk('s3l')->url('logo/logot.png') }}" class="rounded-circle img-responsive mt-2" width="128" height="128" alt="aaa" title="bb"/>
+
 				{{-- <img src="{{ storage_path('/app/logo/xlogo.png') }}" width="90px" height="90px">
 				<img src="{{ storage_path('app/logo/xlogo.png') }}" width="90px" height="90px"><br> --}}
 
