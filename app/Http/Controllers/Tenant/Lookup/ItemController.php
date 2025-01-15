@@ -228,6 +228,7 @@ class ItemController extends Controller
 
 	public function export()
 	{
+        // TODO change from csv to xls
 		$this->authorize('export', Item::class);
 
 		$data = DB::select("

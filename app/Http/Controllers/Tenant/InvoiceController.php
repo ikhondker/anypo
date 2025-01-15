@@ -317,7 +317,7 @@ class InvoiceController extends Controller
 	}
 
 	// add attachments
-	public function attach(FormRequest $request)
+	public function xxattach(FormRequest $request)
 	{
 		$this->authorize('create', Invoice::class);
 

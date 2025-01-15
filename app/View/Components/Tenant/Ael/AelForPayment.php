@@ -15,12 +15,16 @@ class AelForPayment extends Component
 	//public $aeh;
 	public $aels;
 	public $label;
-
-	/**
+    public $entity;
+    public $articleId;
+    	/**
 	 * Create a new component instance.
 	 */
 	public function __construct(public string $paymentId)
 	{
+        $this->entity = EntityEnum::PAYMENT->value;
+        //$this->$entity = 'aa';
+        $this->articleId = $paymentId;
 		$this->label= 'Payment #'.$paymentId;
 		try {
 			$this->aels = Ael::with('aeh')->ByPayment($paymentId)->get()->all();

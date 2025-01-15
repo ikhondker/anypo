@@ -135,28 +135,39 @@ class AttachmentController extends Controller
 						return redirect()->back()->with(['error' => 'Project Not Found!']);
 					}
 					break;
-                case EntityEnum::BUDGET->value:
-                    $budget = Budget::where('id',$articleId)->get()->firstOrFail();
-                    if ($budget === null) {
-                        // Budget doesn't exist
-                        return redirect()->back()->with(['error' => 'Budget Not Found!']);
-                    } else {
-                        if ($budget->closed){
-                            return redirect()->route('budgets.show', $budget->id)->with('error', 'Add attachment is allowed only for open Budget.');
+				case EntityEnum::BUDGET->value:
+					$budget = Budget::where('id',$articleId)->get()->firstOrFail();
+					if ($budget === null) {
+						// Budget doesn't exist
+						return redirect()->back()->with(['error' => 'Budget Not Found!']);
+					} else {
+						if ($budget->closed){
+							return redirect()->route('budgets.show', $budget->id)->with('error', 'Add attachment is allowed only for open Budget.');
+						}
+					}
+					break;
+				case EntityEnum::DEPTBUDGET->value:
+						$deptBudget = DeptBudget::where('id', $articleId)->get()->firstOrFail();
+						if ($deptBudget === null) {
+							// BuddeptBudgetget doesn't exist
+							return redirect()->back()->with(['error' => 'Dept Budget Not Found!']);
+						} else {
+							if ($deptBudget->closed){
+								return redirect()->route('dept-budgets.show', $deptBudget->id)->with('error', 'Add attachment is only allowed for open Budget.');
+							}
+						}
+						break;
+				case EntityEnum::INVOICE->value:
+					$invoice = Invoice::where('id', $articleId)->get()->firstOrFail();
+					if ($invoice === null) {
+						// invoice doesn't exist
+						return redirect()->back()->with(['error' => 'Invoice Not Found!']);
+					} else {
+                        if ($invoice->status <> InvoiceStatusEnum::DRAFT->value){
+                            return redirect()->route('invoices.show', $invoice->id)->with('error', 'Add attachment is only allowed for DRAFT Invoice.');
                         }
-                    }
-                    break;
-                    case EntityEnum::DEPTBUDGET->value:
-                        $deptBudget = DeptBudget::where('id', $articleId)->get()->firstOrFail();
-                        if ($deptBudget === null) {
-                            // BuddeptBudgetget doesn't exist
-                            return redirect()->back()->with(['error' => 'Dept Budget Not Found!']);
-                        } else {
-                            if ($deptBudget->closed){
-                                return redirect()->route('dept-budgets.show', $deptBudget->id)->with('error', 'Add attachment is only allowed for open Budget.');
-                            }
-                        }
-                        break;
+					}
+					break;
 				default:
 					return redirect()->back()->with('error', 'Unknown Entity. File Upload Error!');
 				}

@@ -2,7 +2,7 @@
 	<div class="card-header">
 		<div class="card-actions float-end">
 			<div class="btn-toolbar" role="toolbar" aria-label="Toolbar">
-				<a href="{{ route('pos.export-for-supplier',$id) }}" class="btn btn-info text-white me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
+				<a href="{{ route('exports.po-for-supplier',$id) }}" class="btn btn-info text-white me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
 					<i class="align-middle" data-lucide="download-cloud"></i>
 				</a>
 			</div>

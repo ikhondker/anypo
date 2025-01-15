@@ -98,23 +98,7 @@
 							<th>&nbsp;</th>
 							<td>
 								@if ($invoice->status == App\Enum\Tenant\AuthStatusEnum::DRAFT->value)
-									<form action="{{ route('invoices.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
-										@csrf
-										{{-- <x-tenant.attachment.create /> --}}
-										<input type="text" name="attach_invoice_id" id="attach_invoice_id" class="form-control" placeholder="ID" value="{{ old('id', $invoice->id ) }}" hidden>
-										<div class="row">
-											<div class="col-sm-3 text-end">
-
-											</div>
-											<div class="col-sm-9 text-end">
-												<input type="file" id="file_to_upload" name="file_to_upload" onchange="mySubmit()" style="display:none;" />
-												<a href="" class="text-warning d-inline-block" onclick="document.getElementById('file_to_upload').click(); return false">Add Attachment</a>
-												{{-- <x-show.my-edit-link object="Pr" :id="$invoice->id"/> --}}
-											</div>
-										</div>
-										{{-- <x-buttons.submit/> --}}
-									</form>
-									<!-- /.form end -->
+                                    <x-tenant.attachment.add entity="{{ EntityEnum::INVOICE->value }}" articleId="{{ $invoice->id }}"/>
 								@endif
 							</td>
 						</tr>

@@ -62,7 +62,10 @@ class ProductSeeder extends Seeder
 				'notes'			=> $faker->paragraph,
 				'enable'		=> false,
 			],
+		];
+
 			/* ----------------------- ADDON --------------- */
+			$addons = [
 			[
 				'id'			=> '1004',
 				'sku'			=> 'USER3',
@@ -121,6 +124,46 @@ class ProductSeeder extends Seeder
 			],
 		];
 
+		/* ----------------------- SETUP --------------- */
+		$setups = [
+			[
+				'id'			=> '1008',
+				'sku'			=> 'SETUP',
+				'name'			=> 'Initial Setup',
+				'addon'			=> false,
+				'addon_type'	=> 'na',
+				'list_price'	=> 45.00,
+				'price'			=> 35.00,
+				'notes'			=> $faker->paragraph,
+				'enable'		=> true,
+			],
+			[
+				'id'			=> '1009',
+				'sku'			=> 'CONSULTANCY',
+				'name'			=> 'Consultancy Service',
+				'addon'			=> false,
+				'addon_type'	=> 'na',
+				'list_price'	=> 45.00,
+				'price'			=> 35.00,
+				'notes'			=> $faker->paragraph,
+				'enable'		=> true,
+			],
+			[
+				'id'			=> '1010',
+				'sku'			=> 'SUPPORT',
+				'name'			=> 'Paid Support',
+				'addon'			=> false,
+				'addon_type'	=> 'na',
+				'list_price'	=> 35.00,
+				'price'			=> 25.00,
+				'notes'			=> $faker->paragraph,
+				'enable'		=> true,
+			],
+		];
+
 		Product::insert($products);
+		Product::insert($addons);
+        Product::insert($setups);
+
 	}
 }

@@ -3,6 +3,7 @@
 http://demo1.localhost:8000/payments recept/ ovoce not found 404 after create
 project attechments
 supplier atahments
+remove function mySubmit() {
 check ->get()->first
 move documntatsion screenshots to provate places
 item attavhments

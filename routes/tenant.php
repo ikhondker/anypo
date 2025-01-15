@@ -314,15 +314,27 @@ Route::middleware([
 		Route::get('/export/pr',[ExportController::class,'pr'])->name('exports.pr');
 		Route::get('/export/prl',[ExportController::class,'prl'])->name('exports.prl');
 		Route::get('/export/po',[ExportController::class,'po'])->name('exports.po');
-        Route::get('/export/po-for-buyer/{id}',[ExportController::class,'poForBuyer'])->name('exports.po-for-buyer');
-
 		Route::get('/export/pol',[ExportController::class,'pol'])->name('exports.pol');
+
+        Route::get('/export/po-for-buyer',[ExportController::class,'poForBuyer'])->name('exports.po-for-buyer');
+        Route::get('/export/po-for-project/{id}',[ExportController::class,'poForProject'])->name('exports.po-for-project');
+        Route::get('/export/po-for-supplier/{id}',[ExportController::class,'poForSupplier'])->name('exports.po-for-supplier');
+        // TODO
+        Route::get('/export/po-for-item/{id}',[ExportController::class,'poForItem'])->name('exports.po-for-item');
+        Route::get('/export/po-for-currency/{currency}',[ExportController::class,'poForCurrency'])->name('exports.po-for-currency');
+
+
 		Route::get('/export/invoice',[ExportController::class,'invoice'])->name('exports.invoice');
 		Route::get('/export/invoice-line',[ExportController::class,'invoiceLine'])->name('exports.invoice-line');
 		Route::get('/export/payment',[ExportController::class,'payment'])->name('exports.payment');
 		Route::get('/export/receipt',[ExportController::class,'receipt'])->name('exports.receipt');
-		Route::get('/export/ael',[ExportController::class,'ael'])->name('exports.ael');
-		Route::get('/ael/export-for-po/{id}',[ExportController::class,'aelForPo'])->name('exports.ael-for-po');
+
+        Route::get('/export/ael',[ExportController::class,'ael'])->name('exports.ael');
+		Route::get('/export/ael-for-po/{id}',[ExportController::class,'aelForPo'])->name('exports.ael-for-po');
+        Route::get('/export/ael-for-invoice/{id}',[ExportController::class,'aelForInvoice'])->name('exports.ael-for-invoice');
+        Route::get('/export/ael-for-payment/{id}',[ExportController::class,'aelForPayment'])->name('exports.ael-for-payment');
+        Route::get('/export/ael-for-receipt/{id}',[ExportController::class,'aelForReceipt'])->name('exports.ael-for-receipt');
+        Route::get('/export/ael-for-aeh/{id}',[ExportController::class,'aelForAeh'])->name('exports.ael-for-aeh');
 
 		Route::get('/export/budget/{revision?}/{parent?}',[ExportController::class,'exportBudget'])->name('exports.budget');
 		Route::get('/export/dept-budget/{revision?}/{parent?}',[ExportController::class,'exportDeptBudget'])->name('exports.dept-budget');
@@ -392,7 +404,7 @@ Route::middleware([
 		//Route::get('/po/export',[PoController::class,'export'])->name('pos.export');
 		// Route::get('/pos/export-for-supplier/{supplier}',[PoController::class,'exportForSupplier'])->name('pos.export-for-supplier');
 		// Route::get('/pos/export-for-project/{project}',[PoController::class,'exportForProject'])->name('pos.export-for-project');
-		Route::get('/pos/export-for-buyer/{user}',[PoController::class,'exportForBuyer'])->name('pos.export-for-buyer');
+		// done Route::get('/pos/export-for-buyer/{user}',[PoController::class,'exportForBuyer'])->name('pos.export-for-buyer');
 		Route::get('/pos/get-po/{po}',[PoController::class, 'getPo'])->name('pos.get-po');
 
 		Route::get('/pos/delete/{po}',[PoController::class,'destroy'])->name('pos.destroy');

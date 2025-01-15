@@ -16,12 +16,16 @@ class AelForInvoice extends Component
 	//public $aeh;
 	public $aels;
 	public $label;
+    public $entity;
+    public $articleId;
 
 	/**
 	 * Create a new component instance.
 	 */
 	public function __construct(public string $invoiceId)
 	{
+        $this->entity = EntityEnum::INVOICE->value;
+        $this->articleId = $invoiceId;
 
 		$this->label= 'Invoice #'.$invoiceId;
 		try {

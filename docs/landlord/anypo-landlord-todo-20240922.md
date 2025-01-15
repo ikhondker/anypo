@@ -3,6 +3,8 @@
 
 # 7. TODO - Open
 ====================================================================
+Add installation service? Yes! Install it for me. $79 One time fee
+
 x123. disable site form landlord
 x123. search ticket on top
 123. filter open ticket only
