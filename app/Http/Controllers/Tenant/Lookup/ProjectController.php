@@ -106,8 +106,8 @@ class ProjectController extends Controller
 		// Write to Log
 		EventLog::event('project', $project->id, 'create');
 
-        // Upload File
-        if ($file = $request->file('file_to_upload')) {
+		// Upload File
+		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $project->id ]);
 			$request->merge(['entity'		=> EntityEnum::PROJECT->value ]);
 			$attid = FileUpload::aws($request);
@@ -214,7 +214,7 @@ class ProjectController extends Controller
 
 	public function export()
 	{
-        // TODO change from csv to xls
+		// TODO change from csv to xls
 		$this->authorize('export', Project::class);
 
 		if ( auth()->user()->role->value == UserRoleEnum::USER->value) {

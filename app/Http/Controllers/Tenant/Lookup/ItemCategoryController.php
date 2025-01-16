@@ -77,7 +77,7 @@ class ItemCategoryController extends Controller
 	{
 		$this->authorize('create', ItemCategory::class);
 
-        // set random color for dept
+		// set random color for dept
 		$colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info'];
 		$request->merge(['bg_color' => Arr::random($colors) ]);
 		$itemCategory = ItemCategory::create($request->all());

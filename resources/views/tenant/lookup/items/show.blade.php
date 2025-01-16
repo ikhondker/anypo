@@ -41,19 +41,19 @@
 					<x-tenant.show.my-number	value="{{ $item->price }}" label="Price"/>
 					<x-tenant.show.my-text		value="{{ $item->ac_expense }}" label="Expense Account"/>
 					<x-tenant.show.my-boolean	value="{{ $item->enable }}"/>
-                    <tr>
-                        <th>Attachments :</th>
-                        <td>
-                            <x-tenant.attachment.all entity="{{ EntityEnum::ITEM->value }}" articleId="{{ $item->id }}"/>
-                        </td>
+					<tr>
+						<th>Attachments :</th>
+						<td>
+							<x-tenant.attachment.all entity="{{ EntityEnum::ITEM->value }}" articleId="{{ $item->id }}"/>
+						</td>
 					</tr>
 					<tr>
-                        <th>&nbsp;</th>
-                        <td>
-                            @can('update', $item)
-                                <x-tenant.attachment.add entity="{{ EntityEnum::ITEM->value }}" articleId="{{ $item->id }}"/>
-                            @endcan
-                        </td>
+						<th>&nbsp;</th>
+						<td>
+							@can('update', $item)
+								<x-tenant.attachment.add entity="{{ EntityEnum::ITEM->value }}" articleId="{{ $item->id }}"/>
+							@endcan
+						</td>
 					</tr>
 
 				</tbody>

@@ -17,10 +17,10 @@ class Add extends Component
 	 */
 	public function __construct(public string $entity, public string $articleId )
 	{
-        $e = Entity::where('entity', $entity )->first();
-        $this->route = $e->route;
+		$e = Entity::where('entity', $entity )->first();
+		$this->route = $e->route;
 		//$this->route = Str::lower(Str::plural(Str::snake($entity, '-')));
-        //Log::debug('e->route=' . $e->route);
+		//Log::debug('e->route=' . $e->route);
 	}
 
 	/**

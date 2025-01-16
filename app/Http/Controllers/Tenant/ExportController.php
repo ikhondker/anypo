@@ -563,18 +563,18 @@ class ExportController extends Controller
 		}
 		$pos = $pos->get();
 
-        // generate xls
-        self::xlsAel($pos);
+		// generate xls
+		self::xlsAel($pos);
 
 	}
 
 
-    public function poForBuyer()
+	public function poForBuyer()
 	{
 
-        $this->authorize('po', Export::class);
+		$this->authorize('po', Export::class);
 		$pos = Po::with('dept')->with('project')->with('supplier')->with('requestor')->with('user_created_by')->with('user_updated_by')->where('auth_status',AuthStatusEnum::APPROVED->value);
-        $pos->where('buyer_id', auth()->user()->id);
+		$pos->where('buyer_id', auth()->user()->id);
 
 		$pos = $pos->get();
 		// generate xls
@@ -582,11 +582,11 @@ class ExportController extends Controller
 
 	}
 
-    public function poForSupplier($supplierId)
+	public function poForSupplier($supplierId)
 	{
-        $this->authorize('po', Export::class);
+		$this->authorize('po', Export::class);
 		$pos = Po::with('dept')->with('project')->with('supplier')->with('requestor')->with('user_created_by')->with('user_updated_by')->where('auth_status',AuthStatusEnum::APPROVED->value);
-        if ( $supplierId <> null ) {
+		if ( $supplierId <> null ) {
 			$pos->where('supplier_id', $supplierId);
 		}
 
@@ -595,11 +595,11 @@ class ExportController extends Controller
 		self::xlsPo($pos);
 	}
 
-    public function poForProject($projectId)
+	public function poForProject($projectId)
 	{
-        $this->authorize('po', Export::class);
+		$this->authorize('po', Export::class);
 		$pos = Po::with('dept')->with('project')->with('supplier')->with('requestor')->with('user_created_by')->with('user_updated_by')->where('auth_status',AuthStatusEnum::APPROVED->value);
-        if ( $projectId <> null ) {
+		if ( $projectId <> null ) {
 			$pos->where('project_id', $projectId);
 		}
 
@@ -609,11 +609,11 @@ class ExportController extends Controller
 	}
 
 
-    public function xlsPo($pos) {
+	public function xlsPo($pos) {
 
-        $fileName = 'export-pos-' . date('Ymd') . '.xls';
+		$fileName = 'export-pos-' . date('Ymd') . '.xls';
 
-        $spreadsheet = new Spreadsheet();
+		$spreadsheet = new Spreadsheet();
 		$sheet = $spreadsheet->getActiveSheet();
 
 		$sheet->setCellValue('A1', 'PO#');
@@ -669,7 +669,7 @@ class ExportController extends Controller
 		header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
 		$writer->save('php://output');
 
-    }
+	}
 
 
 	public function exportPol($start_date, $end_date, $currency, $dept_id, $supplier_id, $project_id, $warehouse_id, $bank_account_id, $user_id)
@@ -1117,7 +1117,7 @@ class ExportController extends Controller
 
 	}
 
-    public function aelForInvoice($invoiceId)
+	public function aelForInvoice($invoiceId)
 	{
 		$this->authorize('ael', Export::class);
 
@@ -1129,7 +1129,7 @@ class ExportController extends Controller
 		self::xlsAel($aels);
 	}
 
-    public function aelForPayment($paymentId)
+	public function aelForPayment($paymentId)
 	{
 		$this->authorize('ael', Export::class);
 
@@ -1142,7 +1142,7 @@ class ExportController extends Controller
 	}
 
 
-    public function aelForReceipt($receiptId)
+	public function aelForReceipt($receiptId)
 	{
 		$this->authorize('ael', Export::class);
 
@@ -1154,12 +1154,12 @@ class ExportController extends Controller
 		self::xlsAel($aels);
 	}
 
-    public function aelForAeh($aeh_id)
+	public function aelForAeh($aeh_id)
 	{
 		$this->authorize('ael', Export::class);
 		$aels = Ael::with('aeh')->with('user_created_by')->with('user_updated_by');
 		// Filter based on input
-        if ($aeh_id <> ''){
+		if ($aeh_id <> ''){
 			$aels->where('aeh_id', $aeh_id);
 		}
 		$aels = $aels->get();

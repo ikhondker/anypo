@@ -329,7 +329,7 @@
 
 				</div>
 			</main>
-            <!-- ========== Footer ========== -->
+			<!-- ========== Footer ========== -->
 			@include('tenant.includes.footer')
 			<!-- ========== End Footer ========== -->
 		</div>

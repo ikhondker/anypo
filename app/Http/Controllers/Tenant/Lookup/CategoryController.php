@@ -77,7 +77,7 @@ class CategoryController extends Controller
 	{
 		$this->authorize('create', Category::class);
 
-        // set random color for budget
+		// set random color for budget
 		$colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info'];
 		$request->merge(['bg_color' => Arr::random($colors) ]);
 

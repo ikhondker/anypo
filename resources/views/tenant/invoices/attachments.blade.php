@@ -27,7 +27,7 @@
 	<div class="row">
 		<div class="col-sm-6">
 			@if ($invoice->status == App\Enum\Tenant\InvoiceStatusEnum::DRAFT->value)
-                <x-tenant.attachment.add entity="{{ EntityEnum::INVOICE->value }}" articleId="{{ $invoice->id }}"/>
+				<x-tenant.attachment.add entity="{{ EntityEnum::INVOICE->value }}" articleId="{{ $invoice->id }}"/>
 			@endif
 		</div>
 		<div class="col-sm-6 text-end">

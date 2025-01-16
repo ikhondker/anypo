@@ -15,6 +15,12 @@ php artisan tenants:migrate --tenants='96061cbc-30bb-4d74-b0a7-f5f555ac3f97'
 php artisan tenants:seed --class=TenantSeeder --tenants='96061cbc-30bb-4d74-b0a7-f5f555ac3f97'
 
 
+php artisan tenants:rollback --tenants='8aea66c4-a23f-4d58-b746-2e5f98bcf3ff'
+php artisan tenants:migrate --tenants='8aea66c4-a23f-4d58-b746-2e5f98bcf3ff'
+php artisan tenants:seed --class=TenantSeeder --tenants='8aea66c4-a23f-4d58-b746-2e5f98bcf3ff'
+
+
+
 php artisan queue:listen
 php artisan tenants:seed --tenants=demo1
 php artisan tenants:seed --class=UserSeeder --tenants=demo1

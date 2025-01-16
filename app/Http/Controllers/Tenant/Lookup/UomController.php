@@ -84,7 +84,7 @@ class UomController extends Controller
 
 		 // set color from class
 		$uomClass = UomClass::where('id', $request->input('uom_class_id') )->first();
-		$request->merge(['bg_color'     => $uomClass->bg_color ]);
+		$request->merge(['bg_color'		=> $uomClass->bg_color ]);
 
 		$uom = Uom::create($request->all());
 		// Write to Log

@@ -96,7 +96,7 @@
 								<th></th>
 								<td>
 									@if (! $budget->closed)
-                                        <x-tenant.attachment.add entity="{{ EntityEnum::BUDGET->value }}" articleId="{{ $budget->id }}"/>
+										<x-tenant.attachment.add entity="{{ EntityEnum::BUDGET->value }}" articleId="{{ $budget->id }}"/>
 									@endif
 								</td>
 							</tr>

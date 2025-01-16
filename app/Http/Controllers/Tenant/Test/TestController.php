@@ -79,7 +79,7 @@ class TestController extends Controller
 		//https://stackoverflow.com/questions/41758870/how-to-convert-result-table-to-json-array-in-mysql
 
 
-        return view('tenant.documentations.index');
+		return view('tenant.documentations.index');
 
 
 		Log::debug('Value of config(app.domain)=' . config('app.domain'));

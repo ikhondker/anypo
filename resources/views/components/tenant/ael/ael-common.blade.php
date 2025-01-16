@@ -1,11 +1,11 @@
 
 	<div class="card">
 		<div class="card-header">
-            <div class="card-actions float-end">
-                <a href="{{ route('exports.ael-for-'.Str::lower($entity), $articleId) }}" class="btn btn-info text-white me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
-                    <i class="align-middle" data-lucide="download-cloud"></i>
-                </a>
-            </div>
+			<div class="card-actions float-end">
+				<a href="{{ route('exports.ael-for-'.Str::lower($entity), $articleId) }}" class="btn btn-info text-white me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
+					<i class="align-middle" data-lucide="download-cloud"></i>
+				</a>
+			</div>
 			<h5 class="card-title">
 				Accounting Lines {{ $label }}
 			</h5>

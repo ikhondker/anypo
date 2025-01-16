@@ -13,7 +13,7 @@
 				<a class="dropdown-item" href="{{ route('items.edit', $item->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit Item</a>
 			@endcan
 		@endif
-        <a class="dropdown-item" href="{{ route('items.attachments',$item->id) }}"><i class="align-middle me-1" data-lucide="paperclip"></i> View Attachments</a>
+		<a class="dropdown-item" href="{{ route('items.attachments',$item->id) }}"><i class="align-middle me-1" data-lucide="paperclip"></i> View Attachments</a>
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('items.index') }}"><i class="align-middle me-1" data-lucide="database"></i> Item Lists</a>
 

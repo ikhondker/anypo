@@ -113,8 +113,8 @@ class ItemController extends Controller
 		// Write to Log
 		EventLog::event('item', $item->id, 'create');
 
-        // Upload File
-        if ($file = $request->file('file_to_upload')) {
+		// Upload File
+		if ($file = $request->file('file_to_upload')) {
 			$request->merge(['article_id'	=> $item->id ]);
 			$request->merge(['entity'		=> EntityEnum::ITEM->value ]);
 			$attid = FileUpload::aws($request);
@@ -145,7 +145,7 @@ class ItemController extends Controller
 	}
 
 
-    // add attachments
+	// add attachments
 	public function chk_attach(FormRequest $request)
 	{
 		$this->authorize('create', Item::class);
@@ -164,7 +164,7 @@ class ItemController extends Controller
 		return redirect()->back()->with('success', 'File Uploaded successfully.');
 	}
 
-    public function attachments(Item $item)
+	public function attachments(Item $item)
 	{
 		$this->authorize('view', $item);
 		$item = Item::where('id', $item->id)->get()->firstOrFail();
@@ -228,7 +228,7 @@ class ItemController extends Controller
 
 	public function export()
 	{
-        // TODO change from csv to xls
+		// TODO change from csv to xls
 		$this->authorize('export', Item::class);
 
 		$data = DB::select("

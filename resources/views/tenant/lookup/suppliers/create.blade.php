@@ -40,7 +40,7 @@
 						<x-tenant.create.address2/>
 						<x-tenant.create.city-state-zip/>
 						<x-tenant.create.country/>
-                        <x-tenant.attachment.create/>
+						<x-tenant.attachment.create/>
 						<x-tenant.create.save/>
 
 					</tbody>

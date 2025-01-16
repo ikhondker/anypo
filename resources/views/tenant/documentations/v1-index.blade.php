@@ -60,24 +60,24 @@
 					with your suggestions for improvement. We love hearing from you!</p>
 			</div>
 
-            <div id="drop-jquery" class="mb-5">
-                <h3>Drop jQuery</h3>
-                <p class="text-lg">If you want to remove jQuery and all related plugins from your application, please follow these steps:</p>
+			<div id="drop-jquery" class="mb-5">
+				<h3>Drop jQuery</h3>
+				<p class="text-lg">If you want to remove jQuery and all related plugins from your application, please follow these steps:</p>
 
-                <ol>
-                    <li>Remove all jQuery modules from the JavaScript entry file: <code class="text-lg">/src/js/app.js</code></li>
-                    <li>Remove the snippets below from the <code class="text-lg">/webpack.config.js</code> file</li>
-                    <li>Run <code class="text-lg">npm run build</code></li>
-                </ol>
+				<ol>
+					<li>Remove all jQuery modules from the JavaScript entry file: <code class="text-lg">/src/js/app.js</code></li>
+					<li>Remove the snippets below from the <code class="text-lg">/webpack.config.js</code> file</li>
+					<li>Run <code class="text-lg">npm run build</code></li>
+				</ol>
 
-            </div>
+			</div>
 
-            <div class="alert alert-primary mb-5" role="alert">
-                <div class="alert-message">
-                    <strong>Note:</strong> If you're not looking for any customizations or are not comfortable with Node.js or Webpack, you could use the pre-compiled (ready-to-use)
-                    files available in the dist folder. In that case, you can skip the set-up below.
-                </div>
-            </div>
+			<div class="alert alert-primary mb-5" role="alert">
+				<div class="alert-message">
+					<strong>Note:</strong> If you're not looking for any customizations or are not comfortable with Node.js or Webpack, you could use the pre-compiled (ready-to-use)
+					files available in the dist folder. In that case, you can skip the set-up below.
+				</div>
+			</div>
 
 
 		</div>

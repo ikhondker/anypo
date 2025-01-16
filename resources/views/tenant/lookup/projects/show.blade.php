@@ -39,19 +39,19 @@
 					<x-tenant.show.my-text		value="{{ $project->pm->name }}" label="Project Manager"/>
 					<x-tenant.show.my-closed	value="{{ $project->closed }}"/>
 					<x-tenant.show.my-text-area	value="{{ $project->notes }}" label="Notes"/>
-                    <tr>
-                        <th>Attachments :</th>
-                        <td>
-                            <x-tenant.attachment.all entity="{{ EntityEnum::PROJECT->value }}" articleId="{{ $project->id }}"/>
-                        </td>
+					<tr>
+						<th>Attachments :</th>
+						<td>
+							<x-tenant.attachment.all entity="{{ EntityEnum::PROJECT->value }}" articleId="{{ $project->id }}"/>
+						</td>
 					</tr>
 					<tr>
-                        <th>&nbsp;</th>
-                        <td>
-                            @can('update', $project)
-                                <x-tenant.attachment.add entity="{{ EntityEnum::PROJECT->value }}" articleId="{{ $project->id }}"/>
-                            @endcan
-                        </td>
+						<th>&nbsp;</th>
+						<td>
+							@can('update', $project)
+								<x-tenant.attachment.add entity="{{ EntityEnum::PROJECT->value }}" articleId="{{ $project->id }}"/>
+							@endcan
+						</td>
 					</tr>
 				</tbody>
 			</table>

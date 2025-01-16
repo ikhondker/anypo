@@ -135,7 +135,7 @@
 							</td>
 						</tr>
 						<x-tenant.create.notes/>
-                        <x-tenant.attachment.create/>
+						<x-tenant.attachment.create/>
 						<x-tenant.create.save/>
 					</tbody>
 				</table>

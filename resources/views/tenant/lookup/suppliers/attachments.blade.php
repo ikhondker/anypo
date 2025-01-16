@@ -23,7 +23,7 @@
 
 	<div class="row">
 		<div class="col-sm-6">
-            <x-tenant.attachment.add entity="{{ EntityEnum::SUPPLIER->value }}" articleId="{{ $supplier->id }}"/>
+			<x-tenant.attachment.add entity="{{ EntityEnum::SUPPLIER->value }}" articleId="{{ $supplier->id }}"/>
 		</div>
 		<div class="col-sm-6 text-end">
 				<a class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Back" href="{{ route('suppliers.show', $supplier->id) }}"><i data-lucide="arrow-left-circle"></i> Back to Suppliers</a>

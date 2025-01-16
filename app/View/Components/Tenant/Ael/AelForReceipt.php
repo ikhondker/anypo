@@ -14,15 +14,15 @@ class AelForReceipt extends Component
 {
 	public $aels;
 	public $label;
-    public $entity;
-    public $articleId;
+	public $entity;
+	public $articleId;
 	/**
 	 * Create a new component instance.
 	 */
 	public function __construct(public string $receiptId)
 	{
-        $this->entity = EntityEnum::RECEIPT->value;
-        $this->articleId = $receiptId;
+		$this->entity = EntityEnum::RECEIPT->value;
+		$this->articleId = $receiptId;
 		$this->label= 'Receipt #'.$receiptId;
 		try {
 			$this->aels = Ael::with('aeh')->ByReceipt($receiptId)->get()->all();

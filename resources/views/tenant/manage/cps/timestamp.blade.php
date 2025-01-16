@@ -10,8 +10,8 @@
 	$count_invoiceLine	= App\Models\Tenant\InvoiceLine::where('created_by',null )->count();
 	$count_payment		= App\Models\Tenant\Payment::where('created_by',null )->count();
 	$count_receipt		= App\Models\Tenant\Receipt::where('created_by',null )->count();
-    $count_aeh	 		= App\Models\Tenant\Ae\Aeh::where('created_by',null )->count();
-    $count_ael	 		= App\Models\Tenant\Ae\Ael::where('created_by',null )->count();
+	$count_aeh	 		= App\Models\Tenant\Ae\Aeh::where('created_by',null )->count();
+	$count_ael	 		= App\Models\Tenant\Ae\Ael::where('created_by',null )->count();
 	$count_attachment	= App\Models\Tenant\Attachment::where('created_by',null )->count();
 	$count_report		= App\Models\Tenant\Report::where('created_by',null )->count();
 	//$count_notification	= App\Models\Tenant\Notification::where('created_by',null )->count();
@@ -62,7 +62,7 @@
 						<td></td>
 						<td></td>
 						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a></td>
-                    </tr>
+					</tr>
 					<tr>
 						<td>2</td>
 						<td>count_deptBudget </td>
@@ -91,7 +91,7 @@
 						<td></td>
 						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a></td>
 					</tr>
-    				<tr>
+					<tr>
 						<td>5</td>
 						<td>count_po </td>
 						<td>{{ $count_po }}</td>
@@ -110,7 +110,7 @@
 						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a></td>
 					</tr>
 
-                    <tr>
+					<tr>
 						<td>7</td>
 						<td>count_dbu </td>
 						<td>{{ $count_dbu }}</td>
@@ -173,7 +173,7 @@
 						<td></td>
 						<td><a href="{{ route('home') }}" class="btn btn-light"	data-bs-toggle="tooltip" data-bs-placement="top" title="View">View *</a></td>
 					</tr>
-                    <tr>
+					<tr>
 						<td>14</td>
 						<td>count_attachment </td>
 						<td>{{ $count_attachment }}</td>

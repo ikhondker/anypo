@@ -89,12 +89,12 @@ class SupplierController extends Controller
 		// Write to Log
 		EventLog::event('supplier', $supplier->id, 'create');
 
-        // Upload File
-        if ($file = $request->file('file_to_upload')) {
-            $request->merge(['article_id'	=> $supplier->id ]);
-            $request->merge(['entity'		=> EntityEnum::SUPPLIER->value ]);
-            $attid = FileUpload::aws($request);
-        }
+		// Upload File
+		if ($file = $request->file('file_to_upload')) {
+			$request->merge(['article_id'	=> $supplier->id ]);
+			$request->merge(['entity'		=> EntityEnum::SUPPLIER->value ]);
+			$attid = FileUpload::aws($request);
+		}
 
 
 		return redirect()->route('suppliers.index')->with('success', 'Supplier created successfully.');
@@ -130,7 +130,7 @@ class SupplierController extends Controller
 		return view('tenant.lookup.suppliers.edit', compact('supplier'));
 	}
 
-    public function attachments(Supplier $supplier)
+	public function attachments(Supplier $supplier)
 	{
 		$this->authorize('view', $supplier);
 		$supplier = Supplier::where('id', $supplier->id)->get()->firstOrFail();
@@ -204,8 +204,8 @@ class SupplierController extends Controller
 
 	public function export()
 	{
-        // TODO change from csv to xls
-        $this->authorize('export', Supplier::class);
+		// TODO change from csv to xls
+		$this->authorize('export', Supplier::class);
 
 		$data = DB::select("SELECT id, name, address1, address2, contact_person, cell, city, zip, state, country, website, email, IF(enable, 'Yes', 'No') as Enable
 			FROM suppliers");

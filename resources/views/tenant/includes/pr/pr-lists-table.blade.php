@@ -21,7 +21,7 @@
 			<td>{{ $pr->id }}</td>
 			<td><x-tenant.list.my-date :value="$pr->pr_date"/></td>
 			<td><a href="{{ route('prs.show',$pr->id) }}"><strong>{{ $pr->summary }}</strong></a></td>
-            <td><span class="badge rounded-pill badge-subtle-{{ $pr->dept->bg_color }}">{{  $pr->dept->name}}</span></td>
+			<td><span class="badge rounded-pill badge-subtle-{{ $pr->dept->bg_color }}">{{  $pr->dept->name}}</span></td>
 			<td>{{ $pr->requestor->name }}</td>
 			<td>{{ $pr->supplier->name }}</td>
 			<td>{{ $pr->project->code }}</td>

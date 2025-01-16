@@ -43,7 +43,7 @@
 					<x-tenant.show.my-boolean	value="{{ $item->enable }}"/>
 					<x-tenant.show.my-created_at value="{{ $item->created_at }}"/>
 					<x-tenant.show.my-updated_at value="{{ $item->updated_at }}"/>
-                    <tr>
+					<tr>
 							<th>Attachments :</th>
 							<td>
 								<x-tenant.attachment.all entity="ITEM" articleId="{{ $item->id }}"/>
@@ -53,7 +53,7 @@
 							<th>&nbsp;</th>
 							<td>
 								@can('update', $item)
-                                    <x-tenant.attachment.add entity="ITEM" articleId="{{ $item->id }}"/>
+									<x-tenant.attachment.add entity="ITEM" articleId="{{ $item->id }}"/>
 
 
 									{{-- <!-- form start -->

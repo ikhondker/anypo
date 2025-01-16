@@ -23,7 +23,7 @@
 
 	<div class="row">
 		<div class="col-sm-6">
-                <x-tenant.attachment.add entity="ITEM" articleId="{{ $item->id }}"/>
+				<x-tenant.attachment.add entity="ITEM" articleId="{{ $item->id }}"/>
 
 				{{-- <form action="{{ route('items.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
 					@csrf

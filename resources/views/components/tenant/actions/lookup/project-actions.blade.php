@@ -12,7 +12,7 @@
 			@endcan
 		@endif
 
-        <a class="dropdown-item" href="{{ route('projects.attachments',$project->id) }}"><i class="align-middle me-1" data-lucide="paperclip"></i> View Attachments</a>
+		<a class="dropdown-item" href="{{ route('projects.attachments',$project->id) }}"><i class="align-middle me-1" data-lucide="paperclip"></i> View Attachments</a>
 		<div class="dropdown-divider"></div>
 
 

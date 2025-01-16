@@ -163,9 +163,9 @@ class AttachmentController extends Controller
 						// invoice doesn't exist
 						return redirect()->back()->with(['error' => 'Invoice Not Found!']);
 					} else {
-                        if ($invoice->status <> InvoiceStatusEnum::DRAFT->value){
-                            return redirect()->route('invoices.show', $invoice->id)->with('error', 'Add attachment is only allowed for DRAFT Invoice.');
-                        }
+						if ($invoice->status <> InvoiceStatusEnum::DRAFT->value){
+							return redirect()->route('invoices.show', $invoice->id)->with('error', 'Add attachment is only allowed for DRAFT Invoice.');
+						}
 					}
 					break;
 				default:

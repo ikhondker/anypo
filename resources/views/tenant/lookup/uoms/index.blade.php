@@ -47,7 +47,7 @@
 						<td>{{ $uoms->firstItem() + $loop->index}}</td>
 						<td><a href="{{ route('uoms.show',$uom->id) }}"><strong>{{ $uom->name }}</strong></a>
 						<td>{{ number_format($uom->conversion, 4) }}</td>
-                        <td><span class="badge rounded-pill badge-subtle-{{  $uom->uom_class->bg_color }}">{{  $uom->uom_class->name  }}</span></td>
+						<td><span class="badge rounded-pill badge-subtle-{{  $uom->uom_class->bg_color }}">{{  $uom->uom_class->name  }}</span></td>
 						<td><x-tenant.list.my-boolean :value="$uom->default"/></td>
 						<td><x-tenant.list.my-boolean :value="$uom->enable"/></td>
 						<td>

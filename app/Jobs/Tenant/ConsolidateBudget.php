@@ -40,7 +40,7 @@ class ConsolidateBudget implements ShouldQueue, ShouldBeUnique
 		$result= DeptBudget::where('budget_id', $this->budget_id)
 			->where('revision', false)
 			->get( array(
-			DB::raw('SUM(amount)            as amount'),
+			DB::raw('SUM(amount)			as amount'),
 			DB::raw('SUM(amount_pr_booked) 	as amount_pr_booked'),
 			DB::raw('SUM(amount_pr) 		as amount_pr'),
 			DB::raw('SUM(amount_po_booked) 	as amount_po_booked'),
