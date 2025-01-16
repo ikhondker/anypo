@@ -163,7 +163,7 @@ class ProductSeeder extends Seeder
 
 		Product::insert($products);
 		Product::insert($addons);
-        Product::insert($setups);
+		Product::insert($setups);
 
 	}
 }

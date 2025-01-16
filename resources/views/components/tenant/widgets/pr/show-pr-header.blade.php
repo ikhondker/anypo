@@ -108,23 +108,7 @@
 							<th>&nbsp;</th>
 							<td>
 								@can('update', $pr)
-									<form action="{{ route('prs.attach') }}" id="frm1" name="frm" method="POST" enctype="multipart/form-data">
-										@csrf
-										{{-- <x-tenant.attachment.create /> --}}
-										<input type="text" name="attach_pr_id" id="attach_pr_id" class="form-control" placeholder="ID" value="{{ old('id', $pr->id ) }}" hidden>
-										<div class="row">
-											<div class="col-sm-3 text-end">
-
-											</div>
-											<div class="col-sm-9 text-end">
-												<input type="file" id="file_to_upload" name="file_to_upload" onchange="mySubmit()" style="display:none;" />
-												<a href="" class="text-warning d-inline-block" onclick="document.getElementById('file_to_upload').click(); return false">Add Attachment</a>
-												{{-- <x-show.my-edit-link object="Pr" :id="$pr->id"/> --}}
-											</div>
-										</div>
-										{{-- <x-buttons.submit/> --}}
-									</form>
-									<!-- /.form end -->
+									<x-tenant.attachment.add entity="{{ EntityEnum::PR->value }}" articleId="{{ $pr->id }}"/>
 								@endcan
 							</td>
 						</tr>

@@ -77,7 +77,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'receipts.create-for-pol','route_name'=> 'receipts.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'receipts.ael','route_name'			=> 'receipts.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'receipts.timestamp','route_name' 	=> 'receipts.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'exports.receipt','route_name'		=> 'receipts.index', 'node_name'    => 'workbench'],
+			[ 'raw_route_name' => 'exports.receipt','route_name'		=> 'receipts.index', 'node_name' => 'workbench'],
 
 			[ 'raw_route_name' => 'invoices.index','route_name' 		=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoices.my-invoices','route_name'	=> 'invoices.index', 'node_name' => 'workbench'],
@@ -88,7 +88,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'invoices.payments','route_name'		=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoices.attachments','route_name'	=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoices.timestamp','route_name'		=> 'invoices.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'exports.invoice','route_name'		=> 'invoices.index', 'node_name'    => 'workbench'],
+			[ 'raw_route_name' => 'exports.invoice','route_name'		=> 'invoices.index', 'node_name' => 'workbench'],
 
 			[ 'raw_route_name' => 'invoice-lines.add-line','route_name'	=> 'invoices.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'invoice-lines.edit','route_name'		=> 'invoices.index', 'node_name' => 'workbench'],
@@ -99,11 +99,11 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'payments.create-for-invoice','route_name'	=> 'payments.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'payments.ael','route_name'			=> 'payments.index', 'node_name' => 'workbench'],
 			[ 'raw_route_name' => 'payments.timestamp','route_name'		=> 'payments.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'exports.payment','route_name'		=> 'payments.index', 'node_name'    => 'workbench'],
+			[ 'raw_route_name' => 'exports.payment','route_name'		=> 'payments.index', 'node_name' => 'workbench'],
 
-			[ 'raw_route_name' => 'aels.index','route_name'				=> 'aels.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'aels.show','route_name'				=> 'aels.index', 'node_name' => 'workbench'],
-			[ 'raw_route_name' => 'exports.ael','route_name'		=> 'aels.index', 'node_name'    => 'workbench'],
+			[ 'raw_route_name' => 'aels.index','route_name'				=> 'aels.index', 'node_name' 	=> 'workbench'],
+			[ 'raw_route_name' => 'aels.show','route_name'				=> 'aels.index', 'node_name' 	=> 'workbench'],
+			[ 'raw_route_name' => 'exports.ael','route_name'		=> 'aels.index', 'node_name'		=> 'workbench'],
 
 			/**
 			* ==================================================================================
@@ -136,7 +136,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'exports.supplier-po','route_name'		=> 'suppliers.index', 'node_name'		=> 'workbench'],
 
 			[ 'raw_route_name' => 'projects.spends','route_name' 			=> 'projects.spends', 'node_name' 		=> 'budget'],
-			[ 'raw_route_name' => 'exports.project-po','route_name'		    => 'projects.index', 'node_name'    	=> 'workbench'],
+			[ 'raw_route_name' => 'exports.project-po','route_name'			=> 'projects.index', 'node_name'		=> 'workbench'],
 
 			[ 'raw_route_name' => 'dbus.index','route_name' 				=> 'dbus.index', 'node_name' 			=> 'budget'],
 			[ 'raw_route_name' => 'dbus.show','route_name' 					=> 'dbus.index', 'node_name' 			=> 'budget'],
@@ -160,7 +160,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'items.show','route_name' 			=> 'items.index', 'node_name' 			=> 'master'],
 			[ 'raw_route_name' => 'items.edit','route_name' 			=> 'items.index', 'node_name' 			=> 'master'],
 			[ 'raw_route_name' => 'items.create','route_name' 			=> 'items.index', 'node_name' 			=> 'master'],
-			[ 'raw_route_name' => 'items.attachments','route_name'		=> 'items.index', 'node_name'           => 'master'],
+			[ 'raw_route_name' => 'items.attachments','route_name'		=> 'items.index', 'node_name'			=> 'master'],
 			[ 'raw_route_name' => 'items.timestamp','route_name' 		=> 'items.index', 'node_name' 			=> 'master'],
 
 			[ 'raw_route_name' => 'suppliers.index','route_name' 		=> 'suppliers.index', 'node_name' 		=> 'master'],

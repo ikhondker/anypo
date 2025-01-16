@@ -33,10 +33,5 @@
 
 	{{-- <x-tenant.widgets.invoice.payments :invoiceId="$invoice->id" /> --}}
 
-	<script type="text/javascript">
-		function mySubmit() {
-			document.getElementById('frm1').submit();
-		}
-	</script>
 @endsection
 

@@ -21,7 +21,7 @@ return new class extends Migration
 			//$table->boolean('start_date_required')->default(false);
 			$table->boolean('end_date')->default(true);
 			//$table->boolean('end_date_required')->default(false);
-            $table->boolean('currency')->default(true);
+			$table->boolean('currency')->default(true);
 			$table->boolean('supplier_id')->default(true);
 			$table->boolean('supplier_id_required')->default(false);
 			$table->boolean('project_id')->default(true);

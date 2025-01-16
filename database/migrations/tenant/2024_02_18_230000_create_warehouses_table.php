@@ -25,7 +25,7 @@ return new class extends Migration
 			$table->string('website')->nullable();
 			$table->string('email')->nullable();
 			$table->boolean('enable')->default(true);
-            $table->string('text_color')->nullable();
+			$table->string('text_color')->nullable();
 			$table->string('bg_color')->default('primary');
 			$table->string('icon')->nullable();
 			$table->string('ac_receiving')->default('A100101');		// future

@@ -100,8 +100,8 @@ class UserSeeder extends Seeder
 			],
 		];
 
-        // used only form system generated who columns
-        $usersAnonymous = [
+		// used only form system generated who columns
+		$usersAnonymous = [
 			[
 				'id'				=> Str::uuid(),
 				'name'				=> 'ANONYMOUS',
@@ -123,7 +123,7 @@ class UserSeeder extends Seeder
 				'backend'			=> true,
 				'avatar'			=> 'anonymous.png',
 			],
-        ];
+		];
 
 
 		$usersDemo = [
@@ -341,7 +341,7 @@ class UserSeeder extends Seeder
 		];
 
 		User::insert($usersSeeded);
-        User::insert($usersAnonymous);
+		User::insert($usersAnonymous);
 		// TODO Must comment in Production
 		User::insert($usersDemo);
 

@@ -22,7 +22,7 @@ class ExportSeeder extends Seeder
 				'entity' 				=> EntityEnum::PR->value,
 				'name' 					=> 'Purchase Requisition',
 			],
-            [
+			[
 				'entity' 				=> EntityEnum::PRL->value,
 				'name' 					=> 'Purchase Requisition Line',
 			],
@@ -34,7 +34,7 @@ class ExportSeeder extends Seeder
 				'entity' 				=> EntityEnum::POL->value,
 				'name' 					=> 'Purchase Order Line',
 			],
-            [
+			[
 				'entity' 				=> EntityEnum::RECEIPT->value,
 				'name' 					=> 'Receipts',
 			],
@@ -42,7 +42,7 @@ class ExportSeeder extends Seeder
 				'entity' 				=> EntityEnum::INVOICE->value,
 				'name' 					=> 'Invoice',
 			],
-            [
+			[
 				'entity' 				=> EntityEnum::INVOICELINE->value,
 				'name' 					=> 'Invoice Line',
 			],

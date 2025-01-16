@@ -168,6 +168,28 @@ class AttachmentController extends Controller
 						}
 					}
 					break;
+				case EntityEnum::PR->value:
+					$pr = Pr::where('id', $articleId)->get()->firstOrFail();
+					if ($pr === null) {
+						// PR doesn't exist
+						return redirect()->back()->with(['error' => 'Invoice Not Found!']);
+					} else {
+						if ($pr->auth_status <> AuthStatusEnum::DRAFT->value){
+							return redirect()->route('prs.show', $pr->id)->with('error', 'Add attachment is only allowed for DRAFT Requisition.');
+						}
+					}
+				   break;
+				case EntityEnum::PO->value:
+					$po = Po::where('id', $articleId)->get()->firstOrFail();
+					if ($po === null) {
+						// PO doesn't exist
+						return redirect()->back()->with(['error' => 'Invoice Not Found!']);
+					} else {
+						if ($po->auth_status <> AuthStatusEnum::DRAFT->value){
+							return redirect()->route('pos.show', $po->id)->with('error', 'Add attachment is only allowed for DRAFT PO.');
+						}
+					}
+					break;
 				default:
 					return redirect()->back()->with('error', 'Unknown Entity. File Upload Error!');
 				}

@@ -92,6 +92,12 @@ class TicketController extends Controller
 		$email		= auth()->user()->email;
 		$cell		= auth()->user()->cell;
 
+
+		// check if seeded user is creating ticket
+		if (auth()->user()->backend){
+				return redirect()->back()->with(['error' => 'Seeded User can not create ticket from here!']);
+		}
+
 		// create or find user in Landlord if don't exists
 		$landlordUserId = tenancy()->central(function ($tenant) use ($tenant_id, $name, $email, $cell) {
 

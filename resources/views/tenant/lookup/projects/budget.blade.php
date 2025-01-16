@@ -152,11 +152,5 @@
 	</div>
 	<!-- end row -->
 
-	<script type="text/javascript">
-		function mySubmit() {
-			document.getElementById('frm1').submit();
-		}
-	</script>
-
 @endsection
 

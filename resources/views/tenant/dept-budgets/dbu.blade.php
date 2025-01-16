@@ -17,11 +17,6 @@
 
 	<x-tenant.widgets.dbu-dept-budget deptBudgetId={{ $deptBudget->id }}/>
 
-	<script type="text/javascript">
-		function mySubmit() {
-			document.getElementById('frm1').submit();
-		}
-	</script>
 
 @endsection
 

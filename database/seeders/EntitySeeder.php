@@ -105,7 +105,7 @@ class EntitySeeder extends Seeder
 				'route'		 	=> 'aeh',
 				'directory'		=> 'aeh',
 			],
-            [
+			[
 				'entity'		=> 'Ael',
 				'name'			=> 'Accounting Line',
 				'model'			=> 'Ael',

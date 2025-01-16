@@ -80,7 +80,7 @@ class DeptBudgetSeeder extends Seeder
 			],
 		];
 
-        $deptBudget25 = [
+		$deptBudget25 = [
 			[
 				'budget_id'			=> '1003',
 				'dept_id'			=> '1001',
@@ -349,7 +349,7 @@ class DeptBudgetSeeder extends Seeder
 
 		DeptBudget::insert($deptBudget23);
 		DeptBudget::insert($deptBudget24);
-        DeptBudget::insert($deptBudget25);
+		DeptBudget::insert($deptBudget25);
 		//DeptBudget::insert($deptBudget23Dummy);
 		//DeptBudget::insert($deptBudget24Dummy);
 
