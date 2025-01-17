@@ -176,7 +176,6 @@ class User extends Authenticatable implements MustVerifyEmail
 		}
 	}
 
-
 	public function isSupport()
 	{
 
@@ -386,6 +385,11 @@ class User extends Authenticatable implements MustVerifyEmail
 			->where('role', UserRoleEnum::ADMIN->value );
 	}
 
+	/*
+	|-----------------------------------------------------------------------------
+	| ???   																	 +
+	|-----------------------------------------------------------------------------
+	*/
 
 
 	/* ---------------- HasMany ---------------------- */
@@ -434,7 +438,6 @@ class User extends Authenticatable implements MustVerifyEmail
 	public function invoices(): HasMany {
 		return $this->hasMany(Invoice::class,'owner_id');
 	}
-
 
 	public function payments(): HasMany {
 		return $this->hasMany(Payment::class,'owner_id');

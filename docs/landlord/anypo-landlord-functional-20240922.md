@@ -10,12 +10,12 @@
 8. separate notification TicketCreated.php for user and support P2
 
 
-
 # 4. Functional Details
 ====================================================================
 1. new tenat is create form two places HomeController.Success and TenantController.store
 2. Only admin  user can be add add-on
 3. check if can mere checkout create row both form check out and buy add-on
+4. backend user will have account_id. to identify backend user user backend colum form user tabale
 4. Generate and Pay invoice by end admin user
 ~~~blade
 	<a class="btn btn-primary btn-sm" href="{{ route('invoices.generate') }}">

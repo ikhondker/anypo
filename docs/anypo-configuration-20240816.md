@@ -22,7 +22,7 @@ https://www.brevo.com/pricing/
 15. 0.15 landlord.setup->config, landlord attachment and landlord testing, tenant action, route rearrange etc
 16. 0.16 PR and PO view rewrite, notes, actions, info etc, before clean, before tenant testing start
 17. 0.17 move back project to lookup, po by supplier, po by project, separate profile, sw2 move to custom.js, Aeh, Ael ErrorLog, before discarding front theme
-18. 0.18 discard front use single appstack theme, CustomException, dsicss all routes, split helper into landlord and tenant
+18. 0.18 discard front use single appstack theme, CustomException, discuss all routes, split helper into landlord and tenant
 19. 0.19 Major Update. Removed Front4.3.1 theme from Landlord. Tenant Theme AppsStack upgraded from 3.4.1 to 4.0.0. Template object moved to share. Added Budget Revision history, Before clean.
 20. 0.20 cleaned, attachment description, move attachment to root, rewrite pr and po , add invoiceLines, component argument rename form id, InvoiceLines, direct creation invoice/pol/receipt, report id to code, new reports
 21. 0.21 float(15,2) to decimal(19,4) , user_id and attachment_id form integer to uuid, upload attachments in attachment page , tenant db name to uid, pdf Ticket, npm recompile, sweetalert2 customization, landlord logo, reorganized Landlord menus, add SYSADMIN Role,
@@ -31,7 +31,7 @@ https://www.brevo.com/pricing/
 24. 0.24 Rearrange invoice & payment into single AkkControler, Reject PR/PO,  ticket first_response_at , last_response_at,  report level pdf security. ticket topics, and pivot
 25. 0.25 demo request etc, bug request, ticket Topics, ReplyTemplate, ItemCategory add, UploadItem
 26. 0.26 Upgrade all component to latest, Timestamp action, testing, LandlordSync, remove FontAwsome, demo limitations, seeded to backend, status icon landlord and tenant, rewrite export using phpspreadsheet pkg, merge all export in export Controller and parameterized
-26. 0.27 [ongoing] Entity lowercase and syb with Model Name, bg_color form dept and budget, others,who colum fixed, anynmouse add, move EnityEbum ad merge, re-write documentation
+26. 0.27 [ongoing] Entity lowercase and syb with Model Name, bg_color form dept and budget, others,who column fixed, anonymous add, move EnityEbum ad merge, re-write documentation, merge file attachments, installation invoice and amc invoice
 
 
 # 12. Key Configuration
