@@ -4,10 +4,25 @@
 	<li class="breadcrumb-item active">All Invoices</li>
 @endsection
 
+{{-- <x-landlord.page-header>
+		@slot('title')
+			All Invoices
+		@endslot
+		@slot('buttons')
+				<a href="{{ route('invoices.create') }}" class="btn btn-primary me-1"><i data-lucide="plus"></i> New Invoice</a>
+
+		@endslot
+</x-landlord.page-header> --}}
+
+
 @section('content')
 
 	@if (auth()->user()->account_id <> '')
 		<a href="{{ route('invoices.index') }}" class="btn btn-primary float-end mt-n1"><i data-lucide="plus"></i> Generate Invoice **</a>
+	@endif
+
+    @if (auth()->user()->backend)
+        <a href="{{ route('invoices.create') }}" class="btn btn-primary float-end  me-1"><i data-lucide="plus"></i> Create Service Invoice</a>
 	@endif
 
 	<h1 class="h3 mb-3">All Invoices</h1>

@@ -24,8 +24,9 @@ enum InvoiceTypeEnum:string{
 	case SUBSCRIPTION	= 'subscription';
 	case ADDON			= 'addon';
 	case SETUP			= 'setup';
-	case CONSULTANCY	= 'consultancy';
 	case SUPPORT		= 'support';
+	case AMC		    = 'amc';// Future
+	//case CONSULTANCY	= 'consultancy';
 	case ADVANCE		= 'advance';
-	case ARCHIVE		= 'archive';
+	//case ARCHIVE		= 'archive';
 }

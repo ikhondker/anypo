@@ -176,6 +176,10 @@ class AkkController extends Controller
 		// create checkout row for buy
 		//$checkout_id = self::createCheckoutForBuy($session->id,$request->input('site'),$request->input('account_name'),$request->input('email'));
 		// $type, $site ='', $account_name ='', $email ='', $account_id, $product_id, $period, $invoice_id
+
+
+
+
 		$checkout_id = self::insertCheckout(
 							InvoiceTypeEnum::SIGNUP->value,
 							$request->input('site'),
@@ -187,6 +191,17 @@ class AkkController extends Controller
 							''
 						);
 		$checkout	= Checkout::where('id', $checkout_id )->first();
+
+        // check if user has asked intial configuratsion
+        if($request->has('installation')){
+			// Checkbox checked
+            $checkout->installation	= true;
+            $checkout->save();
+            // LATER: notify admin to schedule appointment, aif purchase complete
+
+		}
+
+
 		Log::debug('landlord.AkkController.checkoutStripe created checkout_id = '. $checkout_id);
 
 		// set session_id
@@ -343,9 +358,9 @@ class AkkController extends Controller
 				$checkout->start_date		= $account->end_date;						// < ===============
 				$checkout->end_date			= $account->end_date->addMonth($period);	// < ===============
 				break;
-			case InvoiceTypeEnum::ARCHIVE->value:
-				// TODOP2
-				break;
+			// TODOP2
+			// case InvoiceTypeEnum::ARCHIVE->value:
+			// 	break;
 			default:
 				Log::Error("landlord.AkkController.insertCheckout Invalid transaction type!");
 				return 0;

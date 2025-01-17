@@ -212,7 +212,7 @@
 										<div class="card-header cursor-pointer" id="supportOne" data-bs-toggle="collapse" data-bs-target="#collapseOne"
 											aria-expanded="true" aria-controls="collapseOne">
 											<h6 class="mb-0">
-												How do I get help with this SAAS Service?
+												I need you to configure my site? What to do?
 											</h6>
 										</div>
 										<div id="collapseOne" class="collapse show" aria-labelledby="supportOne" data-bs-parent="#accordionSupport">

@@ -39,9 +39,10 @@ use App\Helpers\EventLog;
 // Notification
 use Notification;
 use App\Notifications\Landlord\UserCreated;
-use App\Notifications\Landlord\InvoiceCreated;
-use App\Notifications\Landlord\InvoicePaid;
+//use App\Notifications\Landlord\InvoiceCreated;
+//use App\Notifications\Landlord\InvoicePaid;
 use App\Notifications\Landlord\ServicePurchased;
+use App\Notifications\Landlord\SetupNeeded;
 use App\Notifications\Landlord\FirstTenantAdminCreated;
 
 // Event
@@ -162,6 +163,11 @@ class CreateTenant implements ShouldQueue
 		$system 	= User::where('id', $config->system_user_id)->first();
 		$system->notify(new ServicePurchased($system, $account));
 
+		// Send notification if installation is requested
+		if($checkout->setup){
+			$system->notify(new SetupNeeded($system, $account));
+		}
+
 		// copy logo and avatar default files Not needed after AWS CDN
 		// Log::debug('7. Calling copyCheckoutFiles');
 		// $service_id = self::copyCheckoutFiles($this->checkout_id);
@@ -279,6 +285,11 @@ class CreateTenant implements ShouldQueue
 		$account->mnth				= $checkout->mnth;
 		$account->user				= $checkout->user;
 		$account->gb				= $checkout->gb;
+
+		// buyer requested installation
+		if ($checkout->setup){
+			$account->setup	= now();
+		}
 
 		$account->monthly_fee		= $checkout->price;
 		$account->monthly_addon		= 0;

@@ -39,7 +39,7 @@ return new class extends Migration
 			$table->decimal('tax', 19, 2)->default(0);
 			$table->decimal('vat', 19, 2)->default(0);
 			$table->decimal('price', 19, 2)->default(0);
-			$table->boolean('installation')->default(false);
+			$table->boolean('setup')->default(false);
 			$table->integer('mnth')->default(1);
 			$table->integer('user')->default(3);
 			$table->integer('gb')->default(5);

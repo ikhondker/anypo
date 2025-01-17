@@ -91,7 +91,7 @@
 					<tbody>
 						<tr>
 							<td>{!! nl2br($invoice->notes) !!}</td>
-							<td>1</td>
+							<td>{{ $invoice->qty }}</td>
 							<td>${{ number_format($invoice->amount,2) }}</td>
 							<td class="text-end">${{ number_format($invoice->amount,2) }}</td>
 						</tr>

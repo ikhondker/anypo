@@ -19,7 +19,7 @@
 
 								<div class="row g-3">
 									<div class="col-12">
-										<label for="site" class="form-label">Site Name*</label>
+										<label for="site" class="form-label">Site Name* :</label>
 										<div class="input-group has-validation">
 											{{-- <input type="text" class="form-control form-control-sm" id="site" value="XYZ" placeholder="sitename"> --}}
 											<input type="text" class="form-control form-control-sm" name="site"
@@ -33,7 +33,7 @@
 									</div>
 
 									<div class="col-12">
-										<label for="email" class="form-label">Business Email*</label>
+										<label for="email" class="form-label">Business Email* :</label>
 										@auth
 											<input type="email" class="form-control form-control-sm" name="email"
 												id="email" placeholder="you@example.com"
@@ -57,7 +57,7 @@
 									</div>
 
 									<div class="col-sm-12">
-										<label for="name" class="form-label">Your/Company Name*</label>
+										<label for="name" class="form-label">Your/Company Name* :</label>
 										@auth
 											<input type="text" class="form-control form-control-sm" name="account_name"
 												id="account_name" placeholder="John Doe"
@@ -77,12 +77,23 @@
 											@enderror
 										@endguest
 									</div>
-
-
 								</div>
 
 								<hr class="my-4">
+								<h4 class="mb-3">Need initial configuration service?</h4>
+								<div class="form-check align-items-center">
+									<input id="admin" type="checkbox" class="form-check-input" value="user-role" name="installation">
+									<label class="form-check-label text-small" for="customControlInline"><b>Yes! Configure it for me</b></label>
+									<span class="d-block small text-secondary">
+										$35/Hr. Get it configured by the our team.
+										Generally takes 2/3 hour for a SME.	We will communicate with you within 6 hrs, to configure your site, after you have purchased this service.
+                                        <br>
+                                        You will be billed later, separately, after your application is configured and in-use.
+									</span>
+								</div>
 
+
+								<hr class="my-4">
 								<h4 class="mb-3">Payment</h4>
 
 								<span class="text-muted certificate-text"><i class="fa fa-lock"></i> Your transaction is

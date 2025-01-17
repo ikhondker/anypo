@@ -24,10 +24,7 @@
 						<x-landlord.create.name/>
 					</tbody>
 				</table>
-
 				<button class="confirm-delete btn btn-danger">User Delete</button>
-
-
 			</form>
 
 

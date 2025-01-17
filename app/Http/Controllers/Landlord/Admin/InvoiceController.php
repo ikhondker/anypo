@@ -75,19 +75,7 @@ class InvoiceController extends Controller
 		return view('landlord.admin.invoices.index', compact('invoices'));
 	}
 
-
-	/**
-	 * Show the form for creating a new resource.
-	 */
-	public function create()
-	{
-		abort(403);
-		// TODOP2 Manual Invoice Create TODOP2
-		//$this->authorize('create', Invoice::class);
-		//return view('landlord.admin.invoices.create');
-	}
-
-	/**
+    /**
 	 * Display a listing of the resource.
 	 *
 	 * @return \Illuminate\Http\Response
@@ -103,13 +91,27 @@ class InvoiceController extends Controller
 			$invoices = Invoice::with('account')->with('status')->orderBy('id', 'DESC')->paginate(10);
 		} else {
 			$invoices = Invoice::with('account')->with('status')
-			->where('account_id',$account->id)
-			->orderBy('id', 'DESC')->paginate(10);
+			    ->where('account_id',$account->id)
+			    ->orderBy('id', 'DESC')->paginate(10);
 		}
-
-
 		return view('landlord.admin.invoices.all', compact('invoices'));
 	}
+
+
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function create()
+	{
+		// three type setup, amc, support
+        // not subscription
+        //abort(403);
+		// Manual Invoice Create
+		//$this->authorize('create', Invoice::class);
+		return view('landlord.admin.invoices.create');
+	}
+
+
 
 	/**
 	 * Show the form for creating a new resource.
