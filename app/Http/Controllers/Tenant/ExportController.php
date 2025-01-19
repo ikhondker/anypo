@@ -96,7 +96,7 @@ class ExportController extends Controller
 		if (request('term')) {
 			$exports->where('name', 'Like', '%'.request('term').'%');
 		}
-		if(auth()->user()->role->value == UserRoleEnum::SYSTEM->value) {
+		if(auth()->user()->role->value == UserRoleEnum::SYS->value) {
 			$exports = $exports->orderBy('order_by1', 'ASC')->orderBy('order_by2', 'ASC')->paginate(100);
 			return view('tenant.exports.all', compact('exports'));
 		} else {

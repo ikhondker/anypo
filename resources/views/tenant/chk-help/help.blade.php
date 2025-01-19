@@ -11,7 +11,7 @@
 			Documentation
 		@endslot
 		@slot('buttons')
-			@if ( auth()->user()->role == UserRoleEnum::SYSTEM->value)
+			@if ( auth()->user()->role == UserRoleEnum::SYS->value)
 				<a href="tel:{{ config('akk.SUPPORT_PHONE_NO')}}" class="btn btn-danger float-end me-2"><i data-lucide="phone-outgoing"></i> Call support {{ config('akk.SUPPORT_PHONE_NO') }}</a>
 				<a href="{{ route('get-started') }}" class="btn btn-danger float-end me-1"><i data-lucide="phone-outgoing"></i> Get Started **</a>
 			@endif

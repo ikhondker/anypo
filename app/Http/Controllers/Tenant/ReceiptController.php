@@ -90,7 +90,7 @@ class ReceiptController extends Controller
 			case UserRoleEnum::BUYER->value:
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
-			case UserRoleEnum::SYSTEM->value:
+			case UserRoleEnum::SYS->value:
 				// buyer can see all payment of all his po's
 				$receipts = $receipts->with('pol')->with('warehouse')->with('receiver')->with('status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;

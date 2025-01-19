@@ -68,7 +68,7 @@ class AehController extends Controller
 			case UserRoleEnum::BUYER->value:
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
-			case UserRoleEnum::SYSTEM->value:
+			case UserRoleEnum::SYS->value:
 				$aehs = $aehs->orderBy('id', 'DESC');
 				break;
 			default:

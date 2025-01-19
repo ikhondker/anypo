@@ -81,7 +81,7 @@ class UserController extends Controller
 		//Log::debug("tenant.user.index role=".auth()->user()->role->value);
 
 		//$users = User::latest()->orderBy('id','desc')->paginate(10);
-		if(auth()->user()->role->value == UserRoleEnum::SYSTEM->value) {
+		if(auth()->user()->role->value == UserRoleEnum::SYS->value) {
 			$users = $users->with('dept')->with('designation')->orderBy('id', 'DESC')->paginate(10);
 		} else {
 			$users = $users->with('dept')->with('designation')->TenantAll()->orderBy('id', 'DESC')->paginate(10);
@@ -97,7 +97,7 @@ class UserController extends Controller
 	{
 		$this->authorize('viewAny', User::class);
 
-		if(auth()->user()->role->value == UserRoleEnum::SYSTEM->value) {
+		if(auth()->user()->role->value == UserRoleEnum::SYS->value) {
 			$users = User::with('dept')->with('designation')->orderBy('name', 'ASC')->paginate(25);
 		} else {
 			$users = User::with('dept')->with('designation')->TenantAll()->orderBy('id', 'DESC')->paginate(10);
@@ -461,7 +461,7 @@ class UserController extends Controller
 		$this->authorize('impersonate', User::class);
 
 		// stop impersonate to system
-		if ($user->role->value == UserRoleEnum::SYSTEM->value) {
+		if ($user->role->value == UserRoleEnum::SYS->value) {
 			return redirect()->route('users.all')->with('error','You can not impersonate system!');
 		}
 

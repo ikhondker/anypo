@@ -260,11 +260,11 @@ class MenuSeeder extends Seeder
 			* ==================================================================================
 			*/
 			// TODO
-			[ 'raw_route_name' => 'exports.index','route_name' 			=> 'exports.index', 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'exports.show','route_name' 			=> 'exports.index', 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'exports.edit','route_name' 			=> 'exports.index', 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'exports.create','route_name' 		=> 'exports.index', 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'exports.timestamp','route_name' 		=> 'exports.index', 'node_name' 	=> 'system'],
+			[ 'raw_route_name' => 'exports.index','route_name' 			=> 'exports.index', 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'exports.show','route_name' 			=> 'exports.index', 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'exports.edit','route_name' 			=> 'exports.index', 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'exports.create','route_name' 		=> 'exports.index', 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'exports.timestamp','route_name' 		=> 'exports.index', 'node_name' 	=> 'sys'],
 
 
 			/**
@@ -302,75 +302,75 @@ class MenuSeeder extends Seeder
 
 			/**
 			* ==================================================================================
-			* 8. System
+			* 8. sys
 			* ==================================================================================
 			*/
 
-			[ 'raw_route_name' => 'notifications.full','route_name' 	=> 'notifications.full', 'node_name'=> 'system'],
+			[ 'raw_route_name' => 'notifications.full','route_name' 	=> 'notifications.full', 'node_name'=> 'sys'],
 
-			[ 'raw_route_name' => 'tables.index','route_name' 			=> 'tables.index', 'node_name' 		=> 'system'],
+			[ 'raw_route_name' => 'tables.index','route_name' 			=> 'tables.index', 'node_name' 		=> 'sys'],
 
-			[ 'raw_route_name' => 'cps.index','route_name' 				=> 'cps.index', 'node_name' 		=> 'system'],
-			[ 'raw_route_name' => 'cps.changelog','route_name' 			=> 'cps.changelog', 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'cps.ui','route_name' 				=> 'cps.index', 'node_name'			=> 'system'],
-			[ 'raw_route_name' => 'cps.timestamp','route_name' 			=> 'cps.index', 'node_name' 		=> 'system'],
+			[ 'raw_route_name' => 'cps.index','route_name' 				=> 'cps.index', 'node_name' 		=> 'sys'],
+			[ 'raw_route_name' => 'cps.changelog','route_name' 			=> 'cps.changelog', 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'cps.ui','route_name' 				=> 'cps.index', 'node_name'			=> 'sys'],
+			[ 'raw_route_name' => 'cps.timestamp','route_name' 			=> 'cps.index', 'node_name' 		=> 'sys'],
 
-			[ 'raw_route_name' => 'activities.index','route_name' 		=> 'activities.index', 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'activities.show','route_name' 		=> 'activities.index', 'node_name' 	=> 'system'],
+			[ 'raw_route_name' => 'activities.index','route_name' 		=> 'activities.index', 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'activities.show','route_name' 		=> 'activities.index', 'node_name' 	=> 'sys'],
 
-			[ 'raw_route_name' => 'attachments.all','route_name' 		=> 'attachments.all', 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'attachments.show','route_name' 		=> 'attachments.all', 'node_name' 	=> 'system'],
+			[ 'raw_route_name' => 'attachments.all','route_name' 		=> 'attachments.all', 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'attachments.show','route_name' 		=> 'attachments.all', 'node_name' 	=> 'sys'],
 
-			[ 'raw_route_name' => 'menus.index','route_name' 			=> 'menus.index', 'node_name' 		=> 'system'],
-			[ 'raw_route_name' => 'menus.show','route_name' 			=> 'menus.index', 'node_name' 		=> 'system'],
-			[ 'raw_route_name' => 'menus.edit','route_name' 			=> 'menus.index', 'node_name' 		=> 'system'],
-			[ 'raw_route_name' => 'menus.create','route_name' 			=> 'menus.index', 'node_name' 		=> 'system'],
+			[ 'raw_route_name' => 'menus.index','route_name' 			=> 'menus.index', 'node_name' 		=> 'sys'],
+			[ 'raw_route_name' => 'menus.show','route_name' 			=> 'menus.index', 'node_name' 		=> 'sys'],
+			[ 'raw_route_name' => 'menus.edit','route_name' 			=> 'menus.index', 'node_name' 		=> 'sys'],
+			[ 'raw_route_name' => 'menus.create','route_name' 			=> 'menus.index', 'node_name' 		=> 'sys'],
 
-			[ 'raw_route_name' => 'statuses.index','route_name' 		=> 'statuses.index', 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'statuses.show','route_name' 			=> 'statuses.index', 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'statuses.edit','route_name' 			=> 'statuses.index', 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'statuses.create','route_name' 		=> 'statuses.index', 'node_name' 	=> 'system'],
+			[ 'raw_route_name' => 'statuses.index','route_name' 		=> 'statuses.index', 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'statuses.show','route_name' 			=> 'statuses.index', 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'statuses.edit','route_name' 			=> 'statuses.index', 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'statuses.create','route_name' 		=> 'statuses.index', 'node_name' 	=> 'sys'],
 
-			[ 'raw_route_name' => 'entities.index','route_name' 		=> 'entities.index', 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'entities.show','route_name' 			=> 'entities.index', 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'entities.edit','route_name' 			=> 'entities.index', 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'entities.create','route_name' 		=> 'entities.index', 'node_name' 	=> 'system'],
+			[ 'raw_route_name' => 'entities.index','route_name' 		=> 'entities.index', 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'entities.show','route_name' 			=> 'entities.index', 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'entities.edit','route_name' 			=> 'entities.index', 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'entities.create','route_name' 		=> 'entities.index', 'node_name' 	=> 'sys'],
 
-			[ 'raw_route_name' => 'custom-errors.index','route_name' 	=> 'custom-errors.index', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'custom-errors.show','route_name' 	=> 'custom-errors.index', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'custom-errors.edit','route_name' 	=> 'custom-errors.index', 'node_name' => 'system'],
-			[ 'raw_route_name' => 'custom-errors.create','route_name' 	=> 'custom-errors.index', 'node_name' => 'system'],
+			[ 'raw_route_name' => 'custom-errors.index','route_name' 	=> 'custom-errors.index', 'node_name' => 'sys'],
+			[ 'raw_route_name' => 'custom-errors.show','route_name' 	=> 'custom-errors.index', 'node_name' => 'sys'],
+			[ 'raw_route_name' => 'custom-errors.edit','route_name' 	=> 'custom-errors.index', 'node_name' => 'sys'],
+			[ 'raw_route_name' => 'custom-errors.create','route_name' 	=> 'custom-errors.index', 'node_name' => 'sys'],
 
-			[ 'raw_route_name' => 'groups.index','route_name' 			=> 'groups.index', 'node_name' 		=> 'system'],
-			[ 'raw_route_name' => 'groups.show','route_name' 			=> 'groups.index', 'node_name' 		=> 'system'],
-			[ 'raw_route_name' => 'groups.edit','route_name' 			=> 'groups.index', 'node_name' 		=> 'system'],
-			[ 'raw_route_name' => 'groups.create','route_name' 			=> 'groups.index', 'node_name' 		=> 'system'],
+			[ 'raw_route_name' => 'groups.index','route_name' 			=> 'groups.index', 'node_name' 		=> 'sys'],
+			[ 'raw_route_name' => 'groups.show','route_name' 			=> 'groups.index', 'node_name' 		=> 'sys'],
+			[ 'raw_route_name' => 'groups.edit','route_name' 			=> 'groups.index', 'node_name' 		=> 'sys'],
+			[ 'raw_route_name' => 'groups.create','route_name' 			=> 'groups.index', 'node_name' 		=> 'sys'],
 
-			[ 'raw_route_name' => 'countries.index','route_name' 		=> 'countries.index', 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'countries.show','route_name' 		=> 'countries.index', 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'countries.edit','route_name' 		=> 'countries.index', 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'countries.create','route_name' 		=> 'countries.index', 'node_name' 	=> 'system'],
+			[ 'raw_route_name' => 'countries.index','route_name' 		=> 'countries.index', 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'countries.show','route_name' 		=> 'countries.index', 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'countries.edit','route_name' 		=> 'countries.index', 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'countries.create','route_name' 		=> 'countries.index', 'node_name' 	=> 'sys'],
 
-			[ 'raw_route_name' => 'templates.index','route_name' 		=> 'templates.index', 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'templates.show','route_name' 		=> 'templates.index', 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'templates.edit','route_name' 		=> 'templates.index', 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'templates.create','route_name' 		=> 'templates.index', 'node_name' 	=> 'system'],
+			[ 'raw_route_name' => 'templates.index','route_name' 		=> 'templates.index', 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'templates.show','route_name' 		=> 'templates.index', 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'templates.edit','route_name' 		=> 'templates.index', 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'templates.create','route_name' 		=> 'templates.index', 'node_name' 	=> 'sys'],
 
-			[ 'raw_route_name' => 'aehs.index','route_name'				=> 'aehs.index', 'node_name' 		=> 'system'],
-			[ 'raw_route_name' => 'aehs.show','route_name'				=> 'aehs.index', 'node_name' 		=> 'system'],
+			[ 'raw_route_name' => 'aehs.index','route_name'				=> 'aehs.index', 'node_name' 		=> 'sys'],
+			[ 'raw_route_name' => 'aehs.show','route_name'				=> 'aehs.index', 'node_name' 		=> 'sys'],
 
 
 			/**
 			* ==================================================================================
-			* 9. Special (system)
+			* 9. Special (sys)
 			* ==================================================================================
 			*/
 
-			[ 'raw_route_name' => 'prls.index','route_name' 			=> 'prls.index', 'node_name' 		=> 'system'],
-			[ 'raw_route_name' => 'prls.show','route_name' 				=> 'prls.index', 'node_name' 		=> 'system'],
+			[ 'raw_route_name' => 'prls.index','route_name' 			=> 'prls.index', 'node_name' 		=> 'sys'],
+			[ 'raw_route_name' => 'prls.show','route_name' 				=> 'prls.index', 'node_name' 		=> 'sys'],
 
-			// [ 'raw_route_name' => 'aels.index','route_name' 			=> 'aels.index', 'node_name' 		=> 'system'],
-			// [ 'raw_route_name' => 'aels.show','route_name' 				=> 'aels.index', 'node_name' 		=> 'system'],
+			// [ 'raw_route_name' => 'aels.index','route_name' 			=> 'aels.index', 'node_name' 		=> 'sys'],
+			// [ 'raw_route_name' => 'aels.show','route_name' 				=> 'aels.index', 'node_name' 		=> 'sys'],
 
 
 

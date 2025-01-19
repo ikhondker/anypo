@@ -21,8 +21,7 @@ class UserSeeder extends Seeder
 	public function run(): void
 	{
 
-
-		/*
+        /*
 		|-----------------------------------------------------------------------------
 		| Tenant																	 +
 		|-----------------------------------------------------------------------------
@@ -37,11 +36,11 @@ class UserSeeder extends Seeder
 		$usersSeeded = [
 			[
 				'id'				=> Str::uuid(),
-				'name'				=> 'SYSTEM',
-				'email'				=> config('akk.SYSTEM_EMAIL_ID'),	// Don't change. Used in Seeder
+				'name'				=> 'SYS',
+				'email'				=> config('akk.SYS_EMAIL_ID'),	// Don't change. Used in Seeder
 				'designation_id'	=> '1001',
 				'dept_id'			=> '1001',
-				'role'				=> 'system',
+				'role'				=> 'sys',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
 				'remember_token'	=> Str::random(10),
@@ -54,15 +53,15 @@ class UserSeeder extends Seeder
 				'linkedin'			=> $faker->url,
 				'enable'			=> true,
 				'backend'			=> true,
-				'avatar'			=> 'system.png',
+				'avatar'			=> 'sys.png',
 			],
 			[
 				'id'				=> Str::uuid(),
-				'name'				=> 'Systems Admin',
-				'email'				=> 'sysadmin@anypo.net',
+				'name'				=> 'Systems',
+				'email'				=> 'system@anypo.net',
 				'designation_id'	=> '1001',
 				'dept_id'			=> '1001',
-				'role'				=> 'sysadmin',
+				'role'				=> 'system',
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
 				'remember_token'	=> Str::random(10),
@@ -124,7 +123,6 @@ class UserSeeder extends Seeder
 				'avatar'			=> 'anonymous.png',
 			],
 		];
-
 
 		$usersDemo = [
 			[

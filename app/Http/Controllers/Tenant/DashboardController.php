@@ -104,7 +104,7 @@ class DashboardController extends Controller
 			case UserRoleEnum::ADMIN->value:
 				return self::adminDashboard();
 				break;
-			case UserRoleEnum::SYSTEM->value:
+			case UserRoleEnum::SYS->value:
 				return self::systemDashboard();
 				break;
 			default:

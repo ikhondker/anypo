@@ -449,12 +449,12 @@ class UserController extends Controller
 		EventLog::event('user', $user->id, 'impersonate', 'id', $user->id);
 
 		if ($user->id <= 1008 ) {
-			if( auth()->user()->role->value <> UserRoleEnum::SYSTEM->value){
+			if( auth()->user()->role->value <> UserRoleEnum::SYS->value){
 				return redirect()->route('users.all')->with('error','You can not impersonate any seeded users!');
 			}
 		}
 
-		if ($user->role->value == UserRoleEnum::SYSTEM->value) {
+		if ($user->role->value == UserRoleEnum::SYS->value) {
 			return redirect()->route('users.all')->with('error','You can not impersonate system!');
 		}
 

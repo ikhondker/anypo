@@ -15,7 +15,7 @@ class ConfigSeeder extends Seeder
 	public function run(): void
 	{
 		Config::truncate();
-		$system = User::where('email', config('bo.SYSTEM_EMAIL_ID'))->firstOrFail();
+		$sys = User::where('email', config('bo.SYS_EMAIL_ID'))->firstOrFail();
 
 		$configs = [
 				[
@@ -34,9 +34,9 @@ class ConfigSeeder extends Seeder
 					'banner_message'	=> 'This is a test public message. Will be shown only in all dashboards, when enabled.',
 					'facebook'			=> 'https://www.facebook.com/my.anyponet',
 					'linkedin'			=> 'https://www.linkedin.com/company/anypo-net',
-					'system_user_id'	=> $system->id,
-					'created_by'		=> $system->id,
-					'updated_by'		=> $system->id,
+					'sys_user_id'	    => $sys->id,
+					'created_by'		=> $sys->id,
+					'updated_by'		=> $sys->id,
 				],
 			];
 

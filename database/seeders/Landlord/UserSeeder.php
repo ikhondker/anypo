@@ -29,13 +29,15 @@ class UserSeeder extends Seeder
 		//User::factory()->count(10)->create();
 		$faker = app(Generator::class);
 		//User::truncate();
+        //  config('bo.MASTER_ACCOUNT_ID')
 
 		$seededUsers = [
 			[
 				'id'				=> Str::uuid(),
-				'name'				=> 'SYSTEM',
-				'email'				=> config('bo.SYSTEM_EMAIL_ID'),
-				'role'				=> 'system',
+				'name'				=> 'SYS',
+				'email'				=> config('bo.SYS_EMAIL_ID'),
+				'role'				=> 'sys',
+                'account_id'        => config('bo.MASTER_ACCOUNT_ID'),
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
 				'remember_token'	=> Str::random(10),
@@ -51,9 +53,10 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id'				=> Str::uuid(),
-				'name'				=> 'System Admin',
-				'email'				=> 'sysadmin@anypo.net',
-				'role'				=> 'sysadmin',
+				'name'				=> 'System',
+				'email'				=> 'system@anypo.net',
+				'role'				=> 'system',
+                'account_id'        => config('bo.MASTER_ACCOUNT_ID'),
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
 				'remember_token'	=> Str::random(10),
@@ -72,6 +75,7 @@ class UserSeeder extends Seeder
 				'name'				=> 'Support Manager',
 				'email'				=> config('bo.SUPPORT_GROUP_EMAIL_ID'),
 				'role'				=> 'supervisor',
+                'account_id'        => config('bo.MASTER_ACCOUNT_ID'),
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
 				'remember_token'	=> Str::random(10),
@@ -87,9 +91,10 @@ class UserSeeder extends Seeder
 			],
 			[
 				'id'				=> Str::uuid(),
-				'name'				=> 'Guest',
-				'email'				=> 'guest@anypo.net',
+				'name'				=> 'ANONYMOUS',
+                'email'				=> config('akk.ANONYMOUS_EMAIL_ID'),	// Don't change. Used in Seeder
 				'role'				=> 'guest',
+                'account_id'        => config('bo.MASTER_ACCOUNT_ID'),
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
 				'remember_token'	=> Str::random(10),
@@ -108,6 +113,7 @@ class UserSeeder extends Seeder
 				'name'				=> 'Accounts Manager',
 				'email'				=> 'accounts@anypo.net',
 				'role'				=> 'accounts',
+                'account_id'        => config('bo.MASTER_ACCOUNT_ID'),
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
 				'remember_token'	=> Str::random(10),
@@ -126,6 +132,7 @@ class UserSeeder extends Seeder
 				'name'				=> 'Support Agent 1',
 				'email'				=> 'agent1@anypo.net',
 				'role'				=> 'support',
+                'account_id'        => config('bo.MASTER_ACCOUNT_ID'),
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
 				'remember_token'	=> Str::random(10),
@@ -144,6 +151,7 @@ class UserSeeder extends Seeder
 				'name'				=> 'Support Agent 2',
 				'email'				=> 'agent2@anypo.net',
 				'role'				=> 'support',
+                'account_id'        => config('bo.MASTER_ACCOUNT_ID'),
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
 				'remember_token'	=> Str::random(10),
@@ -162,6 +170,7 @@ class UserSeeder extends Seeder
 				'name'				=> 'Developer 1',
 				'email'				=> 'dev1@anypo.net',
 				'role'				=> 'developer',
+                'account_id'        => config('bo.MASTER_ACCOUNT_ID'),
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
 				'remember_token'	=> Str::random(10),
@@ -180,6 +189,7 @@ class UserSeeder extends Seeder
 				'name'				=> 'Developer 2',
 				'email'				=> 'dev2@anypo.net',
 				'role'				=> 'developer',
+                'account_id'        => config('bo.MASTER_ACCOUNT_ID'),
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
 				'remember_token'	=> Str::random(10),
@@ -194,6 +204,32 @@ class UserSeeder extends Seeder
 				'backend'			=> true,
 			],
 		];
+
+        		// used only form system generated who columns
+		$usersAnonymous = [
+			[
+				'id'				=> Str::uuid(),
+				'name'				=> 'ANONYMOUS',
+				'email'				=> config('akk.ANONYMOUS_EMAIL_ID'),	// Don't change. Used in Seeder
+				'designation_id'	=> '1001',
+				'dept_id'			=> '1001',
+				'role'				=> 'guest',
+				//'email_verified_at' => '',
+				'password'			=> bcrypt('password') , // password
+				'remember_token'	=> '',
+				'cell'				=> '01911358620',
+				'address1'			=> $faker->address,
+				'address2'			=> $faker->address,
+				'city'				=> $faker->city,
+				'zip'				=> $faker->postcode,
+				'facebook'			=> $faker->url,
+				'linkedin'			=> $faker->url,
+				'enable'			=> false,
+				'backend'			=> true,
+				'avatar'			=> 'anonymous.png',
+			],
+		];
+
 
 		/*
 		$demoUsers = [

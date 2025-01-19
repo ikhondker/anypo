@@ -7,7 +7,10 @@ use Illuminate\Database\Seeder;
 
 use App\Models\User;
 use App\Models\Landlord\Account;
-
+use Str;
+// IQBAL
+use Faker\Generator;
+use Carbon\Carbon;
 
 class AccountSeeder extends Seeder
 {
@@ -16,7 +19,40 @@ class AccountSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-		Account::factory()->count(2)->create();
+		$faker = app(Generator::class);
+		//Account::factory()->count(2)->create();
+		// get system user id
+		$sys = User::where('email', config('bo.SYS_EMAIL_ID'))->firstOrFail();
+
+		$accounts = [
+			[
+				'id'				=> '1001',
+				'name'				=> config('app.name'),
+				'site'				=> 'master',
+				'address1'			=> $faker->address,
+				'address2'			=> $faker->address,
+				'city'				=> $faker->city,
+				'state'				=> $faker->stateAbbr,
+				'zip'				=> $faker->postcode,
+				'owner_id'			=> $sys->id,
+				'primary_product_id'=> '1001',
+				'start_date'		=> Carbon::parse('2025-01-01'),
+				'end_date'			=> Carbon::parse('2035-12-31'),
+				'last_bill_date'	=> null ,
+				'expired_at' 		=> null ,
+//				'start_date'		=> $faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = null),
+//				'end_date'			=> $faker->dateTimeBetween($startDate = 'now', $endDate = '1 years', $timezone = null),
+//				'last_bill_date'	=> $faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = null),
+//				'expired_at' 		=> $faker->dateTimeBetween($startDate = 'now', $endDate = '1 years', $timezone = null),
+				'website'			=> $faker->domainName,
+				'cell'				=> $faker->PhoneNumber,
+				'email'				=> $faker->email,
+				'created_by'		=> $sys->id,
+				'updated_by'		=> $sys->id,
+			],
+		];
+		//
+		Account::insert($accounts);
 
 		// $user1it = User::where('email', 'user1it@anypo.net')->firstOrFail();
 		// $user2it = User::where('email', 'user2it@anypo.net')->firstOrFail();
@@ -34,6 +70,9 @@ class AccountSeeder extends Seeder
 
 		// Account::where('id', 1001)->update(['logo' => 'account1.png']);
 		// Account::where('id', 1002)->update(['logo' => 'account2.png']);
+
+
+
 
 	}
 }

@@ -16,7 +16,7 @@ class SetupSeeder extends Seeder
 	{
 		Setup::truncate();
 
-		$system = User::where('email', config('akk.SYSTEM_EMAIL_ID'))->firstOrFail();
+		$sys = User::where('email', config('akk.SYS_EMAIL_ID'))->firstOrFail();
 		$setups = [
 			[
 				'id'				=> '1001',
@@ -33,12 +33,12 @@ class SetupSeeder extends Seeder
 				'email'				=> 'info@anypo.net',
 				'cell'				=> '+0012262804920',
 				'website'			=> 'https://www.anypo.net',
-				'system_user_id'	=> $system->id,
+				'sys_user_id'	    => $sys->id,
 				'banner_message'	=> 'This is a test public message. Will be shown only in all dashboards, when enabled.',
 				'facebook'			=> 'https://www.facebook.com/my.anyponet',
 				'linkedin'			=> 'https://www.linkedin.com/company/anypo-net',
-				'created_by'		=> $system->id,
-				'updated_by'		=> $system->id,
+				'created_by'		=> $sys->id,
+				'updated_by'		=> $sys->id,
 				'tc'				=> 	'1.	Acceptance: All purchase orders are subject to acceptance by the supplier.
 2.	Price and Payment: Prices are firm and as stated on the PO. Payment terms are net 30 days from receipt of a correct invoice.
 3.	Inspection and Acceptance: Buyer reserves the right to inspect goods upon arrival and reject any non-conforming items.

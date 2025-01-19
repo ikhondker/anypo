@@ -143,13 +143,13 @@
 		</li>
 	@endcan
 
-	@can('viewSystemMenu', App\Models\Tenant\Manage\Menu::class)
-		<li class="sidebar-item {{ ($_node_name == 'system' ? 'active' : '') }}">
-			<a data-bs-target="#system" data-bs-toggle="collapse" class="sidebar-link collapsed">
+	@can('viewSysMenu', App\Models\Tenant\Manage\Menu::class)
+		<li class="sidebar-item {{ ($_node_name == 'sys' ? 'active' : '') }}">
+			<a data-bs-target="#sys" data-bs-toggle="collapse" class="sidebar-link collapsed">
 				<i class="align-middle" data-lucide="layout-template"></i>
-				<span class="align-middle">System</span>
+				<span class="align-middle">Sys</span>
 			</a>
-			<ul id="system" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'system' ? 'show' : '') }}" data-bs-parent="#sidebar">
+			<ul id="sys" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'sys' ? 'show' : '') }}" data-bs-parent="#sidebar">
 				<li class="sidebar-item {{ ($_route_name == 'tables.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('tables.index') }}"><i class="align-middle" data-lucide="circle"></i>Tables</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'cps.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('cps.index') }}"><i class="align-middle" data-lucide="circle"></i>Control Panel</a></li>
 				<li class="sidebar-item {{ ($_route_name == 'exports.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('exports.index') }}"><i class="align-middle" data-lucide="circle"></i>Exports</a></li>

@@ -48,7 +48,7 @@ class EventLog
 		$log['url']			= Request::fullUrl();
 		$log['method']		= Request::method();
 		$log['ip']			= Request::ip();
-		$log['role']		= auth()->check() ? auth()->user()->role : UserRoleEnum::SYSTEM->value;
+		$log['role']		= auth()->check() ? auth()->user()->role : UserRoleEnum::SYS->value;
 
 		// Write to Log
 		if (tenant('id') == '') {
@@ -57,10 +57,10 @@ class EventLog
 			} else {
 				$log['account_id']	= config('bo.GUEST_ACCOUNT_ID');
 			}
-			//$log['user_id']		= auth()->check() ? auth()->user()->id : config('bo.SYSTEM_USER_ID');
+			//$log['user_id']		= auth()->check() ? auth()->user()->id : config('bo.SYS_USER_ID');
 			$log['user_id']		= auth()->check() ? auth()->user()->id : NULL;
 		} else {
-			//$log['user_id'] 	= auth()->check() ? auth()->user()->id : config('akk.SYSTEM_USER_ID');
+			//$log['user_id'] 	= auth()->check() ? auth()->user()->id : config('akk.SYS_USER_ID');
 			$log['user_id'] 	= auth()->check() ? auth()->user()->id : '';
 		}
 

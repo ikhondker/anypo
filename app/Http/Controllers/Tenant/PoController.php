@@ -116,7 +116,7 @@ class PoController extends Controller
 			case UserRoleEnum::ADMIN->value:
 				$pos = $pos->AllExceptDraft()->orderBy('id', 'DESC')->paginate(10);
 				break;
-			case UserRoleEnum::SYSTEM->value:
+			case UserRoleEnum::SYS->value:
 				$pos = $pos->with('dept')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:

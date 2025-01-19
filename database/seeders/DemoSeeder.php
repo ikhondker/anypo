@@ -30,8 +30,8 @@ class DemoSeeder extends Seeder
 		public function run(): void
 		{
 
-		// get system user id
-		$system = User::where('email', config('akk.SYSTEM_EMAIL_ID'))->firstOrFail();
+		// get sys user id
+		$sys = User::where('email', config('akk.SYS_EMAIL_ID'))->firstOrFail();
 
 		// ========================================================
 		$this->call(\Database\Seeders\PrSeeder::class);
@@ -40,10 +40,10 @@ class DemoSeeder extends Seeder
 		$this->call(\Database\Seeders\PolSeeder::class);
 
 		// TODO Remove Finally
-		Pr::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Prl::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Po::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
-		Pol::where('created_by',NULL)->update(['created_by' => $system->id,'updated_by' => $system->id]);
+		Pr::where('created_by',NULL)->update(['created_by' => $sys->id,'updated_by' => $sys->id]);
+		Prl::where('created_by',NULL)->update(['created_by' => $sys->id,'updated_by' => $sys->id]);
+		Po::where('created_by',NULL)->update(['created_by' => $sys->id,'updated_by' => $sys->id]);
+		Pol::where('created_by',NULL)->update(['created_by' => $sys->id,'updated_by' => $sys->id]);
 
 		Pr::query()->update(['currency' => 'BDT']);
 		Po::query()->update(['currency' => 'BDT']);
@@ -58,11 +58,11 @@ class DemoSeeder extends Seeder
 		// create hiaerarchy
 		$pr=Hierarchyl::create([
 			'hid'			=> 1001,
-			'approver_id'	=> $system->id,
+			'approver_id'	=> $sys->id,
 		]);
 		$po=Hierarchyl::create([
 			'hid'			=> 1002,
-			'approver_id'	=> $system->id,
+			'approver_id'	=> $sys->id,
 		]);
 
 
@@ -78,7 +78,7 @@ class DemoSeeder extends Seeder
 		// Approve 1 pr
 		$pr1001->auth_status	= AuthStatusEnum::APPROVED->value;
 		$pr1001->auth_date		= date('Y-m-d H:i:s');
-		$pr1001->auth_user_id	= $system->id;
+		$pr1001->auth_user_id	= $sys->id;
 		//$pr1001->save();
 
 		// recalculate Po
@@ -93,7 +93,7 @@ class DemoSeeder extends Seeder
 		// Approve 1 po
 		$po1001->auth_status	= AuthStatusEnum::APPROVED->value;
 		$po1001->auth_date		= date('Y-m-d H:i:s');
-		$po1001->auth_user_id	= $system->id;
+		$po1001->auth_user_id	= $sys->id;
 		//$po1001->save();
 
 		// $this->call(\Database\Seeders\ReceiptSeeder::class);

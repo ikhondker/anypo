@@ -36,7 +36,7 @@ class ListByDate extends Component
 				->where('auth_status', '<>', AuthStatusEnum::DRAFT->value)
 				->limit(5)->paginate(10);
 				break;
-			case UserRoleEnum::SYSTEM->value:
+			case UserRoleEnum::SYS->value:
 				$this->pos = Po::with('dept')->orderBy('id', 'DESC')
 				->where('auth_status', '<>', AuthStatusEnum::DRAFT->value)
 				->limit(5)->paginate(10);

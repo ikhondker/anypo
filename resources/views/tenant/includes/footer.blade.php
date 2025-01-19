@@ -23,7 +23,7 @@
 			</div>
 			<div class="col-6 text-end">
 				<p class="mb-0">
-					@if ( (auth()->user()->role->value == UserRoleEnum::SYSTEM->value))
+					@if ( (auth()->user()->role->value == UserRoleEnum::SYS->value))
 						<a class="text-muted" href="http://localhost:8080/phpmyadmin/index.php?route=/database/structure&db=tenant{{ tenant('id') }}" target="_blank"> {{ tenant('id') }}</a> |
 						<a class="text-muted" href="{{ route('tables.index') }}" target="_blank">Tables</a> |
 						<a class="text-muted" href="{{ route('cps.ui') }}" target="_blank">UI</a> |

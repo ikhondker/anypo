@@ -13,7 +13,7 @@ class TopicPolicy
 	*/
 	public function before(User $user, string $ability): bool|null
 	{
-		if ($user->isSystem()) {
+		if ($user->isSys()) {
 			return true;
 		}
 		return null;

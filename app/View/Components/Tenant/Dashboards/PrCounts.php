@@ -9,6 +9,7 @@ use Illuminate\View\Component;
 use App\Models\Tenant\Pr;
 use App\Enum\UserRoleEnum;
 use App\Enum\Tenant\AuthStatusEnum;
+use Illuminate\Support\Facades\Log;
 
 class PrCounts extends Component
 {
@@ -68,7 +69,7 @@ class PrCounts extends Component
 			case UserRoleEnum::BUYER->value:
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
-			case UserRoleEnum::SYSTEM->value:
+			case UserRoleEnum::SYS->value:
 
 				$this->count_approved	= Pr::AllApproved()->count();
 				$this->sum_approved		= Pr::AllApproved()->sum('fc_amount');

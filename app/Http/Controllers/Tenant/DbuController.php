@@ -71,7 +71,7 @@ class DbuController extends Controller
 			case UserRoleEnum::BUYER->value:
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
-			case UserRoleEnum::SYSTEM->value:
+			case UserRoleEnum::SYS->value:
 				$dbus = $dbus->with('dept')->with('deptBudget.budget')->with('project')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:

@@ -87,7 +87,7 @@ class PaymentController extends Controller
 			case UserRoleEnum::BUYER->value:
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
-			case UserRoleEnum::SYSTEM->value:
+			case UserRoleEnum::SYS->value:
 				$payments = $payments->with('invoice.supplier')->with('bank_account')->with('payee')->with('status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			default:

@@ -79,7 +79,7 @@ class DashboardController extends Controller
 				//return self::developerDashboard();
 				//return self::backofficeDashboard();
 				break;
-			case UserRoleEnum::SYSTEM->value:
+			case UserRoleEnum::SYS->value:
 				return self::systemDashboard();
 				break;
 			default:

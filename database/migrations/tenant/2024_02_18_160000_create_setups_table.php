@@ -46,7 +46,7 @@ return new class extends Migration
 			$table->boolean('banner_show')->default(false);
 			$table->text('banner_message')->nullable();
 			$table->uuid('admin_id')->nullable(); 					// No foreign key intentional
-			$table->uuid('system_user_id')->nullable();				// No foreign key intentional
+			$table->uuid('sys_user_id')->nullable();				// No foreign key intentional
 			$table->uuid('kam_id')->nullable(); 					// Future Use
 			$table->biginteger('landlord_account_id')->nullable();
 			$table->date('last_rate_date')->nullable();

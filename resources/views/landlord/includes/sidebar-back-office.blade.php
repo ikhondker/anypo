@@ -60,13 +60,13 @@
 	</li>
 @endcan
 
-@can('viewSysAdminMenu', App\Models\Landlord\Manage\Menu::class)
-	<li class="sidebar-item {{ ($_node_name == 'sysadmin' ? 'active' : '') }}">
-		<a data-bs-target="#sysadmin" data-bs-toggle="collapse" class="sidebar-link collapsed">
+@can('viewSystemMenu', App\Models\Landlord\Manage\Menu::class)
+	<li class="sidebar-item {{ ($_node_name == 'system' ? 'active' : '') }}">
+		<a data-bs-target="#system" data-bs-toggle="collapse" class="sidebar-link collapsed">
 			<i class="align-middle" data-lucide="layout-grid"></i>
-			<span class="align-middle">SysAdmin</span>
+			<span class="align-middle">System</span>
 		</a>
-		<ul id="sysadmin" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'sysadmin' ? 'show' : '') }}" data-bs-parent="#sidebar">
+		<ul id="system" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'sysadmin' ? 'show' : '') }}" data-bs-parent="#sidebar">
 			<li class="sidebar-item {{ ($_route_name == 'mail-lists.all' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('mail-lists.index') }}"><i class="align-middle" data-lucide="circle"></i>Mail Lists</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'error-logs.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('error-logs.index') }}"><i class="align-middle" data-lucide="circle"></i>Error logs</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'activities.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('activities.all') }}"><i class="align-middle" data-lucide="circle"></i>Activity Log</a></li>
@@ -75,13 +75,13 @@
 	</li>
 @endcan
 
-@can('viewSystemMenu', App\Models\Landlord\Manage\Menu::class)
-	<li class="sidebar-item {{ ($_node_name == 'system' ? 'active' : '') }}">
-		<a data-bs-target="#system" data-bs-toggle="collapse" class="sidebar-link collapsed">
+@can('viewSysMenu', App\Models\Landlord\Manage\Menu::class)
+	<li class="sidebar-item {{ ($_node_name == 'sys' ? 'active' : '') }}">
+		<a data-bs-target="#sys" data-bs-toggle="collapse" class="sidebar-link collapsed">
 			<i class="align-middle" data-lucide="layout-grid"></i>
-			<span class="align-middle">System</span>
+			<span class="align-middle">Sys</span>
 		</a>
-		<ul id="system" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'system' ? 'show' : '') }}" data-bs-parent="#sidebar">
+		<ul id="sys" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'sys' ? 'show' : '') }}" data-bs-parent="#sidebar">
 			<li class="sidebar-item {{ ($_route_name == 'tables.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('tables.index') }}"><i class="align-middle" data-lucide="circle"></i>Tables</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'cps.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('cps.index') }}"><i class="align-middle" data-lucide="circle"></i>Control Panel</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'processes.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('processes.index') }}"><i class="align-middle" data-lucide="circle"></i>Processes</a></li>

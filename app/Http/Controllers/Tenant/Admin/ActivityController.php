@@ -56,7 +56,7 @@ class ActivityController extends Controller
 			$activities->where('object_name', 'Like', '%' . request('term') . '%');
 		}
 
-		if(auth()->user()->role->value == UserRoleEnum::SYSTEM->value) {
+		if(auth()->user()->role->value == UserRoleEnum::SYS->value) {
 			$activities = $activities->with('user')->orderBy('id', 'DESC')->paginate(50);
 		} else {
 			$activities = $activities->primary()->with('user')->orderBy('id', 'DESC')->paginate(50);

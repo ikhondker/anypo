@@ -53,27 +53,27 @@ class AppServiceProvider extends ServiceProvider
 		*/
 		// Should return TRUE or FALSE IQBAL
 		Gate::define('superior', function(User $user) {
-			return ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() || $user->isSysAdmin() || $user->isSystem());
+			return ($user->isBuyer() || $user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport() || $user->isSystem() || $user->isSys());
 		});
 
 		Gate::define('buyer', function(User $user) {
-			return ($user->isBuyer() || $user->isAdmin() || $user->isSupport() || $user->isSysAdmin() || $user->isSystem());
+			return ($user->isBuyer() || $user->isAdmin() || $user->isSupport() || $user->isSystem() || $user->isSys());
 		});
 
 		Gate::define('hod', function(User $user) {
-			return ($user->isHoD() || $user->isAdmin() || $user->isSupport() || $user->isSysAdmin() || $user->isSystem());
+			return ($user->isHoD() || $user->isAdmin() || $user->isSupport() || $user->isSystem() || $user->isSys());
 		});
 
 		Gate::define('cxo', function(User $user) {
-			return ($user->isCxO() || $user->isAdmin() || $user->isSupport() || $user->isSysAdmin() || $user->isSystem());
+			return ($user->isCxO() || $user->isAdmin() || $user->isSupport() || $user->isSystem() || $user->isSys());
 		});
 
 		Gate::define('buyer-or-cxo', function(User $user) {
-			return (($user->isBuyer() || $user->isCxO() ) || $user->isAdmin() || $user->isSupport() || $user->isSysAdmin() || $user->isSystem());
+			return (($user->isBuyer() || $user->isCxO() ) || $user->isAdmin() || $user->isSupport() || $user->isSystem() || $user->isSys());
 		});
 
 		Gate::define('hod-or-cxo', function(User $user) {
-			return (($user->isHoD() || $user->isCxO() ) || $user->isAdmin() || $user->isSupport() || $user->isSysAdmin() || $user->isSystem());
+			return (($user->isHoD() || $user->isCxO() ) || $user->isAdmin() || $user->isSupport() || $user->isSystem() || $user->isSys());
 		});
 
 		/**
@@ -83,15 +83,15 @@ class AppServiceProvider extends ServiceProvider
 		*/
 		// Should return TRUE or FALSE IQBAL
 		Gate::define('admin', function(User $user) {
-			return ($user->isAdmin() || $user->isSupport() || $user->isSysAdmin() || $user->isSystem());
+			return ($user->isAdmin() || $user->isSupport() || $user->isSystem() || $user->isSys());
 		});
 
 		Gate::define('support', function(User $user) {
-			return ($user->isSupport() || $user->isSysAdmin() || $user->isSystem());
+			return ($user->isSupport() || $user->isSystem() || $user->isSys());
 		});
 
 		Gate::define('system', function(User $user) {
-			return $user->isSystem();
+			return $user->isSys();
 		});
 
 		Gate::define('pr-pdf', function(User $user, Pr $pr) {

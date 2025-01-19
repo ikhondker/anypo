@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
 		$this->call(\Database\Seeders\Landlord\StatusSeeder::class);
 
 		$this->call(\Database\Seeders\Landlord\EntitySeeder::class);
-		// Make sure ConfigSeeder runs after UserSeeder as system_user_id will be generated
+		// Make sure ConfigSeeder runs after UserSeeder as sys_user_id will be generated
 		$this->call(\Database\Seeders\Landlord\ConfigSeeder::class);
 		$this->call(\Database\Seeders\Landlord\CategorySeeder::class);
 		$this->call(\Database\Seeders\Landlord\CountrySeeder::class);
@@ -33,14 +33,15 @@ class DatabaseSeeder extends Seeder
 		$this->call(\Database\Seeders\Landlord\PaymentMethodSeeder::class);
 		$this->call(\Database\Seeders\Landlord\ProductSeeder::class);
 		$this->call(\Database\Seeders\Landlord\TopicSeeder::class);
-		$this->call(\Database\Seeders\Landlord\ReplyTemplateSeeder::class);
+        $this->call(\Database\Seeders\Landlord\ReplyTemplateSeeder::class);
+        // create master account
+        $this->call(\Database\Seeders\Landlord\AccountSeeder::class);
 
 		// // Note:
 		$this->call(\Database\Seeders\Share\TemplateSeeder::class);
 
 		// don't run in live
 		// $this->call(\Database\Seeders\Landlord\ContactSeeder::class);
-		//$this->call(\Database\Seeders\Landlord\AccountSeeder::class);
 		//$this->call(\Database\Seeders\Landlord\TicketSeeder::class);
 		//$this->call(\Database\Seeders\Landlord\CommentSeeder::class);
 		//$this->call(\Database\Seeders\Landlord\InvoiceSeeder::class);

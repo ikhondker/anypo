@@ -109,7 +109,7 @@ class TicketLists extends Component
 					default:
 				}
 				break;
-			case UserRoleEnum::SYSTEM->value:
+			case UserRoleEnum::SYS->value:
 				switch ($type) {
 					case "UNASSIGNED":
 						$this->title = "Unassigned Tickets (Last 5)";

@@ -53,7 +53,7 @@ class PoCounts extends Component
 				break;
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
-			case UserRoleEnum::SYSTEM->value:
+			case UserRoleEnum::SYS->value:
 				$this->count_approved	= Po::AllApproved()->count();
 				$this->sum_approved		= Po::AllApproved()->sum('fc_amount');
 

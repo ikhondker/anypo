@@ -98,7 +98,7 @@ class TestController extends Controller
 		try {
 			 $admin = User::where('role', 'admin1')->firstOrFail();
 		} catch (ModelNotFoundException $exception) {
-			$admin = User::where('email', config('akk.SYSTEM_EMAIL_ID'))->firstOrFail();
+			$admin = User::where('email', config('akk.SYS_EMAIL_ID'))->firstOrFail();
 		}
 
 		Log::debug('tenant.test.run admin name = '.$admin->name);

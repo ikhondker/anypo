@@ -275,7 +275,7 @@ class AkkController extends Controller
 
 
 				// make sure when system create a tenant from backend, it is created under new user
-				if ((auth()->check()) && (! auth()->user()->isSystem()) ) {
+				if ((auth()->check()) && (! auth()->user()->isSys()) ) {
 					$checkout->existing_user	= true;
 				} else {
 					$checkout->existing_user	= false;

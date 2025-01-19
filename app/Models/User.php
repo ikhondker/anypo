@@ -181,7 +181,16 @@ class User extends Authenticatable implements MustVerifyEmail
 
 		if ($this->role->value == UserRoleEnum::SUPPORT->value
 		|| $this->role->value == UserRoleEnum::SUPERVISOR->value
-		|| $this->role->value == UserRoleEnum::SYSTEM->value ) {		// Added later to skip before
+		|| $this->role->value == UserRoleEnum::SYS->value ) {		// Added later to skip before
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function isSys()
+	{
+		if ($this->role->value == UserRoleEnum::SYS->value) {
 			return true;
 		} else {
 			return false;
@@ -190,16 +199,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
 	public function isSystem()
 	{
-		if ($this->role->value == UserRoleEnum::SYSTEM->value) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public function isSysAdmin()
-	{
-		if ($this->role->value == UserRoleEnum::SYSADMIN->value) {
+		if ($this->role->value == UserRoleEnum::SYS->value) {
 			return true;
 		} else {
 			return false;
@@ -247,7 +247,7 @@ class User extends Authenticatable implements MustVerifyEmail
 			|| $this->role->value == UserRoleEnum::CXO->value
 			|| $this->role->value == UserRoleEnum::ADMIN->value
 			|| $this->role->value == UserRoleEnum::SUPPORT->value
-			|| $this->role->value == UserRoleEnum::SYSTEM->value
+			|| $this->role->value == UserRoleEnum::SYS->value
 			) {
 			return true;
 		} else {

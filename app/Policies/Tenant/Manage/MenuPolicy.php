@@ -13,7 +13,7 @@ class MenuPolicy
 	*/
 	public function before(User $user, string $ability): bool|null
 	{
-		if ($user->isSystem()) {
+		if ($user->isSys()) {
 			return true;
 		}
 		return null;
@@ -142,9 +142,9 @@ class MenuPolicy
 	/**
 	 * Determine whether the user can view any models.
 	 */
-	public function viewSystemMenu(User $user): bool
+	public function viewSysMenu(User $user): bool
 	{
-		return ($user->isSystem());
+		return ($user->isSys());
 	}
 
 }

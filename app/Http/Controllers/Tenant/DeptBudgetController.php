@@ -77,7 +77,7 @@ class DeptBudgetController extends Controller
 			case UserRoleEnum::BUYER->value:
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
-			case UserRoleEnum::SYSTEM->value:
+			case UserRoleEnum::SYS->value:
 				$dept_budgets = $dept_budgets->with('dept')->with('budget')->where('revision',false)->orderBy('budget_id', 'DESC')->paginate(10);
 				break;
 			default:
@@ -122,7 +122,7 @@ class DeptBudgetController extends Controller
 				case UserRoleEnum::BUYER->value:
 				case UserRoleEnum::CXO->value:
 				case UserRoleEnum::ADMIN->value:
-				case UserRoleEnum::SYSTEM->value:
+				case UserRoleEnum::SYS->value:
 					break;
 				default:
 					Log::warning(tenant('id'). 'tenant.DeptBudget.revisions Other role = '. auth()->user()->role->value);
@@ -142,7 +142,7 @@ class DeptBudgetController extends Controller
 					case UserRoleEnum::BUYER->value:
 					case UserRoleEnum::CXO->value:
 					case UserRoleEnum::ADMIN->value:
-					case UserRoleEnum::SYSTEM->value:
+					case UserRoleEnum::SYS->value:
 						$deptBudgets = $deptBudgets->with('dept')->with('budget')->where('revision',true)->orderBy('updated_at', 'DESC')->paginate(10);
 						break;
 					default:
@@ -164,7 +164,7 @@ class DeptBudgetController extends Controller
 					case UserRoleEnum::BUYER->value:
 					case UserRoleEnum::CXO->value:
 					case UserRoleEnum::ADMIN->value:
-					case UserRoleEnum::SYSTEM->value:
+					case UserRoleEnum::SYS->value:
 						$deptBudgets = DeptBudget::where('parent_id',$deptBudget->id)
 							->where('revision',true)
 							->orderBy('id', 'DESC')->paginate(10);
@@ -201,7 +201,7 @@ class DeptBudgetController extends Controller
 			case UserRoleEnum::BUYER->value:
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
-			case UserRoleEnum::SYSTEM->value:
+			case UserRoleEnum::SYS->value:
 				$deptBudgets = $deptBudgets->with('dept')->with('budget')->where('revision',true)->orderBy('updated_at', 'DESC')->paginate(10);
 				break;
 			default:

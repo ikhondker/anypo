@@ -15,7 +15,7 @@ class MenuPolicy
 	*/
 	public function before(User $user, string $ability): bool|null
 	{
-		if ($user->isSystem()) {
+		if ($user->isSys()) {
 			return true;
 		}
 		return null;
@@ -82,7 +82,7 @@ class MenuPolicy
 	 */
 	public function viewWorkbenchMenu(User $user): bool
 	{
-		return ($user->isAdmin() || $user->isSupport() || $user->isSysAdmin());
+		return ($user->isAdmin() || $user->isSupport() || $user->isSystem());
 	}
 
 	/**
@@ -90,7 +90,7 @@ class MenuPolicy
 	 */
 	public function viewLookupMenu(User $user): bool
 	{
-		return ($user->isSupport() || $user->isSysAdmin());
+		return ($user->isSupport() || $user->isSystem());
 	}
 
 
@@ -99,15 +99,7 @@ class MenuPolicy
 	 */
 	public function viewAdminMenu(User $user): bool
 	{
-		return ($user->isAdmin() || $user->isSupport() || $user->isSysAdmin());
-	}
-
-	/**
-	 * Determine whether the user can view any models.
-	 */
-	public function viewSysAdminMenu(User $user): bool
-	{
-		return ($user->isSysAdmin());
+		return ($user->isAdmin() || $user->isSupport() || $user->isSystem());
 	}
 
 	/**
@@ -116,6 +108,14 @@ class MenuPolicy
 	public function viewSystemMenu(User $user): bool
 	{
 		return ($user->isSystem());
+	}
+
+	/**
+	 * Determine whether the user can view any models.
+	 */
+	public function viewSysMenu(User $user): bool
+	{
+		return ($user->isSys());
 	}
 
 }

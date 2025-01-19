@@ -13,7 +13,7 @@ class MenuSeeder extends Seeder
 	// F - Front end
 	// B - Back end
 	// X - Not Developed
-	// S - system only
+	// S - sys only
 
 	/**
 	 * Run the database seeds.
@@ -21,7 +21,7 @@ class MenuSeeder extends Seeder
 	public function run(): void
 	{
 		Menu::truncate();
-		// workbench/admin/system/support
+		// workbench/admin/sys/support
 		$menus = [
 
 
@@ -173,99 +173,99 @@ class MenuSeeder extends Seeder
 
 			/**
 			* ==================================================================================
-			* 1. SysAdmin
+			* 1. System
 			* ==================================================================================
 			*/
 
-			[ 'raw_route_name' => 'error-logs.index',	'route_name' => 'error-logs.index',	 'node_name' => 'sysadmin'],
-			[ 'raw_route_name' => 'error-logs.show',	'route_name' => 'error-logs.index',	 'node_name' => 'sysadmin'],
-			[ 'raw_route_name' => 'error-logs.update',	'route_name' => 'error-logs.index',	 'node_name' => 'sysadmin'],
-			[ 'raw_route_name' => 'error-logs.edit',	'route_name' => 'error-logs.index',	 'node_name' => 'sysadmin'],
-			[ 'raw_route_name' => 'error-logs.create',	'route_name' => 'error-logs.index',	 'node_name' => 'sysadmin'],
+			[ 'raw_route_name' => 'error-logs.index',	'route_name' => 'error-logs.index',	 'node_name' => 'system'],
+			[ 'raw_route_name' => 'error-logs.show',	'route_name' => 'error-logs.index',	 'node_name' => 'system'],
+			[ 'raw_route_name' => 'error-logs.update',	'route_name' => 'error-logs.index',	 'node_name' => 'system'],
+			[ 'raw_route_name' => 'error-logs.edit',	'route_name' => 'error-logs.index',	 'node_name' => 'system'],
+			[ 'raw_route_name' => 'error-logs.create',	'route_name' => 'error-logs.index',	 'node_name' => 'system'],
 
-			[ 'raw_route_name' => 'reply-templates.index',	'route_name' => 'reply-templates.index',	 'node_name' => 'sysadmin'],
-			[ 'raw_route_name' => 'reply-templates.show',	'route_name' => 'reply-templates.index',	 'node_name' => 'sysadmin'],
-			[ 'raw_route_name' => 'reply-templates.update',	'route_name' => 'reply-templates.index',	 'node_name' => 'sysadmin'],
-			[ 'raw_route_name' => 'reply-templates.edit',	'route_name' => 'reply-templates.index',	 'node_name' => 'sysadmin'],
-			[ 'raw_route_name' => 'reply-templates.create',	'route_name' => 'reply-templates.index',	 'node_name' => 'sysadmin'],
+			[ 'raw_route_name' => 'reply-templates.index',	'route_name' => 'reply-templates.index',	 'node_name' => 'system'],
+			[ 'raw_route_name' => 'reply-templates.show',	'route_name' => 'reply-templates.index',	 'node_name' => 'system'],
+			[ 'raw_route_name' => 'reply-templates.update',	'route_name' => 'reply-templates.index',	 'node_name' => 'system'],
+			[ 'raw_route_name' => 'reply-templates.edit',	'route_name' => 'reply-templates.index',	 'node_name' => 'system'],
+			[ 'raw_route_name' => 'reply-templates.create',	'route_name' => 'reply-templates.index',	 'node_name' => 'system'],
 
-			[ 'raw_route_name' => 'activities.index',	'route_name' => 'activities.index',	'node_name' => 'sysadmin'],
-			[ 'raw_route_name' => 'activities.show',	'route_name' => 'activities.index',	'node_name' => 'sysadmin'],
-			[ 'raw_route_name' => 'activities.update','route_name' => 'activities.index',	'node_name' => 'sysadmin'],
-			[ 'raw_route_name' => 'activities.edit',	'route_name' => 'activities.index',	'node_name' => 'sysadmin'],
-			[ 'raw_route_name' => 'activities.create','route_name' => 'activities.index',	'node_name' => 'sysadmin'],
-			[ 'raw_route_name' => 'activities.all',		'route_name' => 'activities.index',	'node_name' => 'sysadmin'],
+			[ 'raw_route_name' => 'activities.index',	'route_name' => 'activities.index',	'node_name' => 'system'],
+			[ 'raw_route_name' => 'activities.show',	'route_name' => 'activities.index',	'node_name' => 'system'],
+			[ 'raw_route_name' => 'activities.update','route_name' => 'activities.index',	'node_name' => 'system'],
+			[ 'raw_route_name' => 'activities.edit',	'route_name' => 'activities.index',	'node_name' => 'system'],
+			[ 'raw_route_name' => 'activities.create','route_name' => 'activities.index',	'node_name' => 'system'],
+			[ 'raw_route_name' => 'activities.all',		'route_name' => 'activities.index',	'node_name' => 'system'],
 
-			[ 'raw_route_name' => 'attachments.index',	'route_name' => 'attachments.index',	'node_name' => 'sysadmin'],
-			[ 'raw_route_name' => 'attachments.all',	'route_name' => 'attachments.index',	'node_name' => 'sysadmin'],
-			[ 'raw_route_name' => 'attachments.show',	'route_name' => 'attachments.index',	'node_name' => 'sysadmin'],
-			[ 'raw_route_name' => 'attachments.update', 'route_name' => 'attachments.index',	'node_name' => 'sysadmin'],
-			[ 'raw_route_name' => 'attachments.edit',	'route_name' => 'attachments.index',	'node_name' => 'sysadmin'],
-			[ 'raw_route_name' => 'attachments.create', 'route_name' => 'attachments.index',	'node_name' => 'sysadmin'],
+			[ 'raw_route_name' => 'attachments.index',	'route_name' => 'attachments.index',	'node_name' => 'system'],
+			[ 'raw_route_name' => 'attachments.all',	'route_name' => 'attachments.index',	'node_name' => 'system'],
+			[ 'raw_route_name' => 'attachments.show',	'route_name' => 'attachments.index',	'node_name' => 'system'],
+			[ 'raw_route_name' => 'attachments.update', 'route_name' => 'attachments.index',	'node_name' => 'system'],
+			[ 'raw_route_name' => 'attachments.edit',	'route_name' => 'attachments.index',	'node_name' => 'system'],
+			[ 'raw_route_name' => 'attachments.create', 'route_name' => 'attachments.index',	'node_name' => 'system'],
 
-			[ 'raw_route_name' => 'mail-lists.index',	'route_name' => 'mail-lists.index',	'node_name' => 'sysadmin'],
+			[ 'raw_route_name' => 'mail-lists.index',	'route_name' => 'mail-lists.index',	'node_name' => 'system'],
 
 			/**
 			* ==================================================================================
-			* 1. Systems
+			* 1. Sys
 			* ==================================================================================
 			*/
-			[ 'raw_route_name' => 'processes.index',	'route_name' => 'processes.index',	 'node_name' => 'system'],
-			[ 'raw_route_name' => 'processes.show',		'route_name' => 'processes.index',	 'node_name' => 'system'],
-			[ 'raw_route_name' => 'processes.update',	'route_name' => 'processes.index',	 'node_name' => 'system'],
-			[ 'raw_route_name' => 'processes.edit',		'route_name' => 'processes.index',	 'node_name' => 'system'],
-			[ 'raw_route_name' => 'processes.create',	'route_name' => 'processes.index',	 'node_name' => 'system'],
+			[ 'raw_route_name' => 'processes.index',	'route_name' => 'processes.index',	 'node_name' => 'sys'],
+			[ 'raw_route_name' => 'processes.show',		'route_name' => 'processes.index',	 'node_name' => 'sys'],
+			[ 'raw_route_name' => 'processes.update',	'route_name' => 'processes.index',	 'node_name' => 'sys'],
+			[ 'raw_route_name' => 'processes.edit',		'route_name' => 'processes.index',	 'node_name' => 'sys'],
+			[ 'raw_route_name' => 'processes.create',	'route_name' => 'processes.index',	 'node_name' => 'sys'],
 
-			[ 'raw_route_name' => 'entities.index',		'route_name' => 'entities.index',	'node_name' => 'system'],
-			[ 'raw_route_name' => 'entities.show',	 	'route_name' => 'entities.index',	'node_name' => 'system'],
-			[ 'raw_route_name' => 'entities.update',	'route_name' => 'entities.index',	'node_name' => 'system'],
-			[ 'raw_route_name' => 'entities.edit',	 	'route_name' => 'entities.index',	'node_name' => 'system'],
-			[ 'raw_route_name' => 'entities.create',	'route_name' => 'entities.index',	'node_name' => 'system'],
+			[ 'raw_route_name' => 'entities.index',		'route_name' => 'entities.index',	'node_name' => 'sys'],
+			[ 'raw_route_name' => 'entities.show',	 	'route_name' => 'entities.index',	'node_name' => 'sys'],
+			[ 'raw_route_name' => 'entities.update',	'route_name' => 'entities.index',	'node_name' => 'sys'],
+			[ 'raw_route_name' => 'entities.edit',	 	'route_name' => 'entities.index',	'node_name' => 'sys'],
+			[ 'raw_route_name' => 'entities.create',	'route_name' => 'entities.index',	'node_name' => 'sys'],
 
-			[ 'raw_route_name' => 'menus.index',		'route_name' => 'menus.index',	'node_name' => 'system'],
-			[ 'raw_route_name' => 'menus.show',			'route_name' => 'menus.index',	'node_name' => 'system'],
-			[ 'raw_route_name' => 'menus.update',		'route_name' => 'menus.index',	'node_name' => 'system'],
-			[ 'raw_route_name' => 'menus.edit',			'route_name' => 'menus.index',	'node_name' => 'system'],
-			[ 'raw_route_name' => 'menus.create',		'route_name' => 'menus.index',	'node_name' => 'system'],
+			[ 'raw_route_name' => 'menus.index',		'route_name' => 'menus.index',	'node_name' => 'sys'],
+			[ 'raw_route_name' => 'menus.show',			'route_name' => 'menus.index',	'node_name' => 'sys'],
+			[ 'raw_route_name' => 'menus.update',		'route_name' => 'menus.index',	'node_name' => 'sys'],
+			[ 'raw_route_name' => 'menus.edit',			'route_name' => 'menus.index',	'node_name' => 'sys'],
+			[ 'raw_route_name' => 'menus.create',		'route_name' => 'menus.index',	'node_name' => 'sys'],
 
-			[ 'raw_route_name' => 'statuses.index',		'route_name' => 'statuses.index',	'node_name' => 'system'],
-			[ 'raw_route_name' => 'statuses.show',	 	'route_name' => 'statuses.index',	'node_name' => 'system'],
-			[ 'raw_route_name' => 'statuses.update',	'route_name' => 'statuses.index',	'node_name' => 'system'],
-			[ 'raw_route_name' => 'statuses.edit',	 	'route_name' => 'statuses.index',	'node_name' => 'system'],
-			[ 'raw_route_name' => 'statuses.create',	'route_name' => 'statuses.index',	'node_name' => 'system'],
+			[ 'raw_route_name' => 'statuses.index',		'route_name' => 'statuses.index',	'node_name' => 'sys'],
+			[ 'raw_route_name' => 'statuses.show',	 	'route_name' => 'statuses.index',	'node_name' => 'sys'],
+			[ 'raw_route_name' => 'statuses.update',	'route_name' => 'statuses.index',	'node_name' => 'sys'],
+			[ 'raw_route_name' => 'statuses.edit',	 	'route_name' => 'statuses.index',	'node_name' => 'sys'],
+			[ 'raw_route_name' => 'statuses.create',	'route_name' => 'statuses.index',	'node_name' => 'sys'],
 
-			[ 'raw_route_name' => 'configs.index',		'route_name' => 'configs.index',		'node_name' => 'system'],
-			[ 'raw_route_name' => 'configs.show',		'route_name' => 'configs.index',		'node_name' => 'system'],
-			[ 'raw_route_name' => 'configs.update',		'route_name' => 'configs.index',		'node_name' => 'system'],
-			[ 'raw_route_name' => 'configs.edit',		'route_name' => 'configs.index',		'node_name' => 'system'],
-			[ 'raw_route_name' => 'configs.create',	 	'route_name' => 'configs.index',		'node_name' => 'system'],
+			[ 'raw_route_name' => 'configs.index',		'route_name' => 'configs.index',		'node_name' => 'sys'],
+			[ 'raw_route_name' => 'configs.show',		'route_name' => 'configs.index',		'node_name' => 'sys'],
+			[ 'raw_route_name' => 'configs.update',		'route_name' => 'configs.index',		'node_name' => 'sys'],
+			[ 'raw_route_name' => 'configs.edit',		'route_name' => 'configs.index',		'node_name' => 'sys'],
+			[ 'raw_route_name' => 'configs.create',	 	'route_name' => 'configs.index',		'node_name' => 'sys'],
 
-			[ 'raw_route_name' => 'tables.models',	 	'route_name' => 'tables.index',		'node_name' => 'system'],
-			[ 'raw_route_name' => 'tables.policies',	'route_name' => 'tables.index',		'node_name' => 'system'],
-			[ 'raw_route_name' => 'tables.route-code','route_name' => 'tables.index',		'node_name' => 'system'],
-			[ 'raw_route_name' => 'tables.routes',	 	'route_name' => 'tables.index',		'node_name' => 'system'],
-			[ 'raw_route_name' => 'tables.structure',	'route_name' => 'tables.index',		'node_name' => 'system'],
-			[ 'raw_route_name' => 'tables.index',		'route_name' => 'tables.index',		'node_name' => 'system'],
-			[ 'raw_route_name' => 'tables.show',		'route_name' => 'tables.index',		'node_name' => 'system'],
+			[ 'raw_route_name' => 'tables.models',	 	'route_name' => 'tables.index',		'node_name' => 'sys'],
+			[ 'raw_route_name' => 'tables.policies',	'route_name' => 'tables.index',		'node_name' => 'sys'],
+			[ 'raw_route_name' => 'tables.route-code','route_name' => 'tables.index',		'node_name' => 'sys'],
+			[ 'raw_route_name' => 'tables.routes',	 	'route_name' => 'tables.index',		'node_name' => 'sys'],
+			[ 'raw_route_name' => 'tables.structure',	'route_name' => 'tables.index',		'node_name' => 'sys'],
+			[ 'raw_route_name' => 'tables.index',		'route_name' => 'tables.index',		'node_name' => 'sys'],
+			[ 'raw_route_name' => 'tables.show',		'route_name' => 'tables.index',		'node_name' => 'sys'],
 
-			[ 'raw_route_name' => 'templates.index',	'route_name' => 'templates.index',	 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'templates.show',		'route_name' => 'templates.index',	 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'templates.update',	'route_name' => 'templates.index',	 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'templates.edit',		'route_name' => 'templates.index',	 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'templates.create',	'route_name' => 'templates.index',	 'node_name' 	=> 'system'],
+			[ 'raw_route_name' => 'templates.index',	'route_name' => 'templates.index',	 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'templates.show',		'route_name' => 'templates.index',	 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'templates.update',	'route_name' => 'templates.index',	 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'templates.edit',		'route_name' => 'templates.index',	 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'templates.create',	'route_name' => 'templates.index',	 'node_name' 	=> 'sys'],
 
-			[ 'raw_route_name' => 'notifications.index','route_name' => 'notifications.index', 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'notifications.show', 'route_name' => 'notifications.index', 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'notifications.update','route_name'=> 'notifications.index', 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'notifications.edit', 'route_name' => 'notifications.index', 'node_name' 	=> 'system'],
-			[ 'raw_route_name' => 'notifications.create','route_name'=> 'notifications.index', 'node_name' 	=> 'system'],
+			[ 'raw_route_name' => 'notifications.index','route_name' => 'notifications.index', 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'notifications.show', 'route_name' => 'notifications.index', 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'notifications.update','route_name'=> 'notifications.index', 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'notifications.edit', 'route_name' => 'notifications.index', 'node_name' 	=> 'sys'],
+			[ 'raw_route_name' => 'notifications.create','route_name'=> 'notifications.index', 'node_name' 	=> 'sys'],
 
-			[ 'raw_route_name' => 'cps.index','route_name' 			 => 'cps.index', 'node_name' 			=> 'system'],
-			[ 'raw_route_name' => 'cps.changelog','route_name' 		=> 'cps.index', 'node_name' 			=> 'system'],
-			[ 'raw_route_name' => 'cps.ui','route_name' 			=> 'cps.index', 'node_name'				=> 'system'],
-			[ 'raw_route_name' => 'cps.codegen','route_name' 		=> 'cps.index', 'node_name' 			=> 'system'],
+			[ 'raw_route_name' => 'cps.index','route_name' 			 => 'cps.index', 'node_name' 			=> 'sys'],
+			[ 'raw_route_name' => 'cps.changelog','route_name' 		=> 'cps.index', 'node_name' 			=> 'sys'],
+			[ 'raw_route_name' => 'cps.ui','route_name' 			=> 'cps.index', 'node_name'				=> 'sys'],
+			[ 'raw_route_name' => 'cps.codegen','route_name' 		=> 'cps.index', 'node_name' 			=> 'sys'],
 
-			[ 'raw_route_name' => 'ui',			'route_name' 		=> 'ui',	'node_name' 				=> 'system'],
+			[ 'raw_route_name' => 'ui',			'route_name' 		=> 'ui',	'node_name' 				=> 'sys'],
 
 			/**
 			* ==================================================================================

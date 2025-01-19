@@ -132,7 +132,7 @@ class TicketController extends Controller
 			$account_id	= auth()->user()->account_id;
 		}
 		Log::debug('landlord.TicketController.store $request->input(owner_id) = ' . $request->input('owner_id'));
-		Log::debug('landlord.TicketController.store isSeeded= ' . auth()->user()->isBackend());
+		Log::debug('landlord.TicketController.store isBackend= ' . auth()->user()->isBackend());
 		Log::debug('landlord.TicketController.store owner_id= ' . $owner_id);
 		Log::debug('landlord.TicketController.store account_id= ' . $account_id);
 

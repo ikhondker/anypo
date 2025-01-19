@@ -92,7 +92,7 @@ class ReportController extends Controller
 		if (request('term')) {
 			$reports->where('name', 'Like', '%'.request('term').'%');
 		}
-		if(auth()->user()->role->value == UserRoleEnum::SYSTEM->value) {
+		if(auth()->user()->role->value == UserRoleEnum::SYS->value) {
 			$reports = $reports->orderBy('order_by1', 'ASC')->orderBy('order_by2', 'ASC')->paginate(100);
 			return view('tenant.reports.all', compact('reports'));
 		} else {

@@ -51,7 +51,7 @@
 								<td>
 									<img src="{{ Storage::disk('s3t')->url('avatar/'.$user->avatar) }}" width="48" height="48" class="rounded-circle me-2" alt="Avatar">
 									<a href="{{ route('users.show',$user->id) }}"><strong>{{ $user->name }}</strong></a>
-									@if ( (auth()->user()->role->value == UserRoleEnum::SYSTEM->value) && $user->backend )
+									@if ( (auth()->user()->role->value == UserRoleEnum::SYS->value) && $user->backend )
 										<span class="text-danger"> (*)</span>
 									@endif
 								</td>

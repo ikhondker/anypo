@@ -160,7 +160,7 @@ class CreateTenant implements ShouldQueue
 
 		// Send notification to Landlord system on new purchase
 		$config 	= Config::first();
-		$system 	= User::where('id', $config->system_user_id)->first();
+		$system 	= User::where('id', $config->sys_user_id)->first();
 		$system->notify(new ServicePurchased($system, $account));
 
 		// Send notification if installation is requested
@@ -415,7 +415,7 @@ class CreateTenant implements ShouldQueue
 			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Tenant Admin User created user_id = ' . $user->id);
 
 			// Update tenant config->name in the tenant database
-			// setups.system_user_id is set by SetupSeeder
+			// setups.sys_user_id is set by SetupSeeder
 			Log::debug('Jobs.Landlord.CreateTenant.createTenantDb Updating Tenant Setup for account_name and admin_id');
 			$tenantSetup 			= \App\Models\Tenant\Admin\Setup::first();
 			$tenantSetup->name 		= $account_name;
