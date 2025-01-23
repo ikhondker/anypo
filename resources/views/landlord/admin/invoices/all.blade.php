@@ -22,12 +22,12 @@
 		All Invoices
 	@endslot
 	@slot('buttons')
-        @if (auth()->user()->backend)
-        <a href="{{ route('invoices.create') }}" class="btn btn-primary float-end  me-1"><i data-lucide="plus"></i> Create Service Invoice</a>
-        @endif
-        @if (auth()->user()->isBackend())
-            <x-landlord.actions.invoice-actions-index-support/>
-        @endif
+		@if (auth()->user()->backend)
+		<a href="{{ route('invoices.create') }}" class="btn btn-primary float-end  me-1"><i data-lucide="plus"></i> Create Service Invoice</a>
+		@endif
+		@if (auth()->user()->isBackend())
+			<x-landlord.actions.invoice-actions-index-support/>
+		@endif
 	@endslot
 	</x-landlord.page-header>
 
@@ -94,7 +94,7 @@
 									<strong>#{{ Str::limit($invoice->invoice_no, 15) }}</strong>
 								</a>
 							</td>
-                            <td><x-landlord.list.my-badge :value="$invoice->invoice_type" /></td>
+							<td><x-landlord.list.my-badge :value="$invoice->invoice_type" /></td>
 							<td>{{ Str::limit($invoice->summary, 35) }}</td>
 							<td><x-landlord.list.my-date :value="$invoice->invoice_date" /></td>
 							<td>{{ Str::limit($invoice->account->name, 25) }}</td>

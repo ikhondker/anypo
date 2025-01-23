@@ -58,7 +58,7 @@ class Invoice extends Model
 	public function scopeByAccount(Builder $query): void
 	{
 		$query->where('account_id', auth()->user()->account_id)
-            ->where('status_code', '<>',InvoiceStatusEnum::DRAFT->value );
+			->where('status_code', '<>',InvoiceStatusEnum::DRAFT->value );
 	}
 
 

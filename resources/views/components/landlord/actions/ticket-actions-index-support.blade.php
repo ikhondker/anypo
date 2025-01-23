@@ -5,10 +5,10 @@
 	<div class="dropdown-menu dropdown-menu-end">
 		<a class="dropdown-item" href="{{ route('tickets.all') }}"><i class="align-middle me-1" data-lucide="eye"></i> View All(*)</a>
 
-        <div class="dropdown-divider"></div>
+		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('tickets.all', ['type'=>  App\Enum\Landlord\InvoiceTypeEnum::SUBSCRIPTION->value ]) }}"><i class="align-middle me-1" data-lucide="eye"></i> TO By Type(*)</a>
 
-        {{-- <a class="dropdown-item" href="{{ route('invoices.all', ['type'=>  App\Enum\Landlord\InvoiceTypeEnum::SIGNUP->value ]) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Signups(*)</a>
+		{{-- <a class="dropdown-item" href="{{ route('invoices.all', ['type'=>  App\Enum\Landlord\InvoiceTypeEnum::SIGNUP->value ]) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Signups(*)</a>
 		<a class="dropdown-item" href="{{ route('invoices.all', ['type'=>  App\Enum\Landlord\InvoiceTypeEnum::SUBSCRIPTION->value ]) }}"><i class="align-middle me-1" data-lucide="eye"></i> View Subscription(*)</a>
 		<a class="dropdown-item" href="{{ route('invoices.all', ['type'=>  App\Enum\Landlord\InvoiceTypeEnum::ADVANCE->value ]) }}"><i class="align-middle me-1" data-lucide="eye"></i> View ADVANCE(*)</a>
 		<a class="dropdown-item" href="{{ route('invoices.all', ['type'=>  App\Enum\Landlord\InvoiceTypeEnum::ADDON->value ]) }}"><i class="align-middle me-1" data-lucide="eye"></i> View ADDON(*)</a>

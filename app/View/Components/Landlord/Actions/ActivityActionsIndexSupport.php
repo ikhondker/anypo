@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class UserActionsIndexSupport extends Component
+class ActivityActionsIndexSupport extends Component
 {
 	/**
 	 * Create a new component instance.
@@ -21,6 +21,6 @@ class UserActionsIndexSupport extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.landlord.actions.user-actions-index-support');
+		return view('components.landlord.actions.activity-actions-index-support');
 	}
 }

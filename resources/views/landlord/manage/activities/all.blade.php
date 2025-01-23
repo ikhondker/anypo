@@ -6,8 +6,21 @@
 
 @section('content')
 
-<a href="{{ route('activities.create') }}" class="btn btn-primary float-end mt-n1"><i data-lucide="plus"></i> New Activity</a>
-<h1 class="h3 mb-3">All Activities</h1>
+
+<x-landlord.page-header>
+	@slot('title')
+		All Activities
+	@endslot
+	@slot('buttons')
+		@if (auth()->user()->backend)
+			<a href="{{ route('activities.create') }}" class="btn btn-primary float-end me-1"><i data-lucide="plus"></i> New Activity</a>
+		@endif
+		@if (auth()->user()->isBackend())
+			<x-landlord.actions.activity-actions-index-support/>
+		@endif
+	@endslot
+</x-landlord.page-header>
+
 
 <div class="card">
 	<div class="card-body">

@@ -45,7 +45,7 @@
 									</tr>
 									<x-landlord.show.my-date value="{{ $invoice->discount_date }}" label="Discount Date" />
 									<x-landlord.show.my-text value="{{ $invoice->discount_by }}" label="Discount By" />
-                                    <x-landlord.show.my-enable value="{{ $invoice->posted }}" label="{{ 'Posted' }}" />
+									<x-landlord.show.my-enable value="{{ $invoice->posted }}" label="{{ 'Posted' }}" />
 								</tbody>
 							</table>
 						</div>

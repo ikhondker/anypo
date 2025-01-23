@@ -80,18 +80,18 @@ class TicketController extends Controller
 			$tickets->where('title', 'Like', '%' . request('term') . '%')
 			->orWhere('id', 'Like', '%' . request('term') . '%');
 		}
-        switch (auth()->user()->role->value) {
-            case UserRoleEnum::ADMIN->value:
-                $tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->byAccount()->orderBy('id', 'DESC')->paginate(20);
-                break;
-            default:
-                $tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->byUser()->orderBy('id', 'DESC')->paginate(20);
-        }
-        return view('landlord.tickets.index', compact('tickets'));
+		switch (auth()->user()->role->value) {
+			case UserRoleEnum::ADMIN->value:
+				$tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->byAccount()->orderBy('id', 'DESC')->paginate(20);
+				break;
+			default:
+				$tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->byUser()->orderBy('id', 'DESC')->paginate(20);
+		}
+		return view('landlord.tickets.index', compact('tickets'));
 
 	}
 
-    /**
+	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return \Illuminate\Http\Response
@@ -104,7 +104,7 @@ class TicketController extends Controller
 			$tickets->where('title', 'Like', '%' . request('term') . '%')
 			->orWhere('id', 'Like', '%' . request('term') . '%');
 		}
-        $tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->orderBy('id', 'DESC')->paginate(20);
+		$tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->orderBy('id', 'DESC')->paginate(20);
 		return view('landlord.tickets.all', compact('tickets'));
 
 	}

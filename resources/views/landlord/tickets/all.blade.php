@@ -7,19 +7,19 @@
 
 @section('content')
 
-    <x-landlord.page-header>
-        @slot('title')
-            All Tickets
-        @endslot
-        @slot('buttons')
-            @if (auth()->user()->backend)
-            <a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-1"><i data-lucide="plus"></i> New Account</a>
-            @endif
-            @if (auth()->user()->isBackend())
-                <x-landlord.actions.ticket-actions-index-support/>
-            @endif
-        @endslot
-    </x-landlord.page-header>
+	<x-landlord.page-header>
+		@slot('title')
+			All Tickets
+		@endslot
+		@slot('buttons')
+			@if (auth()->user()->backend)
+			<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-1"><i data-lucide="plus"></i> New Account</a>
+			@endif
+			@if (auth()->user()->isBackend())
+				<x-landlord.actions.ticket-actions-index-support/>
+			@endif
+		@endslot
+	</x-landlord.page-header>
 
 	<div class="card">
 		<div class="card-body">

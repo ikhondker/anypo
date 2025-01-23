@@ -49,7 +49,11 @@
 				<tbody>
 					<tr>
 						<td>1</td>
-						<td>Changelog </td>
+						<td>
+							<a href="{{ route('cps.changelog') }}">
+								<strong>Changelog</strong>
+							</a>
+						</td>
 						<td>Changelog </td>
 						<td>
 							<a href="{{ route('cps.changelog') }}" class="btn btn-light"
@@ -59,7 +63,11 @@
 					</tr>
 					<tr>
 						<td>2</td>
-						<td>UI </td>
+						<td>
+							<a href="{{ route('cps.ui') }}">
+								<strong>UI</strong>
+							</a>
+						</td>
 						<td>UI </td>
 						<td>
 							<a href="{{ route('cps.ui') }}" class="btn btn-light"
@@ -69,7 +77,11 @@
 					</tr>
 					<tr>
 						<td>3</td>
-						<td>Code Generation * </td>
+						<td>
+							<a href="{{ route('cps.codegen') }}">
+								<strong>Code Generation * </strong>
+							</a>
+						</td>
 						<td>Code Generation </td>
 						<td>
 							<a href="{{ route('cps.codegen') }}" class="btn btn-light"
@@ -79,7 +91,11 @@
 					</tr>
 					<tr>
 						<td>4</td>
-						<td>Sync Landlord</td>
+						<td>
+							<a href="{{ route('cps.sync') }}">
+								<strong>Sync Landlord</strong>
+							</a>
+						</td>
 						<td>Sync Landlord</td>
 						<td>
 							<a href="{{ route('cps.sync') }}" class="btn btn-light sw2"

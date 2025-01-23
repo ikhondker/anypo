@@ -192,12 +192,12 @@ class AkkController extends Controller
 						);
 		$checkout	= Checkout::where('id', $checkout_id )->first();
 
-        // check if user has asked intial configuratsion
-        if($request->has('installation')){
+		// check if user has asked intial configuratsion
+		if($request->has('installation')){
 			// Checkbox checked
-            $checkout->installation	= true;
-            $checkout->save();
-            // LATER: notify admin to schedule appointment, aif purchase complete
+			$checkout->installation	= true;
+			$checkout->save();
+			// LATER: notify admin to schedule appointment, aif purchase complete
 
 		}
 

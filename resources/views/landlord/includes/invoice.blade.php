@@ -35,16 +35,16 @@
 									<i data-lucide="dollar-sign"></i> Pay Invoice
 								</button>
 							</form>
-                        @endif
+						@endif
 
-                        @if (auth()->user()->isSys())
-                            @if ((! $invoice->posted) && ($invoice->status_code == App\Enum\Landlord\InvoiceStatusEnum::DUE->value))
-                                <a href="{{ route('invoices.post', $invoice->id) }}" class="btn btn-danger text-white me-2 sw2-advance"
-                                data-entity="Invoice" data-name="INVOICE#{{ $invoice->id }}" data-status="Post"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="POST Invoice">
-                                <i data-lucide="file-lock-2" class="text-white"></i> Post</a>
-                            @endif
-                        @endif
+						@if (auth()->user()->isSys())
+							@if ((! $invoice->posted) && ($invoice->status_code == App\Enum\Landlord\InvoiceStatusEnum::DUE->value))
+								<a href="{{ route('invoices.post', $invoice->id) }}" class="btn btn-danger text-white me-2 sw2-advance"
+								data-entity="Invoice" data-name="INVOICE#{{ $invoice->id }}" data-status="Post"
+								data-bs-toggle="tooltip" data-bs-placement="top" title="POST Invoice">
+								<i data-lucide="file-lock-2" class="text-white"></i> Post</a>
+							@endif
+						@endif
 
 					</div>
 				</div>

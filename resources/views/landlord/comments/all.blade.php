@@ -7,16 +7,16 @@
 
 @section('content')
 
-    <x-landlord.page-header>
-        @slot('title')
-            All Comments
-        @endslot
-        @slot('buttons')
-            @if (auth()->user()->isBackend())
-                <x-landlord.actions.comment-actions-index-support/>
-            @endif
-        @endslot
-    </x-landlord.page-header>
+	<x-landlord.page-header>
+		@slot('title')
+			All Comments
+		@endslot
+		@slot('buttons')
+			@if (auth()->user()->isBackend())
+				<x-landlord.actions.comment-actions-index-support/>
+			@endif
+		@endslot
+	</x-landlord.page-header>
 
 
 

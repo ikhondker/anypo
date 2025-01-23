@@ -16,7 +16,7 @@
 					<div class="card-actions float-end">
 						<a href="{{ route('categories.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i> View all</a>
 						@if (auth()->user()->isSys())
-    						<a class="btn btn-sm btn-danger text-white" href="{{ route('categories.edit', $category->id) }}"><i data-lucide="edit"></i> Edit</a>
+							<a class="btn btn-sm btn-danger text-white" href="{{ route('categories.edit', $category->id) }}"><i data-lucide="edit"></i> Edit</a>
 						@endif
 					</div>
 					<h5 class="card-title">View Category</h5>

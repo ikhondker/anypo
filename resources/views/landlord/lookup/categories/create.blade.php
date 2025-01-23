@@ -24,7 +24,7 @@
 					</tbody>
 				</table>
 
-                <x-landlord.create.save/>
+				<x-landlord.create.save/>
 
 			</form>
 		</div>

@@ -53,7 +53,7 @@ class Account extends Model
 	];
 
 
-    /* ----------------- Scopes ------------------------- */
+	/* ----------------- Scopes ------------------------- */
 	/**
 	 * Scope a query to only All Approved PR for tenant.
 	*/
@@ -65,7 +65,7 @@ class Account extends Model
 	public function scopeByAccount(Builder $query): void
 	{
 		$query->where('id', auth()->user()->account_id)
-        ->where('posted', true);
+		->where('posted', true);
 	}
 
 	public function scopeByUser(Builder $query): void

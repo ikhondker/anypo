@@ -40,6 +40,9 @@ php artisan make:component Landlord\Actions\CommentActionsIndexSupport
 
 php artisan make:component Landlord\Actions\UserActionsIndexSupport
 
+php artisan make:component Landlord\Actions\ActivityActionsIndexSupport
+
+
 xxphp artisan make:component Tenant\Actions\Admin\UserActionsIndex
 ~~~
 

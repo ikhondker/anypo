@@ -9,17 +9,17 @@
 
 
 <x-landlord.page-header>
-    @slot('title')
-        All Users
-    @endslot
-    @slot('buttons')
-        @if (auth()->user()->backend)
-            <a href="{{ route('users.create') }}" class="btn btn-primary float-end me-1"><i data-lucide="plus"></i> New User</a>
-        @endif
-        @if (auth()->user()->isBackend())
-            <x-landlord.actions.user-actions-index-support/>
-        @endif
-    @endslot
+	@slot('title')
+		All Users
+	@endslot
+	@slot('buttons')
+		@if (auth()->user()->backend)
+			<a href="{{ route('users.create') }}" class="btn btn-primary float-end me-1"><i data-lucide="plus"></i> New User</a>
+		@endif
+		@if (auth()->user()->isBackend())
+			<x-landlord.actions.user-actions-index-support/>
+		@endif
+	@endslot
 </x-landlord.page-header>
 
 

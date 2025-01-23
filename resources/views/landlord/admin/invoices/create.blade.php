@@ -122,7 +122,7 @@
 								</td>
 							</tr>
 
-                            <x-landlord.edit.save/>
+							<x-landlord.edit.save/>
 
 						</tbody>
 					</table>

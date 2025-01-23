@@ -61,7 +61,11 @@
 							<td>
 								<img src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" width="32" height="32" class="rounded-circle my-n1" alt="Logo" title="Logo">
 							</td>
-							<td>{{ $entity->entity }}</td>
+							<td>
+								<a href="{{ route('entities.show',$entity->entity) }}">
+									<strong>{{ $entity->entity }}</strong>
+								</a>
+								</td>
 							<td>{{ $entity->name }}</td>
 							<td>{{ $entity->directory }}</td>
 							<td>{{ $entity->model }}</td>

@@ -23,9 +23,9 @@
 				<table class="table table-sm my-2">
 					<tbody>
 
-                        <x-landlord.edit.id-read-only :value="$invoice->invoice_type"/>
+						<x-landlord.edit.id-read-only :value="$invoice->invoice_type"/>
 						<x-landlord.edit.id-read-only :value="$invoice->id"/>
-                        <x-landlord.edit.id-read-only :value="$invoice->account->name"/>
+						<x-landlord.edit.id-read-only :value="$invoice->account->name"/>
 						<tr>
 							<th>Summary :</th>
 							<td>
@@ -98,7 +98,7 @@
 									@enderror
 							</td>
 						</tr>
-                        <tr>
+						<tr>
 							<th>Qty :</th>
 							<td>
 								<input type="number" class="form-control @error('qty') is-invalid @enderror"

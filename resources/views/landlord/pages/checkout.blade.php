@@ -87,8 +87,8 @@
 									<span class="d-block small text-secondary">
 										$35/Hr. Get it configured by the our team.
 										Generally takes 2/3 hour for a SME.	We will communicate with you within 6 hrs, to configure your site, after you have purchased this service.
-                                        <br>
-                                        You will be billed later, separately, after your application is configured and in-use.
+										<br>
+										You will be billed later, separately, after your application is configured and in-use.
 									</span>
 								</div>
 

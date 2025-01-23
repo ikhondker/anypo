@@ -174,23 +174,23 @@ class InvoiceController extends Controller
 
 		// Save invoice
 		$request->merge(['invoice_no'	=>  Bo::getInvoiceNo() ]);
-		$request->merge(['qty'	        => $qty ]);
-		$request->merge(['price'	    => $product->price ]);
-		$request->merge(['subtotal'	    => $product->price * $qty ]);
-		$request->merge(['amount'	    => $product->price * $qty ]);
+		$request->merge(['qty'			=> $qty ]);
+		$request->merge(['price'		=> $product->price ]);
+		$request->merge(['subtotal'		=> $product->price * $qty ]);
+		$request->merge(['amount'		=> $product->price * $qty ]);
 
-		$request->merge(['notes'	    => $notes ]);
+		$request->merge(['notes'		=> $notes ]);
 		$request->merge(['from_date'	=> now() ]);
-		$request->merge(['to_date'	    => now() ]);
-		$request->merge(['due_date'	    => now()->addDay(7) ]);
+		$request->merge(['to_date'		=> now() ]);
+		$request->merge(['due_date'		=> now()->addDay(7) ]);
 
 		$request->merge(['account_id'	=> $account_id ]);
-		$request->merge(['owner_id'	    => $account->owner_id ]);
+		$request->merge(['owner_id'		=> $account->owner_id ]);
 		$request->merge(['requestor_id'	=> auth()->user()->id ]);
 		$request->merge(['invoice_date'	=> date('Y-m-d H:i:s')]);
 		$request->merge(['status_code'	=> InvoiceStatusEnum::DRAFT->value]);  // // Ensure manually DUE/posted
-		$request->merge(['currency'	    => 'USD']);
-		//$request->merge(['posted'	    => false]);     // Ensure manually posted
+		$request->merge(['currency'		=> 'USD']);
+		//$request->merge(['posted'		=> false]);		// Ensure manually posted
 
 		$invoice = Invoice::create($request->all());
 

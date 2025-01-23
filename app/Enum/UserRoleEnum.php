@@ -30,7 +30,7 @@ enum UserRoleEnum: string{
 	case HOD		= 'hod';
 	case CXO		= 'cxo';
 	case ADMIN		= 'admin';		// Landlord + Tenant, customer admin
-	case SYSTEM	    = 'system';	    // Landlord + Tenant, Back-office admin
+	case SYSTEM		= 'system';		// Landlord + Tenant, Back-office admin
 
 	// Bellow back office roles. They have by default customer admin access
 	case SUPPORT	= 'support';	// Landlord + Tenant
