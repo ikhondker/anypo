@@ -10,8 +10,8 @@
 	</a>
 </li>
 
-<li class="sidebar-item {{ $_route_name == 'tickets.index' ? 'active' : '' }}">
-	<a class="sidebar-link" href="{{ route('tickets.index') }}">
+<li class="sidebar-item {{ $_route_name == 'tickets.all' ? 'active' : '' }}">
+	<a class="sidebar-link" href="{{ route('tickets.all') }}">
 		<i class="align-middle" data-lucide="list-todo"></i> <span class="align-middle">All Tickets</span>
 	</a>
 </li>

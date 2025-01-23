@@ -50,7 +50,7 @@ use App\Enum\Landlord\AccountStatusEnum;
 //use App\Enum\Landlord\CheckoutStatusEnum;
 # 3. Helpers
 use App\Helpers\Export;
-use App\Helpers\FileUpload;
+use App\Helpers\Landlord\FileUpload;
 use App\Helpers\EventLog;
 # 4. Notifications
 use Notification;

@@ -13,7 +13,8 @@
 		@endslot
 		@slot('buttons')
 				<a href="{{ route('tickets.create') }}" class="btn btn-primary me-1"><i data-lucide="plus"></i> New Ticket</a>
-		@endslot
+	            <x-landlord.actions.ticket-actions-index/>
+               @endslot
 	</x-landlord.page-header>
 
 	<div class="card">

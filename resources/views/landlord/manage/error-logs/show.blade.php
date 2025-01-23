@@ -14,7 +14,7 @@
 				<div class="card-header">
 					<div class="card-actions float-end">
 						<a href="{{ route('error-logs.index') }}" class="btn btn-sm btn-light"><i data-lucide="database"></i>View all</a>
-						@if (auth()->user()->isSystem())
+						@if (auth()->user()->isSys())
 						<a class="btn btn-sm btn-danger text-white" href="{{ route('error-logs.edit', $errorLog->id) }}"><i data-lucide="edit"></i> Edit</a>
 						@endif
 					</div>

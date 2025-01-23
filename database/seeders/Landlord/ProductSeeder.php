@@ -127,7 +127,7 @@ class ProductSeeder extends Seeder
 		/* ----------------------- SETUP --------------- */
 		$setups = [
 			[
-				'id'			=> '1008',
+				'id'			=> '1008',      // Hardcoded in Landlord.InvoiceController
 				'sku'			=> 'SETUP',
 				'name'			=> 'Initial Setup',
 				'addon'			=> false,
@@ -138,9 +138,9 @@ class ProductSeeder extends Seeder
 				'enable'		=> true,
 			],
 			[
-				'id'			=> '1009',
-				'sku'			=> 'CONSULTANCY',
-				'name'			=> 'Consultancy Service',
+				'id'			=> '1009',      // Hardcoded in Landlord.InvoiceController
+				'sku'			=> 'SUPPORT',
+				'name'			=> 'Priority Support Service',
 				'addon'			=> false,
 				'addon_type'	=> 'na',
 				'list_price'	=> 45.00,
@@ -149,7 +149,7 @@ class ProductSeeder extends Seeder
 				'enable'		=> true,
 			],
 			[
-				'id'			=> '1010',
+				'id'			=> '1010',      // Hardcoded in Landlord.InvoiceController
 				'sku'			=> 'SUPPORT',
 				'name'			=> 'Paid Support',
 				'addon'			=> false,

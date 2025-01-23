@@ -25,7 +25,8 @@
 							<a href="#">{{ $config->email }}</a>
 						</p>
 
-						@if ($invoice->status_code == App\Enum\Landlord\InvoiceStatusEnum::DUE->value)
+
+						@if (( $invoice->posted ) && ( $invoice->status_code == App\Enum\Landlord\InvoiceStatusEnum::DUE->value ))
 							{{-- <form action="{{ url('/payment-stripe') }}" method="POST" class="needs-validation"> --}}
 							<form action="{{ route('akk.process-subscription') }}" method="POST" class="needs-validation">
 								<input type="hidden" value="{{ csrf_token() }}" name="_token" />
@@ -34,8 +35,16 @@
 									<i data-lucide="dollar-sign"></i> Pay Invoice
 								</button>
 							</form>
-						@endif
+                        @endif
 
+                        @if (auth()->user()->isSys())
+                            @if ((! $invoice->posted) && ($invoice->status_code == App\Enum\Landlord\InvoiceStatusEnum::DUE->value))
+                                <a href="{{ route('invoices.post', $invoice->id) }}" class="btn btn-danger text-white me-2 sw2-advance"
+                                data-entity="Invoice" data-name="INVOICE#{{ $invoice->id }}" data-status="Post"
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="POST Invoice">
+                                <i data-lucide="file-lock-2" class="text-white"></i> Post</a>
+                            @endif
+                        @endif
 
 					</div>
 				</div>

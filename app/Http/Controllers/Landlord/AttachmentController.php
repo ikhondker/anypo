@@ -29,7 +29,7 @@ use App\Models\Landlord\Attachment;
 use App\Models\Landlord\Manage\Entity;
 # 2. Enums
 # 3. Helpers
-use App\Helpers\FileUpload;
+use App\Helpers\Landlord\FileUpload;
 use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs

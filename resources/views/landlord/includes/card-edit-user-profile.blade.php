@@ -35,7 +35,7 @@
 						<td><input type="email" name="email" id="email" class="form-control" placeholder="you@example.com" value="{{ $user->email }}" readonly></td>
 					</tr>
 
-					@if ( (auth()->user()->isAdmin() || auth()->user()->isSupport() || auth()->user()->isSystem() ) && (auth()->user()->id <> $user->id) )
+					@if ( (auth()->user()->isAdmin() || auth()->user()->isSupport() || auth()->user()->isSys() ) && (auth()->user()->id <> $user->id) )
 						<tr>
 							<th class="text-danger">Modify Role:</th>
 							<td>

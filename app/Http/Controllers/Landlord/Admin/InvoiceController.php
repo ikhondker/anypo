@@ -25,6 +25,7 @@ use App\Http\Requests\Landlord\Admin\StoreInvoiceRequest;
 use App\Http\Requests\Landlord\Admin\UpdateInvoiceRequest;
 
 # 1. Models
+use App\Models\User;
 use App\Models\Landlord\Lookup\Product;
 use App\Models\Landlord\Admin\Invoice;
 use App\Models\Landlord\Admin\Payment;
@@ -32,18 +33,19 @@ use App\Models\Landlord\Manage\Config;
 use App\Models\Landlord\Account;
 use App\Models\Landlord\Manage\Checkout;
 # 2. Enums
+use App\Enum\EntityEnum;
 use App\Enum\Landlord\InvoiceTypeEnum;
 use App\Enum\Landlord\InvoiceStatusEnum;
-use App\Enum\Landlord\CheckoutStatusEnum;
-use App\Enum\Landlord\PaymentMethodEnum;
-use App\Enum\Landlord\PaymentStatusEnum;
 
 # 3. Helpers
 use App\Helpers\Export;
 use App\Helpers\EventLog;
+use App\Helpers\Landlord\Bo;
+use App\Helpers\Landlord\FileUpload;
 # 4. Notifications
+use App\Notifications\Landlord\InvoiceCreated;
 # 5. Jobs
-use App\Jobs\Landlord\SubscriptionInvoicePaid;
+//use App\Jobs\Landlord\SubscriptionInvoicePaid;
 # 6. Mails
 # 7. Rules
 # 8. Packages
@@ -51,6 +53,7 @@ use App\Jobs\Landlord\SubscriptionInvoicePaid;
 # 10. Events
 # 11. Controller
 # 12. Seeded
+use Illuminate\Http\Request;
 use DB;
 use Str;
 use Exception;
@@ -75,25 +78,39 @@ class InvoiceController extends Controller
 		return view('landlord.admin.invoices.index', compact('invoices'));
 	}
 
-    /**
+	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function all(Account $account = null)
-	{
+	//public function all($type = null, $status = null, $account = null)
+	public function all(Request $request)
 
+	{
 		// backend invoice list
 		$this->authorize('viewAll',Invoice::class);
 
-		if ($account == '') {
-			// here the parameter doesn't exist
-			$invoices = Invoice::with('account')->with('status')->orderBy('id', 'DESC')->paginate(10);
-		} else {
-			$invoices = Invoice::with('account')->with('status')
-			    ->where('account_id',$account->id)
-			    ->orderBy('id', 'DESC')->paginate(10);
+		// Log::debug('landlord.invoice.all type = ' . $type);
+		// Log::debug('landlord.invoice.all status = ' . $status);
+		// Log::debug('landlord.invoice.all account = ' . $account);
+
+		$invoices = Invoice::with('account')->with('status');
+
+		// https://www.reddit.com/r/PHPhelp/comments/1d1ekju/multiple_optional_parameters_in_laravel_11_problem/
+		if ($request->has('type')) {
+			$invoices->where('invoice_type', $request->query('type'));
 		}
+		//if(!empty($status)){
+		if ($request->has('status')) {
+			$invoices->where('status_code', $request->query('status'));
+		}
+
+		if ($request->has('account')) {
+			$invoices->where('account_id', $request->query('account'));
+		}
+
+		$invoices = $invoices->orderBy('id', 'DESC')->paginate(10);
+
 		return view('landlord.admin.invoices.all', compact('invoices'));
 	}
 
@@ -104,14 +121,106 @@ class InvoiceController extends Controller
 	public function create()
 	{
 		// three type setup, amc, support
-        // not subscription
-        //abort(403);
+		// not subscription
 		// Manual Invoice Create
-		//$this->authorize('create', Invoice::class);
-		return view('landlord.admin.invoices.create');
+		$this->authorize('create', Invoice::class);
+		$accounts		= Account::primary()->get();
+		return view('landlord.admin.invoices.create', compact('accounts'));
+	}
+
+/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  \App\Http\Requests\StoreInvoiceRequest  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store(StoreInvoiceRequest $request)
+	{
+
+		$this->authorize('create', Invoice::class);
+
+		$account_id 	= $request->input('account_id');
+		$invoice_type 	= $request->input('invoice_type');
+		$qty 			= $request->input('qty');
+
+		$config = Config::first();
+		$account = Account::where('id', $account_id)->first();
+
+		// allowed periods
+		// $periods = array("1", "3", "6", "12");
+		// if ( ! in_array($period, $periods)) {
+		// 	return redirect()->route('invoices.index')->with('error', 'Sorry, Allowed period to generate invoice is 1, 3, 6, and 12!');
+		// }
+
+		switch ($invoice_type) {
+			case InvoiceTypeEnum::SETUP->value:
+				$product = Product::where('id', 1008)->first();
+				$notes			= 'Add-hoq Configuration Invoice for Account #' . $account->id . ' For ' . $account->site .'.'. env('APP_DOMAIN');
+				break;
+			case InvoiceTypeEnum::SUPPORT->value:
+				$product = Product::where('id', 1009)->first();
+				$notes			= 'Add-hoq Priority Support Invoice for Account #' . $account->id . ' For ' . $account->site .'.'. env('APP_DOMAIN');
+
+				break;
+			case InvoiceTypeEnum::AMC->value:
+				$product = Product::where('id', 1010)->first();
+				$notes			= 'Add-hoq AMC Invoice for Account #' . $account->id . ' For ' . $account->site .'.'. env('APP_DOMAIN');
+
+				break;
+			default:
+				Log::error('landlord.invoice.store generating Invalid Invoice Type = ' . $invoice_type);
+				return redirect()->route('invoices.create')->with('error', 'Invalid Invoice Type!');
+		}
+
+		// Save invoice
+		$request->merge(['invoice_no'	=>  Bo::getInvoiceNo() ]);
+		$request->merge(['qty'	        => $qty ]);
+		$request->merge(['price'	    => $product->price ]);
+		$request->merge(['subtotal'	    => $product->price * $qty ]);
+		$request->merge(['amount'	    => $product->price * $qty ]);
+
+		$request->merge(['notes'	    => $notes ]);
+		$request->merge(['from_date'	=> now() ]);
+		$request->merge(['to_date'	    => now() ]);
+		$request->merge(['due_date'	    => now()->addDay(7) ]);
+
+		$request->merge(['account_id'	=> $account_id ]);
+		$request->merge(['owner_id'	    => $account->owner_id ]);
+		$request->merge(['requestor_id'	=> auth()->user()->id ]);
+		$request->merge(['invoice_date'	=> date('Y-m-d H:i:s')]);
+		$request->merge(['status_code'	=> InvoiceStatusEnum::DRAFT->value]);  // // Ensure manually DUE/posted
+		$request->merge(['currency'	    => 'USD']);
+		//$request->merge(['posted'	    => false]);     // Ensure manually posted
+
+		$invoice = Invoice::create($request->all());
+
+		// Write to Log
+		Log::channel('bo')->info('landlord.invoice.crate Manual Invoice Generated invoice_id = ' . $invoice->id);
+		EventLog::event('invoice', $invoice->id, 'manual-create');
+
+		// if ($file = $request->file('file_to_upload')) {
+		// 	$request->merge(['article_id'	=> $invoice->id ]);
+		// 	$request->merge(['entity'		=> EntityEnum::INVOICE->value ]);
+		// 	$attid = FileUpload::aws($request);
+		// }
+
+		// identify user to notify
+		$user = User::where('id', $account->owner_id)->first();
+		// Invoice Created Notification
+		$user->notify(new InvoiceCreated($user, $invoice));
+
+		return redirect()->route('invoices.show', $invoice->id)->with('success', 'INVOICE #'. $invoice->id.' created. Please review and POST.');
 	}
 
 
+	public function post(Invoice $invoice)
+	{
+			$invoice->status_code	= InvoiceStatusEnum::DUE->value;
+			$invoice->save();
+			Log::debug('landlord.invoice.post Invoice Posted invoice_id = ' . $invoice->id);
+			EventLog::event('invoice', $invoice->id, 'post');
+			return redirect()->route('invoices.show', $invoice->id)->with('success', 'INVOICE #'. $invoice->id.' Posted successfully.');
+	}
 
 	/**
 	 * Show the form for creating a new resource.
@@ -138,18 +247,7 @@ class InvoiceController extends Controller
 		return view('landlord.admin.invoices.generate', compact('account', 'config'));
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param  \App\Http\Requests\StoreInvoiceRequest  $request
-	 * @return \Illuminate\Http\Response
-	 */
-	public function store(StoreInvoiceRequest $request)
-	{
 
-		abort(403);
-
-	}
 
 
 	/**

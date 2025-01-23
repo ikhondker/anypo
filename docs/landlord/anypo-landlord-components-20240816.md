@@ -25,9 +25,20 @@ php artisan make:job Landlord/AccountsArchive
 ~~~
 php artisan make:component Landlord\Actions\AccountActions
 php artisan make:component Landlord\Actions\AccountActionsSupport
-php artisan make:component Landlord\Actions\InvoiceActionsSupport
-php artisan make:component Landlord\Actions\TicketActions
+php artisan make:component Landlord\Actions\AccountActionsIndexSupport
 
+php artisan make:component Landlord\Actions\InvoiceActionsSupport
+php artisan make:component Landlord\Actions\InvoiceActionsIndexSupport
+
+php artisan make:component Landlord\Actions\CheckoutActionsIndexSupport
+
+php artisan make:component Landlord\Actions\TicketActions
+php artisan make:component Landlord\Actions\TicketActionsIndex
+php artisan make:component Landlord\Actions\TicketActionsIndexSupport
+
+php artisan make:component Landlord\Actions\CommentActionsIndexSupport
+
+php artisan make:component Landlord\Actions\UserActionsIndexSupport
 
 xxphp artisan make:component Tenant\Actions\Admin\UserActionsIndex
 ~~~

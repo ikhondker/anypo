@@ -49,8 +49,7 @@ class InvoicePolicy
 	 */
 	public function create(User $user): bool
 	{
-		return ($user->isAdmin()) || $user->isBackend();
-
+ 		return ($user->isAdmin()) || $user->isBackend();
 	}
 
 	public function generate(User $user): bool

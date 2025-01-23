@@ -42,7 +42,7 @@ use App\Enum\Landlord\InvoiceStatusEnum;
 //use App\Enum\Landlord\PaymentMethodEnum;
 //use App\Enum\Landlord\PaymentStatusEnum;
 # 3. Helpers
-//use App\Helpers\FileUpload;
+//use App\Helpers\Landlord\FileUpload;
 use App\Helpers\EventLog;
 # 4. Notifications
 # 5. Jobs

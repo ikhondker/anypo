@@ -6,7 +6,7 @@
 
 @section('content')
 
-@if (auth()->user()->isSystem())
+@if (auth()->user()->isSys())
 	<a href="{{ route('products.create') }}" class="btn btn-danger text-white float-end mt-n1"><i data-lucide="plus"></i> New Product (*)</a>
 @endif
 

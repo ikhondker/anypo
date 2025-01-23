@@ -60,7 +60,7 @@
 						<x-landlord.edit.facebook url="{{ $account->facebook }}" />
 						<x-landlord.edit.linkedin url="{{ $account->linkedin }}" />
 
-						@if (auth()->user()->isSystem())
+						@if (auth()->user()->isSys())
 							<tr>
 								<th class="text-danger">LifeTime Discount % :</th>
 								<td>

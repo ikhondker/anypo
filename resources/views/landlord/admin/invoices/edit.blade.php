@@ -12,7 +12,7 @@
 	<div class="card">
 		<div class="card-header">
 
-			<h5 class="card-title">Edit Invoice (Admin Only)</h5>
+			<h5 class="card-title">Edit Invoice (SYSTEM Only)</h5>
 			<h6 class="card-subtitle text-muted">Edit Invoice Details.</h6>
 		</div>
 		<div class="card-body">
@@ -23,8 +23,9 @@
 				<table class="table table-sm my-2">
 					<tbody>
 
+                        <x-landlord.edit.id-read-only :value="$invoice->invoice_type"/>
 						<x-landlord.edit.id-read-only :value="$invoice->id"/>
-
+                        <x-landlord.edit.id-read-only :value="$invoice->account->name"/>
 						<tr>
 							<th>Summary :</th>
 							<td>
@@ -95,6 +96,18 @@
 									@error('due_date')
 										<div class="small text-danger">{{ $message }}</div>
 									@enderror
+							</td>
+						</tr>
+                        <tr>
+							<th>Qty :</th>
+							<td>
+								<input type="number" class="form-control @error('qty') is-invalid @enderror"
+								name="qty" id="qty" placeholder="1"
+								value="{{ old('qty', $invoice->qty ) }}"
+								required/>
+							@error('qty')
+								<div class="small text-danger">{{ $message }}</div>
+							@enderror
 							</td>
 						</tr>
 						<tr>

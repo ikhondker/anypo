@@ -283,6 +283,8 @@ Route::middleware(['auth', 'verified','can:admin'])->group(function () {
 	Route::get('/invoice/generate',[InvoiceController::class,'generate'])->name('invoices.generate');
 	Route::get('/invoice/export', [InvoiceController::class, 'export'])->name('invoices.export');
 
+
+
 	/* ======================== Payment ======================================== */
 	Route::resource('payments', PaymentController::class);
 	//Route::get('/payments/pdf/{pr}', [PaymentController::class,'pdf'])->name('payments.pdf');
@@ -318,6 +320,7 @@ Route::middleware(['auth', 'verified', 'can:support'])->group(function () {
 	//Route::get('/leave-impersonate', [UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
 
 	/* ======================== Ticket ========================================  */
+    Route::get('/ticket/all', [TicketController::class, 'all'])->name('tickets.all');
 	Route::get('/tickets/assign/{ticket}', [TicketController::class, 'assign'])->name('tickets.assign');
 	Route::post('/tickets/do-assign/{ticket}', [TicketController::class, 'doAssign'])->name('tickets.do-assign');
 	Route::get('/tickets/topics/{ticket}', [TicketController::class, 'topics'])->name('tickets.topics');
@@ -338,7 +341,13 @@ Route::middleware(['auth', 'verified', 'can:support'])->group(function () {
 	Route::get('/service/export', [ServiceController::class, 'export'])->name('services.export');
 
 	/* ======================== Invoice ======================================== */
-	Route::get('/invoice/all/{account?}', [InvoiceController::class, 'all'])->name('invoices.all');
+	//Route::get('/invoice/all/{account?}/{type?}/{status?}', [InvoiceController::class, 'all'])->name('invoices.all');
+	//Route::get('/invoice/all/{account?}/{type?}/{status?}', [InvoiceController::class, 'all'])->name('invoices.all');
+	Route::get('/invoice/all', [InvoiceController::class, 'all'])->name('invoices.all');
+
+
+
+    Route::get('/invoices/post/{invoice}',[InvoiceController::class, 'post'])->name('invoices.post');
 
 	/* ======================== Payment ======================================== */
 	Route::get('/payment/all/{account?}', [PaymentController::class, 'all'])->name('payments.all');

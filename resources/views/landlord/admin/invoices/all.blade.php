@@ -17,15 +17,19 @@
 
 @section('content')
 
-	@if (auth()->user()->account_id <> '')
-		<a href="{{ route('invoices.index') }}" class="btn btn-primary float-end mt-n1"><i data-lucide="plus"></i> Generate Invoice **</a>
-	@endif
-
-    @if (auth()->user()->backend)
+	<x-landlord.page-header>
+	@slot('title')
+		All Invoices
+	@endslot
+	@slot('buttons')
+        @if (auth()->user()->backend)
         <a href="{{ route('invoices.create') }}" class="btn btn-primary float-end  me-1"><i data-lucide="plus"></i> Create Service Invoice</a>
-	@endif
-
-	<h1 class="h3 mb-3">All Invoices</h1>
+        @endif
+        @if (auth()->user()->isBackend())
+            <x-landlord.actions.invoice-actions-index-support/>
+        @endif
+	@endslot
+	</x-landlord.page-header>
 
 	<div class="card">
 		<div class="card-body">
@@ -52,6 +56,7 @@
 				<div class="col-md-6 col-xl-8">
 
 					<div class="text-sm-end">
+
 						<a href="{{ route('invoices.all') }}" class="btn btn-primary btn-lg"
 							data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
 							<i data-lucide="refresh-cw"></i></a>
@@ -67,10 +72,10 @@
 					<tr>
 						<th>#</th>
 						<th>Invoice #</th>
+						<th>Type</th>
 						<th>Summary</th>
 						<th>Invoice Date</th>
 						<th>Account</th>
-						<th>Type</th>
 						<th class="text-end">Amount $</th>
 						<th class="text-end">Discount %</th>
 						<th>Pwop</th>
@@ -89,10 +94,10 @@
 									<strong>#{{ Str::limit($invoice->invoice_no, 15) }}</strong>
 								</a>
 							</td>
+                            <td><x-landlord.list.my-badge :value="$invoice->invoice_type" /></td>
 							<td>{{ Str::limit($invoice->summary, 35) }}</td>
 							<td><x-landlord.list.my-date :value="$invoice->invoice_date" /></td>
 							<td>{{ Str::limit($invoice->account->name, 25) }}</td>
-							<td><x-landlord.list.my-badge :value="$invoice->invoice_type" /></td>
 
 							<td class="text-end"><x-landlord.list.my-number :value="$invoice->amount" /></td>
 							<td class="text-end"><x-landlord.list.my-number :value="$invoice->discount" /></td>

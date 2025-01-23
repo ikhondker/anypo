@@ -6,9 +6,20 @@
 
 @section('content')
 
+<x-landlord.page-header>
+    @slot('title')
+        All Checkouts
+    @endslot
+    @slot('buttons')
+        @if (auth()->user()->backend)
+            <a href="{{ route('checkouts.create') }}" class="btn btn-primary float-end me-1"><i data-lucide="plus"></i> New Checkout</a>
+        @endif
+        @if (auth()->user()->isBackend())
+            <x-landlord.actions.checkout-actions-index-support/>
+        @endif
+    @endslot
+</x-landlord.page-header>
 
-	<a href="{{ route('checkouts.create') }}" class="btn btn-primary float-end mt-n1"><i data-lucide="plus"></i> New Checkout</a>
-	<h1 class="h3 mb-3">All Checkouts</h1>
 
 	<div class="card">
 		<div class="card-body">

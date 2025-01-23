@@ -22,12 +22,11 @@
 
 	@include('landlord.includes.invoice')
 
-
-	@if (auth()->user()->isSystem())
+	@if (auth()->user()->isSys())
 		<div class="card">
 			<div class="card-header">
 				<div class="card-actions float-end">
-					@if (auth()->user()->isSystem())
+					@if (auth()->user()->isSys())
 						<a class="btn btn-sm btn-danger text-white" href="{{ route('invoices.edit', $invoice->id) }}"><i data-lucide="edit"></i> Edit(*)</a>
 					@endif
 				</div>
@@ -35,8 +34,6 @@
 				<h6 class="card-subtitle text-muted">Confidential Invoice Detail.</h6>
 			</div>
 			<div class="card-body">
-
-
 				<div class="row pt-5">
 					<div class="col-md-6">
 						<div class="table-responsive">
@@ -48,6 +45,7 @@
 									</tr>
 									<x-landlord.show.my-date value="{{ $invoice->discount_date }}" label="Discount Date" />
 									<x-landlord.show.my-text value="{{ $invoice->discount_by }}" label="Discount By" />
+                                    <x-landlord.show.my-enable value="{{ $invoice->posted }}" label="{{ 'Posted' }}" />
 								</tbody>
 							</table>
 						</div>

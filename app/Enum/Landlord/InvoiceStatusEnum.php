@@ -20,9 +20,10 @@
 namespace App\Enum\Landlord;
 
 enum InvoiceStatusEnum:string{
+    case DRAFT		= 'draft';
+    case DUE		= 'due';
 	case PAID		= 'paid';
 	case ONHOLD		= 'on-hold';
-	case DUE		= 'due';
 	case PASTDUE	= 'past-due';
 	case CANCELED	= 'canceled';
 }

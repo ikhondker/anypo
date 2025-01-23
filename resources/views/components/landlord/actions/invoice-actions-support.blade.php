@@ -3,7 +3,7 @@
 		<i class="align-middle text-danger mt-n1" data-lucide="settings"></i> Actions
 	 </a>
 	<div class="dropdown-menu dropdown-menu-end">
-		@if (auth()->user()->isSystem())
+		@if (auth()->user()->isSys())
 			<a class="dropdown-item text-danger" href="{{ route('invoices.edit', $invoice->id) }}"><i class="align-middle me-1" data-lucide="edit"></i> Edit</a>
 			<a class="dropdown-item text-danger" href="{{ route('invoices.pwop', $invoice->id) }}"><i class="align-middle me-1" data-lucide="dollar-sign"></i> Pay without Pay (*)</a>
 			<a class="dropdown-item text-danger" href="{{ route('invoices.discount', $invoice->id) }}"><i class="align-middle me-1" data-lucide="dollar-sign"></i> Apply Discount (*)</a>

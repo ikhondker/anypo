@@ -5,8 +5,9 @@
 ====================================================================
 Add installation service? Yes! Install it for me. $79 One time fee Checkbox
 logo for backend user?
+filet invocie by unposted/setup/support
 account_id mandatory auth()->user()->account_id
-allow purchae user to ask for etup service
+allow purchased user to ask for setup service
 x123. disable site form landlord
 x123. search ticket on top
 123. filter open ticket only

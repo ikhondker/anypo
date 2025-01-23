@@ -44,7 +44,7 @@ class MenuSeeder extends Seeder
 			* ==================================================================================
 			*/
 			[ 'raw_route_name' => 'tickets.index',	 	'route_name' => 'tickets.index',	'node_name' 	=> ''],
-			//[ 'raw_route_name' => 'tickets.all',		'route_name' => 'tickets.index',	'node_name' 	=> ''],
+			[ 'raw_route_name' => 'tickets.all',		'route_name' => 'tickets.index',	'node_name' 	=> ''],
 			[ 'raw_route_name' => 'tickets.show',		'route_name' => 'tickets.index',	'node_name' 	=> ''],
 			[ 'raw_route_name' => 'tickets.update',		'route_name' => 'tickets.index',	'node_name' 	=> ''],
 			[ 'raw_route_name' => 'tickets.edit',		'route_name' => 'tickets.index',	'node_name' 	=> ''],

@@ -7,8 +7,21 @@
 
 @section('content')
 
-	<a href="{{ route('users.create') }}" class="btn btn-primary float-end mt-n1"><i data-lucide="plus"></i> New User</a>
-	<h1 class="h3 mb-3">All Users</h1>
+
+<x-landlord.page-header>
+    @slot('title')
+        All Users
+    @endslot
+    @slot('buttons')
+        @if (auth()->user()->backend)
+            <a href="{{ route('users.create') }}" class="btn btn-primary float-end me-1"><i data-lucide="plus"></i> New User</a>
+        @endif
+        @if (auth()->user()->isBackend())
+            <x-landlord.actions.user-actions-index-support/>
+        @endif
+    @endslot
+</x-landlord.page-header>
+
 
 	<div class="card">
 		<div class="card-body">
@@ -100,7 +113,7 @@
 												<a href="{{ route('users.impersonate',$user->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 												data-bs-placement="top" title="Impersonate"><i data-lucide="log-in" class="text-danger"></i></a>
 											@else
-												@if (auth()->user()->isSystem())
+												@if (auth()->user()->isSys())
 													<a href="{{ route('users.impersonate',$user->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 														data-bs-placement="top" title="Impersonate"><i data-lucide="log-in" class="text-danger"></i></a>
 												@endif

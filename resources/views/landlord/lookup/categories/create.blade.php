@@ -18,16 +18,14 @@
 		<div class="card-body">
 			<form id="myform" action="{{ route('categories.store') }}" method="POST">
 				@csrf
-
-
 				<table class="table table-sm my-2">
 					<tbody>
-
 						<x-landlord.create.name/>
 					</tbody>
 				</table>
 
-				<x-landlord.edit.save/>
+                <x-landlord.create.save/>
+
 			</form>
 		</div>
 	</div>

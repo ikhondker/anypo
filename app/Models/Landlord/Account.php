@@ -52,18 +52,25 @@ class Account extends Model
 		//'status_code'			=> AccountStatusEnum::class,
 	];
 
-	/* ---------------- Scope ---------------------- */
+
+    /* ----------------- Scopes ------------------------- */
 	/**
-	 * Scope a query to only include current users account.
-	 */
+	 * Scope a query to only All Approved PR for tenant.
+	*/
+	public function scopePrimary(Builder $query): void
+	{
+		$query->where('status_code', AccountStatusEnum::ACTIVE->value)->orderBy('name', 'asc');
+	}
+
 	public function scopeByAccount(Builder $query): void
 	{
-		$query->where('id', auth()->user()->account_id);
+		$query->where('id', auth()->user()->account_id)
+        ->where('posted', true);
 	}
 
 	public function scopeByUser(Builder $query): void
 	{
-		$query->where('owner_id', auth()->user()->id);
+		$query->where('owner_id', auth()->user()->id)->where('posted', true);
 	}
 
 	/* ---------------- HasMany ---------------------- */

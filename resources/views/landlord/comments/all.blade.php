@@ -7,8 +7,18 @@
 
 @section('content')
 
+    <x-landlord.page-header>
+        @slot('title')
+            All Comments
+        @endslot
+        @slot('buttons')
+            @if (auth()->user()->isBackend())
+                <x-landlord.actions.comment-actions-index-support/>
+            @endif
+        @endslot
+    </x-landlord.page-header>
 
-	<h1 class="h3 mb-3">All Comments</h1>
+
 
 	<div class="card">
 		<div class="card-body">
