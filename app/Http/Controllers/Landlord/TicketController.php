@@ -155,11 +155,11 @@ class TicketController extends Controller
 			'status_code'		=> TicketStatusEnum::NEW->value,
 			'owner_id'			=> $owner_id,
 			'account_id'		=> $account_id,
-			'dept_id'			=> '1001',
-			'priority_id'		=> '1001',
+			'dept_id'			=> config('bo.DEFAULT_DEPT_ID'),
+			'priority_id'		=> config('bo.DEFAULT_PRIORITY_ID'),
 			'last_message_at'	=> date('Y-m-d H:i:s'),
 			'ip'				=> $request->ip()
-		]);
+    	]);
 
 		// Create Ticket
 		$ticket = Ticket::create($request->all());

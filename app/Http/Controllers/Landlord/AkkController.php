@@ -50,6 +50,7 @@ use App\Jobs\Landlord\CreateTenant;
 use App\Jobs\Landlord\AddAddon;
 use App\Jobs\Landlord\AddAdvance;
 use App\Jobs\Landlord\SubscriptionInvoicePaid;
+
 # 6. Mails
 # 7. Rules
 # 8. Packages
@@ -192,15 +193,13 @@ class AkkController extends Controller
 						);
 		$checkout	= Checkout::where('id', $checkout_id )->first();
 
-		// check if user has asked intial configuratsion
-		if($request->has('installation')){
+		// check if user has asked initial configuration
+		if($request->has('setup')){
 			// Checkbox checked
-			$checkout->installation	= true;
+			$checkout->setup	= true;
 			$checkout->save();
 			// LATER: notify admin to schedule appointment, aif purchase complete
-
 		}
-
 
 		Log::debug('landlord.AkkController.checkoutStripe created checkout_id = '. $checkout_id);
 

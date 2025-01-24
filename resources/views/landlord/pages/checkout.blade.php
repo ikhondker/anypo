@@ -82,7 +82,7 @@
 								<hr class="my-4">
 								<h4 class="mb-3">Need initial configuration service?</h4>
 								<div class="form-check align-items-center">
-									<input id="admin" type="checkbox" class="form-check-input" value="user-role" name="installation">
+									<input id="setup" type="checkbox" class="form-check-input" value="user-role" name="setup">
 									<label class="form-check-label text-small" for="customControlInline"><b>Yes! Configure it for me</b></label>
 									<span class="d-block small text-secondary">
 										$35/Hr. Get it configured by the our team.

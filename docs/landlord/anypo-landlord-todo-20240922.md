@@ -5,6 +5,7 @@
 ====================================================================
 Add installation service? Yes! Install it for me. $79 One time fee Checkbox
 logo for backend user?
+auto create ticket for setup
 filet invocie by unposted/setup/support
 account_id mandatory auth()->user()->account_id
 allow purchased user to ask for setup service

@@ -48,6 +48,9 @@ use App\Notifications\Landlord\FirstTenantAdminCreated;
 // Event
 use Illuminate\Auth\Events\Registered;
 
+// jobs
+use App\Jobs\Landlord\TicketSetupNeeded;
+
 // Seeded
 use Str;
 use Exception;
@@ -94,7 +97,7 @@ class CreateTenant implements ShouldQueue
 		$checkout->update();
 		Log::debug('Jobs.Landlord.CreateTenant 0. Processing Site = '.$checkout->site);
 
-		// create or update user
+		// create or update account admin user
 		Log::debug('Jobs.Landlord.CreateTenant 1. Calling self::createUpdateCheckoutUser');
 		$user_id= self::createUpdateCheckoutUser($this->checkout_id);
 
@@ -107,7 +110,7 @@ class CreateTenant implements ShouldQueue
 		$checkout->account_id	= $account_id;
 		$checkout->save();
 
-		// update user account_id
+		// update account admin user account_id
 		$user = User::where('id', $user_id)->first();
 		$user->account_id = $account_id;
 		$user->save();
@@ -160,12 +163,13 @@ class CreateTenant implements ShouldQueue
 
 		// Send notification to Landlord system on new purchase
 		$config 	= Config::first();
-		$system 	= User::where('id', $config->sys_user_id)->first();
-		$system->notify(new ServicePurchased($system, $account));
+		$sys 	= User::where('id', $config->sys_user_id)->first();
+		$sys->notify(new ServicePurchased($sys, $account));
 
-		// Send notification if installation is requested
-		if($checkout->setup){
-			$system->notify(new SetupNeeded($system, $account));
+		// Auto create Ticket for setup request
+        if($checkout->setup){
+            Log::debug('Jobs.Landlord.handle installation is requested. Creating Ticket.');
+            TicketSetupNeeded::dispatch($user->id);
 		}
 
 		// copy logo and avatar default files Not needed after AWS CDN

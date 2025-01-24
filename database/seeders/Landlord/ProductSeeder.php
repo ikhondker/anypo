@@ -150,8 +150,8 @@ class ProductSeeder extends Seeder
 			],
 			[
 				'id'			=> '1010',      // Hardcoded in Landlord.InvoiceController
-				'sku'			=> 'SUPPORT',
-				'name'			=> 'Paid Support',
+				'sku'			=> 'AMC',
+				'name'			=> 'AMC',
 				'addon'			=> false,
 				'addon_type'	=> 'na',
 				'list_price'	=> 35.00,

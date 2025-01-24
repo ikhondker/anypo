@@ -20,7 +20,7 @@ class Checkout extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-		'checkout_date', 'invoice_type', 'status_code', 'session_id', 'site', 'email', 'account_name', 'existing_user', 'owner_id', 'account_id', 'invoice_id', 'start_date', 'end_date', 'product_id', 'product_name', 'tax', 'vat', 'price', 'mnth', 'user', 'gb', 'ip', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'updated_by', 'updated_at',
+		'checkout_date', 'invoice_type', 'status_code', 'session_id', 'site', 'email', 'account_name', 'existing_user', 'owner_id', 'account_id', 'invoice_id', 'start_date', 'end_date', 'product_id', 'product_name', 'tax', 'vat', 'price', 'setup', 'mnth', 'user', 'gb', 'ip', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'updated_by', 'updated_at',
 	];
 
 	/**
