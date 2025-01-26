@@ -31,8 +31,8 @@ https://www.brevo.com/pricing/
 24. 0.24 Rearrange invoice & payment into single AkkControler, Reject PR/PO,  ticket first_response_at , last_response_at,  report level pdf security. ticket topics, and pivot
 25. 0.25 demo request etc, bug request, ticket Topics, ReplyTemplate, ItemCategory add, UploadItem
 26. 0.26 Upgrade all component to latest, Timestamp action, testing, LandlordSync, remove FontAwsome, demo limitations, seeded to backend, status icon landlord and tenant, rewrite export using phpspreadsheet pkg, merge all export in export Controller and parameterized
-26. 0.27 [ongoing] Entity lowercase and syb with Model Name, bg_color form dept and budget, others,who column fixed, anonymous add, move EnityEbum ad merge, re-write documentation, merge file attachments, installation invoice and amc invoice, system to sys, sysadmin to system, account_id for backend users, filter invocie by status and type , multiple IndexSupport actions
-27. 
+26. 0.27 [ongoing] Entity lowercase and syb with Model Name, bg_color form dept and budget, others,who column fixed, anonymous add, move EntityEnum ad merge, re-write documentation, merge file attachments, installation invoice and amc invoice, system to sys, sysadmin to system, account_id for backend users, filter invoice by status and type , multiple IndexSupport actions, topic to tag
+27.
 
 
 # 12. Key Configuration

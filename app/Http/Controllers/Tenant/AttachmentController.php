@@ -178,7 +178,7 @@ class AttachmentController extends Controller
 							return redirect()->route('prs.show', $pr->id)->with('error', 'Add attachment is only allowed for DRAFT Requisition.');
 						}
 					}
-				   break;
+					break;
 				case EntityEnum::PO->value:
 					$po = Po::where('id', $articleId)->get()->firstOrFail();
 					if ($po === null) {

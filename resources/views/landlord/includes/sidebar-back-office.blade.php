@@ -55,7 +55,7 @@
 			<li class="sidebar-item {{ ($_route_name == 'products.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('products.index') }}"><i class="align-middle" data-lucide="circle"></i>Product</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'categories.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('categories.index') }}"><i class="align-middle" data-lucide="circle"></i>Category</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'countries.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('countries.index') }}"><i class="align-middle" data-lucide="circle"></i>Country</a></li>
-			<li class="sidebar-item {{ ($_route_name == 'topics.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('topics.index') }}"><i class="align-middle" data-lucide="circle"></i>Topic</a></li>
+			<li class="sidebar-item {{ ($_route_name == 'tags.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('tags.index') }}"><i class="align-middle" data-lucide="circle"></i>Tags</a></li>
 		</ul>
 	</li>
 @endcan
@@ -86,6 +86,7 @@
 			<li class="sidebar-item {{ ($_route_name == 'cps.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('cps.index') }}"><i class="align-middle" data-lucide="circle"></i>Control Panel</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'processes.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('processes.index') }}"><i class="align-middle" data-lucide="circle"></i>Processes</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'menus.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('menus.index') }}"><i class="align-middle" data-lucide="circle"></i>Menu</a></li>
+            <li class="sidebar-item {{ ($_route_name == 'menus.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('menus.index') }}"><i class="align-middle" data-lucide="circle"></i>Tags *</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'statuses.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('statuses.index') }}"><i class="align-middle" data-lucide="circle"></i>Status</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'entities.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('entities.index') }}"><i class="align-middle" data-lucide="circle"></i>Entity</a></li>
 			<li class="sidebar-item {{ ($_route_name == 'reply-templates.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('reply-templates.index') }}"><i class="align-middle" data-lucide="circle"></i>Reply Templates</a></li>

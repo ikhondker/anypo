@@ -11,10 +11,11 @@ return new class extends Migration
 	 */
 	public function up(): void
 	{
-		Schema::create('topics', function (Blueprint $table) {
+		Schema::create('tags', function (Blueprint $table) {
 			$table->id()->startingValue(1001);
 			$table->string('name');
-			$table->biginteger('count_tickets')->default(0);
+			$table->integer('count_tickets')->default(0);
+			$table->enum('type', ['K', 'O','M','T','F'])->default('M'); // Knowledge, Operation, Technical, Misc, Future Use
 			$table->string('text_color')->nullable();
 			$table->string('bg_color')->nullable();
 			$table->string('icon')->nullable();
@@ -31,6 +32,6 @@ return new class extends Migration
 	 */
 	public function down(): void
 	{
-		Schema::dropIfExists('topics');
+		Schema::dropIfExists('tags');
 	}
 };

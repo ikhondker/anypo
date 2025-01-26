@@ -121,7 +121,7 @@ class TicketPolicy
 	/**
 	 * Determine whether the user can update the model.
 	 */
-	public function addTopic(User $user, Ticket $ticket): bool
+	public function addTag(User $user, Ticket $ticket): bool
 	{
 		// only back office user can add topics to ticket
 		return ($user->isBackend());

@@ -412,24 +412,24 @@ class ExportController extends Controller
 		});
 
 		// Filter based on input
-		$prls->whereHas('pr', function ($q) use ($start_date,$end_date)  {
+		$prls->whereHas('pr', function ($q) use ($start_date,$end_date) {
 			$q->whereBetween('pr_date', [$start_date, $end_date ]);
 		});
 
 		if ($currency <> ''){
-			$prls->whereHas('pr', function ($q) use ($currency)  {
+			$prls->whereHas('pr', function ($q) use ($currency) {
 				$q->where('currency', $currency);
 			});
 		}
 
 		if ($dept_id <> ''){
-			$prls->whereHas('pr', function ($q) use ($dept_id)  {
+			$prls->whereHas('pr', function ($q) use ($dept_id) {
 				$q->where('dept_id', $dept_id);
 			});
 		}
 
 		if ($supplier_id <> ''){
-			$prls->whereHas('pr', function ($q) use ($supplier_id)  {
+			$prls->whereHas('pr', function ($q) use ($supplier_id) {
 				$q->where('supplier_id',$supplier_id);
 			});
 		}
@@ -685,24 +685,24 @@ class ExportController extends Controller
 
 
 		// Filter based on input
-		$pols->whereHas('po', function ($q) use ($start_date,$end_date)  {
+		$pols->whereHas('po', function ($q) use ($start_date,$end_date) {
 			$q->whereBetween('po_date', [$start_date, $end_date ]);
 		});
 
 		if ($currency <> ''){
-			$pols->whereHas('po', function ($q) use ($currency)  {
+			$pols->whereHas('po', function ($q) use ($currency) {
 				$q->where('currency', $currency);
 			});
 		}
 
 		if ($dept_id <> ''){
-			$pols->whereHas('po', function ($q) use ($dept_id)  {
+			$pols->whereHas('po', function ($q) use ($dept_id) {
 				$q->where('dept_id', $dept_id);
 			});
 		}
 
 		if ($supplier_id <> ''){
-			$pols->whereHas('po', function ($q) use ($supplier_id)  {
+			$pols->whereHas('po', function ($q) use ($supplier_id) {
 				$q->where('supplier_id', $supplier_id);
 			});
 		}
@@ -1107,7 +1107,7 @@ class ExportController extends Controller
 		$aels = Ael::with('aeh')->with('user_created_by')->with('user_updated_by');
 
 		// Filter based on input
-		$aels->whereHas('aeh', function ($q) use ($po_id)  {
+		$aels->whereHas('aeh', function ($q) use ($po_id) {
 			$q->where('po_id', $po_id);
 		});
 

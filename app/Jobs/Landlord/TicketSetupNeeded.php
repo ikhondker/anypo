@@ -52,31 +52,32 @@ class TicketSetupNeeded implements ShouldQueue
 
 		Log::debug('Jobs.Landlord.TicketSetupNeeded user = '.$user->id);
 
-        // Create Ticket row
-		$ticket					= new Ticket;
-
-        $ticket->owner_id			= $user->id;
-        $ticket->title			    = 'Support needed to configure my site';
-        $ticket->content			= "Hi
-                                    Please support us to configure our new site at
-                                    ".$user->account->name."
-
-                                    Thanks"
-                                    .$user->name;
-        $ticket->ticket_date		= date('Y-m-d H:i:s');
+		// Create Ticket row
+		$ticket					    = new Ticket;
+		$ticket->owner_id			= $user->id;
+		$ticket->title				= 'Support needed to configure my site';
+		$ticket->content			= "Hi
+									Please support us to configure our new site at
+									".$user->account->name."
+									Thanks"
+									.$user->name.
+                                    "
+                                    NB. This is an auto created Support Ticket.";
+		$ticket->ticket_date		= date('Y-m-d H:i:s');
 		$ticket->status_code		= TicketStatusEnum::NEW->value;
 		$ticket->owner_id			= $user->id;
-		$ticket->account_id		    = $user->account_id;
+		$ticket->account_id			= $user->account_id;
 		$ticket->dept_id			= config('bo.DEFAULT_DEPT_ID');
 		$ticket->priority_id		= config('bo.DEFAULT_PRIORITY_ID');
+        $ticket->category_id		= '1002'; // Setup
 		$ticket->last_message_at	= date('Y-m-d H:i:s');
 		//$ticket->ip				= $request->ip();
-        $ticket->save();
+		$ticket->save();
 
-        // Write to Log
+		// Write to Log
 		EventLog::event('ticket', $ticket->id, 'create');
 
-        // Send notification to Ticket creator
+		// Send notification to Ticket creator
 		$owner = User::where('id', $ticket->owner_id)->first();
 		$owner->notify(new TicketCreated($owner, $ticket));
 

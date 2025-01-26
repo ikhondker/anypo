@@ -167,9 +167,9 @@ class CreateTenant implements ShouldQueue
 		$sys->notify(new ServicePurchased($sys, $account));
 
 		// Auto create Ticket for setup request
-        if($checkout->setup){
-            Log::debug('Jobs.Landlord.handle installation is requested. Creating Ticket.');
-            TicketSetupNeeded::dispatch($user->id);
+		if($checkout->setup){
+			Log::debug('Jobs.Landlord.handle installation is requested. Creating Ticket.');
+			TicketSetupNeeded::dispatch($user->id);
 		}
 
 		// copy logo and avatar default files Not needed after AWS CDN

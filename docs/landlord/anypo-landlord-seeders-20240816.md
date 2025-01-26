@@ -37,7 +37,7 @@ xxphp artisan db:seed --class="Database\Seeders\Landlord\SetupSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\ConfigSeeder"
 #Attachment
 php artisan db:seed --class="Database\Seeders\Landlord\ContactSeeder"
-php artisan db:seed --class="Database\Seeders\Landlord\TopicSeeder"
+php artisan db:seed --class="Database\Seeders\Landlord\TagSeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\CategorySeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\CountrySeeder"
 php artisan db:seed --class="Database\Seeders\Landlord\DeptSeeder"

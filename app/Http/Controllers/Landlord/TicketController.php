@@ -29,8 +29,8 @@ use App\Models\User;
 use App\Models\Landlord\Ticket;
 
 use App\Models\Landlord\Lookup\Dept;
-use App\Models\Landlord\Lookup\Topic;
-use App\Models\Landlord\Manage\TicketTopic;
+use App\Models\Landlord\Lookup\Tag;
+use App\Models\Landlord\Manage\TicketTag;
 
 use App\Models\Landlord\Manage\Priority;
 # 2. Enums
@@ -157,9 +157,10 @@ class TicketController extends Controller
 			'account_id'		=> $account_id,
 			'dept_id'			=> config('bo.DEFAULT_DEPT_ID'),
 			'priority_id'		=> config('bo.DEFAULT_PRIORITY_ID'),
+            'category_id'		=> config('bo.DEFAULT_CATEGORY_ID'),
 			'last_message_at'	=> date('Y-m-d H:i:s'),
 			'ip'				=> $request->ip()
-    	]);
+		]);
 
 		// Create Ticket
 		$ticket = Ticket::create($request->all());
@@ -300,42 +301,42 @@ class TicketController extends Controller
 		return redirect()->route('tickets.show', $ticket->id)->with('success', 'Ticket #' . $ticket->id . ' assigned to agent and notified.');
 	}
 
-	public function topics(Ticket $ticket)
+	public function tags(Ticket $ticket)
 	{
-		$this->authorize('addTopic', $ticket);
-		$topics		= Topic::primary()->get();
-		return view('landlord.tickets.topics', compact('ticket','topics'));
+		$this->authorize('addTag', $ticket);
+		$tags		= Tag::primary()->get();
+		return view('landlord.tickets.tags', compact('ticket','tags'));
 	}
 
-	public function addTopic(Request $request, Ticket $ticket)
+	public function addTag(Request $request, Ticket $ticket)
 	{
 
-		$this->authorize('addTopic', $ticket);
+		$this->authorize('addTag', $ticket);
 
-		Log::debug('landlord.TicketController.addTopic !! ticket_id= ' . $ticket->id);
-		Log::debug('landlord.TicketController.addTopic request ticket_id= ' . $request->input('ticket_id'));
-		Log::debug('landlord.TicketController.addTopic request topic_id= ' . $request->input('topic_id'));
+		Log::debug('landlord.TicketController.addTag !! ticket_id= ' . $ticket->id);
+		Log::debug('landlord.TicketController.addTag request ticket_id= ' . $request->input('ticket_id'));
+		Log::debug('landlord.TicketController.addTag request tag_id= ' . $request->input('tag_id'));
 
 		// check if topic is already added
-		$count		= TicketTopic::where('ticket_id',$request->input('ticket_id') )->where('topic_id',$request->input('topic_id') )->count();
-		Log::debug('landlord.TicketController.addTopic count= ' . $count);
+		$count		= TicketTag::where('ticket_id',$request->input('ticket_id') )->where('tag_id',$request->input('tag_id') )->count();
+		Log::debug('landlord.TicketController.addTag count= ' . $count);
 		if ($count <> 0){
-			throw ValidationException::withMessages(['topic_id' => 'This Topic Already added to this Ticket']);
+			throw ValidationException::withMessages(['tag_id' => 'This Tag Already added to this Ticket']);
 		}
-		// create ticketTopic row
-		$ticketTopic				= new TicketTopic;
-		$ticketTopic->ticket_id		= $request->input('ticket_id');
-		$ticketTopic->topic_id		= $request->input('topic_id');
-		$ticketTopic->save();
+		// create ticketTag row
+		$ticketTag				= new TicketTag;
+		$ticketTag->ticket_id		= $request->input('ticket_id');
+		$ticketTag->tag_id		= $request->input('tag_id');
+		$ticketTag->save();
 
-		//$topics		= Topic::primary()->get();
-		//return view('landlord.tickets.topics', compact('ticket','topics'));
+		//$tags		= Tag::primary()->get();
+		//return view('landlord.tickets.tags', compact('ticket','tags'));
 
-		// again show topics
-		$topics		= Topic::primary()->get();
-		return view('landlord.tickets.topics', compact('ticket','topics'));
+		// again show tags
+		$tags		= Tag::primary()->get();
+		return view('landlord.tickets.tags', compact('ticket','tags'));
 
-		//return redirect()->route('tickets.show', $ticket->id)->with('success', 'Topic added.');
+		//return redirect()->route('tickets.show', $ticket->id)->with('success', 'Tag added.');
 	}
 
 

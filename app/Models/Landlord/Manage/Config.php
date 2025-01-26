@@ -14,7 +14,7 @@ class Config extends Model
 	use HasFactory, AddCreatedUpdatedBy;
 
 	protected $fillable = [
-        'name', 'tagline', 'currency', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'email', 'cell', 'website', 'facebook', 'linkedin', 'logo', 'banner', 'banner_message', 'maintenance', 'timezone', 'maintenance_start_time', 'maintenance_end_time', 'debug', 'disable_payments', 'version', 'build', 'days_gen_bill', 'days_due', 'days_past_due', 'days_archive', 'days_addon_free', 'discount_pc_3', 'discount_pc_6', 'discount_pc_12', 'discount_pc_24', 'sys_user_id', 'support_manager_id', 'enable', 'updated_by', 'updated_at',
+		'name', 'tagline', 'currency', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'email', 'cell', 'website', 'facebook', 'linkedin', 'logo', 'banner', 'banner_message', 'maintenance', 'timezone', 'maintenance_start_time', 'maintenance_end_time', 'debug', 'disable_payments', 'version', 'build', 'days_gen_bill', 'days_due', 'days_past_due', 'days_archive', 'days_addon_free', 'discount_pc_3', 'discount_pc_6', 'discount_pc_12', 'discount_pc_24', 'sys_user_id', 'support_manager_id', 'enable', 'updated_by', 'updated_at',
 	];
 
 	/**

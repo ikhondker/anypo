@@ -21,8 +21,8 @@ return new class extends Migration
 			$table->dateTime('ticket_date')->useCurrent();
 			$table->foreignUuid('owner_id')->nullable()->constrained('users');
 			$table->foreignId('account_id')->nullable()->constrained('accounts');
-			$table->foreignId('dept_id')->constrained('depts');
-			$table->foreignId('priority_id')->constrained('priorities');
+			$table->foreignId('dept_id')->constrained('depts')->default(1001);
+			$table->foreignId('priority_id')->constrained('priorities')->default(1001);
 			$table->foreignId('rating_id')->nullable()->constrained('ratings');
 			$table->foreignUuid('agent_id')->nullable()->constrained('users');
 			$table->foreignUuid('attachment_id')->nullable()->constrained('attachments');

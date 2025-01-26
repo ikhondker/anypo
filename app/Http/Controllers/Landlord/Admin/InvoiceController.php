@@ -374,8 +374,8 @@ class InvoiceController extends Controller
 		// can remove discount which is wrongly applied
 
 		$request->merge(['discount_date'=> now()]);
-		$request->merge(['discount_by'  => auth()->user()->id ]);
-		Log::debug("landlord.Invoice.applyDiscount discount %  = ".$request->input('discount'));
+		$request->merge(['discount_by' => auth()->user()->id ]);
+		Log::debug("landlord.Invoice.applyDiscount discount % = ".$request->input('discount'));
 
 		if ($request->input('discount') <> 0){
 			// applying discount first time

@@ -305,8 +305,8 @@ use App\Http\Controllers\Landlord\Manage\ContactController;
 use App\Http\Controllers\Landlord\Lookup\CategoryController;
 use App\Http\Controllers\Landlord\Lookup\CountryController;
 use App\Http\Controllers\Landlord\Lookup\ProductController;
-use App\Http\Controllers\Landlord\Lookup\TopicController;
-use App\Http\Controllers\Landlord\Manage\TicketTopicController;
+use App\Http\Controllers\Landlord\Lookup\TagController;
+use App\Http\Controllers\Landlord\Manage\TicketTagController;
 use App\Http\Controllers\Landlord\Manage\CheckoutController;
 use App\Http\Controllers\Landlord\Manage\MailListController;
 use App\Http\Controllers\Landlord\Manage\ActivityController;
@@ -323,11 +323,11 @@ Route::middleware(['auth', 'verified', 'can:support'])->group(function () {
     Route::get('/ticket/all', [TicketController::class, 'all'])->name('tickets.all');
 	Route::get('/tickets/assign/{ticket}', [TicketController::class, 'assign'])->name('tickets.assign');
 	Route::post('/tickets/do-assign/{ticket}', [TicketController::class, 'doAssign'])->name('tickets.do-assign');
-	Route::get('/tickets/topics/{ticket}', [TicketController::class, 'topics'])->name('tickets.topics');
-	Route::post('/ticket/add-topic/{ticket}', [TicketController::class, 'addTopic'])->name('tickets.add-topic');
+	Route::get('/tickets/tags/{ticket}', [TicketController::class, 'tags'])->name('tickets.tags');
+	Route::post('/ticket/add-tag/{ticket}', [TicketController::class, 'addTag'])->name('tickets.add-tag');
 
-    /* ======================== TicketTopic ========================================  */
-    Route::get('/ticket-topics/delete/{ticketTopic}',[TicketTopicController::class, 'destroy'])->name('ticket-topics.delete');
+    /* ======================== TicketTag ========================================  */
+    Route::get('/ticket-tags/delete/{ticketTag}',[TicketTagController::class, 'destroy'])->name('ticket-tags.delete');
 
 	/* ======================== Comment ========================================  */
 	Route::get('/comment/all', [CommentController::class, 'all'])->name('comments.all');
@@ -381,11 +381,8 @@ Route::middleware(['auth', 'verified', 'can:support'])->group(function () {
 	Route::get('/products/delete/{product}',[ProductController::class, 'destroy'])->name('products.delete');
 
 	/* ======================== Topic ======================================== */
-	Route::resource('topics', TopicController::class);
-	Route::get('/topics/delete/{topic}',[TopicController::class, 'destroy'])->name('topics.delete');
-
-
-
+	Route::resource('tags', TagController::class);
+	Route::get('/tags/delete/{tag}',[TagController::class, 'destroy'])->name('tags.delete');
 
 	/* ======================== Checkout ======================================== */
 	Route::resource('checkouts', CheckoutController::class);

@@ -19,20 +19,24 @@ class CategorySeeder extends Seeder
 				'id'	=> '1001',
 				'name' => 'General',
 			],
-			[
+            [
 				'id'	=> '1002',
-				'name' => 'User Issues',
+				'name' => 'Setup',
 			],
 			[
 				'id'	=> '1003',
-				'name' => 'Billing Issue',
+				'name' => 'User Issues',
 			],
 			[
 				'id'	=> '1004',
-				'name' => 'Add-on Issues',
+				'name' => 'Billing Issue',
 			],
 			[
 				'id'	=> '1005',
+				'name' => 'Add-on Issues',
+			],
+			[
+				'id'	=> '1006',
 				'name' => 'Technical Issues',
 			],
 		];

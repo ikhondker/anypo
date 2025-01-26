@@ -50,7 +50,7 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'tickets.edit',		'route_name' => 'tickets.index',	'node_name' 	=> ''],
 			[ 'raw_route_name' => 'tickets.create',		'route_name' => 'tickets.index',	'node_name' 	=> ''],
 			[ 'raw_route_name' => 'tickets.assign',		'route_name' => 'tickets.index',	'node_name' 	=> ''],
-			[ 'raw_route_name' => 'tickets.topics',		'route_name' => 'tickets.index',	'node_name' 	=> ''],
+			[ 'raw_route_name' => 'tickets.tags',		'route_name' => 'tickets.index',	'node_name' 	=> ''],
 
 			[ 'raw_route_name' => 'comments.all',		'route_name' => 'comments.index',	'node_name' 	=> ''],
 			[ 'raw_route_name' => 'comments.show',		'route_name' => 'comments.index',	'node_name' 	=> ''],
@@ -151,12 +151,11 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'products.edit',	 	'route_name' => 'products.index',	'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'products.create',	'route_name' => 'products.index',	'node_name' => 'lookups'],
 
-			[ 'raw_route_name' => 'topics.index',		'route_name' => 'topics.index',	'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'topics.show',	 	'route_name' => 'topics.index',	'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'topics.update',		'route_name' => 'topics.index',	'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'topics.edit',	 	'route_name' => 'topics.index',	'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'topics.create',		'route_name' => 'topics.index',	'node_name' => 'lookups'],
-
+			[ 'raw_route_name' => 'tags.index',		    'route_name' => 'tags.index',	'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'tags.show',	 	    'route_name' => 'tags.index',	'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'tags.update',		'route_name' => 'tags.index',	'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'tags.edit',	 	    'route_name' => 'tags.index',	'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'tags.create',		'route_name' => 'tags.index',	'node_name' => 'lookups'],
 
 			[ 'raw_route_name' => 'countries.index','route_name' 		=> 'countries.index', 'node_name' 	=> 'lookups'],
 			[ 'raw_route_name' => 'countries.show','route_name' 		=> 'countries.index', 'node_name' 	=> 'lookups'],

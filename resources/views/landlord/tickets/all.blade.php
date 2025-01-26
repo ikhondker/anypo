@@ -13,7 +13,7 @@
 		@endslot
 		@slot('buttons')
 			@if (auth()->user()->backend)
-			<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-1"><i data-lucide="plus"></i> New Account</a>
+			<a href="{{ route('tickets.create') }}" class="btn btn-primary float-end me-1"><i data-lucide="plus"></i> New Ticket</a>
 			@endif
 			@if (auth()->user()->isBackend())
 				<x-landlord.actions.ticket-actions-index-support/>

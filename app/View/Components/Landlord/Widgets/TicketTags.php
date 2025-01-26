@@ -6,18 +6,18 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use App\Models\Landlord\Ticket;
-use App\Models\Landlord\Manage\TicketTopic;
+use App\Models\Landlord\Manage\TicketTag;
 
-class TicketTopics extends Component
+class TicketTags extends Component
 {
-	public $ticketTopics;
+	public $ticketTags;
 
 	/**
 	 * Create a new component instance.
 	 */
 	public function __construct(public string $ticketId)
 	{
-		$this->ticketTopics = TicketTopic::with('topic')->where('ticket_id', $ticketId)->orderBy('id', 'desc')->get()->all();
+		$this->ticketTags = TicketTag::with('tag')->where('ticket_id', $ticketId)->orderBy('id', 'desc')->get()->all();
 	}
 
 	/**
@@ -25,6 +25,6 @@ class TicketTopics extends Component
 	 */
 	public function render(): View|Closure|string
 	{
-		return view('components.landlord.widgets.ticket-topics');
+		return view('components.landlord.widgets.ticket-tags');
 	}
 }
