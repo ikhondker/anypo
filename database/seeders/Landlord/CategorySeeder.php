@@ -19,7 +19,7 @@ class CategorySeeder extends Seeder
 				'id'	=> '1001',
 				'name' => 'General',
 			],
-            [
+			[
 				'id'	=> '1002',
 				'name' => 'Setup',
 			],

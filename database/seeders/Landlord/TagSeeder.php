@@ -9,12 +9,12 @@ use App\Models\Landlord\Lookup\Tag;
 
 class TagSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
-        $tags = [
+	/**
+	 * Run the database seeds.
+	 */
+	public function run(): void
+	{
+		$tags = [
 			['name' 	=> 'Unclassified'],
 			['name' 	=> 'Getting Started'],
 			['name' 	=> 'FAQ'],
@@ -36,5 +36,5 @@ class TagSeeder extends Seeder
 			['name' 	=> 'Support'],
 		];
 	Tag::insert($tags);
-    }
+	}
 }

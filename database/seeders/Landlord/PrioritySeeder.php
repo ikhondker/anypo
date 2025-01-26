@@ -19,17 +19,17 @@ class PrioritySeeder extends Seeder
 		$priorities = [
 				[
 					'id'	=> '1001',
-					'name' => 'Low',
+					'name'  => 'Low',
 					'badge' => 'info',
 				],
 				[
 					'id'	=> '1002',
-					'name' => 'Medium',
+					'name'  => 'Medium',
 					'badge' => 'primary',
 				],
 				[
 					'id'	=> '1003',
-					'name' => 'High',
+					'name'  => 'High',
 					'badge' => 'danger',
 				],
 			];

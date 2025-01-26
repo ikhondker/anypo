@@ -15,7 +15,7 @@ return new class extends Migration
 			$table->id()->startingValue(1001);
 			$table->string('name');
 			$table->integer('count_tickets')->default(0);
-            $table->enum('type', ['K', 'O','M','T','F'])->default('M'); // Knowledge, Operation, Technical, Misc, Future Use
+			$table->enum('type', ['K', 'O','M','T','F'])->default('K'); // Knowledge, Operation, Technical, Misc, Future Use
 			$table->string('text_color')->nullable();
 			$table->string('bg_color')->nullable();
 			$table->string('icon')->nullable();

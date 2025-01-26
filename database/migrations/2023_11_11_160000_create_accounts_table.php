@@ -52,9 +52,9 @@ return new class extends Migration
 			$table->uuid('discount_by')->nullable();
 			$table->date('start_date');
 			$table->date('end_date');
-            // its date column but it checkout its boolean
-            $table->date('setup')->nullable();
-            $table->date('setup_date')->nullable();
+			// its date column but it checkout its boolean
+			$table->date('setup')->nullable();
+			$table->date('setup_date')->nullable();
 			// billing columns
 			// there will be only one unpaid invoice. updated when a subscription is generated
 			$table->boolean('next_bill_generated')->default(false);

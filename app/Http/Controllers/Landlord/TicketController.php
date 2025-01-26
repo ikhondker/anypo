@@ -157,7 +157,7 @@ class TicketController extends Controller
 			'account_id'		=> $account_id,
 			'dept_id'			=> config('bo.DEFAULT_DEPT_ID'),
 			'priority_id'		=> config('bo.DEFAULT_PRIORITY_ID'),
-            'category_id'		=> config('bo.DEFAULT_CATEGORY_ID'),
+			'category_id'		=> config('bo.DEFAULT_CATEGORY_ID'),
 			'last_message_at'	=> date('Y-m-d H:i:s'),
 			'ip'				=> $request->ip()
 		]);

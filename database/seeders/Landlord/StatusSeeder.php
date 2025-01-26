@@ -296,7 +296,7 @@ class StatusSeeder extends Seeder
 					'code'		=> 'archived', //1024,
 					'name'		=> 'Archived',
 					'badge'		=> 'secondary',
-                    'icon'		=> 'user-cog',
+					'icon'		=> 'user-cog',
 					'accounts'	=> true,
 					'services'	=> false,
 					'tickets'	=> false,

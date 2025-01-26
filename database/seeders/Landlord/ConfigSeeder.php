@@ -34,7 +34,7 @@ class ConfigSeeder extends Seeder
 					'banner_message'	=> 'This is a test public message. Will be shown only in all dashboards, when enabled.',
 					'facebook'			=> 'https://www.facebook.com/my.anyponet',
 					'linkedin'			=> 'https://www.linkedin.com/company/anypo-net',
-					'sys_user_id'	    => $sys->id,
+					'sys_user_id'		=> $sys->id,
 					'created_by'		=> $sys->id,
 					'updated_by'		=> $sys->id,
 				],

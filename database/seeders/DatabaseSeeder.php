@@ -33,9 +33,9 @@ class DatabaseSeeder extends Seeder
 		$this->call(\Database\Seeders\Landlord\PaymentMethodSeeder::class);
 		$this->call(\Database\Seeders\Landlord\ProductSeeder::class);
 		$this->call(\Database\Seeders\Landlord\TagSeeder::class);
-        $this->call(\Database\Seeders\Landlord\ReplyTemplateSeeder::class);
-        // create master account
-        $this->call(\Database\Seeders\Landlord\AccountSeeder::class);
+		$this->call(\Database\Seeders\Landlord\ReplyTemplateSeeder::class);
+		// create master account
+		$this->call(\Database\Seeders\Landlord\AccountSeeder::class);
 
 		// // Note:
 		$this->call(\Database\Seeders\Share\TemplateSeeder::class);

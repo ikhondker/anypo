@@ -151,10 +151,10 @@ class MenuSeeder extends Seeder
 			[ 'raw_route_name' => 'products.edit',	 	'route_name' => 'products.index',	'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'products.create',	'route_name' => 'products.index',	'node_name' => 'lookups'],
 
-			[ 'raw_route_name' => 'tags.index',		    'route_name' => 'tags.index',	'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'tags.show',	 	    'route_name' => 'tags.index',	'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'tags.index',			'route_name' => 'tags.index',	'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'tags.show',	 		'route_name' => 'tags.index',	'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'tags.update',		'route_name' => 'tags.index',	'node_name' => 'lookups'],
-			[ 'raw_route_name' => 'tags.edit',	 	    'route_name' => 'tags.index',	'node_name' => 'lookups'],
+			[ 'raw_route_name' => 'tags.edit',	 		'route_name' => 'tags.index',	'node_name' => 'lookups'],
 			[ 'raw_route_name' => 'tags.create',		'route_name' => 'tags.index',	'node_name' => 'lookups'],
 
 			[ 'raw_route_name' => 'countries.index','route_name' 		=> 'countries.index', 'node_name' 	=> 'lookups'],

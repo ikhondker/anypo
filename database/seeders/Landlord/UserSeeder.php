@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
 		//User::factory()->count(10)->create();
 		$faker = app(Generator::class);
 		//User::truncate();
-        //  config('bo.MASTER_ACCOUNT_ID')
+		//  config('bo.MASTER_ACCOUNT_ID')
 
 		$seededUsers = [
 			[
@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
 				'name'				=> 'SYS',
 				'email'				=> config('bo.SYS_EMAIL_ID'),
 				'role'				=> 'sys',
-                'account_id'        => config('bo.MASTER_ACCOUNT_ID'),
+				'account_id'		=> config('bo.MASTER_ACCOUNT_ID'),
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
 				'remember_token'	=> Str::random(10),
@@ -56,7 +56,7 @@ class UserSeeder extends Seeder
 				'name'				=> 'System',
 				'email'				=> 'system@anypo.net',
 				'role'				=> 'system',
-                'account_id'        => config('bo.MASTER_ACCOUNT_ID'),
+				'account_id'		=> config('bo.MASTER_ACCOUNT_ID'),
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
 				'remember_token'	=> Str::random(10),
@@ -75,7 +75,7 @@ class UserSeeder extends Seeder
 				'name'				=> 'Support Manager',
 				'email'				=> config('bo.SUPPORT_GROUP_EMAIL_ID'),
 				'role'				=> 'supervisor',
-                'account_id'        => config('bo.MASTER_ACCOUNT_ID'),
+				'account_id'		=> config('bo.MASTER_ACCOUNT_ID'),
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
 				'remember_token'	=> Str::random(10),
@@ -92,9 +92,9 @@ class UserSeeder extends Seeder
 			[
 				'id'				=> Str::uuid(),
 				'name'				=> 'ANONYMOUS',
-                'email'				=> config('akk.ANONYMOUS_EMAIL_ID'),	// Don't change. Used in Seeder
+				'email'				=> config('akk.ANONYMOUS_EMAIL_ID'),	// Don't change. Used in Seeder
 				'role'				=> 'guest',
-                'account_id'        => config('bo.MASTER_ACCOUNT_ID'),
+				'account_id'		=> config('bo.MASTER_ACCOUNT_ID'),
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
 				'remember_token'	=> Str::random(10),
@@ -113,7 +113,7 @@ class UserSeeder extends Seeder
 				'name'				=> 'Accounts Manager',
 				'email'				=> 'accounts@anypo.net',
 				'role'				=> 'accounts',
-                'account_id'        => config('bo.MASTER_ACCOUNT_ID'),
+				'account_id'		=> config('bo.MASTER_ACCOUNT_ID'),
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
 				'remember_token'	=> Str::random(10),
@@ -132,7 +132,7 @@ class UserSeeder extends Seeder
 				'name'				=> 'Support Agent 1',
 				'email'				=> 'agent1@anypo.net',
 				'role'				=> 'support',
-                'account_id'        => config('bo.MASTER_ACCOUNT_ID'),
+				'account_id'		=> config('bo.MASTER_ACCOUNT_ID'),
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
 				'remember_token'	=> Str::random(10),
@@ -151,7 +151,7 @@ class UserSeeder extends Seeder
 				'name'				=> 'Support Agent 2',
 				'email'				=> 'agent2@anypo.net',
 				'role'				=> 'support',
-                'account_id'        => config('bo.MASTER_ACCOUNT_ID'),
+				'account_id'		=> config('bo.MASTER_ACCOUNT_ID'),
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
 				'remember_token'	=> Str::random(10),
@@ -170,7 +170,7 @@ class UserSeeder extends Seeder
 				'name'				=> 'Developer 1',
 				'email'				=> 'dev1@anypo.net',
 				'role'				=> 'developer',
-                'account_id'        => config('bo.MASTER_ACCOUNT_ID'),
+				'account_id'		=> config('bo.MASTER_ACCOUNT_ID'),
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
 				'remember_token'	=> Str::random(10),
@@ -189,7 +189,7 @@ class UserSeeder extends Seeder
 				'name'				=> 'Developer 2',
 				'email'				=> 'dev2@anypo.net',
 				'role'				=> 'developer',
-                'account_id'        => config('bo.MASTER_ACCOUNT_ID'),
+				'account_id'		=> config('bo.MASTER_ACCOUNT_ID'),
 				'email_verified_at' => now(),
 				'password'			=> bcrypt('password') , // password
 				'remember_token'	=> Str::random(10),
@@ -205,7 +205,7 @@ class UserSeeder extends Seeder
 			],
 		];
 
-        		// used only form system generated who columns
+				// used only form system generated who columns
 		$usersAnonymous = [
 			[
 				'id'				=> Str::uuid(),

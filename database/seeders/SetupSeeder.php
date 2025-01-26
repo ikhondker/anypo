@@ -33,7 +33,7 @@ class SetupSeeder extends Seeder
 				'email'				=> 'info@anypo.net',
 				'cell'				=> '+0012262804920',
 				'website'			=> 'https://www.anypo.net',
-				'sys_user_id'	    => $sys->id,
+				'sys_user_id'		=> $sys->id,
 				'banner_message'	=> 'This is a test public message. Will be shown only in all dashboards, when enabled.',
 				'facebook'			=> 'https://www.facebook.com/my.anyponet',
 				'linkedin'			=> 'https://www.linkedin.com/company/anypo-net',
