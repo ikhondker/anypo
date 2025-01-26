@@ -54,7 +54,7 @@
 					<div class="mb-3">
 						<!-- Logo -->
 						<a class="navbar-brand" href="{{ route('home') }}" aria-label="Space">
-							<img class="navbar-brand-logo" src="{{ Storage::disk('s3l')->url('logo/logo-whitet.svg') }}" width="60" height="60" alt="Logo">
+							<img class="navbar-brand-logo" src="{{ Storage::disk('s3l')->url('logo/logow.svg') }}" width="60" height="60" alt="Logo">
 						</a>
 						<!-- End Logo -->
 					</div>

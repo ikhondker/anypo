@@ -17,27 +17,26 @@ class HierarchylSeeder extends Seeder
 	public function run(): void
 	{
 
-		$admin = User::where('email', 'system@anypo.net')->firstOrFail();
+		// $admin = User::where('email', 'system@anypo.net')->firstOrFail();
 
 		//Schema::disableForeignKeyConstraints();
-		Hierarchyl::truncate();
+		// Hierarchyl::truncate();
 		//Schema::enableForeignKeyConstraints();
 
-		$hierarchyls = [
-				[
-					'hid'			=> 1001,
-					'approver_id'	=> $admin->id,
-				],
-				[
-					'hid'			=> 1002,
-					'approver_id'	=> $admin->id,
-				],
-			];
-
+		// $hierarchyls = [
+		// 		[
+		// 			'hid'			=> 1001,
+		// 			'approver_id'	=> $admin->id,
+		// 		],
+		// 		[
+		// 			'hid'			=> 1002,
+		// 			'approver_id'	=> $admin->id,
+		// 		],
+		// 	];
 
 		// CreateTenant insert rows here
 		// CreateTenant set approver_id as new admin id
-		// Dont run this, as CreateTeant Jobs creates these lines
+		// Dont run this, as CreateTenant Jobs creates these lines
 		// Hierarchyl::insert($hierarchyls);
 	}
 }

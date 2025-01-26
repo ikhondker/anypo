@@ -41,7 +41,7 @@ class TenantSeeder extends Seeder
 		$this->call(\Database\Seeders\CurrencySeeder::class);
 
 		$this->call(\Database\Seeders\HierarchySeeder::class);
-		$this->call(\Database\Seeders\HierarchylSeeder::class);
+		//$this->call(\Database\Seeders\HierarchylSeeder::class);
 
 		$this->call(\Database\Seeders\DeptSeeder::class);
 		$this->call(\Database\Seeders\DesignationSeeder::class);

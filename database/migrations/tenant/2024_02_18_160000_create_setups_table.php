@@ -42,7 +42,7 @@ return new class extends Migration
 			$table->string('ac_liability')->default('A200104');
 			//$table->string('ac_cash_clearing')->default('A100201');			// Future user
 			$table->text('tc')->nullable();
-			$table->string('logo')->nullable()->default('logo.png');
+			$table->string('logo')->nullable()->default('logow.png');
 			$table->boolean('banner_show')->default(false);
 			$table->text('banner_message')->nullable();
 			$table->uuid('admin_id')->nullable(); 					// No foreign key intentional

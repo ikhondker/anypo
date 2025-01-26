@@ -114,7 +114,7 @@ class PrController extends Controller
 				break;
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
-				$prs = $prs->AllApproved()->with('requestor')->with('dept')->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+				$prs = $prs->AllExceptDraft()->with('requestor')->with('dept')->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
 				break;
 			case UserRoleEnum::SYS->value:
 				//->with('status_badge')
