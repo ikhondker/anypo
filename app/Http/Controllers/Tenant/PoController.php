@@ -80,6 +80,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xls;
 use App\Http\Controllers\Tenant\DeptBudgetControllers;
 # 12. Seeded
 use DB;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Str;
 use Carbon\Carbon;
@@ -94,36 +95,43 @@ class PoController extends Controller
 	/**
 	 * Display a listing of the resource.
 	 */
-	public function index()
+	public function index(Request $request)
 	{
 		$this->authorize('viewAny', Po::class);
 
 		$pos = Po::query();
 		if (request('term')) {
-			$pos->where('summary', 'LIKE', '%' . request('term') . '%')
-			->orWhere('id', 'Like', '%' . request('term') . '%');
+			$pos = $pos->where('summary', 'LIKE', '%' . request('term') . '%')
+			    ->orWhere('id', 'Like', '%' . request('term') . '%');
 		}
+
+		if ($request->has('status')) {
+			$pos = $pos->where('auth_status', $request->query('status'));
+		}
+
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::HOD->value:
-				$pos = $pos->ByDeptAll()->orderBy('id', 'DESC')->paginate(10);
+				$pos = $pos->ByDeptApproved();
 				break;
 			case UserRoleEnum::BUYER->value:
-				$pos = $pos->All()->orderBy('id', 'DESC')->paginate(10);
+				$pos = $pos->All();
 				break;
 			case UserRoleEnum::CXO->value:
-				$pos = $pos->AllApproved()->orderBy('id', 'DESC')->paginate(10);
+				$pos = $pos->AllApproved();
 				break;
 			case UserRoleEnum::ADMIN->value:
-				$pos = $pos->AllExceptDraft()->orderBy('id', 'DESC')->paginate(10);
+				$pos = $pos->AllExceptDraft();
 				break;
 			case UserRoleEnum::SYS->value:
-				$pos = $pos->with('dept')->orderBy('id', 'DESC')->paginate(10);
+				$pos = $pos->with('dept');
 				break;
 			default:
 				//$pos = $pos->ByUserAll()->paginate(10);
 				Log::warning(tenant('id'). ' tenant.po.index Other role = '. auth()->user()->role->value);
 				abort(403);
 		}
+
+        $pos = $pos->orderBy('id', 'DESC')->paginate(10);
 
 		return view('tenant.pos.index', compact('pos'));
 	}

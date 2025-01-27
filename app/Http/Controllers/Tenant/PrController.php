@@ -94,39 +94,48 @@ class PrController extends Controller
 	/**
 	 * Display a listing of the resource.
 	 */
-	public function index()
+	public function index(Request $request)
 	{
 
 		$prs = Pr::query();
+
 		if (request('term')) {
-			$prs->where('summary', 'LIKE', '%' . request('term') . '%')
+			$prs =  $prs->where('summary', 'LIKE', '%' . request('term') . '%')
 			->orWhere('id', 'Like', '%' . request('term') . '%');
 		}
+
+		if ($request->has('status')) {
+			$prs = $prs->where('auth_status', $request->query('status'));
+		}
+
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::USER->value:
-				$prs = $prs->ByUserAll()->with('requestor')->with('dept')->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+				$prs = $prs->ByUserAll()->with('requestor')->with('dept')->with('status_badge','auth_status_badge');
 				break;
 			case UserRoleEnum::HOD->value:
-				$prs = $prs->ByDeptAll()->with('requestor')->with('dept')->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+				$prs = $prs->ByDeptAll()->with('requestor')->with('dept')->with('status_badge','auth_status_badge');
 				break;
 			case UserRoleEnum::BUYER->value:
-				$prs = $prs->AllApproved()->with('requestor')->with('dept')->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+				$prs = $prs->AllApproved()->with('requestor')->with('dept')->with('status_badge','auth_status_badge');
 				break;
 			case UserRoleEnum::CXO->value:
 			case UserRoleEnum::ADMIN->value:
-				$prs = $prs->AllExceptDraft()->with('requestor')->with('dept')->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
+				$prs = $prs->AllExceptDraft()->with('requestor')->with('dept')->with('status_badge','auth_status_badge');
 				break;
 			case UserRoleEnum::SYS->value:
 				//->with('status_badge')
 				//->with('auth_status_badge')
 				//$prs = $prs->with("requestor")->with("dept")->with('status_badge')->with('auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
-				$prs = $prs->with('requestor')->with('dept')->with('status_badge','auth_status_badge')->orderBy('id', 'DESC')->paginate(10);
-
+				$prs = $prs->with('requestor')->with('dept')->with('status_badge','auth_status_badge');
 				break;
 			default:
 				$prs = $prs->ByUserAll()->paginate(10);
 				Log::warning(tenant('id'). 'tenant.pr.index Other role = '. auth()->user()->role->value);
 		}
+
+
+
+		$prs = $prs->orderBy('id', 'DESC')->paginate(10);
 
 		return view('tenant.prs.index', compact('prs'));
 	}

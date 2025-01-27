@@ -8,6 +8,7 @@
 		@endif
 
 		<a class="dropdown-item" href="{{ route('prs.index') }}"><i class="align-middle me-1" data-lucide="database"></i> All Requisitions</a>
+        <a class="dropdown-item" href="{{ route('prs.index', ['status'=>  App\Enum\Tenant\AuthStatusEnum::INPROCESS->value ]) }}"><i class="align-middle me-1" data-lucide="database"></i> In-Process PR(*)</a>
 
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('prs.create') }}"><i class="align-middle me-1" data-lucide="plus"></i> Create Requisition</a>

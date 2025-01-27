@@ -23,7 +23,27 @@
 
 			<div class="card">
 				<div class="card-header">
-					<x-tenant.card.header-search-export-xls entity="pr"/>
+					{{-- <x-tenant.card.header-search-export-xls entity="pr"/> --}}
+					<div class="card-actions float-end">
+						<form action="{{ route( 'prs.index') }}" method="GET" role="search">
+							<div class="btn-toolbar" role="toolbar" aria-label="Toolbar">
+								<div class="btn-group me-2" role="group" aria-label="First group">
+									<input type="text" class="form-control form-control-sm" minlength=3 name="term" placeholder="Search..." value="{{ old('term', request('term') ) }}" id="term" required>
+									<div class="btn-group btn-group-lg">
+										<button type="submit" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Search"><i class="align-middle" data-lucide="search"></i></button>
+										<a href="{{ route('prs.index') }}" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Reload">
+											<i class="align-middle" data-lucide="refresh-cw"></i>
+										</a>
+											<a href="{{ route( 'exports.pr') }}" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="top" title="Download">
+												<i class="align-middle" data-lucide="download-cloud"></i>
+											</a>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+
+
 					<h5 class="card-title">
 						@if (request('term'))
 							Search result for: <strong class="text-info">{{ request('term') }}</strong>
