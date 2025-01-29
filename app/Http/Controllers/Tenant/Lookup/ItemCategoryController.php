@@ -97,15 +97,6 @@ class ItemCategoryController extends Controller
 	}
 
 
-	/**
-	 * Display the specified resource.
-	 */
-	public function timestamp(ItemCategory $itemCategory)
-	{
-		$this->authorize('view', $itemCategory);
-
-		return view('tenant.lookup.item-categories.timestamp', compact('itemCategory'));
-	}
 
 
 	/**
@@ -147,6 +138,17 @@ class ItemCategoryController extends Controller
 
 		return redirect()->route('item-categories.index')->with('success', 'ItemCategory status Updated successfully');
 	}
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(ItemCategory $itemCategory)
+	{
+		$this->authorize('view', $itemCategory);
+
+		return view('tenant.lookup.item-categories.timestamp', compact('itemCategory'));
+	}
+
 
 	public function export()
 	{

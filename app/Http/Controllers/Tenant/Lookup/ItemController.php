@@ -134,42 +134,6 @@ class ItemController extends Controller
 
 	}
 
-	/**
-	 * Display the specified resource.
-	 */
-	public function timestamp(Item $item)
-	{
-		$this->authorize('view', $item);
-
-		return view('tenant.lookup.items.timestamp', compact('item'));
-	}
-
-
-	// add attachments
-	public function chk_attach(FormRequest $request)
-	{
-		$this->authorize('create', Item::class);
-
-		try {
-			$item = Item::where('id', $request->input('attach_item_id'))->get()->firstOrFail();
-		} catch (Exception $e) {
-			Log::error(' tenant.item.attach user_id = '. auth()->user()->id.' request = '. $request. ' class = '.get_class($e). ' Message = '. $e->getMessage());
-			return redirect()->back()->with(['error' => 'Item Not Found!']);
-		}
-		if ($file = $request->file('file_to_upload')) {
-			$request->merge(['article_id'	=> $request->input('attach_item_id')]);
-			$request->merge(['entity'		=> EntityEnum::ITEM->value ]);
-			$attid = FileUpload::aws($request);
-		}
-		return redirect()->back()->with('success', 'File Uploaded successfully.');
-	}
-
-	public function attachments(Item $item)
-	{
-		$this->authorize('view', $item);
-		$item = Item::where('id', $item->id)->get()->firstOrFail();
-		return view('tenant.lookup.items.attachments', compact('item'));
-	}
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -225,6 +189,44 @@ class ItemController extends Controller
 
 		return redirect()->route('items.index')->with('success', 'Item status Updated successfully');
 	}
+
+/**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Item $item)
+	{
+		$this->authorize('view', $item);
+
+		return view('tenant.lookup.items.timestamp', compact('item'));
+	}
+
+
+	// add attachments
+	public function chk_attach(FormRequest $request)
+	{
+		$this->authorize('create', Item::class);
+
+		try {
+			$item = Item::where('id', $request->input('attach_item_id'))->get()->firstOrFail();
+		} catch (Exception $e) {
+			Log::error(' tenant.item.attach user_id = '. auth()->user()->id.' request = '. $request. ' class = '.get_class($e). ' Message = '. $e->getMessage());
+			return redirect()->back()->with(['error' => 'Item Not Found!']);
+		}
+		if ($file = $request->file('file_to_upload')) {
+			$request->merge(['article_id'	=> $request->input('attach_item_id')]);
+			$request->merge(['entity'		=> EntityEnum::ITEM->value ]);
+			$attid = FileUpload::aws($request);
+		}
+		return redirect()->back()->with('success', 'File Uploaded successfully.');
+	}
+
+	public function attachments(Item $item)
+	{
+		$this->authorize('view', $item);
+		$item = Item::where('id', $item->id)->get()->firstOrFail();
+		return view('tenant.lookup.items.attachments', compact('item'));
+	}
+
 
 	public function export()
 	{

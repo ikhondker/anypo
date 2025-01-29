@@ -107,22 +107,6 @@ class InvoiceController extends Controller
 	}
 
 
-	/**
-	 * Display a listing of the resource.
-	 */
-	public function myInvoices()
-	{
-
-		$this->authorize('viewAny', Invoice::class);
-
-		$invoices = Invoice::query();
-		if (request('term')) {
-			$invoices->where('invoice_no', 'Like', '%' . request('term') . '%');
-		}
-		$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
-
-		return view('tenant.invoices.my-invoices', compact('invoices'));
-	}
 
 	/**
 	 * Show the form for creating a new resource.
@@ -132,39 +116,7 @@ class InvoiceController extends Controller
 		abort(403);
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 */
-	public function createForPo(Po $po = null)
-	{
 
-		$this->authorize('createForPo', Invoice::class);
-
-		$setup 	= Setup::first();
-		if ( $setup->readonly ){
-			return redirect()->route('dashboards.index')->with('error', config('akk.MSG_READ_ONLY'));
-		}
-
-		//$po = Po::where('id', $po_id)->first();
-		$pocs	= User::Tenant()->get();
-
-		if(empty($po)){
-			Log::debug('tenant.InvoiceController.createForPo No PO Selected!');
-			$pos = Po::allOpen()->get();
-			return view('tenant.invoices.create-for-po', with(compact('po','pos','pocs')));
-		} else {
-			Log::debug('tenant.invoices.createForPo creating invoice for po_id = ' . $po->id);
-			// check if po is approved and open
-			if ( $po->auth_status <> AuthStatusEnum::APPROVED->value ) {
-				return redirect()->route('pos.show', $po->id)->with('error', 'You can create Invoices only for APPROVED Purchase Order!');
-			}
-			if ( $po->status <> ClosureStatusEnum::OPEN->value ) {
-				return redirect()->route('pos.show', $po->id)->with('error', 'You can create Invoices only for OPEN Purchase Order!');
-			}
-
-			return view('tenant.invoices.create-for-po', with(compact('po','pocs')));
-		}
-	}
 
 	/**
 	 * Store a newly created resource in storage.
@@ -250,15 +202,6 @@ class InvoiceController extends Controller
 	}
 
 
-		/**
-	 * Display the specified resource.
-	 */
-	public function timestamp(Invoice $invoice)
-	{
-		$this->authorize('view', $invoice);
-
-		return view('tenant.invoices.timestamp', compact('invoice'));
-	}
 
 
 	/**
@@ -315,6 +258,44 @@ class InvoiceController extends Controller
 
 		return redirect()->route('invoices.show', $invoice->id)->with('success', 'Invoices updated successfully.');
 	}
+
+
+    /**
+	 * Remove the specified resource from storage.
+	 */
+	public function destroy(Invoice $invoice)
+	{
+		//
+	}
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Invoice $invoice)
+	{
+		$this->authorize('view', $invoice);
+
+		return view('tenant.invoices.timestamp', compact('invoice'));
+	}
+
+
+    /**
+	 * Display a listing of the resource.
+	 */
+	public function myInvoices()
+	{
+
+		$this->authorize('viewAny', Invoice::class);
+
+		$invoices = Invoice::query();
+		if (request('term')) {
+			$invoices->where('invoice_no', 'Like', '%' . request('term') . '%');
+		}
+		$invoices = $invoices->with('supplier')->with('status_badge')->with('pay_status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
+
+		return view('tenant.invoices.my-invoices', compact('invoices'));
+	}
+
 
 	// add attachments
 	public function xxattach(FormRequest $request)
@@ -426,15 +407,42 @@ class InvoiceController extends Controller
 		return redirect()->route('invoices.index')->with('success', 'Invoice Posted successfully');
 	}
 
-	/**
-	 * Remove the specified resource from storage.
+
+
+
+    /**
+	 * Show the form for creating a new resource.
 	 */
-	public function destroy(Invoice $invoice)
+	public function createForPo(Po $po = null)
 	{
-		//
+
+		$this->authorize('createForPo', Invoice::class);
+
+		$setup 	= Setup::first();
+		if ( $setup->readonly ){
+			return redirect()->route('dashboards.index')->with('error', config('akk.MSG_READ_ONLY'));
+		}
+
+		//$po = Po::where('id', $po_id)->first();
+		$pocs	= User::Tenant()->get();
+
+		if(empty($po)){
+			Log::debug('tenant.InvoiceController.createForPo No PO Selected!');
+			$pos = Po::allOpen()->get();
+			return view('tenant.invoices.create-for-po', with(compact('po','pos','pocs')));
+		} else {
+			Log::debug('tenant.invoices.createForPo creating invoice for po_id = ' . $po->id);
+			// check if po is approved and open
+			if ( $po->auth_status <> AuthStatusEnum::APPROVED->value ) {
+				return redirect()->route('pos.show', $po->id)->with('error', 'You can create Invoices only for APPROVED Purchase Order!');
+			}
+			if ( $po->status <> ClosureStatusEnum::OPEN->value ) {
+				return redirect()->route('pos.show', $po->id)->with('error', 'You can create Invoices only for OPEN Purchase Order!');
+			}
+
+			return view('tenant.invoices.create-for-po', with(compact('po','pocs')));
+		}
 	}
-
-
 
 	/**
 	 * Remove the specified resource from storage.

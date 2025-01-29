@@ -34,7 +34,7 @@ return new class extends Migration
 			$table->string('cell')->nullable();
 			$table->foreignUuid('owner_id')->nullable()->constrained('users');
 			$table->foreignId('primary_product_id')->nullable()->constrained('products');
-			$table->string('logo')->nullable()->default('logo.png');
+			$table->string('logo')->nullable()->default('logow.svg');
 			// base columns
 			$table->integer('base_mnth')->default(0);
 			$table->integer('base_user')->default(1);

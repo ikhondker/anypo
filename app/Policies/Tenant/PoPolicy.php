@@ -46,24 +46,7 @@ class PoPolicy
 		}
 	}
 
-	/**
-	 * Determine whether the user can update the model.
-	 */
-	public function submit(User $user, Po $po): bool
-	{
-		//return ($po->auth_status == AuthStatusEnum::DRAFT->value);
 
-		// only buyer can submit own draft and rejected PO
-		if ($user->id <> $po->buyer_id) {
-			return false;
-		} elseif ($po->auth_status == AuthStatusEnum::DRAFT->value ) {
-			return true;
-		} elseif ($po->auth_status == AuthStatusEnum::REJECTED->value ) {
-			return true;
-		} else {
-			return ( false ) ;
-		}
-	}
 
 	/**
 	 * Determine whether the user can create models.
@@ -90,6 +73,15 @@ class PoPolicy
 		}
 	}
 
+    /**
+	 * Determine whether the user can delete the model.
+	 */
+	public function delete(User $user, Po $po): bool
+	{
+		return ( $user->isBuyer() || $user->isSupport()) && ($po->auth_status == AuthStatusEnum::DRAFT->value) ;
+
+	}
+
 
 	/**
 	 * Determine whether the user can restore the model.
@@ -106,6 +98,27 @@ class PoPolicy
 	{
 		//
 	}
+
+
+    /**
+	 * Determine whether the user can update the model.
+	 */
+	public function submit(User $user, Po $po): bool
+	{
+		//return ($po->auth_status == AuthStatusEnum::DRAFT->value);
+
+		// only buyer can submit own draft and rejected PO
+		if ($user->id <> $po->buyer_id) {
+			return false;
+		} elseif ($po->auth_status == AuthStatusEnum::DRAFT->value ) {
+			return true;
+		} elseif ($po->auth_status == AuthStatusEnum::REJECTED->value ) {
+			return true;
+		} else {
+			return ( false ) ;
+		}
+	}
+
 	/**
 	 * Determine whether the user can recalculate models.
 	 */
@@ -151,14 +164,6 @@ class PoPolicy
 		return ($user->isBuyer() || $user->isSupport()) && ($po->auth_status == AuthStatusEnum::APPROVED->value) ;
 	}
 
-	/**
-	 * Determine whether the user can delete the model.
-	 */
-	public function delete(User $user, Po $po): bool
-	{
-		return ( $user->isBuyer() || $user->isSupport()) && ($po->auth_status == AuthStatusEnum::DRAFT->value) ;
-
-	}
 
 
 	/**

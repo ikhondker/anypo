@@ -47,13 +47,7 @@ class PaymentPolicy
 		return false;
 	}
 
-	/**
-	 * Determine whether the user can create models.
-	 */
-	public function createForInvoice(User $user): bool
-	{
-		return ($user->isBuyer() || $user->isSupport());
-	}
+
 
 	/**
 	 * Determine whether the user can update the model.
@@ -71,13 +65,7 @@ class PaymentPolicy
 		//
 	}
 
-	/**
-	 * Determine whether the user can delete the model.
-	 */
-	public function cancel(User $user): bool
-	{
-		return ($user->isBuyer() || $user->isSupport());
-	}
+
 
 	/**
 	 * Determine whether the user can restore the model.
@@ -93,6 +81,22 @@ class PaymentPolicy
 	public function forceDelete(User $user, Payment $payment): bool
 	{
 		//
+	}
+
+    /**
+	 * Determine whether the user can create models.
+	 */
+	public function createForInvoice(User $user): bool
+	{
+		return ($user->isBuyer() || $user->isSupport());
+	}
+
+    /**
+	 * Determine whether the user can delete the model.
+	 */
+	public function cancel(User $user): bool
+	{
+		return ($user->isBuyer() || $user->isSupport());
 	}
 
 }

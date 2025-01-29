@@ -12,6 +12,8 @@
 			<a class="" href="{{ route('tables.fnc-controllers','Workflow') }}"><i class="align-middle me-1" data-lucide="folder"></i>Workflow</a>
 			<a class="" href="{{ route('tables.fnc-controllers','Support') }}"><i class="align-middle me-1" data-lucide="folder"></i>Support</a>
 		</h6>
+
+        <span class="text-secondary small">NOTE: Private functions are not reported</span>
 	</div>
 	<div class="card-body">
 		<table class="table table-striped table-sm">
@@ -28,11 +30,14 @@
 
 			<tbody>
 
+				@php
+					$exclude = array("middleware", "getMiddleware", "callAction", "__call", "authorize",'authorizeForUser','authorizeResource','validateWith','validate','validateWithBag');
+					$seededMethods = array("index","create", "store", "show", "edit", "update",'destroy');
+				@endphp
 				@foreach ($filesInFolder as $row)
 					@php
 					//$methods = (new ReflectionClass('\App\Blog'))->getMethods();
 					//dd($methods);
-					$exclude = array("middleware", "getMiddleware", "callAction", "__call", "authorize",'authorizeForUser','authorizeResource','validateWith','validate','validateWithBag');
 					//$class = new ReflectionClass('App\Http\Controllers\Tenant\HomeController');
 					//$class = new ReflectionClass('App\Http\Controllers\Tenant\\'. $row["f"]);
 					//$class = new ReflectionClass(config('akk.DOC_DIR_CLASS') .'\\'. $row["f"]);
@@ -51,22 +56,24 @@
 
 					$methods = $class->getMethods(ReflectionMethod::IS_PUBLIC);
 					@endphp
+
 					@foreach ($methods as $method)
-						@php
-							if (!in_array($method->name, $exclude)) {
-						@endphp
+						@if (!in_array($method->name, $exclude))
 							<tr>
 								<th scope="row">{{ $loop->iteration }}</th>
 								<td class="">{{ $row['f'] }}</td>
-								<td class="">	{{ $method->name }}</td>
+								<td class="">
+									@if (in_array($method->name, $seededMethods))
+										{{ $method->name }}
+									@else
+										<span class="text-danger">{{ $method->name }}</span>
+									@endif
+								</td>
 								<td class="text-start"></td>
 								<td class="text-start"></td>
 								<td class="text-start"></td>
 							</tr>
-							@php
-						}
-							@endphp
-
+						@endif
 					@endforeach
 				@endforeach
 			</tbody>

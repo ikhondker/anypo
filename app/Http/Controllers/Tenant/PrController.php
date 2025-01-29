@@ -273,15 +273,6 @@ class PrController extends Controller
 	}
 
 
-	/**
-	 * Display the specified resource.
-	 */
-	public function timestamp(Pr $pr)
-	{
-		$this->authorize('view', $pr);
-
-		return view('tenant.prs.timestamp', compact('pr'));
-	}
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -372,6 +363,18 @@ class PrController extends Controller
 
 		return redirect()->route('prs.index')->with('success', 'Purchase Requisition deleted successfully');
 	}
+
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Pr $pr)
+	{
+		$this->authorize('view', $pr);
+
+		return view('tenant.prs.timestamp', compact('pr'));
+	}
+
 
 	public function recalculate(Pr $pr)
 	{

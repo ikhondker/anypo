@@ -44,7 +44,7 @@
 
 				<div class="sidebar-brand">
 						<img src="{{ Storage::disk('s3t')->url('logo/logow.png') }}" width="90px" height="90px" class="me-2 mb-2" alt="{{ $_setup->name }}"/>
-						<h4 class="text-white">Documentation</h4>
+						<h4 class="text-white">DOCUMENTATION</h4>
 				</div>
 
 				<!-- ========== SIDEBAR ========== -->

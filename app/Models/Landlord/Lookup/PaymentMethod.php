@@ -22,7 +22,6 @@ namespace App\Models\Landlord\Lookup;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-
 use App\Traits\AddCreatedUpdatedBy;
 use App\Models\User;
 use App\Models\Landlord\Admin\Payment;
@@ -54,14 +53,4 @@ class PaymentMethod extends Model
 
 	/* ---------------- belongsTo ---------------------- */
 
-
-	/* ---------------- created and updated by ---------------------- */
-	public function user_created_by()
-	{
-		return $this->belongsTo(User::class, 'created_by');
-	}
-	public function user_updated_by()
-	{
-		return $this->belongsTo(User::class, 'updated_by');
-	}
 }

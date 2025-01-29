@@ -13,6 +13,7 @@
 				<a class="" href="{{ route('tables.fnc-models','Workflow') }}"><i class="align-middle me-1" data-lucide="folder"></i>Workflow</a>
 				<a class="" href="{{ route('tables.fnc-models','Support') }}"><i class="align-middle me-1" data-lucide="folder"></i>Support</a>
 			</h6>
+            <span class="text-secondary small">NOTE: user_created_by and user_updated_by excluded. Auto added by Trait</span>
 		</div>
 		<div class="card-body">
 			<table class="table table-striped table-sm">
@@ -311,6 +312,14 @@
 							'withoutTouching',
 							'withoutTouchingOn',
 							'addGlobalScopes',
+                            'bootHasEvents',
+                            'resolveObserveAttributes',
+                            'bootHasGlobalScopes',
+                            'resolveGlobalScopeAttributes',
+                            'initializeHasUuids',
+                            // Auto added by trait
+                            'user_created_by',
+                            'user_updated_by'
 						);
 					@endphp
 					@foreach ($filesInFolder as $row)
@@ -334,7 +343,15 @@
 								<tr>
 									<th scope="row">{{ $loop->iteration }}</th>
 									<td class="">{{ $row['f'] }}</td>
-									<td class="">{{ $method->name }}</td>
+
+                                    <td class="">
+                                        @if (str_contains($method->name, 'scope'))
+                                            <span class="text-danger">{{ $method->name }}</span>
+                                        @else
+                                            {{ $method->name }}
+                                        @endif
+                                    </td>
+
 									<td class="text-start"></td>
 									<td class="text-start"></td>
 									<td class="text-start"></td>

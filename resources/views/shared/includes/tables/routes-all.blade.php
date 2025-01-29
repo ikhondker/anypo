@@ -50,7 +50,16 @@
 					@if (! in_array($route->uri(), $skip_routes ))
 						<tr>
 							<td> {{ $loop->iteration }}</td>
-							<td>{{ $route->methods()[0] }}</td>
+							<td>
+                                @if ($route->methods()[0] == 'POST')
+										<span class="text-danger">{{ $route->methods()[0] }}</span>
+									@elseif ($route->methods()[0] == 'PUT')
+                                        <span class="text-primary">{{ $route->methods()[0] }}</span>
+                                    @else
+                                        {{ $route->methods()[0] }}
+									@endif
+
+                            </td>
 							<td>{{ $route->uri() }}</td>
 							<td>{{ $route->getName() }}</td>
 							<td>{{ $route->getActionName() }}</td>

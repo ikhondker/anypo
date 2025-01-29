@@ -13,24 +13,26 @@
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('accounts.index') }}"><i class="align-middle me-1" data-lucide="database"></i> View All</a>
 
-		@if (auth()->user()->isSystem())
-			<div class="dropdown-divider"></div>
-			@if ( $account->tenant_enable)
-				<a class="dropdown-item sw2-advance" href="{{ route('accounts.tenant', $account->id) }}"
-					data-entity="Tenant" data-name="{{ $account->name }}" data-status="Disable"
-					data-bs-toggle="tooltip" data-bs-placement="top" title="Disable Tenant">
-					<i class="align-middle me-1 text-danger" data-lucide="bell-off"></i> Disable Tenant</a>
-			@else
-				<a class="dropdown-item sw2-advance" href="{{ route('accounts.tenant', $account->id) }}"
-					data-entity="Tenant" data-name="{{ $account->name }}" data-status="Enable"
-					data-bs-toggle="tooltip" data-bs-placement="top" title="Enable Tenant">
-					<i class="align-middle me-1 text-success" data-lucide="bell"></i> Enable Tenant</a>
+			@if (auth()->user()->isSystem())
+				<div class="dropdown-divider"></div>
+				@if ( $account->tenant_enable)
+					<a class="dropdown-item sw2-advance" href="{{ route('accounts.tenant', $account->id) }}"
+						data-entity="Tenant" data-name="{{ $account->name }}" data-status="Disable"
+						data-bs-toggle="tooltip" data-bs-placement="top" title="Disable Tenant">
+						<i class="align-middle me-1 text-danger" data-lucide="bell-off"></i> Disable Tenant</a>
+				@else
+					<a class="dropdown-item sw2-advance" href="{{ route('accounts.tenant', $account->id) }}"
+						data-entity="Tenant" data-name="{{ $account->name }}" data-status="Enable"
+						data-bs-toggle="tooltip" data-bs-placement="top" title="Enable Tenant">
+						<i class="align-middle me-1 text-success" data-lucide="bell"></i> Enable Tenant</a>
+				@endif
 			@endif
 
-			<div class="dropdown-divider"></div>
-			<a class="dropdown-item text-danger" href="{{ route('accounts.edit',$account->id) }}"><i class="align-middle me-1 text-danger" data-lucide="percent"></i> Lifetime Discount</a>
-			<a class="dropdown-item text-danger sw2" href="{{ route('accounts.reset',$account->id) }}"><i class="align-middle me-1 text-danger" data-lucide="rotate-ccw"></i> Account Reset (*)</a>
-			<a class="dropdown-item text-danger sw2" href="{{ route('accounts.delete',$account->id) }}"><i class="align-middle me-1 text-danger" data-lucide="circle-x"></i> Delete Account (*)</a>
-		@endif
+			@if (auth()->user()->isSys())
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item text-danger" href="{{ route('accounts.edit',$account->id) }}"><i class="align-middle me-1 text-danger" data-lucide="percent"></i> Lifetime Discount</a>
+				<a class="dropdown-item text-danger sw2" href="{{ route('accounts.reset',$account->id) }}"><i class="align-middle me-1 text-danger" data-lucide="rotate-ccw"></i> Account Reset (*)</a>
+				<a class="dropdown-item text-danger sw2" href="{{ route('accounts.delete',$account->id) }}"><i class="align-middle me-1 text-danger" data-lucide="circle-x"></i> Delete Account (*)</a>
+			@endif
 	</div>
 </div>

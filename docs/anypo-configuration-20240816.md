@@ -107,13 +107,17 @@ php artisan queue:listen --timeout=1200
 5. config('akk.LANDLORD_CONFIG_ID')
 6. 6. comment demo data seeder insert
 
-# 8. Logos Used
+# 8. Logo and Avatar Used
 ====================================================================
+## Source:
+G:\My Drive\Briefcase\lv-anypo\logo
+G:\My Drive\Briefcase\lv-anypo\graphics\avatar
+
 ## Landlord
   logo.png (300x300) and logot.png (200x200) ,
-  logo-white.svg (landlord apps) logo-whitet.svg  (Landlord Pages)
+  logow.svg (landlord apps)
 
-  	D:\laravel\anypo\public\assets\logo - general user including logo in pdf
+  D:\laravel\anypo\public\assets\logo - general user including logo in pdf
 
 ## Tenant
 	logo.png and logot.png

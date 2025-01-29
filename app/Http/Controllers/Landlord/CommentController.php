@@ -70,22 +70,6 @@ class CommentController extends Controller
 	}
 
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function all()
-	{
-		$this->authorize('viewAny', Comment::class);
-		$comments = Comment::query();
-		if (request('term')) {
-			$comments->where('content', 'Like', '%'.request('term').'%');
-		}
-		$comments = $comments->orderBy('id', 'DESC')->paginate(40);
-
-		return view('landlord.comments.all', compact('comments'));
-	}
 
 	/**
 	 * Show the form for creating a new resource.
@@ -258,5 +242,21 @@ class CommentController extends Controller
 		//
 	}
 
+    /**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function all()
+	{
+		$this->authorize('viewAny', Comment::class);
+		$comments = Comment::query();
+		if (request('term')) {
+			$comments->where('content', 'Like', '%'.request('term').'%');
+		}
+		$comments = $comments->orderBy('id', 'DESC')->paginate(40);
+
+		return view('landlord.comments.all', compact('comments'));
+	}
 
 }

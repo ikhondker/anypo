@@ -98,15 +98,6 @@ class DesignationController extends Controller
 	}
 
 
-		/**
-	 * Display the specified resource.
-	 */
-	public function timestamp(Designation $designation)
-	{
-		$this->authorize('view', $designation);
-
-		return view('tenant.lookup.designations.timestamp', compact('designation'));
-	}
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -151,6 +142,17 @@ class DesignationController extends Controller
 
 		return redirect()->route('designations.index')->with('success', 'Designation status Updated successfully');
 	}
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Designation $designation)
+	{
+		$this->authorize('view', $designation);
+
+		return view('tenant.lookup.designations.timestamp', compact('designation'));
+	}
+
 
 	public function export()
 	{

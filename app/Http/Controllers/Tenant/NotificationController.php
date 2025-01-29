@@ -58,24 +58,6 @@ class NotificationController extends Controller
 		return view('tenant.notifications.index');
 	}
 
-	/**
-	 * Display a listing of the resource.
-	 */
-	public function all()
-	{
-		// show all notifications
-		return view('tenant.notifications.all');
-	}
-
-	/**
-	 * Display a listing of the resource.
-	 */
-	public function full()
-	{
-		// show full notifications for tenant
-		$notifications = Notification::orderBy('created_at', 'DESC')->paginate(10);
-		return view('tenant.notifications.full', compact('notifications'));
-	}
 
 
 	/**
@@ -142,6 +124,25 @@ class NotificationController extends Controller
 			->markAsRead();
 
 		return response()->noContent();
+	}
+
+    /**
+	 * Display a listing of the resource.
+	 */
+	public function all()
+	{
+		// show all notifications
+		return view('tenant.notifications.all');
+	}
+
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function full()
+	{
+		// show full notifications for tenant
+		$notifications = Notification::orderBy('created_at', 'DESC')->paginate(10);
+		return view('tenant.notifications.full', compact('notifications'));
 	}
 
 

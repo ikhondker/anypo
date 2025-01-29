@@ -93,34 +93,6 @@ class UserController extends Controller
 	}
 
 
-/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function all(Account $account = null)
-	{
-
-		$this->authorize('viewAll', User::class);
-
-		$users = User::query();
-		if (request('term')) {
-			$users->where('name', 'Like', '%' . request('term') . '%');
-		}
-
-		if ($account == '') {
-			// here the parameter doesn't exist
-			$users= $users->with('account')->orderBy('created_at', 'DESC')->paginate(10);
-
-		} else {
-			$users= $users->with('account')
-				->where('account_id',$account->id)
-				->orderBy('created_at', 'DESC')->paginate(10);
-		}
-
-
-		return view('landlord.admin.users.all',compact('users'));
-	}
 
 
 	/**
@@ -276,6 +248,35 @@ class UserController extends Controller
 		EventLog::event('user',$user->id,'status','enable',$user->enable);
 
 		return redirect()->route('dashboards.index')->with('success','User Status Updated successfully');
+	}
+
+    /**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function all(Account $account = null)
+	{
+
+		$this->authorize('viewAll', User::class);
+
+		$users = User::query();
+		if (request('term')) {
+			$users->where('name', 'Like', '%' . request('term') . '%');
+		}
+
+		if ($account == '') {
+			// here the parameter doesn't exist
+			$users= $users->with('account')->orderBy('created_at', 'DESC')->paginate(10);
+
+		} else {
+			$users= $users->with('account')
+				->where('account_id',$account->id)
+				->orderBy('created_at', 'DESC')->paginate(10);
+		}
+
+
+		return view('landlord.admin.users.all',compact('users'));
 	}
 
 

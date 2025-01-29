@@ -109,15 +109,6 @@ class SupplierController extends Controller
 		return view('tenant.lookup.suppliers.show', compact('supplier'));
 	}
 
-	/**
-	 * Display the specified resource.
-	 */
-	public function timestamp(Supplier $supplier)
-	{
-		$this->authorize('view', $supplier);
-
-		return view('tenant.lookup.suppliers.timestamp', compact('supplier'));
-	}
 
 
 
@@ -130,12 +121,6 @@ class SupplierController extends Controller
 		return view('tenant.lookup.suppliers.edit', compact('supplier'));
 	}
 
-	public function attachments(Supplier $supplier)
-	{
-		$this->authorize('view', $supplier);
-		$supplier = Supplier::where('id', $supplier->id)->get()->firstOrFail();
-		return view('tenant.lookup.suppliers.attachments', compact('supplier'));
-	}
 
 	/**
 	 * Update the specified resource in storage.
@@ -175,6 +160,25 @@ class SupplierController extends Controller
 
 		return redirect()->route('suppliers.index')->with('success', 'Supplier status Updated successfully');
 	}
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Supplier $supplier)
+	{
+		$this->authorize('view', $supplier);
+
+		return view('tenant.lookup.suppliers.timestamp', compact('supplier'));
+	}
+
+
+    public function attachments(Supplier $supplier)
+	{
+		$this->authorize('view', $supplier);
+		$supplier = Supplier::where('id', $supplier->id)->get()->firstOrFail();
+		return view('tenant.lookup.suppliers.attachments', compact('supplier'));
+	}
+
 
 	/**
 	 * Display a listing of the resource.

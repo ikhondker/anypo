@@ -13,7 +13,6 @@ php artisan migrate
 php artisan db:seed			<=== Full
 [php artisan db:seed --class="Database\Seeders\Landlord\LandlordSeeder"]
 
-php artisan migrate:rollback
 php artisan migrate:reset
 php artisan migrate:refresh
 php artisan migrate:fresh

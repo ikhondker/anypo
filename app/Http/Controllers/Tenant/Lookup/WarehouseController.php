@@ -105,16 +105,6 @@ class WarehouseController extends Controller
 		return view('tenant.lookup.warehouses.show', compact('warehouse'));
 	}
 
-	/**
-	 * Display the specified resource.
-	 */
-	public function timestamp(Warehouse $warehouse)
-	{
-		$this->authorize('view', $warehouse);
-
-		return view('tenant.lookup.warehouses.timestamp', compact('warehouse'));
-	}
-
 
 
 	/**
@@ -165,6 +155,18 @@ class WarehouseController extends Controller
 
 		return redirect()->route('warehouses.index')->with('success', 'Warehouse status Updated successfully');
 	}
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Warehouse $warehouse)
+	{
+		$this->authorize('view', $warehouse);
+
+		return view('tenant.lookup.warehouses.timestamp', compact('warehouse'));
+	}
+
+
 
 	public function export()
 	{

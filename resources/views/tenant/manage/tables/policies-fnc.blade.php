@@ -1,5 +1,5 @@
 @extends('layouts.tenant.app')
-@section('title', 'Functions in Models')
+@section('title', 'Functions in Policies')
 @section('breadcrumb')
 	<li class="breadcrumb-item active">{{ env('DB_DATABASE')}}@[{{ base_path()}}]</li>
 @endsection

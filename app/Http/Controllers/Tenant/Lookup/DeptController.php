@@ -114,15 +114,7 @@ class DeptController extends Controller
 		return view('tenant.lookup.depts.show', compact('dept'));
 	}
 
-	/**
-	 * Display the specified resource.
-	 */
-	public function timestamp(Dept $dept)
-	{
-		$this->authorize('view', $dept);
 
-		return view('tenant.lookup.depts.timestamp', compact('dept'));
-	}
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -167,6 +159,16 @@ class DeptController extends Controller
 		EventLog::event('dept', $dept->id, 'status', 'enable', $dept->enable);
 
 		return redirect()->route('depts.index')->with('success', 'Dept status changed successfully');
+	}
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Dept $dept)
+	{
+		$this->authorize('view', $dept);
+
+		return view('tenant.lookup.depts.timestamp', compact('dept'));
 	}
 
 	public function export()

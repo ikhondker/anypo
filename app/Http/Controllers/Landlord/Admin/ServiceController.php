@@ -79,33 +79,7 @@ class ServiceController extends Controller
 	}
 
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function all(Account $account = null)
-	{
 
-		$this->authorize('viewAll',Service::class);
-
-		//$addons = Product::where('addon', true)->where('enable', true)->orderBy('id', 'ASC')->get();
-		//$account = Account::where('id', auth()->user()->account_id)->first();
-		//return view('landlord.admin.services.all', compact('services', 'addons','account'));
-
-		if ($account == '') {
-			// here the parameter doesn't exist
-			$services = Service::with('account')->orderBy('id', 'ASC')->paginate(10);
-
-		} else {
-			$services = Service::with('account')
-			->where('account_id',$account->id)
-				->orderBy('id', 'ASC')->paginate(10);
-		}
-
-		return view('landlord.admin.services.all', compact('services'));
-
-	}
 
 	/**
 	 * Show the form for creating a new resource.
@@ -220,6 +194,35 @@ class ServiceController extends Controller
 		EventLog::event('service',$service->id,'status','enable',$service->enable);
 
 		return redirect()->route('accounts.show',$service->account_id)->with('success','Addon Removed successfully');
+	}
+
+
+    /**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function all(Account $account = null)
+	{
+
+		$this->authorize('viewAll',Service::class);
+
+		//$addons = Product::where('addon', true)->where('enable', true)->orderBy('id', 'ASC')->get();
+		//$account = Account::where('id', auth()->user()->account_id)->first();
+		//return view('landlord.admin.services.all', compact('services', 'addons','account'));
+
+		if ($account == '') {
+			// here the parameter doesn't exist
+			$services = Service::with('account')->orderBy('id', 'ASC')->paginate(10);
+
+		} else {
+			$services = Service::with('account')
+			->where('account_id',$account->id)
+				->orderBy('id', 'ASC')->paginate(10);
+		}
+
+		return view('landlord.admin.services.all', compact('services'));
+
 	}
 
 	public function export()

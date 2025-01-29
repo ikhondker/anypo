@@ -66,7 +66,57 @@ class ReportController extends Controller
 		//
 	}
 
-	public function viewPdfInvoice(Invoice $invoice)
+
+
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function create()
+	{
+		//
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 */
+	public function store(StoreReportRequest $request)
+	{
+		//
+	}
+
+	/**
+	 * Display the specified resource.
+	 */
+	public function show(Report $report)
+	{
+		//
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 */
+	public function edit(Report $report)
+	{
+		//
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 */
+	public function update(UpdateReportRequest $request, Report $report)
+	{
+		//
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 */
+	public function destroy(Report $report)
+	{
+		//
+	}
+
+    public function viewPdfInvoice(Invoice $invoice)
 	{
 
 		//Log::debug('storage_path() = '.storage_path());
@@ -178,52 +228,4 @@ class ReportController extends Controller
 		return $pdf->stream('ticket.pdf');
 	}
 
-
-	/**
-	 * Show the form for creating a new resource.
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 */
-	public function store(StoreReportRequest $request)
-	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 */
-	public function show(Report $report)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 */
-	public function edit(Report $report)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 */
-	public function update(UpdateReportRequest $request, Report $report)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 */
-	public function destroy(Report $report)
-	{
-		//
-	}
 }

@@ -103,17 +103,6 @@ class ActivityController extends Controller
 		// return view('landlord.manage.activities.index', compact('activities'));
 	}
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function all()
-	{
-		$this->authorize('viewAll',Activity::class);
-		$activities = Activity::with('user')->latest()->orderBy('id', 'desc')->paginate(25);
-		return view('landlord.manage.activities.all', compact('activities'));
-	}
 
 
 	/**
@@ -188,6 +177,20 @@ class ActivityController extends Controller
 	{
 		abort(403);
 	}
+
+
+    /**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function all()
+	{
+		$this->authorize('viewAll',Activity::class);
+		$activities = Activity::with('user')->latest()->orderBy('id', 'desc')->paginate(25);
+		return view('landlord.manage.activities.all', compact('activities'));
+	}
+
 
 	public function export()
 	{

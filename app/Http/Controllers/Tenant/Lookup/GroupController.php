@@ -97,15 +97,6 @@ class GroupController extends Controller
 		return view('tenant.lookup.groups.show', compact('group'));
 	}
 
-	/**
-	 * Display the specified resource.
-	 */
-	public function timestamp(Group $group)
-	{
-		$this->authorize('view', $group);
-
-		return view('tenant.lookup.groups.timestamp', compact('group'));
-	}
 
 
 	/**
@@ -154,6 +145,17 @@ class GroupController extends Controller
 
 		return redirect()->route('groups.index')->with('success', 'Group status Updated successfully');
 	}
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Group $group)
+	{
+		$this->authorize('view', $group);
+
+		return view('tenant.lookup.groups.timestamp', compact('group'));
+	}
+
 
 	public function export()
 	{

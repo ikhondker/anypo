@@ -103,15 +103,6 @@ class UomController extends Controller
 		return view('tenant.lookup.uoms.show', compact('uom'));
 	}
 
-	/**
-	 * Display the specified resource.
-	 */
-	public function timestamp(Uom $uom)
-	{
-		$this->authorize('view', $uom);
-
-		return view('tenant.lookup.uoms.timestamp', compact('uom'));
-	}
 
 
 
@@ -166,6 +157,18 @@ class UomController extends Controller
 
 		return redirect()->route('uoms.index')->with('success', 'Uom status Updated successfully');
 	}
+
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Uom $uom)
+	{
+		$this->authorize('view', $uom);
+
+		return view('tenant.lookup.uoms.timestamp', compact('uom'));
+	}
+
 
 	public function export()
 	{

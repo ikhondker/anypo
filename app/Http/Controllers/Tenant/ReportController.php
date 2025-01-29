@@ -101,20 +101,6 @@ class ReportController extends Controller
 		}
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 */
-	public function parameter(Report $report)
-	{
-		$depts 			= Dept::Primary()->get();
-		$suppliers 		= Supplier::Primary()->get();
-		$projects 		= Project::Primary()->get();
-		$warehouses 	= Warehouse::Primary()->get();
-		$bank_accounts 	= BankAccount::Primary()->get();
-		$pms 			= User::Tenant()->get();
-		//$report_id='1003';
-		return view('tenant.reports.parameters', compact('report','depts','suppliers','projects','warehouses','bank_accounts','pms'));
-	}
 
 	/**
 	 * Show the form for creating a new resource.
@@ -155,6 +141,88 @@ class ReportController extends Controller
 		//$report_id='1003';
 		//return view('tenant.reports.parameters', compact('report','pms'));
 	}
+
+
+
+/**
+	 * Update the specified resource in storage.
+	 */
+	public function update(UpdateReportRequest $request, Report $report)
+	{
+		$this->authorize('update', $report);
+
+		// check box
+		$request->merge(['article_id' => ($request->has('article_id') ? 1 : 0) ]);
+		$request->merge(['article_id_required' => ($request->has('article_id_required') ? 1 : 0) ]);
+
+		$request->merge(['start_date' => ($request->has('start_date') ? 1 : 0) ]);
+		$request->merge(['start_date_required' => ($request->has('start_date_required') ? 1 : 0) ]);
+
+		$request->merge(['end_date' => ($request->has('end_date') ? 1 : 0) ]);
+		$request->merge(['end_date_required' => ($request->has('end_date_required') ? 1 : 0) ]);
+
+		$request->merge(['user_id' => ($request->has('user_id') ? 1 : 0) ]);
+		$request->merge(['user_id_required' => ($request->has('user_id_required') ? 1 : 0) ]);
+
+		$request->merge(['item_id' => ($request->has('item_id') ? 1 : 0) ]);
+		$request->merge(['item_id_required' => ($request->has('item_id_required') ? 1 : 0) ]);
+
+		$request->merge(['supplier_id' => ($request->has('supplier_id') ? 1 : 0) ]);
+		$request->merge(['supplier_id_required' => ($request->has('supplier_id_required') ? 1 : 0) ]);
+
+		$request->merge(['project_id' => ($request->has('project_id') ? 1 : 0) ]);
+		$request->merge(['project_id_required' => ($request->has('project_id_required') ? 1 : 0) ]);
+
+		$request->merge(['category_id' => ($request->has('category_id') ? 1 : 0) ]);
+		$request->merge(['category_id_required' => ($request->has('category_id_required') ? 1 : 0) ]);
+
+		$request->merge(['dept_id' => ($request->has('dept_id') ? 1 : 0) ]);
+		$request->merge(['dept_id_required' => ($request->has('dept_id_required') ? 1 : 0) ]);
+
+		$request->merge(['warehouse_id' => ($request->has('warehouse_id') ? 1 : 0) ]);
+		$request->merge(['warehouse_id_required' => ($request->has('warehouse_id_required') ? 1 : 0) ]);
+
+		$report->update($request->all());
+
+		// Write to Log
+		EventLog::event('report', $report->id, 'update', 'name', $report->name);
+
+		return redirect()->route('reports.index')->with('success', 'Report updated successfully');
+
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 */
+	public function destroy(Report $report)
+	{
+		$this->authorize('delete', $report);
+
+		$report->fill(['enable' => ! $report->enable]);
+		$report->update();
+
+		// Write to Log
+		EventLog::event('report', $report->id, 'status', 'enable', $report->enable);
+
+		return redirect()->route('reports.index')->with('success', 'Report status Updated successfully');
+	}
+
+
+    /**
+	 * Show the form for editing the specified resource.
+	 */
+	public function parameter(Report $report)
+	{
+		$depts 			= Dept::Primary()->get();
+		$suppliers 		= Supplier::Primary()->get();
+		$projects 		= Project::Primary()->get();
+		$warehouses 	= Warehouse::Primary()->get();
+		$bank_accounts 	= BankAccount::Primary()->get();
+		$pms 			= User::Tenant()->get();
+		//$report_id='1003';
+		return view('tenant.reports.parameters', compact('report','depts','suppliers','projects','warehouses','bank_accounts','pms'));
+	}
+
 
 	/**
 	 * Update the specified resource in storage.
@@ -276,68 +344,6 @@ class ReportController extends Controller
 			default:
 				Log::warning(tenant('id').' tenant.report.run report_id = '.$report->id.' not found!');
 		}
-	}
-/**
-	 * Update the specified resource in storage.
-	 */
-	public function update(UpdateReportRequest $request, Report $report)
-	{
-		$this->authorize('update', $report);
-
-		// check box
-		$request->merge(['article_id' => ($request->has('article_id') ? 1 : 0) ]);
-		$request->merge(['article_id_required' => ($request->has('article_id_required') ? 1 : 0) ]);
-
-		$request->merge(['start_date' => ($request->has('start_date') ? 1 : 0) ]);
-		$request->merge(['start_date_required' => ($request->has('start_date_required') ? 1 : 0) ]);
-
-		$request->merge(['end_date' => ($request->has('end_date') ? 1 : 0) ]);
-		$request->merge(['end_date_required' => ($request->has('end_date_required') ? 1 : 0) ]);
-
-		$request->merge(['user_id' => ($request->has('user_id') ? 1 : 0) ]);
-		$request->merge(['user_id_required' => ($request->has('user_id_required') ? 1 : 0) ]);
-
-		$request->merge(['item_id' => ($request->has('item_id') ? 1 : 0) ]);
-		$request->merge(['item_id_required' => ($request->has('item_id_required') ? 1 : 0) ]);
-
-		$request->merge(['supplier_id' => ($request->has('supplier_id') ? 1 : 0) ]);
-		$request->merge(['supplier_id_required' => ($request->has('supplier_id_required') ? 1 : 0) ]);
-
-		$request->merge(['project_id' => ($request->has('project_id') ? 1 : 0) ]);
-		$request->merge(['project_id_required' => ($request->has('project_id_required') ? 1 : 0) ]);
-
-		$request->merge(['category_id' => ($request->has('category_id') ? 1 : 0) ]);
-		$request->merge(['category_id_required' => ($request->has('category_id_required') ? 1 : 0) ]);
-
-		$request->merge(['dept_id' => ($request->has('dept_id') ? 1 : 0) ]);
-		$request->merge(['dept_id_required' => ($request->has('dept_id_required') ? 1 : 0) ]);
-
-		$request->merge(['warehouse_id' => ($request->has('warehouse_id') ? 1 : 0) ]);
-		$request->merge(['warehouse_id_required' => ($request->has('warehouse_id_required') ? 1 : 0) ]);
-
-		$report->update($request->all());
-
-		// Write to Log
-		EventLog::event('report', $report->id, 'update', 'name', $report->name);
-
-		return redirect()->route('reports.index')->with('success', 'Report updated successfully');
-
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 */
-	public function destroy(Report $report)
-	{
-		$this->authorize('delete', $report);
-
-		$report->fill(['enable' => ! $report->enable]);
-		$report->update();
-
-		// Write to Log
-		EventLog::event('report', $report->id, 'status', 'enable', $report->enable);
-
-		return redirect()->route('reports.index')->with('success', 'Report status Updated successfully');
 	}
 
 	public function export()

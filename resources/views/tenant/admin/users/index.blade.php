@@ -137,9 +137,10 @@
 									{{-- <x-tenant.list.my-avatar :avatar="$user->avatar"/> --}}
 									{{-- <img src="{{ url("tenant\\".tenant('id')."\\".config('akk.DIR_AVATAR') . $user->avatar) }}" width="48" height="48" class="rounded-circle me-2" alt="Avatar">		 --}}
 									<img src="{{ Storage::disk('s3t')->url('avatar/'.$user->avatar) }}" width="48" height="48" class="rounded-circle me-2" alt="Avatar">
-									<a href="{{ route('users.show',$user->id) }}"><strong>{{ $user->name }}</strong></a>
 									@if ( (auth()->user()->role->value == UserRoleEnum::SYS->value) && $user->backend )
-										<span class="text-danger"> (*)</span>
+                                        <a href="{{ route('users.show',$user->id) }}"><strong class="text-danger">{{ $user->name }}</strong></a>
+                                    @else
+									    <a href="{{ route('users.show',$user->id) }}"><strong>{{ $user->name }}</strong></a>
 									@endif
 								</td>
 								<td>{{ $user->email }}</td>

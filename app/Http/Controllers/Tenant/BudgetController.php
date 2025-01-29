@@ -70,54 +70,7 @@ class BudgetController extends Controller
 		return view('tenant.budgets.index', compact('budgets'));
 	}
 
-	/**
-	 * Display a listing of the resource.
-	 */
-	public function xxrevisionsAll()
-	{
-		$this->authorize('viewAny', Budget::class);
 
-		$budgets = Budget::query();
-		if (request('term')) {
-			$budgets->where('name', 'Like', '%'.request('term').'%');
-		}
-		$budgets = $budgets->where('revision',true)->orderBy('updated_at', 'DESC')->paginate(10);
-		return view('tenant.budgets.revisions-all', compact('budgets'));
-	}
-
-
-	/**
-	 * Display a listing of the resource.
-	 */
-	public function revisions(Budget $budget = null)
-	{
-		//$this->authorize('viewAny', Budget::class);
-
-		// $budgets = Budget::where('parent_id',$budget->id)
-		// 			->where('revision',true)
-		// 		 	->orderBy('id', 'DESC')->paginate(10);
-		// return view('tenant.budgets.revisions', compact('budgets','budget'));
-
-		$budgets = Budget::query();
-		if (request('term')) {
-			$budgets->where('name', 'Like', '%'.request('term').'%');
-			$budgets = $budgets->where('revision', true)->orderBy('updated_at', 'DESC')->paginate(10);
-			return view('tenant.budgets.revisions', compact('budgets'));
-		} else {
-			if(empty($budget)){
-				Log::debug('tenant.budgets.revisions No Budget Selected!');
-				$budgets = $budgets->where('revision',true)->orderBy('updated_at', 'DESC')->paginate(10);
-				return view('tenant.budgets.revisions', compact('budgets'));
-			} else {
-				Log::debug('tenant.budgets.revisions showing revision for budget_id = ' . $budget->id);
-				$budgets = Budget::where('parent_id',$budget->id)
-					->where('revision',true)
-					->orderBy('id', 'DESC')->paginate(10);
-				return view('tenant.budgets.revisions', compact('budgets','budget'));
-			}
-		}
-
-	}
 
 	/**
 	 * Show the form for creating a new resource.
@@ -189,15 +142,6 @@ class BudgetController extends Controller
 		return view('tenant.budgets.show', compact('budget'));
 	}
 
-	/**
-	 * Display the specified resource.
-	 */
-	public function timestamp(Budget $budget)
-	{
-		$this->authorize('view', $budget);
-
-		return view('tenant.budgets.timestamp', compact('budget'));
-	}
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -265,6 +209,67 @@ class BudgetController extends Controller
 		EventLog::event('budget', $budget->id, 'status', 'closed', $budget->closed);
 
 		return redirect()->route('budgets.index')->with('success', 'Budget status Updated successfully');
+	}
+
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Budget $budget)
+	{
+		$this->authorize('view', $budget);
+
+		return view('tenant.budgets.timestamp', compact('budget'));
+	}
+
+
+    /**
+	 * Display a listing of the resource.
+	 */
+	public function xxrevisionsAll()
+	{
+		$this->authorize('viewAny', Budget::class);
+
+		$budgets = Budget::query();
+		if (request('term')) {
+			$budgets->where('name', 'Like', '%'.request('term').'%');
+		}
+		$budgets = $budgets->where('revision',true)->orderBy('updated_at', 'DESC')->paginate(10);
+		return view('tenant.budgets.revisions-all', compact('budgets'));
+	}
+
+
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function revisions(Budget $budget = null)
+	{
+		//$this->authorize('viewAny', Budget::class);
+
+		// $budgets = Budget::where('parent_id',$budget->id)
+		// 			->where('revision',true)
+		// 		 	->orderBy('id', 'DESC')->paginate(10);
+		// return view('tenant.budgets.revisions', compact('budgets','budget'));
+
+		$budgets = Budget::query();
+		if (request('term')) {
+			$budgets->where('name', 'Like', '%'.request('term').'%');
+			$budgets = $budgets->where('revision', true)->orderBy('updated_at', 'DESC')->paginate(10);
+			return view('tenant.budgets.revisions', compact('budgets'));
+		} else {
+			if(empty($budget)){
+				Log::debug('tenant.budgets.revisions No Budget Selected!');
+				$budgets = $budgets->where('revision',true)->orderBy('updated_at', 'DESC')->paginate(10);
+				return view('tenant.budgets.revisions', compact('budgets'));
+			} else {
+				Log::debug('tenant.budgets.revisions showing revision for budget_id = ' . $budget->id);
+				$budgets = Budget::where('parent_id',$budget->id)
+					->where('revision',true)
+					->orderBy('id', 'DESC')->paginate(10);
+				return view('tenant.budgets.revisions', compact('budgets','budget'));
+			}
+		}
+
 	}
 
 	public function xxexport()

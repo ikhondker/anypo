@@ -56,5 +56,4 @@ class Checkout extends Model
 		return $this->belongsTo(Status::class, 'status_code');
 	}
 
-	/* ---------------- created and updated by ---------------------- */
 }

@@ -78,41 +78,6 @@ class InvoiceController extends Controller
 		return view('landlord.admin.invoices.index', compact('invoices'));
 	}
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	//public function all($type = null, $status = null, $account = null)
-	public function all(Request $request)
-
-	{
-		// backend invoice list
-		$this->authorize('viewAll',Invoice::class);
-
-		// Log::debug('landlord.invoice.all type = ' . $type);
-		// Log::debug('landlord.invoice.all status = ' . $status);
-		// Log::debug('landlord.invoice.all account = ' . $account);
-
-		$invoices = Invoice::with('account')->with('status');
-
-		// https://www.reddit.com/r/PHPhelp/comments/1d1ekju/multiple_optional_parameters_in_laravel_11_problem/
-		if ($request->has('type')) {
-			$invoices->where('invoice_type', $request->query('type'));
-		}
-		//if(!empty($status)){
-		if ($request->has('status')) {
-			$invoices->where('status_code', $request->query('status'));
-		}
-
-		if ($request->has('account')) {
-			$invoices->where('account_id', $request->query('account'));
-		}
-
-		$invoices = $invoices->orderBy('id', 'DESC')->paginate(10);
-
-		return view('landlord.admin.invoices.all', compact('invoices'));
-	}
 
 
 	/**
@@ -213,94 +178,6 @@ class InvoiceController extends Controller
 	}
 
 
-	public function post(Invoice $invoice)
-	{
-			$invoice->status_code	= InvoiceStatusEnum::DUE->value;
-			$invoice->save();
-			Log::debug('landlord.invoice.post Invoice Posted invoice_id = ' . $invoice->id);
-			EventLog::event('invoice', $invoice->id, 'post');
-			return redirect()->route('invoices.show', $invoice->id)->with('success', 'INVOICE #'. $invoice->id.' Posted successfully.');
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function generate()
-	{
-
-		$this->authorize('generate', Invoice::class);
-
-		if (auth()->user()->account_id == '') {
-			return redirect()->route('invoices.index')->with('error', 'Sorry, you can not generate Invoice as no valid Account Found!');
-		}
-
-		$account = Account::where('id', auth()->user()->account_id)->first();
-		if ($account->next_bill_generated) {
-			Log::debug('landlord.invoice.create Unpaid invoice exists for Account #' . $account->id . ' Invoice not created.');
-			return redirect()->route('invoices.index')->with('error', 'An unpaid Invoice exists for Account: ' . $account->name . '! Unable to create new Invoice!');
-		}
-
-		$config = Config::with('relCountry')->where('id', config('bo.CONFIG_ID'))->first();
-
-		return view('landlord.admin.invoices.generate', compact('account', 'config'));
-	}
-
-
-
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param  \App\Http\Requests\StoreInvoiceRequest  $request
-	 * @return \Illuminate\Http\Response
-	 */
-	public function oldstore(StoreInvoiceRequest $request)
-	{
-
-
-		exit;
-
-		//
-		//abort(404);
-
-
-		// Create future Invoice Manually by user+admin
-		$this->authorize('create', Invoice::class);
-
-		$period 		= $request->period;
-		$account_id 	= auth()->user()->account_id;
-
-		Log::debug('landlord.invoice.store generating invoice for period = ' . $period);
-
-		if ( $account_id == '') {
-			return redirect()->route('invoices.index')->with('error', 'Sorry, you can not generate Invoice as no valid Account Found!');
-		}
-
-		$account = Account::where('id', auth()->user()->account_id)->first();
-		if ($account->next_bill_generated) {
-			Log::debug('landlord.invoice.store Unpaid invoice exists for Account id = ' . $account->id . ' Invoice not created.');
-			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for this Account! Can not create more Invoices.');
-		}
-
-		try {
-			// Create invoice
-			Log::channel('bo')->info('landlord.invoice.store Generating Invoice for Account id = ' . $account_id);
-			$invoice_id = self::createSubscriptionInvoice($account_id, $period);
-		} catch (Exception $e) {
-			// Log the message locally OR use a tool like Bugsnag/Flare to log the error
-			Log::error('landlord.invoice.store '. $e->getMessage());
-			$invoice_id = 0;
-		}
-
-
-		if ($invoice_id <> 0) {
-			return redirect()->route('invoices.index')->with('success', 'Invoice #' . $invoice_id . ' created successfully.');
-		} else {
-			return redirect()->route('invoices.index')->with('error', 'Invoice creation Failed!');
-		}
-	}
 
 	/**
 	 * Display the specified resource.
@@ -346,6 +223,18 @@ class InvoiceController extends Controller
 		EventLog::event('invoice',$invoice->id,'update','summary', $request->summary);
 		return redirect()->route('invoices.show',$invoice->id)->with('success','Invoice updated successfully.');
 
+	}
+
+
+    /**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  \App\Models\Invoice  $invoice
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy(Invoice $invoice)
+	{
+		//
 	}
 
 	/**
@@ -447,15 +336,130 @@ class InvoiceController extends Controller
 	}
 
 
-	/**
-	 * Remove the specified resource from storage.
+
+
+    /**
+	 * Display a listing of the resource.
 	 *
-	 * @param  \App\Models\Invoice  $invoice
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy(Invoice $invoice)
+	public function all(Request $request)
 	{
+		// backend invoice list
+		$this->authorize('viewAll',Invoice::class);
+
+		// Log::debug('landlord.invoice.all type = ' . $type);
+		// Log::debug('landlord.invoice.all status = ' . $status);
+		// Log::debug('landlord.invoice.all account = ' . $account);
+
+		$invoices = Invoice::with('account')->with('status');
+
+		// https://www.reddit.com/r/PHPhelp/comments/1d1ekju/multiple_optional_parameters_in_laravel_11_problem/
+		if ($request->has('type')) {
+			$invoices->where('invoice_type', $request->query('type'));
+		}
+		//if(!empty($status)){
+		if ($request->has('status')) {
+			$invoices->where('status_code', $request->query('status'));
+		}
+
+		if ($request->has('account')) {
+			$invoices->where('account_id', $request->query('account'));
+		}
+
+		$invoices = $invoices->orderBy('id', 'DESC')->paginate(10);
+
+		return view('landlord.admin.invoices.all', compact('invoices'));
+	}
+
+
+    public function post(Invoice $invoice)
+	{
+			$invoice->status_code	= InvoiceStatusEnum::DUE->value;
+			$invoice->save();
+			Log::debug('landlord.invoice.post Invoice Posted invoice_id = ' . $invoice->id);
+			EventLog::event('invoice', $invoice->id, 'post');
+			return redirect()->route('invoices.show', $invoice->id)->with('success', 'INVOICE #'. $invoice->id.' Posted successfully.');
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function generate()
+	{
+
+		$this->authorize('generate', Invoice::class);
+
+		if (auth()->user()->account_id == '') {
+			return redirect()->route('invoices.index')->with('error', 'Sorry, you can not generate Invoice as no valid Account Found!');
+		}
+
+		$account = Account::where('id', auth()->user()->account_id)->first();
+		if ($account->next_bill_generated) {
+			Log::debug('landlord.invoice.create Unpaid invoice exists for Account #' . $account->id . ' Invoice not created.');
+			return redirect()->route('invoices.index')->with('error', 'An unpaid Invoice exists for Account: ' . $account->name . '! Unable to create new Invoice!');
+		}
+
+		$config = Config::with('relCountry')->where('id', config('bo.CONFIG_ID'))->first();
+
+		return view('landlord.admin.invoices.generate', compact('account', 'config'));
+	}
+
+
+
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  \App\Http\Requests\StoreInvoiceRequest  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function oldstore(StoreInvoiceRequest $request)
+	{
+
+
+		exit;
+
 		//
+		//abort(404);
+
+
+		// Create future Invoice Manually by user+admin
+		$this->authorize('create', Invoice::class);
+
+		$period 		= $request->period;
+		$account_id 	= auth()->user()->account_id;
+
+		Log::debug('landlord.invoice.store generating invoice for period = ' . $period);
+
+		if ( $account_id == '') {
+			return redirect()->route('invoices.index')->with('error', 'Sorry, you can not generate Invoice as no valid Account Found!');
+		}
+
+		$account = Account::where('id', auth()->user()->account_id)->first();
+		if ($account->next_bill_generated) {
+			Log::debug('landlord.invoice.store Unpaid invoice exists for Account id = ' . $account->id . ' Invoice not created.');
+			return redirect()->route('invoices.index')->with('error', 'Unpaid invoice exists for this Account! Can not create more Invoices.');
+		}
+
+		try {
+			// Create invoice
+			Log::channel('bo')->info('landlord.invoice.store Generating Invoice for Account id = ' . $account_id);
+			$invoice_id = self::createSubscriptionInvoice($account_id, $period);
+		} catch (Exception $e) {
+			// Log the message locally OR use a tool like Bugsnag/Flare to log the error
+			Log::error('landlord.invoice.store '. $e->getMessage());
+			$invoice_id = 0;
+		}
+
+
+		if ($invoice_id <> 0) {
+			return redirect()->route('invoices.index')->with('success', 'Invoice #' . $invoice_id . ' created successfully.');
+		} else {
+			return redirect()->route('invoices.index')->with('error', 'Invoice creation Failed!');
+		}
 	}
 
 

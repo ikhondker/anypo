@@ -69,26 +69,6 @@ class PaymentController extends Controller
 	}
 
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function all(Account $account = null)
-	{
-		$this->authorize('viewAll',Payment::class);
-
-		if ($account == '') {
-			// here the parameter doesn't exist
-			$payments = Payment::with('invoice')->with('account')->with('status')->orderBy('id', 'desc')->paginate(10);
-		} else {
-			$payments = Payment::with('invoice')->with('account')->with('status')
-				->where('account_id',$account->id)
-				->orderBy('id', 'desc')->paginate(10);
-		}
-
-		return view('landlord.admin.payments.all', compact('payments'));
-	}
 
 	/**
 	 * Show the form for creating a new resource.
@@ -172,6 +152,30 @@ class PaymentController extends Controller
 	{
 		//
 	}
+
+
+    /**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function all(Account $account = null)
+	{
+		$this->authorize('viewAll',Payment::class);
+
+		if ($account == '') {
+			// here the parameter doesn't exist
+			$payments = Payment::with('invoice')->with('account')->with('status')->orderBy('id', 'desc')->paginate(10);
+		} else {
+			$payments = Payment::with('invoice')->with('account')->with('status')
+				->where('account_id',$account->id)
+				->orderBy('id', 'desc')->paginate(10);
+		}
+
+		return view('landlord.admin.payments.all', compact('payments'));
+	}
+
+
 	public function export()
 	{
 		$this->authorize('export', Payment::class);

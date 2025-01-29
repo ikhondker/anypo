@@ -58,17 +58,6 @@ class ContactController extends Controller
 	}
 
 
-	/**
-	 * Display a listing of the resource.
-	 */
-	public function all()
-	{
-
-		$this->authorize('viewAll',Contact::class);
-
-		$contacts= Contact::orderBy('id', 'DESC')->paginate(10);
-		return view('landlord.manage.contacts.all',compact('contacts'));
-	}
 
 	/**
 	 * Show the form for creating a new resource.
@@ -140,6 +129,20 @@ class ContactController extends Controller
 	{
 		//
 	}
+
+
+    /**
+	 * Display a listing of the resource.
+	 */
+	public function all()
+	{
+
+		$this->authorize('viewAll',Contact::class);
+
+		$contacts= Contact::orderBy('id', 'DESC')->paginate(10);
+		return view('landlord.manage.contacts.all',compact('contacts'));
+	}
+
 
 	public function export()
 	{

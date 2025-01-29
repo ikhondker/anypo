@@ -98,21 +98,6 @@ class PaymentController extends Controller
 		return view('tenant.payments.index', compact('payments'));
 	}
 
-		/**
-	 * Display a listing of the resource.
-	 */
-	public function myPayments()
-	{
-
-		$this->authorize('viewAny', Payment::class);
-
-		$payments = Payment::query();
-		if (request('term')) {
-			$payments->where('name', 'Like', '%' . request('term') . '%');
-		}
-		$payments = $payments->with('invoice.supplier')->with('bank_account')->with('payee')->with('status_badge')->ByCreator()->paginate(10);
-		return view('tenant.payments.my-payments', compact('payments'));
-	}
 
 	/**
 	 * Show the form for creating a new resource.
@@ -123,45 +108,6 @@ class PaymentController extends Controller
 	}
 
 
-	/**
-	 * Show the form for creating a new resource.
-	 */
-	public function createForInvoice(Invoice $invoice = null)
-	{
-
-		$this->authorize('createForInvoice', Payment::class);
-
-		$setup 	= Setup::first();
-		if ($setup->readonly ){
-			return redirect()->route('dashboards.index')->with('error', config('akk.MSG_READ_ONLY'));
-		}
-
-		$bank_accounts = BankAccount::primary()->get();
-
-		if(empty($invoice)){
-			Log::debug('tenant.PaymentController.createForInvoice No Invoice Selected!');
-
-			$invoices = Invoice::paymentDue()->get();
-			return view('tenant.payments.create-for-invoice', with(compact('invoice','invoices','bank_accounts')));
-		} else {
-
-			Log::debug('tenant.PaymentController.createForInvoice Creating payment for invoice id = ' . $invoice->id);
-
-			// check if invoice is posted
-			if ($invoice->status <> InvoiceStatusEnum::POSTED->value) {
-				//return redirect()->route('pos.cancel')->with('error', 'Please delete DRAFT Requisition if needed!');
-				return back()->withError("You can only Pay POSTED Invoices!")->withInput();
-			}
-
-			$po = Po::where('id', $invoice->po_id)->first();
-			if ($po->status <> ClosureStatusEnum::OPEN->value) {
-				return redirect()->route('pos.show', $po->id)->with('error', 'You can make Payment only for OPEN Purchase Orders!');
-			}
-
-			return view('tenant.payments.create-for-invoice', with(compact('po','invoice','bank_accounts')));
-		}
-
-	}
 
 	/**
 	 * Store a newly created resource in storage.
@@ -281,23 +227,7 @@ class PaymentController extends Controller
 		return view('tenant.payments.show', compact('payment'));
 	}
 
-	/**
-	 * Display the specified resource.
-	 */
-	public function timestamp(Payment $payment)
-	{
-		$this->authorize('view', $payment);
 
-		return view('tenant.payments.timestamp', compact('payment'));
-	}
-
-	public function ael(Payment $payment)
-	{
-		$this->authorize('view', $payment);
-		//$invoice = Invoice::where('id', $payment->invoice_id)->get()->firstOrFail();
-		//$po = Po::where('id', $invoice->po_id)->get()->firstOrFail();
-		return view('tenant.payments.ael', compact('payment'));
-	}
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -321,6 +251,82 @@ class PaymentController extends Controller
 	public function destroy(Payment $payment)
 	{
 		abort(403);
+	}
+
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Payment $payment)
+	{
+		$this->authorize('view', $payment);
+
+		return view('tenant.payments.timestamp', compact('payment'));
+	}
+
+    /**
+	 * Show the form for creating a new resource.
+	 */
+	public function createForInvoice(Invoice $invoice = null)
+	{
+
+		$this->authorize('createForInvoice', Payment::class);
+
+		$setup 	= Setup::first();
+		if ($setup->readonly ){
+			return redirect()->route('dashboards.index')->with('error', config('akk.MSG_READ_ONLY'));
+		}
+
+		$bank_accounts = BankAccount::primary()->get();
+
+		if(empty($invoice)){
+			Log::debug('tenant.PaymentController.createForInvoice No Invoice Selected!');
+
+			$invoices = Invoice::paymentDue()->get();
+			return view('tenant.payments.create-for-invoice', with(compact('invoice','invoices','bank_accounts')));
+		} else {
+
+			Log::debug('tenant.PaymentController.createForInvoice Creating payment for invoice id = ' . $invoice->id);
+
+			// check if invoice is posted
+			if ($invoice->status <> InvoiceStatusEnum::POSTED->value) {
+				//return redirect()->route('pos.cancel')->with('error', 'Please delete DRAFT Requisition if needed!');
+				return back()->withError("You can only Pay POSTED Invoices!")->withInput();
+			}
+
+			$po = Po::where('id', $invoice->po_id)->first();
+			if ($po->status <> ClosureStatusEnum::OPEN->value) {
+				return redirect()->route('pos.show', $po->id)->with('error', 'You can make Payment only for OPEN Purchase Orders!');
+			}
+
+			return view('tenant.payments.create-for-invoice', with(compact('po','invoice','bank_accounts')));
+		}
+
+	}
+
+
+	public function ael(Payment $payment)
+	{
+		$this->authorize('view', $payment);
+		//$invoice = Invoice::where('id', $payment->invoice_id)->get()->firstOrFail();
+		//$po = Po::where('id', $invoice->po_id)->get()->firstOrFail();
+		return view('tenant.payments.ael', compact('payment'));
+	}
+
+    /**
+	 * Display a listing of the resource.
+	 */
+	public function myPayments()
+	{
+
+		$this->authorize('viewAny', Payment::class);
+
+		$payments = Payment::query();
+		if (request('term')) {
+			$payments->where('name', 'Like', '%' . request('term') . '%');
+		}
+		$payments = $payments->with('invoice.supplier')->with('bank_account')->with('payee')->with('status_badge')->ByCreator()->paginate(10);
+		return view('tenant.payments.my-payments', compact('payments'));
 	}
 
 

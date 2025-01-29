@@ -103,22 +103,6 @@ class ReceiptController extends Controller
 		return view('tenant.receipts.index', compact('receipts'));
 	}
 
-	/**
-	 * Display a listing of the resource.
-	 */
-	public function myReceipts()
-	{
-
-		$this->authorize('viewAny',Receipt::class);
-
-		$receipts = Receipt::query();
-		if (request('term')) {
-			$receipts->where('name', 'Like', '%' . request('term') . '%');
-		}
-		$receipts = $receipts->with('pol')->with('warehouse')->with('receiver')->with('status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
-
-		return view('tenant.receipts.my-receipts', compact('receipts'));
-	}
 
 	/**
 	 * Show the form for creating a new resource.
@@ -128,37 +112,7 @@ class ReceiptController extends Controller
 		abort(403);
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 */
-	public function createForPol(Pol $pol = null)
-	{
-		$this->authorize('createForPol', Receipt::class);
 
-		$setup 	= Setup::first();
-		if ($setup->readonly ){
-			return redirect()->route('dashboards.index')->with('error', config('akk.MSG_READ_ONLY'));
-		}
-
-		$warehouses = Warehouse::primary()->get();
-
-		if(empty($pol)){
-			Log::debug('tenant.ReceiptController.createForPol No pol Selected!');
-			$pols = Pol::receiptDue()->get();
-			return view('tenant.receipts.create-for-pol', with(compact('pol','pols','warehouses')));
-		} else {
-			//check if PO is approved and open
-			$po = Po::where('id', $pol->po_id)->first();
-			if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
-				return redirect()->route('pols.show', $pol->id)->with('error', 'You can Receive Goods only for APPROVED Purchase Order!');
-			}
-			if ($po->status <> ClosureStatusEnum::OPEN->value) {
-				return redirect()->route('pols.show', $pol->id)->with('error', 'You can Receive Goods only for OPEN Purchase Order!');
-			}
-
-			return view('tenant.receipts.create-for-pol', with(compact('po','pol','warehouses')));
-		}
-	}
 
 	/**
 	 * Store a newly created resource in storage.
@@ -258,15 +212,7 @@ class ReceiptController extends Controller
 		return view('tenant.receipts.show', compact('receipt'));
 	}
 
-		/**
-	 * Display the specified resource.
-	 */
-	public function timestamp(Receipt $receipt)
-	{
-		$this->authorize('view', $receipt);
 
-		return view('tenant.receipts.timestamp', compact('receipt'));
-	}
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -293,6 +239,66 @@ class ReceiptController extends Controller
 		abort(403);
 	}
 
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Receipt $receipt)
+	{
+		$this->authorize('view', $receipt);
+
+		return view('tenant.receipts.timestamp', compact('receipt'));
+	}
+
+    /**
+	 * Display a listing of the resource.
+	 */
+	public function myReceipts()
+	{
+
+		$this->authorize('viewAny',Receipt::class);
+
+		$receipts = Receipt::query();
+		if (request('term')) {
+			$receipts->where('name', 'Like', '%' . request('term') . '%');
+		}
+		$receipts = $receipts->with('pol')->with('warehouse')->with('receiver')->with('status_badge')->ByPoBuyer(auth()->user()->id)->paginate(10);
+
+		return view('tenant.receipts.my-receipts', compact('receipts'));
+	}
+
+
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function createForPol(Pol $pol = null)
+	{
+		$this->authorize('createForPol', Receipt::class);
+
+		$setup 	= Setup::first();
+		if ($setup->readonly ){
+			return redirect()->route('dashboards.index')->with('error', config('akk.MSG_READ_ONLY'));
+		}
+
+		$warehouses = Warehouse::primary()->get();
+
+		if(empty($pol)){
+			Log::debug('tenant.ReceiptController.createForPol No pol Selected!');
+			$pols = Pol::receiptDue()->get();
+			return view('tenant.receipts.create-for-pol', with(compact('pol','pols','warehouses')));
+		} else {
+			//check if PO is approved and open
+			$po = Po::where('id', $pol->po_id)->first();
+			if ($po->auth_status <> AuthStatusEnum::APPROVED->value) {
+				return redirect()->route('pols.show', $pol->id)->with('error', 'You can Receive Goods only for APPROVED Purchase Order!');
+			}
+			if ($po->status <> ClosureStatusEnum::OPEN->value) {
+				return redirect()->route('pols.show', $pol->id)->with('error', 'You can Receive Goods only for OPEN Purchase Order!');
+			}
+
+			return view('tenant.receipts.create-for-pol', with(compact('po','pol','warehouses')));
+		}
+	}
 
 
 	/**

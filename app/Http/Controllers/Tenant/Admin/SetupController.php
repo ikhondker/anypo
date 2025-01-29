@@ -109,15 +109,6 @@ class SetupController extends Controller
 	}
 
 
-	/**
-	 * Display the specified resource.
-	 */
-	public function timestamp(Setup $setup)
-	{
-		$this->authorize('view', $setup);
-
-		return view('tenant.admin.setups.timestamp', compact('setup'));
-	}
 
 
 	/**
@@ -197,6 +188,18 @@ class SetupController extends Controller
 		abort(403);
 		//$this->authorize('delete', $setup);
 	}
+
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Setup $setup)
+	{
+		$this->authorize('view', $setup);
+
+		return view('tenant.admin.setups.timestamp', compact('setup'));
+	}
+
 
 	public function tc(Setup $setup)
 	{

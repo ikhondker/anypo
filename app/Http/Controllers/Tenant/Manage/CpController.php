@@ -38,39 +38,7 @@ class CpController extends Controller
 		return view('tenant.manage.cps.index');
 	}
 
-	/**
-	 * Display a listing of the resource.
-	 */
-	public function changeLog()
-	{
-		//$this->authorize('viewAny',Oem::class);
-		return view('tenant.manage.cps.changelog');
-	}
 
-	/**
-	 * Display a listing of the resource.
-	 */
-	public function codeGen()
-	{
-		//$this->authorize('viewAny',Oem::class);
-		return view('tenant.manage.cps.codegen');
-	}
-
-	 /**
-	 * Show the form for creating a new resource.
-	 */
-	public function ui()
-	{
-		return view('tenant.manage.ui');
-	}
-
-	 /**
-	 * Show the form for creating a new resource.
-	 */
-	public function checkTimestamp()
-	{
-		return view('tenant.manage.cps.timestamp');
-	}
 	/**
 	 * Show the form for creating a new resource.
 	 */
@@ -117,5 +85,40 @@ class CpController extends Controller
 	public function destroy(Cp $cp)
 	{
 		//
+	}
+
+
+    /**
+	 * Display a listing of the resource.
+	 */
+	public function changeLog()
+	{
+		//$this->authorize('viewAny',Oem::class);
+		return view('tenant.manage.cps.changelog');
+	}
+
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function codeGen()
+	{
+		//$this->authorize('viewAny',Oem::class);
+		return view('tenant.manage.cps.codegen');
+	}
+
+	 /**
+	 * Show the form for creating a new resource.
+	 */
+	public function ui()
+	{
+		return view('tenant.manage.ui');
+	}
+
+	 /**
+	 * Show the form for creating a new resource.
+	 */
+	public function checkTimestamp()
+	{
+		return view('tenant.manage.cps.timestamp');
 	}
 }

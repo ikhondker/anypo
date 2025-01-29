@@ -42,46 +42,7 @@ class CpController extends Controller
 		return view('landlord.manage.cps.index');
 	}
 
-	/**
-	 * Display a listing of the resource.
-	 */
-	public function changeLog()
-	{
-		//$this->authorize('viewAny',Oem::class);
-		return view('landlord.manage.cps.changelog');
-	}
 
-	/**
-	 * Display a listing of the resource.
-	 */
-	public function codeGen()
-	{
-		//$this->authorize('viewAny',Oem::class);
-		return view('landlord.manage.cps.codegen');
-	}
-	/**
-	 * Show the form for creating a new resource.
-	 */
-	public function ui()
-	{
-		return view('landlord.manage.ui');
-	}
-	/**
-	 * Show the form for creating a new resource.
-	 */
-	public function sync()
-	{
-		SyncLandlord::dispatch();
-		return redirect()->route('cps.index')->with('success', 'Sync Job submitted');
-	}
-
-	/**
-	 * Display a listing of the resource.
-	 */
-	public function resetAccEndDate()
-	{
-
-	}
 
 
 	/**
@@ -200,5 +161,46 @@ class CpController extends Controller
 	public function destroy(Cp $cp)
 	{
 		//
+	}
+
+    /**
+	 * Display a listing of the resource.
+	 */
+	public function changeLog()
+	{
+		//$this->authorize('viewAny',Oem::class);
+		return view('landlord.manage.cps.changelog');
+	}
+
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function codeGen()
+	{
+		//$this->authorize('viewAny',Oem::class);
+		return view('landlord.manage.cps.codegen');
+	}
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function ui()
+	{
+		return view('landlord.manage.ui');
+	}
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function sync()
+	{
+		SyncLandlord::dispatch();
+		return redirect()->route('cps.index')->with('success', 'Sync Job submitted');
+	}
+
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function resetAccEndDate()
+	{
+
 	}
 }

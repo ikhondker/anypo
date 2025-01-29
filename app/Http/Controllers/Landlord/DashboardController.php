@@ -88,8 +88,74 @@ class DashboardController extends Controller
 		}
 	}
 
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function create()
+	{
+		abort(403);
 
-	private function userDashboard()
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store(Request $request)
+	{
+		abort(403);
+	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  \App\Models\Dashboard  $dashboard
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show(Dashboard $dashboard)
+	{
+		abort(403);
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  \App\Models\Dashboard  $dashboard
+	 * @return \Illuminate\Http\Response
+	 */
+	public function edit(Dashboard $dashboard)
+	{
+		abort(403);
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  \App\Models\Dashboard  $dashboard
+	 * @return \Illuminate\Http\Response
+	 */
+	public function update(Request $request, Dashboard $dashboard)
+	{
+		 abort(403);
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  \App\Models\Dashboard  $dashboard
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy(Dashboard $dashboard)
+	{
+		abort(403);
+	}
+
+    private function userDashboard()
 	{
 
 		$config = Config::first();
@@ -275,73 +341,5 @@ class DashboardController extends Controller
 			'count_users','count_users_active','count_users_inactive','count_users_non_val'
 		)));
 
-	}
-
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function create()
-	{
-		abort(403);
-
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
-	 */
-	public function store(Request $request)
-	{
-		abort(403);
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  \App\Models\Dashboard  $dashboard
-	 * @return \Illuminate\Http\Response
-	 */
-	public function show(Dashboard $dashboard)
-	{
-		abort(403);
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  \App\Models\Dashboard  $dashboard
-	 * @return \Illuminate\Http\Response
-	 */
-	public function edit(Dashboard $dashboard)
-	{
-		abort(403);
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \App\Models\Dashboard  $dashboard
-	 * @return \Illuminate\Http\Response
-	 */
-	public function update(Request $request, Dashboard $dashboard)
-	{
-		 abort(403);
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  \App\Models\Dashboard  $dashboard
-	 * @return \Illuminate\Http\Response
-	 */
-	public function destroy(Dashboard $dashboard)
-	{
-		abort(403);
 	}
 }

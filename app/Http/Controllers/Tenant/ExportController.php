@@ -105,6 +105,96 @@ class ExportController extends Controller
 		}
 	}
 
+    /**
+	 * Show the form for creating a new resource.
+	 */
+	public function create()
+	{
+		//
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 */
+	public function store(StoreExportRequest $request)
+	{
+		//
+	}
+
+	/**
+	 * Display the specified resource.
+	 */
+	public function show(Export $export)
+	{
+		$this->authorize('view', $export);
+
+		return view('tenant.exports.show', compact('export'));
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 */
+	public function edit(Export $export)
+	{
+		$this->authorize('update', $export);
+
+		return view('tenant.exports.edit', compact('export'));
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 */
+	public function update(UpdateExportRequest $request, Export $export)
+	{
+		$this->authorize('update', $export);
+
+		// check box
+		$request->merge(['article_id' => ($request->has('article_id') ? 1 : 0) ]);
+		$request->merge(['article_id_required' => ($request->has('article_id_required') ? 1 : 0) ]);
+
+		$request->merge(['start_date' => ($request->has('start_date') ? 1 : 0) ]);
+		$request->merge(['start_date_required' => ($request->has('start_date_required') ? 1 : 0) ]);
+
+		$request->merge(['end_date' => ($request->has('end_date') ? 1 : 0) ]);
+		$request->merge(['end_date_required' => ($request->has('end_date_required') ? 1 : 0) ]);
+
+		$request->merge(['user_id' => ($request->has('user_id') ? 1 : 0) ]);
+		$request->merge(['user_id_required' => ($request->has('user_id_required') ? 1 : 0) ]);
+
+		$request->merge(['item_id' => ($request->has('item_id') ? 1 : 0) ]);
+		$request->merge(['item_id_required' => ($request->has('item_id_required') ? 1 : 0) ]);
+
+		$request->merge(['supplier_id' => ($request->has('supplier_id') ? 1 : 0) ]);
+		$request->merge(['supplier_id_required' => ($request->has('supplier_id_required') ? 1 : 0) ]);
+
+		$request->merge(['project_id' => ($request->has('project_id') ? 1 : 0) ]);
+		$request->merge(['project_id_required' => ($request->has('project_id_required') ? 1 : 0) ]);
+
+		$request->merge(['category_id' => ($request->has('category_id') ? 1 : 0) ]);
+		$request->merge(['category_id_required' => ($request->has('category_id_required') ? 1 : 0) ]);
+
+		$request->merge(['dept_id' => ($request->has('dept_id') ? 1 : 0) ]);
+		$request->merge(['dept_id_required' => ($request->has('dept_id_required') ? 1 : 0) ]);
+
+		$request->merge(['warehouse_id' => ($request->has('warehouse_id') ? 1 : 0) ]);
+		$request->merge(['warehouse_id_required' => ($request->has('warehouse_id_required') ? 1 : 0) ]);
+
+		$export->update($request->all());
+
+		// Write to Log
+		EventLog::event('export', $export->id, 'update', 'name', $export->name);
+
+		return redirect()->route('exports.index')->with('success', 'Export updated successfully');
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 */
+	public function destroy(Export $export)
+	{
+		//
+	}
+
 	public function pr()
 	{
 		return view('tenant.prs.export');
@@ -210,95 +300,7 @@ class ExportController extends Controller
 	}
 
 
-	/**
-	 * Show the form for creating a new resource.
-	 */
-	public function create()
-	{
-		//
-	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 */
-	public function store(StoreExportRequest $request)
-	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 */
-	public function show(Export $export)
-	{
-		$this->authorize('view', $export);
-
-		return view('tenant.exports.show', compact('export'));
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 */
-	public function edit(Export $export)
-	{
-		$this->authorize('update', $export);
-
-		return view('tenant.exports.edit', compact('export'));
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 */
-	public function update(UpdateExportRequest $request, Export $export)
-	{
-		$this->authorize('update', $export);
-
-		// check box
-		$request->merge(['article_id' => ($request->has('article_id') ? 1 : 0) ]);
-		$request->merge(['article_id_required' => ($request->has('article_id_required') ? 1 : 0) ]);
-
-		$request->merge(['start_date' => ($request->has('start_date') ? 1 : 0) ]);
-		$request->merge(['start_date_required' => ($request->has('start_date_required') ? 1 : 0) ]);
-
-		$request->merge(['end_date' => ($request->has('end_date') ? 1 : 0) ]);
-		$request->merge(['end_date_required' => ($request->has('end_date_required') ? 1 : 0) ]);
-
-		$request->merge(['user_id' => ($request->has('user_id') ? 1 : 0) ]);
-		$request->merge(['user_id_required' => ($request->has('user_id_required') ? 1 : 0) ]);
-
-		$request->merge(['item_id' => ($request->has('item_id') ? 1 : 0) ]);
-		$request->merge(['item_id_required' => ($request->has('item_id_required') ? 1 : 0) ]);
-
-		$request->merge(['supplier_id' => ($request->has('supplier_id') ? 1 : 0) ]);
-		$request->merge(['supplier_id_required' => ($request->has('supplier_id_required') ? 1 : 0) ]);
-
-		$request->merge(['project_id' => ($request->has('project_id') ? 1 : 0) ]);
-		$request->merge(['project_id_required' => ($request->has('project_id_required') ? 1 : 0) ]);
-
-		$request->merge(['category_id' => ($request->has('category_id') ? 1 : 0) ]);
-		$request->merge(['category_id_required' => ($request->has('category_id_required') ? 1 : 0) ]);
-
-		$request->merge(['dept_id' => ($request->has('dept_id') ? 1 : 0) ]);
-		$request->merge(['dept_id_required' => ($request->has('dept_id_required') ? 1 : 0) ]);
-
-		$request->merge(['warehouse_id' => ($request->has('warehouse_id') ? 1 : 0) ]);
-		$request->merge(['warehouse_id_required' => ($request->has('warehouse_id_required') ? 1 : 0) ]);
-
-		$export->update($request->all());
-
-		// Write to Log
-		EventLog::event('export', $export->id, 'update', 'name', $export->name);
-
-		return redirect()->route('exports.index')->with('success', 'Export updated successfully');
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 */
-	public function destroy(Export $export)
-	{
-		//
-	}
 
 	public function exportPr($start_date, $end_date, $currency, $dept_id, $supplier_id, $project_id, $warehouse_id, $bank_account_id, $user_id)
 	{

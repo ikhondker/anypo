@@ -38,15 +38,6 @@ class TicketTopic extends Model
 		]);
 	}
 
-	/* ---------------- created and updated by ---------------------- */
 
-	public function user_created_by()
-	{
-		return $this->belongsTo(User::class, 'created_by');
-	}
-	public function user_updated_by()
-	{
-		return $this->belongsTo(User::class, 'updated_by');
-	}
 
 }

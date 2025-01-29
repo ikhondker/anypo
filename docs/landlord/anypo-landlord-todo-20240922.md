@@ -4,6 +4,7 @@
 # 7. TODO - Open
 ====================================================================
 logo for backend user?
+login top left
 allow purchased user to ask for setup service
 xAdd installation service? Yes! Install it for me. $79 One time fee Checkbox
 x123.auto create ticket for setup

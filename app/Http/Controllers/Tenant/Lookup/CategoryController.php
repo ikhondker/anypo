@@ -98,15 +98,6 @@ class CategoryController extends Controller
 		return view('tenant.lookup.categories.show', compact('category'));
 	}
 
-	 /**
-	 * Display the specified resource.
-	 */
-	public function timestamp(Category $category)
-	{
-		$this->authorize('view', $category);
-
-		return view('tenant.lookup.categories.timestamp', compact('category'));
-	}
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -147,6 +138,17 @@ class CategoryController extends Controller
 
 		return redirect()->route('categories.index')->with('success', 'Category status Updated successfully');
 	}
+
+     /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Category $category)
+	{
+		$this->authorize('view', $category);
+
+		return view('tenant.lookup.categories.timestamp', compact('category'));
+	}
+
 
 	public function export()
 	{

@@ -147,7 +147,7 @@
 		<li class="sidebar-item {{ ($_node_name == 'sys' ? 'active' : '') }}">
 			<a data-bs-target="#sys" data-bs-toggle="collapse" class="sidebar-link collapsed">
 				<i class="align-middle" data-lucide="layout-template"></i>
-				<span class="align-middle">Sys</span>
+				<span class="align-middle">SYS</span>
 			</a>
 			<ul id="sys" class="sidebar-dropdown list-unstyled collapse {{ ($_node_name == 'sys' ? 'show' : '') }}" data-bs-parent="#sidebar">
 				<li class="sidebar-item {{ ($_route_name == 'tables.index' ? 'active' : '') }}"><a class="sidebar-link" href="{{ route('tables.index') }}"><i class="align-middle" data-lucide="circle"></i>Tables</a></li>

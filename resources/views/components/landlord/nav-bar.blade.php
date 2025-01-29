@@ -68,7 +68,7 @@
 
 			<!-- Default Logo -->
 			<a class="navbar-brand landing-brand text-white" href="{{ route('home') }}" aria-label="anypo.net">
-				<img class="navbar-brand-logo" src="{{ Storage::disk('s3l')->url('logo/logo-whitet.svg') }}" width="90" height="90" alt="Logo">
+				<img class="navbar-brand-logo" src="{{ Storage::disk('s3l')->url('logo/logow.svg') }}" width="90" height="90" alt="Logo">
 			</a>
 			<!-- End Default Logo -->
 

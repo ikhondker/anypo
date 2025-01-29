@@ -62,12 +62,6 @@ class AttachmentController extends Controller
 		abort(500, 'Can not create attachments manually!');
 	}
 
-	public function all()
-	{
-		$this->authorize('viewAny',Attachment::class);
-		$attachments = Attachment::latest()->with('entity')->with('owner')->orderBy('id','desc')->paginate(10);
-		return view('landlord.attachments.all',compact('attachments'));
-	}
 
 
 	/**
@@ -152,6 +146,14 @@ class AttachmentController extends Controller
 	{
 		abort(403);
 	}
+
+    public function all()
+	{
+		$this->authorize('viewAny',Attachment::class);
+		$attachments = Attachment::latest()->with('entity')->with('owner')->orderBy('id','desc')->paginate(10);
+		return view('landlord.attachments.all',compact('attachments'));
+	}
+
 
 	public function download(Attachment $attachment)
 	{

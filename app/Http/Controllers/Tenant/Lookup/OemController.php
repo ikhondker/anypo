@@ -95,15 +95,7 @@ class OemController extends Controller
 	}
 
 
-	/**
-	 * Display the specified resource.
-	 */
-	public function timestamp(Oem $oem)
-	{
-		$this->authorize('view', $oem);
 
-		return view('tenant.lookup.oems.timestamp', compact('oem'));
-	}
 
 
 	/**
@@ -148,6 +140,16 @@ class OemController extends Controller
 		EventLog::event('oem', $oem->id, 'status', 'enable', $oem->enable);
 
 		return redirect()->route('oems.index')->with('success', 'Oem status Updated successfully');
+	}
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Oem $oem)
+	{
+		$this->authorize('view', $oem);
+
+		return view('tenant.lookup.oems.timestamp', compact('oem'));
 	}
 
 	public function export()

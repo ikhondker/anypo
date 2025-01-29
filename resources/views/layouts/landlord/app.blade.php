@@ -43,7 +43,7 @@
 							<h6 class="text-muted">[{{ $_landlord_user->account->name }}]</h6>
 						@else
 							<a class="" href="{{ route('home') }}">
-								<img class="rounded-circle rounded me-2 mb-2" src="{{ Storage::disk('s3l')->url('logo/logo-whitet.svg') }}" width="90px" height="90px" alt="Logo"/>
+								<img class="rounded-circle rounded me-2 mb-2" src="{{ Storage::disk('s3l')->url('logo/logow.svg') }}" width="90px" height="90px" alt="Logo"/>
 							</a>
 							<a class="" href="{{ route('users.profile') }}">
 								<h6 class="text-muted">[{{ Str::limit(auth()->user()->name, 25, '...') }}]</h6>

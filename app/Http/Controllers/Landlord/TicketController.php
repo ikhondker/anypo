@@ -91,23 +91,6 @@ class TicketController extends Controller
 
 	}
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function all()
-	{
-		$this->authorize('viewAny', Ticket::class);
-		$tickets = Ticket::query();
-		if (request('term')) {
-			$tickets->where('title', 'Like', '%' . request('term') . '%')
-			->orWhere('id', 'Like', '%' . request('term') . '%');
-		}
-		$tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->orderBy('id', 'DESC')->paginate(20);
-		return view('landlord.tickets.all', compact('tickets'));
-
-	}
 
 	/**
 	 * Show the form for creating a new resource.
@@ -270,6 +253,25 @@ class TicketController extends Controller
 	public function destroy(Ticket $ticket)
 	{
 		//
+	}
+
+
+    /**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function all()
+	{
+		$this->authorize('viewAny', Ticket::class);
+		$tickets = Ticket::query();
+		if (request('term')) {
+			$tickets->where('title', 'Like', '%' . request('term') . '%')
+			->orWhere('id', 'Like', '%' . request('term') . '%');
+		}
+		$tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->orderBy('id', 'DESC')->paginate(20);
+		return view('landlord.tickets.all', compact('tickets'));
+
 	}
 
 

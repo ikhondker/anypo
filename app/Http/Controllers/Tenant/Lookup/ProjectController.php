@@ -130,36 +130,6 @@ class ProjectController extends Controller
 		// }
 	}
 
-	/**
-	 * Display the specified resource.
-	 */
-	public function timestamp(Project $project)
-	{
-		$this->authorize('view', $project);
-
-		return view('tenant.lookup.projects.timestamp', compact('project'));
-	}
-
-
-	/**
-	 * Display the specified resource.
-	 */
-	public function budget(Project $project)
-	{
-		$this->authorize('view', $project);
-
-		return view('tenant.lookup.projects.budget', compact('project'));
-	}
-
-	/**
-	 * Display the specified resource.
-	 */
-	public function pbu(Project $project)
-	{
-		$this->authorize('view', $project);
-
-		return view('tenant.lookup.projects.pbu', compact('project'));
-	}
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -211,6 +181,38 @@ class ProjectController extends Controller
 
 		return redirect()->route('projects.index')->with('success', 'Project status Updated successfully');
 	}
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Project $project)
+	{
+		$this->authorize('view', $project);
+
+		return view('tenant.lookup.projects.timestamp', compact('project'));
+	}
+
+
+	/**
+	 * Display the specified resource.
+	 */
+	public function budget(Project $project)
+	{
+		$this->authorize('view', $project);
+
+		return view('tenant.lookup.projects.budget', compact('project'));
+	}
+
+	/**
+	 * Display the specified resource.
+	 */
+	public function pbu(Project $project)
+	{
+		$this->authorize('view', $project);
+
+		return view('tenant.lookup.projects.pbu', compact('project'));
+	}
+
 
 	public function export()
 	{

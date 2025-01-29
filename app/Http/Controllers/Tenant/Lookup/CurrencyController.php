@@ -96,15 +96,7 @@ class CurrencyController extends Controller
 		return view('tenant.lookup.currencies.show', compact('currency'));
 	}
 
-	/**
-	 * Display the specified resource.
-	 */
-	public function timestamp(Currency $currency)
-	{
-		$this->authorize('view', $currency);
 
-		return view('tenant.lookup.currencies.timestamp', compact('currency'));
-	}
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -154,6 +146,16 @@ class CurrencyController extends Controller
 		}
 
 		return redirect()->route('currencies.index')->with('success', 'Currency status updated successfully.');
+	}
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(Currency $currency)
+	{
+		$this->authorize('view', $currency);
+
+		return view('tenant.lookup.currencies.timestamp', compact('currency'));
 	}
 
 	public function export()

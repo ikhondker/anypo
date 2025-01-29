@@ -6,13 +6,6 @@
 		</a>
 	</li>
 
-	@if (auth()->user()->isSystem())
-		<li class="sidebar-item {{ (Route::currentRouteName() == 'docs.template' ? 'active' : '') }}">
-			<a class="sidebar-link" href="{{ route('docs.template') }}">
-				<i class="align-middle" data-lucide="settings"></i><span class="align-middle">Template</span>
-			</a>
-		</li>
-	@endif
 
 	<li class="sidebar-item {{ (Route::currentRouteName() == 'docs.start' ? 'active' : '') }}">
 		<a class="sidebar-link" href="{{ route('docs.start') }}">
@@ -122,6 +115,15 @@
 			<i class="align-middle" data-lucide="layout"></i><span class="align-middle">Setup*</span>
 		</a>
 	</li>
+
+	@if (auth()->user()->isSystem())
+		<li class="sidebar-item {{ (Route::currentRouteName() == 'docs.template' ? 'active' : '') }}">
+			<a class="sidebar-link" href="{{ route('docs.template') }}">
+				<i class="align-middle" data-lucide="settings"></i><span class="align-middle">Template</span>
+			</a>
+		</li>
+	@endif
+
 
 	<li class="sidebar-item">
 		<a class="sidebar-link" href="{{ route('home') }}">

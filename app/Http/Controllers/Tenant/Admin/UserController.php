@@ -90,20 +90,6 @@ class UserController extends Controller
 		return view('tenant.admin.users.index', compact('users'));
 	}
 
-	/**
-	 * Display a listing of the resource.
-	 */
-	public function switch()
-	{
-		$this->authorize('viewAny', User::class);
-
-		if(auth()->user()->role->value == UserRoleEnum::SYS->value) {
-			$users = User::with('dept')->with('designation')->orderBy('name', 'ASC')->paginate(25);
-		} else {
-			$users = User::with('dept')->with('designation')->TenantAll()->orderBy('id', 'DESC')->paginate(10);
-		}
-		return view('tenant.admin.users.switch', compact('users'));
-	}
 
 
 	/**
@@ -177,15 +163,7 @@ class UserController extends Controller
 		return view('tenant.admin.users.show', compact('user'));
 	}
 
-	/**
-	 * Display the specified resource.
-	 */
-	public function timestamp(User $user)
-	{
-		$this->authorize('view', $user);
 
-		return view('tenant.admin.users.timestamp', compact('user'));
-	}
 
 
 	/**
@@ -283,6 +261,31 @@ class UserController extends Controller
 
 		return redirect()->route('users.index')->with('success', 'User Status Updated successfully');
 
+	}
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(User $user)
+	{
+		$this->authorize('view', $user);
+
+		return view('tenant.admin.users.timestamp', compact('user'));
+	}
+
+    /**
+	 * Display a listing of the resource.
+	 */
+	public function switch()
+	{
+		$this->authorize('viewAny', User::class);
+
+		if(auth()->user()->role->value == UserRoleEnum::SYS->value) {
+			$users = User::with('dept')->with('designation')->orderBy('name', 'ASC')->paginate(25);
+		} else {
+			$users = User::with('dept')->with('designation')->TenantAll()->orderBy('id', 'DESC')->paginate(10);
+		}
+		return view('tenant.admin.users.switch', compact('users'));
 	}
 
 

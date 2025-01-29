@@ -91,7 +91,203 @@ class DeptBudgetController extends Controller
 	}
 
 
+
 	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function create()
+	{
+		$this->authorize('create', DeptBudget::class);
+
+		$budgets = Budget::primary()->get();
+		$depts = Dept::primary()->get();
+		return view('tenant.dept-budgets.create', compact('budgets', 'depts'));
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 */
+	public function store(StoreDeptBudgetRequest $request)
+	{
+		$this->authorize('create', DeptBudget::class);
+
+		// Make sure only one budget is open at a time
+		$count_dept_budget	= DeptBudget::where('budget_id', $request['budget_id'])
+					->where('dept_id', $request['dept_id'])
+					->where('revision',false)
+					->count();
+		if ($count_dept_budget <> 0){
+			return redirect()->route('dept-budgets.index')->with('error', 'Dept Budget for this period already exists!');
+		}
+
+		// old check
+		// $validatedData = $request->validate([
+		// 'budget_id' => 'required|unique:dept_budgets,dept_id',
+		// 'dept_id' 	=> 'required|unique:dept_budgets,budget_id',
+		// ]);
+
+		$dept_budget = DeptBudget::create($request->all());
+		// Write to Log
+		EventLog::event('deptBudget', $dept_budget->id, 'create');
+
+		//update company budget for that year
+		ConsolidateBudget::dispatch($dept_budget->budget_id);
+
+		return redirect()->route('dept-budgets.index')->with('success', 'Dept Budget created successfully.');
+	}
+
+	/**
+	 * Display the specified resource.
+	 */
+	public function show(DeptBudget $deptBudget)
+	{
+		$this->authorize('view', $deptBudget);
+
+		return view('tenant.dept-budgets.show', compact('deptBudget'));
+	}
+
+
+
+	/**
+	 * Show the form for editing the specified resource.
+	 */
+	public function edit(DeptBudget $deptBudget)
+	{
+		$this->authorize('update', $deptBudget);
+
+
+		if ($deptBudget->budget->closed){
+			return redirect()->route('budgets.index')->with('error', 'Can not edit a Dept Budget, as company budget for this year is closed.');
+		}
+
+		if ($deptBudget->closed){
+			return redirect()->route('dept-budgets.index')->with('error', 'Can not edit a closed Dept Budget.');
+		}
+
+		return view('tenant.dept-budgets.edit', compact('deptBudget'));
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 */
+	public function update(UpdateDeptBudgetRequest $request, DeptBudget $deptBudget)
+	{
+		$this->authorize('update', $deptBudget);
+
+		// check if budget exists and not freezed. should exists
+		$budget = Budget::where('id', $deptBudget->budget_id)->first();
+		if ($budget->closed) {
+			return redirect()->route('budgets.index')->with('error', 'Budget '.$budget->name.'is closed. Your admin need to unfreeze it, before update!');
+		}
+
+		// Check if enter amount is below already issued + Booked amount
+		if ( $request->input('amount') < $deptBudget->amount_pr_booked + $deptBudget->amount_pr)	{
+			return redirect()->route('dept-budgets.edit', $deptBudget->id)->with('error', 'Unable to reduce Dept Budget below already Booked and Issued PR amount!');
+		}
+
+		if ( $request->input('amount') < $deptBudget->amount_po_booked + $deptBudget->amount_po)	{
+			return redirect()->route('dept-budgets.edit', $deptBudget->id)->with('error', 'Unable to reduce Dept Budget below already Booked and Issued PO amount!');
+		}
+
+		// upload file as record
+		if ($file = $request->file('file_to_upload')) {
+			$request->merge(['article_id'	=> $deptBudget->id ]);
+			$request->merge(['entity'		=> EntityEnum::DEPTBUDGET->value ]);
+			$attid = FileUpload::aws($request);
+		}
+
+		// budget has been modified
+		$old_dept_budget_amount = $deptBudget->amount;
+		$who = auth()->user()->id;
+
+		Log::debug(tenant('id'). 'tenant.DeptBudget.update creating revision row for dept_budgets_id = '.$deptBudget->id);
+
+		// TODO only create revision if amount changes
+		// can not mark original line as revision as child row exists
+		if ($request->input('amount') <> $old_dept_budget_amount) {
+
+			// 1. create revision row for dep_budget
+			$revDeptBudget				= $deptBudget->replicate();
+			$revDeptBudget->closed		= true;
+			$revDeptBudget->revision	= true;
+			$revDeptBudget->parent_id	= $deptBudget->id;
+			$revDeptBudget->created_by	= $who ;
+			$revDeptBudget->created_at	= now();
+			$revDeptBudget->updated_by	= $who ;
+			$revDeptBudget->updated_at	= now();
+			$revDeptBudget->save();
+			$revision_dept_budget_id	= $revDeptBudget->id;
+			Log::debug(tenant('id'). 'tenant.DeptBudget.update revision_dept_budget_id = '. $revision_dept_budget_id);
+
+			// attach the same document with $revision_dept_budget_id
+			if ($file = $request->file('file_to_upload')) {
+				$request->merge(['article_id'	=> $revision_dept_budget_id ]);
+				$request->merge(['entity'		=> EntityEnum::DEPTBUDGET->value ]);
+				$attid = FileUpload::aws($request);
+			}
+
+			// 2. create revision for budget and link to revision_dept_budget_id
+			Log::debug(tenant('id'). 'tenant.DeptBudget.update creating revision row for budgets_id = '.$deptBudget->budget_id);
+			$sql= "INSERT INTO budgets(
+				fy, name, start_date, end_date,
+				amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po_tax, amount_po_gst, amount_po, amount_grs, amount_invoice, amount_payment,
+				count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment,
+				bg_color,
+				notes,closed, revision, parent_id, revision_dept_budget_id,
+				created_by, created_at, updated_by, updated_at
+				)
+			SELECT
+				fy, name, start_date, end_date,
+				amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po_tax, amount_po_gst, amount_po, amount_grs, amount_invoice, amount_payment,
+				count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment,
+				bg_color,
+				notes,true, true, ".$deptBudget->budget_id.",". $revision_dept_budget_id .",
+				'". $who ."', now(), '". $who ."', now()
+			FROM budgets
+			WHERE id= ".$deptBudget->budget_id." ;";
+			//Log::warning(tenant('id'). 'tenant.DeptBudget.update budgets sql = '. $sql);
+			DB::INSERT($sql);
+
+			//update company budget for that year
+			ConsolidateBudget::dispatch($deptBudget->budget_id);
+
+			EventLog::event('deptBudget', $deptBudget->id, 'update', 'amount', $deptBudget->amount);
+		}
+
+		// update dept_budget row
+		$deptBudget->update($request->all());
+
+		return redirect()->route('dept-budgets.show',$deptBudget->id)->with('success', 'DeptBudget updated successfully');
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 */
+	public function destroy(DeptBudget $deptBudget)
+	{
+		$this->authorize('delete', $deptBudget);
+
+		$deptBudget->fill(['closed' => !$deptBudget->closed]);
+		$deptBudget->update();
+
+		// Write to Log
+		EventLog::event('deptBudget', $deptBudget->id, 'status', 'closed', $deptBudget->closed);
+
+		return redirect()->route('dept-budgets.show',$deptBudget->id)->with('success', 'DeptBudget status Updated successfully');
+	}
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(DeptBudget $deptBudget)
+	{
+		$this->authorize('view', $deptBudget);
+
+		return view('tenant.dept-budgets.timestamp', compact('deptBudget'));
+	}
+
+
+    /**
 	 * Display a listing of the resource.
 	 */
 	public function revisions(DeptBudget $deptBudget = null)
@@ -225,198 +421,6 @@ class DeptBudgetController extends Controller
 	}
 
 
-	/**
-	 * Show the form for creating a new resource.
-	 */
-	public function create()
-	{
-		$this->authorize('create', DeptBudget::class);
-
-		$budgets = Budget::primary()->get();
-		$depts = Dept::primary()->get();
-		return view('tenant.dept-budgets.create', compact('budgets', 'depts'));
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 */
-	public function store(StoreDeptBudgetRequest $request)
-	{
-		$this->authorize('create', DeptBudget::class);
-
-		// Make sure only one budget is open at a time
-		$count_dept_budget	= DeptBudget::where('budget_id', $request['budget_id'])
-					->where('dept_id', $request['dept_id'])
-					->where('revision',false)
-					->count();
-		if ($count_dept_budget <> 0){
-			return redirect()->route('dept-budgets.index')->with('error', 'Dept Budget for this period already exists!');
-		}
-
-		// old check
-		// $validatedData = $request->validate([
-		// 'budget_id' => 'required|unique:dept_budgets,dept_id',
-		// 'dept_id' 	=> 'required|unique:dept_budgets,budget_id',
-		// ]);
-
-		$dept_budget = DeptBudget::create($request->all());
-		// Write to Log
-		EventLog::event('deptBudget', $dept_budget->id, 'create');
-
-		//update company budget for that year
-		ConsolidateBudget::dispatch($dept_budget->budget_id);
-
-		return redirect()->route('dept-budgets.index')->with('success', 'Dept Budget created successfully.');
-	}
-
-	/**
-	 * Display the specified resource.
-	 */
-	public function show(DeptBudget $deptBudget)
-	{
-		$this->authorize('view', $deptBudget);
-
-		return view('tenant.dept-budgets.show', compact('deptBudget'));
-	}
-
-	/**
-	 * Display the specified resource.
-	 */
-	public function timestamp(DeptBudget $deptBudget)
-	{
-		$this->authorize('view', $deptBudget);
-
-		return view('tenant.dept-budgets.timestamp', compact('deptBudget'));
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 */
-	public function edit(DeptBudget $deptBudget)
-	{
-		$this->authorize('update', $deptBudget);
-
-
-		if ($deptBudget->budget->closed){
-			return redirect()->route('budgets.index')->with('error', 'Can not edit a Dept Budget, as company budget for this year is closed.');
-		}
-
-		if ($deptBudget->closed){
-			return redirect()->route('dept-budgets.index')->with('error', 'Can not edit a closed Dept Budget.');
-		}
-
-		return view('tenant.dept-budgets.edit', compact('deptBudget'));
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 */
-	public function update(UpdateDeptBudgetRequest $request, DeptBudget $deptBudget)
-	{
-		$this->authorize('update', $deptBudget);
-
-		// check if budget exists and not freezed. should exists
-		$budget = Budget::where('id', $deptBudget->budget_id)->first();
-		if ($budget->closed) {
-			return redirect()->route('budgets.index')->with('error', 'Budget '.$budget->name.'is closed. Your admin need to unfreeze it, before update!');
-		}
-
-		// Check if enter amount is below already issued + Booked amount
-		if ( $request->input('amount') < $deptBudget->amount_pr_booked + $deptBudget->amount_pr)	{
-			return redirect()->route('dept-budgets.edit', $deptBudget->id)->with('error', 'Unable to reduce Dept Budget below already Booked and Issued PR amount!');
-		}
-
-		if ( $request->input('amount') < $deptBudget->amount_po_booked + $deptBudget->amount_po)	{
-			return redirect()->route('dept-budgets.edit', $deptBudget->id)->with('error', 'Unable to reduce Dept Budget below already Booked and Issued PO amount!');
-		}
-
-		// upload file as record
-		if ($file = $request->file('file_to_upload')) {
-			$request->merge(['article_id'	=> $deptBudget->id ]);
-			$request->merge(['entity'		=> EntityEnum::DEPTBUDGET->value ]);
-			$attid = FileUpload::aws($request);
-		}
-
-		// budget has been modified
-		$old_dept_budget_amount = $deptBudget->amount;
-		$who = auth()->user()->id;
-
-		Log::debug(tenant('id'). 'tenant.DeptBudget.update creating revision row for dept_budgets_id = '.$deptBudget->id);
-
-		// TODO only create revision if amount changes
-		// can not mark original line as revision as child row exists
-		if ($request->input('amount') <> $old_dept_budget_amount) {
-
-			// 1. create revision row for dep_budget
-			$revDeptBudget				= $deptBudget->replicate();
-			$revDeptBudget->closed		= true;
-			$revDeptBudget->revision	= true;
-			$revDeptBudget->parent_id	= $deptBudget->id;
-			$revDeptBudget->created_by	= $who ;
-			$revDeptBudget->created_at	= now();
-			$revDeptBudget->updated_by	= $who ;
-			$revDeptBudget->updated_at	= now();
-			$revDeptBudget->save();
-			$revision_dept_budget_id	= $revDeptBudget->id;
-			Log::debug(tenant('id'). 'tenant.DeptBudget.update revision_dept_budget_id = '. $revision_dept_budget_id);
-
-			// attach the same document with $revision_dept_budget_id
-			if ($file = $request->file('file_to_upload')) {
-				$request->merge(['article_id'	=> $revision_dept_budget_id ]);
-				$request->merge(['entity'		=> EntityEnum::DEPTBUDGET->value ]);
-				$attid = FileUpload::aws($request);
-			}
-
-			// 2. create revision for budget and link to revision_dept_budget_id
-			Log::debug(tenant('id'). 'tenant.DeptBudget.update creating revision row for budgets_id = '.$deptBudget->budget_id);
-			$sql= "INSERT INTO budgets(
-				fy, name, start_date, end_date,
-				amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po_tax, amount_po_gst, amount_po, amount_grs, amount_invoice, amount_payment,
-				count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment,
-				bg_color,
-				notes,closed, revision, parent_id, revision_dept_budget_id,
-				created_by, created_at, updated_by, updated_at
-				)
-			SELECT
-				fy, name, start_date, end_date,
-				amount, amount_pr_booked, amount_pr, amount_po_booked, amount_po_tax, amount_po_gst, amount_po, amount_grs, amount_invoice, amount_payment,
-				count_pr_booked, count_pr, count_po_booked, count_po, count_grs, count_invoice, count_payment,
-				bg_color,
-				notes,true, true, ".$deptBudget->budget_id.",". $revision_dept_budget_id .",
-				'". $who ."', now(), '". $who ."', now()
-			FROM budgets
-			WHERE id= ".$deptBudget->budget_id." ;";
-			//Log::warning(tenant('id'). 'tenant.DeptBudget.update budgets sql = '. $sql);
-			DB::INSERT($sql);
-
-			//update company budget for that year
-			ConsolidateBudget::dispatch($deptBudget->budget_id);
-
-			EventLog::event('deptBudget', $deptBudget->id, 'update', 'amount', $deptBudget->amount);
-		}
-
-		// update dept_budget row
-		$deptBudget->update($request->all());
-
-		return redirect()->route('dept-budgets.show',$deptBudget->id)->with('success', 'DeptBudget updated successfully');
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 */
-	public function destroy(DeptBudget $deptBudget)
-	{
-		$this->authorize('delete', $deptBudget);
-
-		$deptBudget->fill(['closed' => !$deptBudget->closed]);
-		$deptBudget->update();
-
-		// Write to Log
-		EventLog::event('deptBudget', $deptBudget->id, 'status', 'closed', $deptBudget->closed);
-
-		return redirect()->route('dept-budgets.show',$deptBudget->id)->with('success', 'DeptBudget status Updated successfully');
-	}
 
 	public function xxexport()
 	{

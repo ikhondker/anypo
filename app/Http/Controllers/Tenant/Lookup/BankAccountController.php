@@ -104,15 +104,7 @@ class BankAccountController extends Controller
 		return view('tenant.lookup.bank-accounts.show', compact('bankAccount'));
 	}
 
-	/**
-	 * Display the specified resource.
-	 */
-	public function timestamp(BankAccount $bankAccount)
-	{
-		$this->authorize('view', $bankAccount);
 
-		return view('tenant.lookup.bank-accounts.timestamp', compact('bankAccount'));
-	}
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -161,6 +153,16 @@ class BankAccountController extends Controller
 		EventLog::event('bankAccount', $bankAccount->id, 'status', 'enable', $bankAccount->enable);
 
 		return redirect()->route('bank-accounts.index')->with('success', 'Bank Account status changed successfully');
+	}
+
+    /**
+	 * Display the specified resource.
+	 */
+	public function timestamp(BankAccount $bankAccount)
+	{
+		$this->authorize('view', $bankAccount);
+
+		return view('tenant.lookup.bank-accounts.timestamp', compact('bankAccount'));
 	}
 
 	public function export()

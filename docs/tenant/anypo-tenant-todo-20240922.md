@@ -1,26 +1,16 @@
 # 33. TODO
 -------------------------------------------------------------------------------------------------
-http://demo1.localhost:8000/payments recept/ ovoce not found 404 after create
+http://demo1.localhost:8000/payments recept/ invoice not found 404 after create
 
-x125. project attechments
-x125.supplier atahments
-x125. ticke create fails frorm tenant
-x125.remove function mySubmit() {
-x125.item attavhments
-x125. bootstrap documentatsion tmaplte
-x125. create seeded anonymous user with role guest
-x125. consolidate exports
-x123. search pr/po on top
-x119. **search PO/PO by Number
-x123. pr created by is empty
 check ->get()->first
-move documntatsion screenshots to provate places
-reordr function in controller. seeded first and custoem later
-Route::get('/get-started', function () {return view('tenant.pages.get-started');})->name('get-started');
+move documentation screenshots to private places
+reorder function in controller. seeded first and custom later
+xxRoute::get('/get-started', function () {return view('tenant.pages.get-started');})->name('get-started');
 project end date edit optional
-125. 23/2/25budget sedded created by null
+
+125. 23/24/25budget seeded created by null
 124. budget revisionsAll -> revisions->revisionDetail merge
-123. po requster functional decision. whether show it or not
+123. po requester functional decision. whether show it or not
 111. setup.timestamp issue
 127. address/remove all TODO
 136. create UOM - UoM Class - default uom mention
@@ -109,6 +99,18 @@ project end date edit optional
 
 # 0. DONE
 -------------------------------------------------------------------------------------------------
+x125. project attechments
+x125.supplier atahments
+x125. ticke create fails frorm tenant
+x125.remove function mySubmit() {
+x125.item attavhments
+x125. bootstrap documentatsion tmaplte
+x125. create seeded anonymous user with role guest
+x125. consolidate exports
+x123. search pr/po on top
+x119. **search PO/PO by Number
+x123. pr created by is empty
+
 x123. enable/disable functionaly in tenant
 x123.<i class="fas fa-list"></i> remove
 x123. data-lucide="plus-circle" tp data-lucide="plus"

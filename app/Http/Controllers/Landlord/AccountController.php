@@ -198,7 +198,8 @@ class AccountController extends Controller
 		$this->authorize('delete', $account);
 
 		$account_id = $account->id;
-		Log::channel('bo')->info('Deleting Account id = ' . $account_id);
+
+		Log::channel('bo')->info('DELETING Account id = ' . $account_id);
 		EventLog::event('account', $account->id, 'deleted', 'id', $account_id);
 
 		$tickets = Ticket::where('account_id', $account_id)->get();
@@ -219,10 +220,10 @@ class AccountController extends Controller
 		$result = Checkout::where('account_id', $account_id)->delete();
 		Log::channel('bo')->info('Checkout Deleted = ' . $result);
 
-		$result = Domain::where('tenant_id', $account->site)->delete();
+		$result = Domain::where('tenant_id', $account->tenant_id)->delete();
 		Log::channel('bo')->info('Domain Deleted = ' . $result);
 
-		$result = Tenant::where('id', $account->site)->delete();
+		$result = Tenant::where('id', $account->tenant_id)->delete();
 		Log::channel('bo')->info('Tenant Deleted = ' . $result);
 
 		$result = Account::where('id', $account_id)->delete();
@@ -230,6 +231,8 @@ class AccountController extends Controller
 
 		$result = User::where('account_id', $account->id)->delete();
 		Log::channel('bo')->info('User Deleted = ' . $result);
+
+        Log::channel('bo')->info('Tenant DB='.$account->tenant_id.' NOT Deleted!');
 
 		return redirect()->route('accounts.index')->with('success', 'Account Deleted successfully');
 	}
@@ -249,7 +252,6 @@ class AccountController extends Controller
 
 		$tenant = Tenant::find( $account->tenant_id);
 		Log::debug('Landlord.Accounts.tenant Updating Tenant Setup enable column for tenant_id='.$tenant->id);
-
 
 		$result = $tenant->run(function(){
 			Log::debug('Landlord.Accounts.tenant Updating Tenant Setup enable column');

@@ -78,22 +78,6 @@ class AttachmentController extends Controller
 		abort(403);
 	}
 
-	/**
-	 * Display a listing of the resource.
-	 */
-	public function all()
-	{
-		$this->authorize('viewAny', Attachment::class);
-
-		$attachments = Attachment::query();
-		if (request('term')) {
-			$attachments->where('entity', 'Like', '%' . Str::upper(request('term')) . '%');
-		}
-		$attachments = $attachments->with('owner')->orderBy('id', 'DESC')->paginate(50);
-		return view('tenant.attachments.all', compact('attachments'));
-		// $attachments = Attachment::latest()->orderBy('id', 'desc')->paginate(25);
-		// return view('attachments.index',compact('attachments'));
-	}
 
 	/**
 	 * Show the form for creating a new resource.
@@ -427,6 +411,25 @@ class AttachmentController extends Controller
 				return redirect()->back()->with('error', 'Unknown Error. Attachment could not be deleted!');
 		}
 	}
+
+
+    /**
+	 * Display a listing of the resource.
+	 */
+	public function all()
+	{
+		$this->authorize('viewAny', Attachment::class);
+
+		$attachments = Attachment::query();
+		if (request('term')) {
+			$attachments->where('entity', 'Like', '%' . Str::upper(request('term')) . '%');
+		}
+		$attachments = $attachments->with('owner')->orderBy('id', 'DESC')->paginate(50);
+		return view('tenant.attachments.all', compact('attachments'));
+		// $attachments = Attachment::latest()->orderBy('id', 'desc')->paginate(25);
+		// return view('attachments.index',compact('attachments'));
+	}
+
 
 	public function download(Attachment $attachment)
 	{
