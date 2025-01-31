@@ -61,7 +61,6 @@
 			<table class="table w-100">
 				<thead>
 					<tr>
-
 						<th>#</th>
 						<th>Name</th>
 						<th>Email</th>

@@ -250,7 +250,7 @@ class UserController extends Controller
 		return redirect()->route('dashboards.index')->with('success','User Status Updated successfully');
 	}
 
-    /**
+	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return \Illuminate\Http\Response

@@ -20,7 +20,7 @@ return new class extends Migration
 			$table->date('pr_date')->default(DB::raw('(CURDATE())'));
 			$table->date('need_by_date')->nullable();
 			$table->foreignUuid('requestor_id')->constrained('users');
-			$table->foreignId('dept_id')->constrained('depts')->index();
+			$table->foreignId('dept_id')->constrained('depts');
 			$table->biginteger('unit_id')->nullable()->default(1001);	// Future Use
 			$table->foreignId('project_id')->nullable()->constrained('projects');
 			$table->foreignId('category_id')->constrained('categories');

@@ -202,7 +202,7 @@ class DeptBudgetController extends Controller
 
 		Log::debug(tenant('id'). 'tenant.DeptBudget.update creating revision row for dept_budgets_id = '.$deptBudget->id);
 
-		// TODO only create revision if amount changes
+		// only create revision if amount changes
 		// can not mark original line as revision as child row exists
 		if ($request->input('amount') <> $old_dept_budget_amount) {
 
@@ -217,7 +217,7 @@ class DeptBudgetController extends Controller
 			$revDeptBudget->updated_at	= now();
 			$revDeptBudget->save();
 			$revision_dept_budget_id	= $revDeptBudget->id;
-			Log::debug(tenant('id'). 'tenant.DeptBudget.update revision_dept_budget_id = '. $revision_dept_budget_id);
+			Log::debug('tenant.DeptBudget.update revision_dept_budget_id = '. $revision_dept_budget_id);
 
 			// attach the same document with $revision_dept_budget_id
 			if ($file = $request->file('file_to_upload')) {
@@ -276,7 +276,7 @@ class DeptBudgetController extends Controller
 		return redirect()->route('dept-budgets.show',$deptBudget->id)->with('success', 'DeptBudget status Updated successfully');
 	}
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(DeptBudget $deptBudget)
@@ -287,7 +287,7 @@ class DeptBudgetController extends Controller
 	}
 
 
-    /**
+	/**
 	 * Display a listing of the resource.
 	 */
 	public function revisions(DeptBudget $deptBudget = null)
@@ -420,38 +420,6 @@ class DeptBudgetController extends Controller
 		return view('tenant.dept-budgets.revision-detail', compact('deptBudget'));
 	}
 
-
-
-	public function xxexport()
-	{
-		$this->authorize('export', DeptBudget::class);
-
-		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
-			//$dept_id 	= auth()->user()->dept_id;
-			$whereDept = 'db.dept_id = '. auth()->user()->dept_id;
-		} else {
-			$whereDept = '1 = 1';
-		}
-
-		// TODO filter by Hod
-		$sql = "
-			SELECT db.id, b.name budget_name, d.name dept_name, db.amount, db.amount_pr_booked, db.amount_pr, db.amount_po_booked, db.amount_po, db.amount_grs, db.amount_payment,
-			db.notes, IF(db.closed, 'Yes', 'No') as Closed
-			FROM dept_budgets db, budgets b, depts d
-			WHERE db.budget_id = b.id
-			AND db.dept_id=d.id
-			AND ". $whereDept ."
-			AND db.revision = false
-			ORDER BY db.id DESC
-		";
-
-		//Log::debug(tenant('id'). 'tenant.DeptBudget.export sql = '. $sql);
-		$data = DB::select($sql);
-
-		$dataArray = json_decode(json_encode($data), true);
-		// used Export Helper
-		return Export::csv('dept_budgets', $dataArray);
-	}
 
 
 	// add attachments

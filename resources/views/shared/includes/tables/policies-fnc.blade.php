@@ -13,7 +13,7 @@
 			<a class="" href="{{ route('tables.fnc-policies','Support') }}"><i class="align-middle me-1" data-lucide="folder"></i>Support</a>
 		</h6>
 
-        <span class="text-secondary small">DEFAULT: viewAny, view, create, update, delete, restore, forceDelete</span>
+		<span class="text-secondary small">DEFAULT: viewAny, view, create, update, delete, restore, forceDelete</span>
 	</div>
 	<div class="card-body">
 		<table class="table table-striped table-sm">
@@ -59,20 +59,20 @@
 								<th scope="row">{{ $loop->iteration }}</th>
 								<td class="">{{ $row['f'] }}</td>
 								<td class="">
-                                    @if (in_array($method->name, $seededMethods))
+									@if (in_array($method->name, $seededMethods))
 										{{ $method->name }}
 									@elseif ($method->name == 'before')
-                                        <span class="text-primary">{{ $method->name }}</span>
-                                    @else
+										<span class="text-primary">{{ $method->name }}</span>
+									@else
 										<span class="text-danger">{{ $method->name }}</span>
 									@endif
 
-                                </td>
+								</td>
 								<td class="text-start"></td>
 								<td class="text-start"></td>
 								<td class="text-start"></td>
 							</tr>
-						    @endif
+							@endif
 
 					@endforeach
 				@endforeach

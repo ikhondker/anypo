@@ -13,7 +13,7 @@
 			<a class="" href="{{ route('tables.fnc-controllers','Support') }}"><i class="align-middle me-1" data-lucide="folder"></i>Support</a>
 		</h6>
 
-        <span class="text-secondary small">NOTE: Private functions are not reported</span>
+		<span class="text-secondary small">NOTE: Private functions are not reported</span>
 	</div>
 	<div class="card-body">
 		<table class="table table-striped table-sm">

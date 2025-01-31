@@ -260,7 +260,7 @@ class InvoiceController extends Controller
 	}
 
 
-    /**
+	/**
 	 * Remove the specified resource from storage.
 	 */
 	public function destroy(Invoice $invoice)
@@ -268,7 +268,7 @@ class InvoiceController extends Controller
 		//
 	}
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Invoice $invoice)
@@ -279,7 +279,7 @@ class InvoiceController extends Controller
 	}
 
 
-    /**
+	/**
 	 * Display a listing of the resource.
 	 */
 	public function myInvoices()
@@ -410,7 +410,7 @@ class InvoiceController extends Controller
 
 
 
-    /**
+	/**
 	 * Show the form for creating a new resource.
 	 */
 	public function createForPo(Po $po = null)

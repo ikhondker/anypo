@@ -159,7 +159,7 @@ class UomController extends Controller
 	}
 
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Uom $uom)

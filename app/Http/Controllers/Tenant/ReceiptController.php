@@ -240,7 +240,7 @@ class ReceiptController extends Controller
 	}
 
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Receipt $receipt)
@@ -250,7 +250,7 @@ class ReceiptController extends Controller
 		return view('tenant.receipts.timestamp', compact('receipt'));
 	}
 
-    /**
+	/**
 	 * Display a listing of the resource.
 	 */
 	public function myReceipts()

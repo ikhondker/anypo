@@ -146,7 +146,7 @@ class GroupController extends Controller
 		return redirect()->route('groups.index')->with('success', 'Group status Updated successfully');
 	}
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Group $group)

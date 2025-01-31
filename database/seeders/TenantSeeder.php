@@ -66,7 +66,7 @@ class TenantSeeder extends Seeder
 		$this->call(\Database\Seeders\ExportSeeder::class);
 
 		// ========================================================
-		//TODO MUST Comment
+		//TODO MUST Comment in Production
 		$this->call(\Database\Seeders\DemoSeeder::class);
 		// ========================================================
 

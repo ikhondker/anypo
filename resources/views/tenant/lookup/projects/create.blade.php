@@ -50,6 +50,21 @@
 						<x-tenant.create.end-date/>
 
 						<tr>
+							<th>Department :</th>
+							<td>
+								<select class="form-control select2" data-toggle="select2" name="dept_id" required>
+									<option value=""><< Dept >> </option>
+									@foreach ($depts as $dept)
+										<option value="{{ $dept->id }}" {{ $dept->id == old('dept_id') ? 'selected' : '' }} >{{ $dept->name }}</option>
+									@endforeach
+								</select>
+								@error('dept_id')
+									<div class="small text-danger">{{ $message }}</div>
+								@enderror
+							</td>
+						</tr>
+
+						<tr>
 							<th>Project Manager :</th>
 							<td>
 								<select class="form-control" name="pm_id" required>

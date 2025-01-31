@@ -36,7 +36,5 @@ class SupplierSeeder extends Seeder
 
 		Supplier::insert($seededSupplier);
 
-		// MUST comment this in production
-		Supplier::factory()->count(6)->create();
 	}
 }

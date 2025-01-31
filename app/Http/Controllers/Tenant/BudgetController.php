@@ -212,7 +212,7 @@ class BudgetController extends Controller
 	}
 
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Budget $budget)
@@ -223,7 +223,7 @@ class BudgetController extends Controller
 	}
 
 
-    /**
+	/**
 	 * Display a listing of the resource.
 	 */
 	public function xxrevisionsAll()

@@ -78,7 +78,7 @@ class InvoicePolicy
 		//
 	}
 
-    /**
+	/**
 	 * Determine whether the user can create models.
 	 */
 	public function createForPo(User $user): bool
@@ -86,7 +86,7 @@ class InvoicePolicy
 		return ($user->isBuyer() || $user->isSupport());
 	}
 
-    /**
+	/**
 	 * Determine whether the user can delete the model.
 	 */
 	public function cancel(User $user): bool

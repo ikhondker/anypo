@@ -73,7 +73,7 @@ class PoPolicy
 		}
 	}
 
-    /**
+	/**
 	 * Determine whether the user can delete the model.
 	 */
 	public function delete(User $user, Po $po): bool
@@ -100,7 +100,7 @@ class PoPolicy
 	}
 
 
-    /**
+	/**
 	 * Determine whether the user can update the model.
 	 */
 	public function submit(User $user, Po $po): bool

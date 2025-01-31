@@ -116,7 +116,7 @@ class ReportController extends Controller
 		//
 	}
 
-    public function viewPdfInvoice(Invoice $invoice)
+	public function viewPdfInvoice(Invoice $invoice)
 	{
 
 		//Log::debug('storage_path() = '.storage_path());

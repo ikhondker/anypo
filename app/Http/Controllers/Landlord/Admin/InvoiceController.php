@@ -226,7 +226,7 @@ class InvoiceController extends Controller
 	}
 
 
-    /**
+	/**
 	 * Remove the specified resource from storage.
 	 *
 	 * @param  \App\Models\Invoice  $invoice
@@ -338,7 +338,7 @@ class InvoiceController extends Controller
 
 
 
-    /**
+	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return \Illuminate\Http\Response
@@ -373,7 +373,7 @@ class InvoiceController extends Controller
 	}
 
 
-    public function post(Invoice $invoice)
+	public function post(Invoice $invoice)
 	{
 			$invoice->status_code	= InvoiceStatusEnum::DUE->value;
 			$invoice->save();

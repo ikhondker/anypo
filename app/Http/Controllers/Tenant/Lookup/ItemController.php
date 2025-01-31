@@ -52,6 +52,8 @@ use DB;
 use Str;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Http\FormRequest;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xls;
 use Exception;
 # 12. FUTURE
 # 1. dependent dropdown for uom
@@ -230,20 +232,52 @@ class ItemController extends Controller
 
 	public function export()
 	{
-		// TODO change from csv to xls
+
 		$this->authorize('export', Item::class);
 
-		$data = DB::select("
-			SELECT i.id, i.name, i.notes, c.name category_name, o.name oem_name, u.name uom_name, i.price, glt.name gl_type,
-			IF(i.enable, 'Yes', 'No') as Enable
-			FROM items i, item_categories c, oems o, uoms u, gl_types glt
-			WHERE i.item_category_id = c.id
-			AND i.oem_id=o.id
-			AND i.uom_id=u.id
-			AND i.gl_type_code=glt.code ");
-		$dataArray = json_decode(json_encode($data), true);
-		// used Export Helper
-		return Export::csv('items', $dataArray);
+		$fileName = 'export-items-' . date('Ymd') . '.xls';
+		$items = Item::with('item_category')->with('uom')->with('uom_class')->with('oem')->with('glType')->with('user_created_by')->with('user_updated_by');
+
+		$items = $items->get();
+
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+
+		$sheet->setCellValue('A1', 'ID#');
+		$sheet->setCellValue('B1', 'Name');
+		$sheet->setCellValue('C1', 'Description');
+		$sheet->setCellValue('D1', 'Category');
+		$sheet->setCellValue('E1', 'OEM');
+		$sheet->setCellValue('F1', 'UoM');
+		$sheet->setCellValue('G1', 'Price');
+		$sheet->setCellValue('H1', 'GL Type');
+		// $sheet->setCellValue('V1', 'Created By');
+		// $sheet->setCellValue('W1', 'Created At');
+		// $sheet->setCellValue('X1', 'Updated By');
+		// $sheet->setCellValue('Y1', 'Updated At');
+
+		$rows = 2;
+		foreach($items as $item){
+			$sheet->setCellValue('A' . $rows, $item->id);
+			$sheet->setCellValue('B' . $rows, $item->name);
+			$sheet->setCellValue('C' . $rows, $item->notes);
+			$sheet->setCellValue('D' . $rows, $item->item_category->name);
+			$sheet->setCellValue('E' . $rows, $item->oem->name);
+			$sheet->setCellValue('F' . $rows, $item->uom->name);
+			$sheet->setCellValue('G' . $rows, $item->price);
+
+			$sheet->setCellValue('H' . $rows, $item->glType->name);
+			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
+			// $sheet->setCellValue('S' . $rows, $pr->created_at);
+			// $sheet->setCellValue('T' . $rows, $pr->user_updated_by->name);
+			// $sheet->setCellValue('U' . $rows, $pr->updated_at);
+			$rows++;
+		}
+
+		$writer = new Xls($spreadsheet);
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
+		$writer->save('php://output');
 	}
 
 	// user in prl and pol dropdown ajax

@@ -147,7 +147,7 @@ class AttachmentController extends Controller
 		abort(403);
 	}
 
-    public function all()
+	public function all()
 	{
 		$this->authorize('viewAny',Attachment::class);
 		$attachments = Attachment::latest()->with('entity')->with('owner')->orderBy('id','desc')->paginate(10);

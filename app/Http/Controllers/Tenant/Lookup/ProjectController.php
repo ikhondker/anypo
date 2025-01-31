@@ -29,7 +29,9 @@ use App\Http\Requests\Tenant\Lookup\UpdateProjectRequest;
 
 # 1. Models
 use App\Models\User;
+use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Attachment;
+
 # 2. Enums
 use App\Enum\EntityEnum;
 use App\Enum\UserRoleEnum;
@@ -51,6 +53,8 @@ use Str;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xls;
 # 13. FUTURE
 # 1. Dashboard chart
 # 2. Project Actions
@@ -86,8 +90,9 @@ class ProjectController extends Controller
 	{
 		$this->authorize('create', Project::class);
 		$pms = User::Tenant()->get();
+		$depts = Dept::primary()->get();
 
-		return view('tenant.lookup.projects.create', compact('pms'));
+		return view('tenant.lookup.projects.create', compact('pms'.'depts'));
 	}
 
 	/**
@@ -139,7 +144,8 @@ class ProjectController extends Controller
 		$this->authorize('update', $project);
 
 		$pms = User::Tenant()->get();
-		return view('tenant.lookup.projects.edit', compact('project', 'pms'));
+		$depts = Dept::primary()->get();
+		return view('tenant.lookup.projects.edit', compact('project', 'pms','depts'));
 	}
 
 	/**
@@ -182,7 +188,7 @@ class ProjectController extends Controller
 		return redirect()->route('projects.index')->with('success', 'Project status Updated successfully');
 	}
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Project $project)
@@ -219,25 +225,76 @@ class ProjectController extends Controller
 		// TODO change from csv to xls
 		$this->authorize('export', Project::class);
 
-		if ( auth()->user()->role->value == UserRoleEnum::USER->value) {
-			$sql = "SELECT p.id, p.name, u.name pm_name, p.start_date, end_date, p.notes,
-				IF(enable, 'Yes', 'No') as Enable
-				FROM projects p, users u
-				WHERE p.pm_id = u.id
-			";
-		} else {
-			$sql="SELECT p.id, p.name, u.name pm_name, p.start_date, end_date,
-				amount budget, amount_pr_booked, amount_pr, amount_po_booked, amount_po, amount_grs, amount_payment, p.notes,
-				IF(enable, 'Yes', 'No') as Enable
-				FROM projects p, users u
-				WHERE p.pm_id=u.id
-			";
+		$fileName = 'export-projects-' . date('Ymd') . '.xls';
+		$projects = Project::with('pm')->with('dept')->with('user_created_by')->with('user_updated_by');
+
+		// HoD sees only dept lines
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$projects = $projects->where('dept_id', auth()->user()->dept_id);
 		}
 
-		$data = DB::select($sql);
-		$dataArray = json_decode(json_encode($data), true);
-		// used Export Helper
-		return Export::csv('projects', $dataArray);
+		$projects = $projects->get();
+
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+
+		$sheet->setCellValue('A1', 'ID#');
+		$sheet->setCellValue('B1', 'Name');
+		$sheet->setCellValue('C1', 'Manager');
+		$sheet->setCellValue('D1', 'Start Date');
+		$sheet->setCellValue('E1', 'End Date');
+		$sheet->setCellValue('F1', 'Department');
+		$sheet->setCellValue('G1', 'Notes');
+		$sheet->setCellValue('H1', 'Closed');
+
+		if ( auth()->user()->isSuperior()) {
+			$sheet->setCellValue('I1', 'Budget');
+			$sheet->setCellValue('J1', 'amount_pr_booked');
+			$sheet->setCellValue('K1', 'amount_pr');
+			$sheet->setCellValue('L1', 'amount_po_booked');
+			$sheet->setCellValue('M1', 'amount_po');
+			$sheet->setCellValue('N1', 'amount_grs');
+			$sheet->setCellValue('O1', 'amount_payment');
+		}
+
+
+		// $sheet->setCellValue('V1', 'Created By');
+		// $sheet->setCellValue('W1', 'Created At');
+		// $sheet->setCellValue('X1', 'Updated By');
+		// $sheet->setCellValue('Y1', 'Updated At');
+
+		$rows = 2;
+		foreach($projects as $project){
+			$sheet->setCellValue('A' . $rows, $project->id);
+			$sheet->setCellValue('B' . $rows, $project->name);
+			$sheet->setCellValue('C' . $rows, $project->pm->name);
+			$sheet->setCellValue('D' . $rows, $project->start_date);
+			$sheet->setCellValue('E' . $rows, $project->end_date);
+			$sheet->setCellValue('F' . $rows, $project->dept->name);
+			$sheet->setCellValue('G' . $rows, $project->notes);
+			$sheet->setCellValue('H' . $rows, ($project->closed ? 'Yes' : 'No'));
+
+			if ( auth()->user()->isSuperior()) {
+				$sheet->setCellValue('I' . $rows, $project->amount);
+				$sheet->setCellValue('J' . $rows, $project->amount_pr_booked);
+				$sheet->setCellValue('K' . $rows, $project->amount_pr);
+				$sheet->setCellValue('L' . $rows, $project->amount_po_booked);
+				$sheet->setCellValue('M' . $rows, $project->amount_po);
+				$sheet->setCellValue('N' . $rows, $project->amount_grs);
+				$sheet->setCellValue('O' . $rows, $project->amount_payment);
+			}
+			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
+			// $sheet->setCellValue('S' . $rows, $pr->created_at);
+			// $sheet->setCellValue('T' . $rows, $pr->user_updated_by->name);
+			// $sheet->setCellValue('U' . $rows, $pr->updated_at);
+			$rows++;
+		}
+
+		$writer = new Xls($spreadsheet);
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
+		$writer->save('php://output');
+
 	}
 
 	// add attachments
@@ -276,7 +333,12 @@ class ProjectController extends Controller
 			$projects->where('name', 'Like', '%' . request('term') . '%');
 		}
 
-		$projects = $projects->orderBy(DB::raw("(amount_pr_booked + amount_pr + amount_po_booked + amount_po)"), 'DESC')->paginate(10);
+        // HoD sees only his projects
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$projects = $projects->where('dept_id', auth()->user()->dept_id);
+		}
+
+        $projects = $projects->orderBy(DB::raw("(amount_pr_booked + amount_pr + amount_po_booked + amount_po)"), 'DESC')->paginate(10);
 
 		return view('tenant.lookup.projects.spends', compact('projects'));
 	}

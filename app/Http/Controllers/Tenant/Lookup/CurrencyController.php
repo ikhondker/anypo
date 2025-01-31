@@ -148,7 +148,7 @@ class CurrencyController extends Controller
 		return redirect()->route('currencies.index')->with('success', 'Currency status updated successfully.');
 	}
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Currency $currency)

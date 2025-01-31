@@ -142,7 +142,7 @@ class OemController extends Controller
 		return redirect()->route('oems.index')->with('success', 'Oem status Updated successfully');
 	}
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Oem $oem)

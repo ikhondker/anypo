@@ -58,9 +58,9 @@ class TicketSetupNeeded implements ShouldQueue
 		$ticket->title				= 'Support needed to configure my site';
 		$ticket->content			= "Hi
 									Please support us to configure our new site for ".$user->account->name.
-                                    "
+									"
 									Thanks
-                                    "
+									"
 									.$user->name.
 									"
 									NB. This is an auto created Support Ticket.";

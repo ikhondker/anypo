@@ -254,7 +254,7 @@ class PaymentController extends Controller
 	}
 
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Payment $payment)
@@ -264,7 +264,7 @@ class PaymentController extends Controller
 		return view('tenant.payments.timestamp', compact('payment'));
 	}
 
-    /**
+	/**
 	 * Show the form for creating a new resource.
 	 */
 	public function createForInvoice(Invoice $invoice = null)
@@ -313,7 +313,7 @@ class PaymentController extends Controller
 		return view('tenant.payments.ael', compact('payment'));
 	}
 
-    /**
+	/**
 	 * Display a listing of the resource.
 	 */
 	public function myPayments()

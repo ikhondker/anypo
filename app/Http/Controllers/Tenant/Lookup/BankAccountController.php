@@ -155,7 +155,7 @@ class BankAccountController extends Controller
 		return redirect()->route('bank-accounts.index')->with('success', 'Bank Account status changed successfully');
 	}
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(BankAccount $bankAccount)

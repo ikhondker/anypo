@@ -365,7 +365,7 @@ class PrController extends Controller
 	}
 
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Pr $pr)
@@ -378,9 +378,8 @@ class PrController extends Controller
 
 	public function recalculate(Pr $pr)
 	{
-		// Update pr.line_num
-		// TODO must uncomment
-		// $this->authorize('recalculate', $pr);
+
+		$this->authorize('recalculate', $pr);
 
 		if ($pr->auth_status <> AuthStatusEnum::DRAFT->value) {
 			return redirect()->route('prs.show', $pr->id)->with('error', 'Only DRAFT Purchase Requisition can be recalculated!');

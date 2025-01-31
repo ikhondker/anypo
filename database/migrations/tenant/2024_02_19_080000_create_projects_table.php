@@ -15,6 +15,7 @@ return new class extends Migration
 			$table->id()->startingValue(1001);
 			$table->string('code')->unique();
 			$table->string('name')->unique();
+			$table->foreignId('dept_id')->constrained('depts');
 			$table->uuid('pm_id')->nullable();
 			$table->date('start_date')->default(DB::raw('(CURDATE())'));
 			$table->date('end_date')->nullable();

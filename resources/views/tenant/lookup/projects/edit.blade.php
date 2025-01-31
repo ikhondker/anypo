@@ -53,6 +53,16 @@
 						<x-tenant.edit.start-date value="{{ date('Y-m-d',strtotime($project->start_date)) }}"/>
 						<x-tenant.edit.end-date value="{{ date('Y-m-d',strtotime($project->end_date)) }}"/>
 						<tr>
+							<th>Department :</th>
+							<td>
+								<input type="text" name="dept_id" id="dept_id" class="form-control" placeholder="ID" value="{{ auth()->user()->dept_id }}" hidden>
+								<input type="text" class="form-control"
+									name="dept_name" id="dept_name" placeholder="dept_name"
+									value="{{ $pr->dept->name }}"
+									readonly/>
+							</td>
+						</tr>
+						<tr>
 							<th>Project Manager :</th>
 							<td>
 								<select class="form-control" name="pm_id">

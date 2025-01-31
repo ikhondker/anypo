@@ -161,7 +161,7 @@ class DeptController extends Controller
 		return redirect()->route('depts.index')->with('success', 'Dept status changed successfully');
 	}
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Dept $dept)

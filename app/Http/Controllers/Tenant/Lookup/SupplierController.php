@@ -45,6 +45,9 @@ use App\Helpers\Tenant\FileUpload;
 # 11. Seeded
 use DB;
 use Str;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xls;
+
 # 12. FUTURE
 
 
@@ -161,7 +164,7 @@ class SupplierController extends Controller
 		return redirect()->route('suppliers.index')->with('success', 'Supplier status Updated successfully');
 	}
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Supplier $supplier)
@@ -172,7 +175,7 @@ class SupplierController extends Controller
 	}
 
 
-    public function attachments(Supplier $supplier)
+	public function attachments(Supplier $supplier)
 	{
 		$this->authorize('view', $supplier);
 		$supplier = Supplier::where('id', $supplier->id)->get()->firstOrFail();
@@ -211,10 +214,65 @@ class SupplierController extends Controller
 		// TODO change from csv to xls
 		$this->authorize('export', Supplier::class);
 
-		$data = DB::select("SELECT id, name, address1, address2, contact_person, cell, city, zip, state, country, website, email, IF(enable, 'Yes', 'No') as Enable
-			FROM suppliers");
-		$dataArray = json_decode(json_encode($data), true);
-		// used Export Helper
-		return Export::csv('suppliers', $dataArray);
+
+		$fileName = 'export-suppliers-' . date('Ymd') . '.xls';
+		$suppliers = Supplier::with('user_created_by')->with('user_updated_by');
+
+
+		$suppliers = $suppliers->get();
+
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+
+	   // $data = DB::select("SELECT id, name, address1, address2, contact_person, cell, city, zip, state, country, website, email, IF(enable, 'Yes', 'No') as Enable
+
+		$sheet->setCellValue('A1', 'ID#');
+		$sheet->setCellValue('B1', 'Name');
+		$sheet->setCellValue('C1', 'address1');
+		$sheet->setCellValue('D1', 'address2');
+		$sheet->setCellValue('E1', 'contact_person');
+		$sheet->setCellValue('F1', 'cell');
+		$sheet->setCellValue('G1', 'city');
+		$sheet->setCellValue('H1', 'zip');
+		$sheet->setCellValue('I1', 'state');
+		$sheet->setCellValue('J1', 'country');
+		$sheet->setCellValue('K1', 'website');
+		$sheet->setCellValue('L1', 'email');
+		$sheet->setCellValue('M1', 'Active');
+
+		// $sheet->setCellValue('V1', 'Created By');
+		// $sheet->setCellValue('W1', 'Created At');
+		// $sheet->setCellValue('X1', 'Updated By');
+		// $sheet->setCellValue('Y1', 'Updated At');
+
+		$rows = 2;
+		foreach($suppliers as $supplier){
+			$sheet->setCellValue('A' . $rows, $supplier->id);
+			$sheet->setCellValue('B' . $rows, $supplier->name);
+			$sheet->setCellValue('C' . $rows, $supplier->address1);
+			$sheet->setCellValue('D' . $rows, $supplier->address2);
+			$sheet->setCellValue('E' . $rows, $supplier->contact_person);
+			$sheet->setCellValue('F' . $rows, $supplier->cell);
+			$sheet->setCellValue('G' . $rows, $supplier->city);
+			$sheet->setCellValue('H' . $rows, $supplier->zip);
+
+			$sheet->setCellValue('I' . $rows, $supplier->state);
+			$sheet->setCellValue('J' . $rows, $supplier->country);
+			$sheet->setCellValue('K' . $rows, $supplier->website);
+			$sheet->setCellValue('L' . $rows, $supplier->email);
+			$sheet->setCellValue('M' . $rows, ($supplier->enable ? 'Yes' : 'No'));
+
+			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
+			// $sheet->setCellValue('S' . $rows, $pr->created_at);
+			// $sheet->setCellValue('T' . $rows, $pr->user_updated_by->name);
+			// $sheet->setCellValue('U' . $rows, $pr->updated_at);
+			$rows++;
+		}
+
+		$writer = new Xls($spreadsheet);
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
+		$writer->save('php://output');
+
 	}
 }

@@ -51,15 +51,15 @@
 						<tr>
 							<td> {{ $loop->iteration }}</td>
 							<td>
-                                @if ($route->methods()[0] == 'POST')
+								@if ($route->methods()[0] == 'POST')
 										<span class="text-danger">{{ $route->methods()[0] }}</span>
 									@elseif ($route->methods()[0] == 'PUT')
-                                        <span class="text-primary">{{ $route->methods()[0] }}</span>
-                                    @else
-                                        {{ $route->methods()[0] }}
+										<span class="text-primary">{{ $route->methods()[0] }}</span>
+									@else
+										{{ $route->methods()[0] }}
 									@endif
 
-                            </td>
+							</td>
 							<td>{{ $route->uri() }}</td>
 							<td>{{ $route->getName() }}</td>
 							<td>{{ $route->getActionName() }}</td>

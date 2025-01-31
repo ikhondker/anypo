@@ -155,7 +155,7 @@ class DashboardController extends Controller
 		abort(403);
 	}
 
-    private function userDashboard()
+	private function userDashboard()
 	{
 
 		$config = Config::first();

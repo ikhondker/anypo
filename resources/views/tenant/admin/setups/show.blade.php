@@ -33,7 +33,7 @@
 						<tr>
 							<th>Logo :</th>
 							<td>
-								<img src="{{ Storage::disk('s3t')->url('logo/'.$setup->logo) }}" alt="{{ $setup->name }}" class="img-fluid rounded-circle mb-2" width="128" height="128" title="{{ $setup->name }}">
+								<img src="{{ Storage::disk('s3t')->url('logo/'.$setup->logo) }}" alt="{{ $setup->name }}" class="img-fluid mb-2" width="128" height="128" title="{{ $setup->name }}">
 							</td>
 						</tr>
 						<x-tenant.show.my-text		value="{{ $setup->name }}"/>

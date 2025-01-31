@@ -16,11 +16,7 @@ trait AddCreatedUpdatedBy
 					$model->created_by = auth()->user()->id;
 					$model->updated_by = auth()->user()->id;
 				} else {
-					//$model->created_by = config('bo.GUEST_USER_ID');
-					//$model->updated_by = config('bo.GUEST_USER_ID');
-					// TODO check
-					// $model->created_by = NULL;
-					// $model->updated_by = NULL;
+					// null
 				}
 			}
 
@@ -28,10 +24,8 @@ trait AddCreatedUpdatedBy
 				if (auth()->check()){
 					$model->updated_by = auth()->user()->id;
 				} else {
-					//$model->updated_by = config('bo.GUEST_USER_ID');
-					//TODO check
-					//$model->updated_by = NULL;
-				}
+					// null
+                }
 			}
 
 		});
@@ -42,11 +36,9 @@ trait AddCreatedUpdatedBy
 				if (auth()->check()){
 					$model->updated_by = auth()->user()->id;
 				} else {
-					//$model->created_by = config('bo.GUEST_USER_ID');
-					// TODO check
-					// $model->created_by = NULL;
+                    // null
+                    //$model->updated_by = auth()->user()->id;
 				}
-				//$model->updated_by = auth()->user()->id;
 			}
 		});
 	}

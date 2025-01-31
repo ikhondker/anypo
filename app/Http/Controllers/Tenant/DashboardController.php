@@ -163,7 +163,7 @@ class DashboardController extends Controller
 		//
 	}
 
-    private function userDashboard()
+	private function userDashboard()
 	{
 		return view('tenant.dashboards.index');
 	}

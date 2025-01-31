@@ -263,7 +263,7 @@ class UserController extends Controller
 
 	}
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(User $user)
@@ -273,7 +273,7 @@ class UserController extends Controller
 		return view('tenant.admin.users.timestamp', compact('user'));
 	}
 
-    /**
+	/**
 	 * Display a listing of the resource.
 	 */
 	public function switch()

@@ -11,11 +11,14 @@ use App\Models\Tenant\Prl;
 use App\Models\Tenant\Po;
 use App\Models\Tenant\Pol;
 
+use App\Models\Tenant\Lookup\Dept;
 use App\Models\Tenant\Lookup\Currency;
 use App\Models\Tenant\Lookup\BankAccount;
 
 use App\Models\Tenant\Admin\Setup;
 use App\Models\User;
+use App\Models\Tenant\Lookup\Project;
+use App\Models\Tenant\Lookup\Supplier;
 use App\Models\Tenant\Workflow\Hierarchyl;
 use App\Http\Controllers\Tenant\PrController;
 use App\Http\Controllers\Tenant\PoController;
@@ -25,7 +28,7 @@ use App\Enum\Tenant\AuthStatusEnum;
 use Faker\Generator;
 
 use Str;
-
+use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class DemoSeeder extends Seeder
@@ -36,8 +39,9 @@ class DemoSeeder extends Seeder
 		public function run(): void
 		{
 
-            $faker = app(Generator::class);
+			$faker = app(Generator::class);
 
+			// = User =======================================================
 			$usersDemo = [
 				[
 					'id'				=> Str::uuid(),
@@ -251,9 +255,129 @@ class DemoSeeder extends Seeder
 				],
 
 			];
-		// TODO Must comment in Production
+		// Create Demo user
 		User::insert($usersDemo);
 
+		// = Supplier =======================================================
+		Supplier::factory()->count(6)->create();
+
+
+		// = Project =======================================================
+		$demoProjects = [
+			[
+				'name' 		=> 'Name is AA01',
+				'code'		=> 'AA01',
+				'dept_id' 	=> Dept::inRandomOrder()->first()->id,
+				'pm_id' 	=> User::inRandomOrder()->first()->id,
+				'start_date'=> now(),
+				'end_date'	=> now()->addDays(30),
+				'amount'	=> 10000,
+				'notes'		=> $faker->paragraph
+			],
+			[
+				'name' 		=> 'Name is AF01',
+				'code'		=> 'AF01',
+				'dept_id' 	=> Dept::inRandomOrder()->first()->id,
+				'pm_id' 	=> User::inRandomOrder()->first()->id,
+				'start_date'=> now(),
+				'end_date'	=> now()->addDays(30),
+				'amount'	=> 10000,
+				'notes'		=> $faker->paragraph
+			],
+			[
+				'name' 		=> 'Name is AH01',
+				'code'		=> 'AH01',
+				'dept_id' 	=> Dept::inRandomOrder()->first()->id,
+				'pm_id' 	=> User::inRandomOrder()->first()->id,
+				'start_date'=> now(),
+				'end_date'	=> now()->addDays(30),
+				'amount'	=> 10000,
+				'notes'		=> $faker->paragraph
+			],
+			[
+				'name' 		=> 'Name is AS01',
+				'code'		=> 'AS01',
+				'dept_id' 	=> Dept::inRandomOrder()->first()->id,
+				'pm_id' 	=> User::inRandomOrder()->first()->id,
+				'start_date'=> now(),
+				'end_date'	=> now()->addDays(30),
+				'amount'	=> 10000,
+				'notes'		=> $faker->paragraph
+			],
+			[
+				'name' 		=> 'Name is BG01',
+				'code'		=> 'BG01',
+				'dept_id' 	=> Dept::inRandomOrder()->first()->id,
+				'pm_id' 	=> User::inRandomOrder()->first()->id,
+				'start_date'=> now(),
+				'end_date'	=> now()->addDays(30),
+				'amount'	=> 10000,
+				'notes'		=> $faker->paragraph
+			],
+			[
+				'name' 		=> 'Name is BH07',
+				'code'		=> 'BH07',
+				'dept_id' 	=> Dept::inRandomOrder()->first()->id,
+				'pm_id' 	=> User::inRandomOrder()->first()->id,
+				'start_date'=> now(),
+				'end_date'	=> now()->addDays(30),
+				'amount'	=> 10000,
+				'notes'		=> $faker->paragraph
+			],
+
+			[
+				'name' 		=> 'Name is GB06',
+				'code'		=> 'GB06',
+				'dept_id' 	=> Dept::inRandomOrder()->first()->id,
+				'pm_id' 	=> User::inRandomOrder()->first()->id,
+				'start_date'=> now(),
+				'end_date'	=> now()->addDays(30),
+				'amount'	=> 100000,
+				'notes'		=> $faker->paragraph
+			],
+			[
+				'name' 		=> 'Name is GB07',
+				'code'		=> 'GB07',
+				'dept_id' 	=> Dept::inRandomOrder()->first()->id,
+				'pm_id' 	=> User::inRandomOrder()->first()->id,
+				'start_date'=> now(),
+				'end_date'	=> now()->addDays(30),
+				'amount'	=> 10000,
+				'notes'		=> $faker->paragraph
+			],
+			[
+				'name' 		=> 'Name is GB08',
+				'code'		=> 'GB08',
+				'dept_id' 	=> Dept::inRandomOrder()->first()->id,
+				'pm_id' 	=> User::inRandomOrder()->first()->id,
+				'start_date'=> now(),
+				'end_date'	=> now()->addDays(30),
+				'amount'	=> 100000,
+				'notes'		=> $faker->paragraph
+			],
+			[
+				'name' 		=> 'Name is GB09',
+				'code'		=> 'GB09',
+				'dept_id' 	=> Dept::inRandomOrder()->first()->id,
+				'pm_id' 	=> User::inRandomOrder()->first()->id,
+				'start_date'=> now(),
+				'end_date'	=> now()->addDays(30),
+				'amount'	=> 100000,
+				'notes'		=> $faker->paragraph
+			],
+			[
+				'name' 		=> 'Name is GB10',
+				'code'		=> 'GB10',
+				'dept_id' 	=> Dept::inRandomOrder()->first()->id,
+				'pm_id' 	=> User::inRandomOrder()->first()->id,
+				'start_date'=> now(),
+				'end_date'	=> now()->addDays(30),
+				'amount'	=> 100000,
+				'notes'		=> $faker->paragraph
+			],
+		];
+		//
+		Project::insert($demoProjects);
 
 
 
@@ -264,32 +388,17 @@ class DemoSeeder extends Seeder
 		$this->call(\Database\Seeders\PoSeeder::class);
 		$this->call(\Database\Seeders\PolSeeder::class);
 
-        // get sys user id and update timestamp
+		Log::debug('tenant.DemoSeeder.run updating timestamp for pr and po');
+		// get sys user id and update timestamp
 		$sys = User::where('email', config('akk.SYS_EMAIL_ID'))->firstOrFail();
 		Pr::where('created_by',NULL)->update(['created_by' => $sys->id,'updated_by' => $sys->id]);
 		Prl::where('created_by',NULL)->update(['created_by' => $sys->id,'updated_by' => $sys->id]);
 		Po::where('created_by',NULL)->update(['created_by' => $sys->id,'updated_by' => $sys->id]);
 		Pol::where('created_by',NULL)->update(['created_by' => $sys->id,'updated_by' => $sys->id]);
 
-        // set demo config and hierarchy
-		Pr::query()->update(['currency' => 'BDT']);
-		Po::query()->update(['currency' => 'BDT']);
-		Setup::query()->update(['currency' => 'BDT','country' => 'BD','freezed' => true]);
 
-		// Enable BDT
-		Currency::where('currency','BDT')->update(['enable'=>true]);
-
-		// Change currency of BankAccount
-		BankAccount::query()->update(['currency' => 'BDT']);
-
-        try {
-			$admin = User::where('role', 'admin')->firstOrFail();
-	 	} catch (ModelNotFoundException $exception) {
-			Log::error("message");('tenant.TimestampSeeder.run admin not found!');
-			$admin = User::where('email', config('akk.ANONYMOUS_EMAIL_ID'))->firstOrFail();
-	 	}
-
-		// create inset approver in Hierarchy
+		Log::debug('tenant.DemoSeeder.run updating inserting row in Hierarchyl');
+		// create insert approver in Hierarchy
 		$pr=Hierarchyl::create([
 			'hid'			=> 1001,
 			'approver_id'	=> $sys->id,
@@ -299,35 +408,56 @@ class DemoSeeder extends Seeder
 			'approver_id'	=> $sys->id,
 		]);
 
+		Log::debug('tenant.DemoSeeder.run updating currency in PR and PO and setup, currency and BankAccount');
+		// set demo config and hierarchy
+		Pr::query()->update(['currency' => 'BDT']);
+		Po::query()->update(['currency' => 'BDT']);
+		Setup::query()->update(['currency' => 'BDT','country' => 'BD','freezed' => true]);
+		// Enable BDT
+		Currency::where('currency','BDT')->update(['enable'=>true]);
+		// Change currency of BankAccount
+		BankAccount::query()->update(['currency' => 'BDT']);
 
+
+		// try {
+		// 	$admin = User::where('role', 'admin')->firstOrFail();
+	 	// } catch (ModelNotFoundException $exception) {
+		//		Log::error('tenant.TimestampSeeder.run admin not found!');
+		// 	$admin = User::where('email', config('akk.ANONYMOUS_EMAIL_ID'))->firstOrFail();
+	 	// }
+
+		 Log::debug('tenant.DemoSeeder.run recalculate Pr');
 		// recalculate Pr
-		$pr = new PrController();
-		$pr1001 = Pr::where('id', '1001')->firstOrFail();
-		$result = $pr->recalculate($pr1001);
-		$pr1002 = Pr::where('id', '1002')->firstOrFail();
-		$result = $pr->recalculate($pr1002);
-		$pr1003 = Pr::where('id', '1003')->firstOrFail();
-		$result = $pr->recalculate($pr1003);
+		// authorization fails here skip
+		// $pr = new PrController();
+		// $pr1001 = Pr::where('id', '1001')->firstOrFail();
+		// $result = $pr->recalculate($pr1001);
+		// $pr1002 = Pr::where('id', '1002')->firstOrFail();
+		// $result = $pr->recalculate($pr1002);
+		// $pr1003 = Pr::where('id', '1003')->firstOrFail();
+		// $result = $pr->recalculate($pr1003);
 
 		// Approve 1 pr
-		$pr1001->auth_status	= AuthStatusEnum::APPROVED->value;
-		$pr1001->auth_date		= date('Y-m-d H:i:s');
-		$pr1001->auth_user_id	= $sys->id;
+		// $pr1001->auth_status	= AuthStatusEnum::APPROVED->value;
+		// $pr1001->auth_date		= date('Y-m-d H:i:s');
+		// $pr1001->auth_user_id	= $sys->id;
 		//$pr1001->save();
 
+		Log::debug('tenant.DemoSeeder.run recalculate Po');
 		// recalculate Po
-		$po = new PoController();
-		$po1001 = Po::where('id', '1001')->firstOrFail();
-		$result = $po->recalculate($po1001);
-		$po1002 = Po::where('id', '1002')->firstOrFail();
-		$result = $po->recalculate($po1002);
-		$po1003 = Po::where('id', '1003')->firstOrFail();
-		$result = $po->recalculate($po1003);
+		// authorization fails here skip
+		// $po = new PoController();
+		// $po1001 = Po::where('id', '1001')->firstOrFail();
+		// $result = $po->recalculate($po1001);
+		// $po1002 = Po::where('id', '1002')->firstOrFail();
+		// $result = $po->recalculate($po1002);
+		// $po1003 = Po::where('id', '1003')->firstOrFail();
+		// $result = $po->recalculate($po1003);
 
 		// Approve 1 po
-		$po1001->auth_status	= AuthStatusEnum::APPROVED->value;
-		$po1001->auth_date		= date('Y-m-d H:i:s');
-		$po1001->auth_user_id	= $sys->id;
+		// $po1001->auth_status	= AuthStatusEnum::APPROVED->value;
+		// $po1001->auth_date		= date('Y-m-d H:i:s');
+		// $po1001->auth_user_id	= $sys->id;
 		//$po1001->save();
 
 		// $this->call(\Database\Seeders\ReceiptSeeder::class);

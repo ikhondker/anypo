@@ -126,7 +126,7 @@ class NotificationController extends Controller
 		return response()->noContent();
 	}
 
-    /**
+	/**
 	 * Display a listing of the resource.
 	 */
 	public function all()

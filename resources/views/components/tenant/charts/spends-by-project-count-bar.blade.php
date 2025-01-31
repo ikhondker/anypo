@@ -1,8 +1,8 @@
 <div class="col-12 col-lg-6 d-flex">
 	<div class="card flex-fill w-100">
 		<div class="card-header">
-			<h5 class="card-title">Project Spends Count</h5>
-			<h6 class="card-subtitle text-muted">Created Different Document Count for Top 10 Active Projects.</h6>
+			<h5 class="card-title">Project Document Count</h5>
+			<h6 class="card-subtitle text-muted">Project Document Counts for Top 10 Open Projects.</h6>
 		</div>
 		<div class="card-body d-flex w-100">
 			<div class="align-self-center chart">

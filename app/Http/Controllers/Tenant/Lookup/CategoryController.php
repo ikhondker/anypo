@@ -139,7 +139,7 @@ class CategoryController extends Controller
 		return redirect()->route('categories.index')->with('success', 'Category status Updated successfully');
 	}
 
-     /**
+	 /**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Category $category)

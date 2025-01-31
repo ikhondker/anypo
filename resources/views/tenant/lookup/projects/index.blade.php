@@ -44,6 +44,7 @@
 						<th>#</th>
 						<th>Code</th>
 						<th>Name</th>
+						<th>Dept</th>
 						<th>Project Manager</th>
 						<th>Start-End</th>
 						<th>Closed</th>
@@ -54,9 +55,9 @@
 					@foreach ($projects as $project)
 					<tr>
 						<td>{{ $projects->firstItem() + $loop->index }}</td>
-
 						<td>{{ $project->code }}</td>
 						<td><a href="{{ route('projects.show',$project->id) }}"><strong>{{ $project->name }}</strong></a></td>
+						<td>{{ $project->dept->name }}</td>
 						<td>{{ $project->pm->name }}</td>
 						<td><x-tenant.list.my-date value="{{ $project->start_date }}"/> to <x-tenant.list.my-date value="{{ $project->end_date }}"/></td>
 						<td><x-tenant.list.my-closed :value="$project->closed"/></td>

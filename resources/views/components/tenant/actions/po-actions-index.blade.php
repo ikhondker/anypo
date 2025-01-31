@@ -5,7 +5,7 @@
 	<div class="dropdown-menu dropdown-menu-end">
 		<a class="dropdown-item" href="{{ route('pos.my-pos') }}"><i class="align-middle me-1" data-lucide="user-plus"></i> My Purchase Orders</a>
 		<a class="dropdown-item" href="{{ route('pos.index') }}"><i class="align-middle me-1" data-lucide="database"></i> All Purchase Orders</a>
-        <a class="dropdown-item" href="{{ route('pos.index', ['status'=>  App\Enum\Tenant\AuthStatusEnum::INPROCESS->value ]) }}"><i class="align-middle me-1" data-lucide="database"></i> In-Process PO(*)</a>
+		<a class="dropdown-item" href="{{ route('pos.index', ['status'=>  App\Enum\Tenant\AuthStatusEnum::INPROCESS->value ]) }}"><i class="align-middle me-1" data-lucide="database"></i> In-Process PO(*)</a>
 
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" href="{{ route('pos.create') }}"><i class="align-middle me-1" data-lucide="plus"></i> Create Purchase Order</a>

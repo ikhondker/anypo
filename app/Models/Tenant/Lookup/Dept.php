@@ -67,17 +67,4 @@ class Dept extends Model
 		]);
 	}
 
-	/* ---------------- created and updated by ---------------------- */
-	// Replaced by trait AddCreatedUpdatedBy
-	// public function user_created_by(){
-	// 	return $this->belongsTo(User::class,'created_by')->withDefault([
-	// 		'name' => '[ Empty ]',
-	// 	]);
-	// }
-	// public function user_updated_by(){
-	// 	return $this->belongsTo(User::class,'updated_by')->withDefault([
-	// 		'name' => '[ Empty ]',
-	// 	]);
-	// }
-
 }

@@ -8,6 +8,7 @@ use Illuminate\View\Component;
 
 use App\Models\Tenant\Lookup\Project;
 use Illuminate\Support\Facades\Log;
+use App\Enum\UserRoleEnum;
 
 class SpendsByProjectCountBar extends Component
 {
@@ -27,7 +28,17 @@ class SpendsByProjectCountBar extends Component
 	 */
 	public function __construct()
 	{
-		$this->projects = Project::with("pm")->where('closed', false)->orderBy('id', 'DESC')->limit(10)->get();
+		//$this->projects = Project::with("pm")->where('closed', false)->orderBy('id', 'DESC')->limit(10)->get();
+
+		$this->projects = Project::with("pm")->where('closed', false);
+
+        // HoD sees only his projects
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+			$this->projects = $this->projects->where('dept_id', auth()->user()->dept_id);
+		}
+
+		$this->projects = $this->projects->orderBy('id', 'DESC')->limit(10)->get();
+
 
 		foreach ($this->projects as $project){
 			//Log::debug('Value of id=' . $project->name . ' -> '.$project->amount);

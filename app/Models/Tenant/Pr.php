@@ -244,7 +244,7 @@ class Pr extends Model
 		$query->where('auth_status',AuthStatusEnum::APPROVED->value);
 	}
 
-    /**
+	/**
 	 * Scope a query to only All Approved PR for tenant.
 	*/
 	public function scopeAllExceptDraft(Builder $query): void

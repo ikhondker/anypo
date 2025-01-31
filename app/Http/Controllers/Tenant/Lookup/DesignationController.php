@@ -143,7 +143,7 @@ class DesignationController extends Controller
 		return redirect()->route('designations.index')->with('success', 'Designation status Updated successfully');
 	}
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Designation $designation)

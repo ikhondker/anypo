@@ -232,7 +232,7 @@ class AccountController extends Controller
 		$result = User::where('account_id', $account->id)->delete();
 		Log::channel('bo')->info('User Deleted = ' . $result);
 
-        Log::channel('bo')->info('Tenant DB='.$account->tenant_id.' NOT Deleted!');
+		Log::channel('bo')->info('Tenant DB='.$account->tenant_id.' NOT Deleted!');
 
 		return redirect()->route('accounts.index')->with('success', 'Account Deleted successfully');
 	}

@@ -103,6 +103,12 @@ class ExportPolicy
 		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
 	}
 
+	public function invoiceLine(User $user): bool
+	{
+		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());
+	}
+
+
 	public function payment(User $user): bool
 	{
 		return ($user->isBuyer() ||$user->isHoD() || $user->isCxO() || $user->isAdmin() || $user->isSupport());

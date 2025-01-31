@@ -204,7 +204,7 @@ class InvoiceLineController extends Controller
 		return redirect()->route('invoices.show', $invoiceLine->invoice_id)->with('success', 'Invoice Line deleted successfully');
 	}
 
-    public function addLine(Invoice $invoice)
+	public function addLine(Invoice $invoice)
 	{
 		//$invoice = Invoice::where('id', $invoice_id)->first();
 
@@ -219,78 +219,5 @@ class InvoiceLineController extends Controller
 		return view('tenant.invoice-lines.create', with(compact('invoice','invoiceLines')));
 	}
 
-	public function export()
-	{
-		//TODO
-
-		//$this->authorize('export', InvoiceLine::class);
-
-		$fileName = 'export-invoice-lines-' . date('Ymd') . '.xls';
-
-		$invoiceLines = InvoiceLine::with('invoice')->with('invoice.po')-> with('invoice.po.dept')->with('invoice.supplier')->with('user_created_by')->with('user_updated_by');
-
-		// $pols->whereHas('po', function ($q) {
-		//		$q->where('auth_status', AuthStatusEnum::APPROVED->value);
-		// });
-
-		// HoD sees only dept
-		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
-			$invoiceLines->whereHas('invoice.po', function ($q) {
-				$q->where('dept_id', auth()->user()->dept_id);
-			});
-
-		}
-		$invoiceLines = $invoiceLines->get();
-
-		$spreadsheet = new Spreadsheet();
-		$sheet = $spreadsheet->getActiveSheet();
-
-		$sheet->setCellValue('A1', 'ID#');
-		$sheet->setCellValue('B1', 'Invoice No');
-		$sheet->setCellValue('C1', 'Date');
-		$sheet->setCellValue('D1', 'Supplier');
-		$sheet->setCellValue('E1', 'PO#');
-		$sheet->setCellValue('F1', 'Currency');
-		$sheet->setCellValue('G1', 'Invoice Amount');
-		$sheet->setCellValue('H1', 'Line Num');
-		$sheet->setCellValue('I1', 'Sub_total');
-		$sheet->setCellValue('J1', 'Tax');
-		$sheet->setCellValue('K1', 'GST');
-		$sheet->setCellValue('L1', 'Amount');
-		$sheet->setCellValue('M1', 'Notes');
-		// $sheet->setCellValue('V1', 'Created By');
-		// $sheet->setCellValue('W1', 'Created At');
-		// $sheet->setCellValue('X1', 'Updated By');
-		// $sheet->setCellValue('Y1', 'Updated At');
-
-		$rows = 2;
-		foreach($invoiceLines as $invoiceLine){
-			$sheet->setCellValue('A' . $rows, $invoiceLine->id);
-			$sheet->setCellValue('B' . $rows, $invoiceLine->invoice->invoice_no);
-			$sheet->setCellValue('C' . $rows, $invoiceLine->invoice->invoice_date);
-			$sheet->setCellValue('D' . $rows, $invoiceLine->invoice->supplier->name);
-			$sheet->setCellValue('E' . $rows, $invoiceLine->invoice->po->id);
-			$sheet->setCellValue('F' . $rows, $invoiceLine->invoice->currency);
-			$sheet->setCellValue('G' . $rows, $invoiceLine->invoice->amount);
-			$sheet->setCellValue('H' . $rows, $invoiceLine->line_num);
-			$sheet->setCellValue('J' . $rows, $invoiceLine->sub_total);
-			$sheet->setCellValue('J' . $rows, $invoiceLine->tax);
-			$sheet->setCellValue('K' . $rows, $invoiceLine->gst);
-			$sheet->setCellValue('L' . $rows, $invoiceLine->amount);
-			$sheet->setCellValue('M' . $rows, $invoiceLine->notes);
-
-			// $sheet->setCellValue('R' . $rows, $pr->user_created_by->name);
-			// $sheet->setCellValue('S' . $rows, $pr->created_at);
-			// $sheet->setCellValue('T' . $rows, $pr->user_updated_by->name);
-			// $sheet->setCellValue('U' . $rows, $pr->updated_at);
-			$rows++;
-		}
-
-		$writer = new Xls($spreadsheet);
-		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-		header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
-		$writer->save('php://output');
-
-	}
 
 }

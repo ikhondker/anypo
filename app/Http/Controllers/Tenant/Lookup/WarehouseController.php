@@ -156,7 +156,7 @@ class WarehouseController extends Controller
 		return redirect()->route('warehouses.index')->with('success', 'Warehouse status Updated successfully');
 	}
 
-    /**
+	/**
 	 * Display the specified resource.
 	 */
 	public function timestamp(Warehouse $warehouse)

@@ -1,19 +1,16 @@
 # 33. TODO
 -------------------------------------------------------------------------------------------------
-http://demo1.localhost:8000/payments recept/ invoice not found 404 after create
+x124. project end date edit optional
 
+x124. http://demo1.localhost:8000/payments recept/ invoice not found 404 after create
+x136. create UOM - UoM Class - default uom mention
 check ->get()->first
-move documentation screenshots to private places
-reorder function in controller. seeded first and custom later
-xxRoute::get('/get-started', function () {return view('tenant.pages.get-started');})->name('get-started');
-project end date edit optional
+add dept_id in project
+all warning show have tnenatid
 
-125. 23/24/25budget seeded created by null
 124. budget revisionsAll -> revisions->revisionDetail merge
 123. po requester functional decision. whether show it or not
-111. setup.timestamp issue
 127. address/remove all TODO
-136. create UOM - UoM Class - default uom mention
 148. Find and replace 'PO #', 'PR #', debug('tenant, =$, @can('edit' , ANYPO.NET, <i class="bi"
 135. hierarchyl export serial number
 144. dbu export user_id -= null
@@ -47,10 +44,11 @@ project end date edit optional
 108. start and end date date-time and date only seeder issue. seeder store date and time
 107. some object does not start with 1001, setup, menu, designation, group, pay_method, (workaround id=> deployed)
 108. add several pie chart in project show pages
-109. docu page start panel
+109. documentation page start panel
 
 # 30 Nice to Have P2
 -------------------------------------------------------------------------------------------------
+124. move documentation screenshots to private places
 1. notification mark-as-read with ajax see https://blog.quickadminpanel.com/laravel-notifications-with-database-driver-internal-messages/
 1.	prefix form pr/po number
 2.	command generator based on tenants
@@ -99,6 +97,11 @@ project end date edit optional
 
 # 0. DONE
 -------------------------------------------------------------------------------------------------
+x125. reorder function in controller. seeded first and custom later
+x125. xRoute::get('/get-started', function () {return view('tenant.pages.get-started');})->name('get-started');
+x125. 23/24/25budget seeded created by null
+x111. setup.timestamp issue
+
 x125. project attechments
 x125.supplier atahments
 x125. ticke create fails frorm tenant
