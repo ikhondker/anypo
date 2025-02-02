@@ -25,7 +25,6 @@ class UpdateCountryRequest extends FormRequest
 			//TODO 'country'	=> 'required|min:2|max:2|unique:countries,country,'. $this->country->country,
 			//TODO 'name'		=> 'required|min:2|max:100|unique:countries,name,'. $this->country->name,
 			'name'				=> 'required|min:2|max:100',
-
 		];
 	}
 }

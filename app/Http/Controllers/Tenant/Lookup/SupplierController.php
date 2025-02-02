@@ -211,7 +211,7 @@ class SupplierController extends Controller
 
 	public function export()
 	{
-		// TODO change from csv to xls
+
 		$this->authorize('export', Supplier::class);
 
 

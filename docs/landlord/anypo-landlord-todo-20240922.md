@@ -6,12 +6,6 @@
 logo for backend user?
 login top left
 allow purchased user to ask for setup service
-xAdd installation service? Yes! Install it for me. $79 One time fee Checkbox
-x123.auto create ticket for setup
-x123.filer invocie by unposted/setup/support
-x123.account_id mandatory auth()->user()->account_id
-x123. disable site form landlord
-x123. search ticket on top
 123. filter open ticket only
 123. allow filter only open ticket in all ticket page
 123. allow pdf invoice download as public
@@ -53,6 +47,13 @@ x123. search ticket on top
 
 # 0. DONE
 ====================================================================
+xAdd installation service? Yes! Install it for me. $79 One time fee Checkbox
+x123.auto create ticket for setup
+x123.filer invocie by unposted/setup/support
+x123.account_id mandatory auth()->user()->account_id
+x123. disable site form landlord
+x123. search ticket on top
+
 xx96. invoice and receipt drop-down policy check
 x111. account level discount apply while creating invoice
 x111. request demo/bug report

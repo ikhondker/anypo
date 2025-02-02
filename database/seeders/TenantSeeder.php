@@ -5,15 +5,15 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-// TODO Remove Testing
-use App\Models\Tenant\Pr;
-use App\Models\Tenant\Po;
-use App\Models\Tenant\Lookup\Currency;
-use App\Models\Tenant\Admin\Setup;
-use App\Models\User;
-use App\Models\Tenant\Workflow\Hierarchyl;
-use App\Http\Controllers\Tenant\PrController;
-use App\Http\Controllers\Tenant\PoController;
+
+// use App\Models\Tenant\Pr;
+// use App\Models\Tenant\Po;
+// use App\Models\Tenant\Lookup\Currency;
+// use App\Models\Tenant\Admin\Setup;
+// use App\Models\User;
+// use App\Models\Tenant\Workflow\Hierarchyl;
+// use App\Http\Controllers\Tenant\PrController;
+// use App\Http\Controllers\Tenant\PoController;
 
 class TenantSeeder extends Seeder
 {

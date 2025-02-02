@@ -222,7 +222,7 @@ class ProjectController extends Controller
 
 	public function export()
 	{
-		// TODO change from csv to xls
+
 		$this->authorize('export', Project::class);
 
 		$fileName = 'export-projects-' . date('Ymd') . '.xls';

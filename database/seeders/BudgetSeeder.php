@@ -9,7 +9,11 @@ use Illuminate\Support\Facades\Schema;
 use Faker\Generator;
 
 use App\Models\Tenant\Budget;
+use App\Models\Tenant\DeptBudget;
+use App\Models\Tenant\Lookup\Dept;
+
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class BudgetSeeder extends Seeder
 {
@@ -24,93 +28,46 @@ class BudgetSeeder extends Seeder
 		//Schema::enableForeignKeyConstraints();
 		$faker = app(Generator::class);
 
-		$dummyBudgets = [
-			[
-				'fy'				=> '2023',
-				'name'				=> 'Budget for 2023',
-				'start_date'		=> Carbon::parse('2023-01-01'),
-				'end_date'			=> Carbon::parse('2023-12-31'),
-				'notes'				=> $faker->paragraph,
-				'amount'			=> 140000,
-				'amount_pr_booked'	=> $faker->numberBetween(3000,100000),
-				'amount_pr'			=> $faker->numberBetween(3000,100000),
-				'amount_po_booked'	=> $faker->numberBetween(3000,100000),
-				'amount_po'			=> $faker->numberBetween(3000,100000),
-				'amount_grs'		=> $faker->numberBetween(3000,100000),
-				'amount_invoice'	=> $faker->numberBetween(3000,100000),
-				'amount_payment'	=> $faker->numberBetween(3000,100000),
-				'count_pr'			=> $faker->numberBetween(3,30),
-				'count_po'			=> $faker->numberBetween(3,30),
-				'count_grs'			=> $faker->numberBetween(3,30),
-				'count_invoice'		=> $faker->numberBetween(3,30),
-				'count_payment'		=> $faker->numberBetween(3,30),
-				'bg_color'		 	=> 'primary',
-			],
-			[
-				'fy'				=> '2024',
-				'name'				=> 'Budget for 2024',
-				'start_date'		=> Carbon::parse('2024-01-01'),
-				'end_date'			=> Carbon::parse('2024-12-31'),
-				'notes'				=> $faker->paragraph,
-				'amount'			=> 700000,
-				'amount_pr_booked'	=> $faker->numberBetween(2000,70000),
-				'amount_pr'			=> $faker->numberBetween(2000,70000),
-				'amount_po_booked'	=> $faker->numberBetween(2000,70000),
-				'amount_po'			=> $faker->numberBetween(2000,70000),
-				'amount_grs'		=> $faker->numberBetween(2000,70000),
-				'amount_invoice'	=> $faker->numberBetween(2000,70000),
-				'amount_payment'	=> $faker->numberBetween(2000,70000),
-				'count_pr'			=> $faker->numberBetween(3,20),
-				'count_po'			=> $faker->numberBetween(3,20),
-				'count_grs'			=> $faker->numberBetween(3,20),
-				'count_invoice'		=> $faker->numberBetween(3,20),
-				'count_payment'		=> $faker->numberBetween(3,20),
-				'bg_color'		 	=> 'secondary',
-			],
-
-
-		];
-
-		$budgets23 = [
-			[
-				'fy'			=> '2023',
-				'name'			=> 'Budget for 2023',
-				'start_date'	=> Carbon::parse('2023-01-01'),
-				'end_date'		=> Carbon::parse('2023-12-31'),
-				'amount'		=> 400000, //TODO remove
-				'notes'			=> $faker->paragraph,
-				'bg_color'		=> 'info',
-			],
-		];
-
-		$budgets24 = [
-			[
-				'fy'			=> '2024',
-				'name'			=> 'Budget for 2024',
-				'start_date'	=> Carbon::parse('2024-01-01'),
-				'end_date'		=> Carbon::parse('2024-12-31'),
-				'amount'		=> 400000, //TODO remove
-				'notes'			=> $faker->paragraph,
-				'bg_color'		=> 'secondary',
-			],
-		];
-
-		$budgets25 = [
+		// get year
+		$currentYear = date('Y');
+		Log::debug('tenenet.BudgetSeeder.run currentYear =' . $currentYear);
+		//TODO
+		// count dept
+		$count_dept = Dept::count();
+		Log::debug('tenenet.BudgetSeeder.run count_dept =' . $count_dept);
+		// create budge for that year
+		// get CY budget id
+		// loop and creare dept budge for that year
+		$budgetCY = [
 			[
 				'fy'			=> '2025',
 				'name'			=> 'Budget for 2025',
 				'start_date'	=> Carbon::parse('2025-01-01'),
 				'end_date'		=> Carbon::parse('2025-12-31'),
 				'amount'		=> 400000, //TODO remove
-				'notes'			=> $faker->paragraph,
+				'notes'			=> 'Budget for 2025',
 				'bg_color'		=> 'primary',
 			],
 		];
 
+		// $projects = Project::orderBy('id', 'ASC')->get();
+		// foreach ($projects as $project) {
+			// $pr = new PrController();
+			// $pr1001 = Pr::where('id', '1001')->firstOrFail();
+			// $result = $pr->recalculate($pr1001);
+			// $pr1002 = Pr::where('id', '1002')->firstOrFail();
+			// $result = $pr->recalculate($pr1002);
+			// $pr1003 = Pr::where('id', '1003')->firstOrFail();
+			// $result = $pr->recalculate($pr1003);
 
-		//Budget::insert($dummyBudgets);
-		Budget::insert($budgets23);
-		Budget::insert($budgets24);
-		Budget::insert($budgets25);
+			// Approve 1 pr
+			// $pr1001->auth_status	= AuthStatusEnum::APPROVED->value;
+			// $pr1001->auth_date		= date('Y-m-d H:i:s');
+			// $pr1001->auth_user_id	= $sys->id;
+			//$pr1001->save();
+		//}
+
+
+		//Budget::insert($budgets25);
 	}
 }
