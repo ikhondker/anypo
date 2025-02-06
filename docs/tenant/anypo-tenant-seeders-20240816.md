@@ -15,6 +15,7 @@ php artisan tenants:migrate --tenants='0e0b9a88-8f56-42bb-b7cc-3473ac811964'
 php artisan tenants:seed --class=TenantSeeder --tenants='0e0b9a88-8f56-42bb-b7cc-3473ac811964'
 
 php artisan tenants:seed --class=ProjectSeeder --tenants='0e0b9a88-8f56-42bb-b7cc-3473ac811964'
+php artisan tenants:seed --class=BudgetSeeder --tenants='0e0b9a88-8f56-42bb-b7cc-3473ac811964'
 
 php artisan queue:listen
 php artisan tenants:seed --tenants=demo1
