@@ -44,11 +44,11 @@
 							<span class="badge badge-subtle-info">{{ $ticket->status->name }}</span>
 						</td>
 					</tr>
+					<x-landlord.edit.save/>
 
 				</tbody>
 			</table>
 
-			<x-landlord.edit.save/>
 		</form>
 	</div>
 </div>

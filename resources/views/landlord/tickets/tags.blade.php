@@ -1,5 +1,5 @@
 @extends('layouts.landlord.app')
-@section('title','View Ticket Topics')
+@section('title','View Ticket Tags')
 
 @section('breadcrumb')
 	<li class="breadcrumb-item"><a href="{{ route('tickets.index') }}" class="text-muted">Tickets</a></li>
@@ -11,7 +11,7 @@
 
 	<x-landlord.page-header>
 		@slot('title')
-			Ticket #{{ $ticket->id }} Topics
+			Ticket #{{ $ticket->id }} Tags
 		@endslot
 		@slot('buttons')
 				@if (auth()->user()->isBackend())
@@ -27,7 +27,7 @@
 	<x-landlord.widgets.ticket-header ticketId="{{ $ticket->id }}"/>
 	<!-- /.card-ticket-header -->
 
-	<!-- BEGIN ADD Topics -->
+	<!-- BEGIN ADD Tag -->
 	<div class="card">
 		<div class="card-header">
 			<h5 class="card-title">Add Tag</h5>
@@ -52,18 +52,18 @@
 								@enderror
 							</td>
 						</tr>
+						<x-landlord.create.save/>
 					</tbody>
 				</table>
-				<x-landlord.create.save/>
 			</form>
 			<!-- Form -->
 		</div>
 	</div>
-	<!-- END ADD Topics -->
+	<!-- END ADD Tag -->
 
-	<!-- card-ticket-topics -->
+	<!-- card-ticket-tags -->
 	<x-landlord.widgets.ticket-tags ticketId="{{ $ticket->id }}"/>
-	<!-- /.card-ticket-topics -->
+	<!-- /.card-ticket-tags -->
 
 @endsection
 

@@ -35,7 +35,7 @@
 		<div class="card-body">
 			<div class="row g-0">
 				<div class="col-sm-3 col-xl-12 col-xxl-3 text-center">
-					<img src="{{ Storage::disk('s3l')->url('logo/'.$account->logo) }}" width="100" height="100" class="rounded-circle mt-2" alt="{{ $account->name }}" title="{{ $account->name }}">
+					<img src="{{ Storage::disk('s3l')->url('logo/'.$account->logo) }}" width="100" height="100" class="mt-2" alt="{{ $account->name }}" title="{{ $account->name }}">
 				</div>
 				<div class="col-sm-9 col-xl-12 col-xxl-9">
 					{{-- <strong>{{ $account->primaryProduct->name }}</strong> --}}
@@ -76,7 +76,7 @@
 								</tr>
 								<tr>
 									<th scope="row">Last Billed :</th>
-									<td><x-landlord.list.my-date :value="$account->last_bill_date" /></td>
+									<td><x-landlord.list.my-date value="{{ $account->last_bill_date }}" /></td>
 								</tr>
 								<tr>
 									<th scope="row">Status :</th>

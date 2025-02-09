@@ -130,21 +130,21 @@ class Bo
 
 		// invoice_type specific treatment
 		// change description for other type of invoice
-		$invoice->summary		= env('APP_DOMAIN'). ' - Your Invoice #'. $invoice->invoice_no;
+		$invoice->summary		= config('app.domain'). ' - Your Invoice #'. $invoice->invoice_no;
 
 		switch ($invoice->invoice_type->value) {
 			case InvoiceTypeEnum::SIGNUP->value:
-				$invoice->notes		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN');
+				$invoice->notes		= $checkout->product_name . '. Site ' . $checkout->site .'.'.config('app.domain');
 				break;
 			case InvoiceTypeEnum::SUBSCRIPTION->value:		// manually generate an pay invoice
-				$invoice->notes		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN') .
+				$invoice->notes		= $checkout->product_name . '. Site ' . $checkout->site .'.'.config('app.domain') .
 					' From '. strtoupper(date('d-M-y', strtotime($checkout->start_date))) .' to ' .strtoupper(date('d-M-y', strtotime($checkout->end_date))) ;
 				break;
 			case InvoiceTypeEnum::ADDON->value:
-				$invoice->notes		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN') ;
+				$invoice->notes		= $checkout->product_name . '. Site ' . $checkout->site .'.'.config('app.domain') ;
 				break;
 			case InvoiceTypeEnum::ADVANCE->value:
-				$invoice->notes		= $checkout->product_name . '. Site ' . $checkout->site .'.'.env('APP_DOMAIN') .
+				$invoice->notes		= $checkout->product_name . '. Site ' . $checkout->site .'.'.config('app.domain') .
 					' From '. strtoupper(date('d-M-y', strtotime($checkout->start_date))) .' to ' .strtoupper(date('d-M-y', strtotime($checkout->end_date))) ;
 				break;
 		}

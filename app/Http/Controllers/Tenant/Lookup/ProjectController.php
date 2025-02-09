@@ -333,12 +333,12 @@ class ProjectController extends Controller
 			$projects->where('name', 'Like', '%' . request('term') . '%');
 		}
 
-        // HoD sees only his projects
+		// HoD sees only his projects
 		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
 			$projects = $projects->where('dept_id', auth()->user()->dept_id);
 		}
 
-        $projects = $projects->orderBy(DB::raw("(amount_pr_booked + amount_pr + amount_po_booked + amount_po)"), 'DESC')->paginate(10);
+		$projects = $projects->orderBy(DB::raw("(amount_pr_booked + amount_pr + amount_po_booked + amount_po)"), 'DESC')->paginate(10);
 
 		return view('tenant.lookup.projects.spends', compact('projects'));
 	}

@@ -32,7 +32,7 @@ class SpendsByProjectCountBar extends Component
 
 		$this->projects = Project::with("pm")->where('closed', false);
 
-        // HoD sees only his projects
+		// HoD sees only his projects
 		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
 			$this->projects = $this->projects->where('dept_id', auth()->user()->dept_id);
 		}

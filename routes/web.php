@@ -344,9 +344,6 @@ Route::middleware(['auth', 'verified', 'can:support'])->group(function () {
 	//Route::get('/invoice/all/{account?}/{type?}/{status?}', [InvoiceController::class, 'all'])->name('invoices.all');
 	//Route::get('/invoice/all/{account?}/{type?}/{status?}', [InvoiceController::class, 'all'])->name('invoices.all');
 	Route::get('/invoice/all', [InvoiceController::class, 'all'])->name('invoices.all');
-
-
-
     Route::get('/invoices/post/{invoice}',[InvoiceController::class, 'post'])->name('invoices.post');
 
 	/* ======================== Payment ======================================== */

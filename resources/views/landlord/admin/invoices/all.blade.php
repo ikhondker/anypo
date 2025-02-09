@@ -18,17 +18,17 @@
 @section('content')
 
 	<x-landlord.page-header>
-	@slot('title')
-		All Invoices
-	@endslot
-	@slot('buttons')
-		@if (auth()->user()->backend)
-		<a href="{{ route('invoices.create') }}" class="btn btn-primary float-end  me-1"><i data-lucide="plus"></i> Create Service Invoice</a>
-		@endif
-		@if (auth()->user()->isBackend())
-			<x-landlord.actions.invoice-actions-index-support/>
-		@endif
-	@endslot
+		@slot('title')
+			All Invoices
+		@endslot
+		@slot('buttons')
+			@if (auth()->user()->backend)
+			<a href="{{ route('invoices.create') }}" class="btn btn-primary float-end  me-1"><i data-lucide="plus"></i> Create Service Invoice</a>
+			@endif
+			@if (auth()->user()->isBackend())
+				<x-landlord.actions.invoice-actions-index-support/>
+			@endif
+		@endslot
 	</x-landlord.page-header>
 
 	<div class="card">

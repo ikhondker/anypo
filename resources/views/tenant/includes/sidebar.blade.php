@@ -176,10 +176,10 @@
 			<div class="sidebar-cta-content">
 				<strong class="d-inline-block mb-2">Demo Site</strong>
 				<div class="mb-3 text-sm">
-					This is the demo instance of {{ env('APP_NAME') }} to showcase its features, functionality and design. {{ env('APP_URL') }}
+					This is the demo instance of {{ config('app.name') }} to showcase its features, functionality and design. {{ config('app.url') }}
 				</div>
 				<div class="d-grid">
-					<a href="{{ env('APP_URL') }}/pricing" class="btn btn-primary" target="_blank"><i data-lucide="shopping-cart" class="align-middle"></i> Purchase</a>
+					<a href="{{ config('app.url') }}/pricing" class="btn btn-primary" target="_blank"><i data-lucide="shopping-cart" class="align-middle"></i> Purchase</a>
 				</div>
 			</div>
 		</div>

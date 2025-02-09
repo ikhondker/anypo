@@ -25,7 +25,7 @@ trait AddCreatedUpdatedBy
 					$model->updated_by = auth()->user()->id;
 				} else {
 					// null
-                }
+				}
 			}
 
 		});
@@ -36,8 +36,8 @@ trait AddCreatedUpdatedBy
 				if (auth()->check()){
 					$model->updated_by = auth()->user()->id;
 				} else {
-                    // null
-                    //$model->updated_by = auth()->user()->id;
+					// null
+					//$model->updated_by = auth()->user()->id;
 				}
 			}
 		});

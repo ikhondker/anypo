@@ -1,5 +1,5 @@
 <tr>
-	<th>&nbsp;</th>
+	<th width="25%">&nbsp;</th>
 	<td>
 		<div class="xxfloat-end">
 			<a class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Back" href="{{ url()->previous() }}"><i data-lucide="x-circle"></i> Back</a>

@@ -18,15 +18,7 @@ class DeptBudgetSeeder extends Seeder
 	public function run(): void
 	{
 
-        // Check Budget Seeded
-
-		//Schema::disableForeignKeyConstraints();
-		//DeptBudget::truncate();
-		//Schema::enableForeignKeyConstraints();
-		//$faker = app(Generator::class);
-	    //DeptBudget::insert($deptBudget25);
-		//DeptBudget::insert($deptBudget23Dummy);
-		//DeptBudget::insert($deptBudget24Dummy);
+		// Check Budget Seeder
 
 	}
 }

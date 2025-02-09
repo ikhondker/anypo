@@ -77,10 +77,10 @@
 						@endif
 
 
+						<x-landlord.edit.save/>
 					</tbody>
 				</table>
 
-				<x-landlord.edit.save/>
 			</form>
 		</div>
 	</div>

@@ -200,8 +200,16 @@ class AccountController extends Controller
 		$account_id = $account->id;
 
 		Log::channel('bo')->info('DELETING Account id = ' . $account_id);
+		Log::channel('bo')->info('DELETING Site = ' . $account->site);
+		Log::channel('bo')->info('DELETING tenant_id = ' . $account->tenant_id);
+
 		EventLog::event('account', $account->id, 'deleted', 'id', $account_id);
 
+		if ( $account->site == 'master' ){
+			return redirect()->route('accounts.all')->with('error', 'Can not delete master account!');
+		}
+
+		// delete ticket form landlord
 		$tickets = Ticket::where('account_id', $account_id)->get();
 		$tickets->each(function ($tickets) {
 			$tickets->comments()->delete();
@@ -220,11 +228,11 @@ class AccountController extends Controller
 		$result = Checkout::where('account_id', $account_id)->delete();
 		Log::channel('bo')->info('Checkout Deleted = ' . $result);
 
-		$result = Domain::where('tenant_id', $account->tenant_id)->delete();
-		Log::channel('bo')->info('Domain Deleted = ' . $result);
-
 		$result = Tenant::where('id', $account->tenant_id)->delete();
 		Log::channel('bo')->info('Tenant Deleted = ' . $result);
+
+		$result = Domain::where('tenant_id', $account->tenant_id)->delete();
+		Log::channel('bo')->info('Domain Deleted = ' . $result);
 
 		$result = Account::where('id', $account_id)->delete();
 		Log::channel('bo')->info('Account Deleted = ' . $result);

@@ -261,15 +261,23 @@ class TicketController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function all()
+	public function all(Request $request)
 	{
 		$this->authorize('viewAny', Ticket::class);
-		$tickets = Ticket::query();
+
+		$tickets = Ticket::with('owner')->with('dept')->with('priority')->with('status');
+
 		if (request('term')) {
 			$tickets->where('title', 'Like', '%' . request('term') . '%')
 			->orWhere('id', 'Like', '%' . request('term') . '%');
 		}
-		$tickets = $tickets->with('owner')->with('dept')->with('priority')->with('status')->orderBy('id', 'DESC')->paginate(20);
+
+		if ($request->has('status')) {
+			$tickets->where('status_code', $request->query('status'));
+		}
+
+		$tickets = $tickets->orderBy('id', 'DESC')->paginate(20);
+
 		return view('landlord.tickets.all', compact('tickets'));
 
 	}
@@ -289,7 +297,8 @@ class TicketController extends Controller
 
 		$this->authorize('assign', $ticket);
 
-		$ticket->agent_id	= $request->input('agent_id');
+		$ticket->agent_id		= $request->input('agent_id');
+		$ticket->status_code	= TicketStatusEnum::ASSIGNED->value;
 		$ticket->save();
 
 		EventLog::event('ticket', $ticket->id, 'assign', 'agent_id', $ticket->agent_id);

@@ -79,16 +79,21 @@ class TestController extends Controller
 		//https://stackoverflow.com/questions/41758870/how-to-convert-result-table-to-json-array-in-mysql
 
 
-		return view('tenant.documentations.index');
+		//return view('tenant.documentations.index');
 
+
+		Log::debug('Value of config(app.name)=' . config('app.name'));
+		Log::debug('Value of env(APP_NAME)=' . env('APP_NAME'));
 
 		Log::debug('Value of config(app.domain)=' . config('app.domain'));
-		Log::debug('Value of env(APP_DOMAIN)=' . env('APP_DOMAIN'));
+		Log::debug('Value of env(APP_DOMAIN)=' . config('app.domain'));
 
 		Log::debug('Value of config(app.url)=' . config('app.url'));
 		Log::debug('Value of env(APP_URL)=' . env('APP_URL'));
 
+		Log::debug('Value of config(app.asset_url)=' . config('app.asset_url'));
 		Log::debug('Value of env(ASSET_URL)=' . env('ASSET_URL'));
+
 
 		echo "Done";
 		exit;

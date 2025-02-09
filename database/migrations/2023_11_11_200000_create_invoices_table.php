@@ -35,7 +35,6 @@ return new class extends Migration
 			$table->decimal('tax',19, 2)->default(0);
 			$table->decimal('vat',19, 2)->default(0);
 			$table->decimal('amount',19, 2)->default(0);
-		   // $table->boolean('posted')->default(true);
 			$table->decimal('org_amount',19, 2)->default(0);	// before apply any discount
 			$table->decimal('amount_paid',19, 2)->default(0);
 			$table->date('pay_date')->nullable()->useCurrent();

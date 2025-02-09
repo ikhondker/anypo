@@ -21,7 +21,7 @@
 	<meta name="author" content="Iqbal H Khondker">
 
 	<!-- Title -->
-	<title>@yield('title', env('APP_NAME'))</title>
+	<title>@yield('title', config('app.name'))</title>
 
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}">
@@ -45,7 +45,7 @@
 				<div class="sidebar-brand">
 					@auth
 						<a class="" href="{{ route('home') }}">
-							<img src="{{ Storage::disk('s3t')->url('logo/'.$_setup->logo) }}" width="90px" height="90px" alt="{{ $_setup->name }}"/>
+							<img class="me-2 mb-2" src="{{ Storage::disk('s3t')->url('logo/'.$_setup->logo) }}" width="90px" height="90px" alt="{{ $_setup->name }}"/>
 							<h4 class="text-info">{{ $_setup->name}}</h4>
 						</a>
 						<a class="" href="{{ route('users.profile') }}">
@@ -54,8 +54,8 @@
 						{{-- <p class="small text-muted m-0 p-0">{{ auth()->user()->email }}</p> --}}
 					@endauth
 					@guest
-						<img src="{{ Storage::disk('s3t')->url('logo/logow.png') }}" width="90px" height="90px" class="me-2 mb-2" alt="{{ $_setup->name }}"/>
-						<h4 class="text-info">{{ env('APP_NAME') }}</h4>
+						<img class="me-2 mb-2" src="{{ Storage::disk('s3t')->url('logo/logow.png') }}" width="90px" height="90px" class="me-2 mb-2" alt="{{ $_setup->name }}"/>
+						<h4 class="text-info">{{ config('app.name') }}</h4>
 						<h6 class="text-danger">Guest!</h6>
 					@endguest
 				</div>

@@ -32,14 +32,14 @@ class SpendsByProjectBar extends Component
 		// 2. Dutch Field final
 		// "#dc0ab4" "#0bb4ff", "#50e991", "#e6d800", "#9b19f5","00bfa0"
 
-        $this->projects = Project::with("pm")->where('closed', false);
+		$this->projects = Project::with("pm")->where('closed', false);
 
-        // HoD sees only his projects
-        if (auth()->user()->role->value == UserRoleEnum::HOD->value){
+		// HoD sees only his projects
+		if (auth()->user()->role->value == UserRoleEnum::HOD->value){
 			$this->projects = $this->projects->where('dept_id', auth()->user()->dept_id);
 		}
 
-        $this->projects = $this->projects->orderBy('id', 'DESC')->limit(10)->get();
+		$this->projects = $this->projects->orderBy('id', 'DESC')->limit(10)->get();
 
 		foreach ($this->projects as $project){
 			//Log::debug('Value of id=' . $project->name . ' -> '.$project->amount);

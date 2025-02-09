@@ -20,7 +20,7 @@
 							<input type="text" class="form-control" id="datatables-topic-search"
 								minlength=3 name="term"
 								value="{{ old('term', request('term')) }}" id="term"
-								placeholder="Search topics…" required>
+								placeholder="Search tags" required>
 							<button class="btn" type="submit">
 								<i data-lucide="search"></i>
 							</button>

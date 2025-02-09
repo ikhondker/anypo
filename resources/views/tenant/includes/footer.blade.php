@@ -29,7 +29,7 @@
 						<a class="text-muted" href="{{ route('cps.ui') }}" target="_blank">UI</a> |
 						Laravel v{{ app()->version() }} (PHP v{{ phpversion() }})
 					@endif
-					<script>document.write(new Date().getFullYear())</script> © <a href="https://anypo.net/" target="_blank" class="text-reset">{{ env('APP_NAME') }}</a></p>
+					<script>document.write(new Date().getFullYear())</script> © <a href="https://anypo.net/" target="_blank" class="text-reset">{{ config('app.name') }}</a></p>
 				</p>
 			</div>
 		</div>

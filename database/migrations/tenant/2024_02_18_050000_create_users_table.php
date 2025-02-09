@@ -32,7 +32,7 @@ return new class extends Migration
 			$table->string('city')->nullable();
 			$table->string('state')->nullable();
 			$table->string('zip')->nullable();
-			$table->string('country',2)->default('US');
+			$table->string('country',2)->default('CA');
 			$table->string('website')->nullable();
 			$table->string('facebook')->nullable();
 			$table->string('linkedin')->nullable();

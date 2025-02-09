@@ -339,7 +339,7 @@ class CreateTenant implements ShouldQueue
 		Log::debug("Jobs.Landlord.CreateTenant.createTenantDb checkout->site = ".$checkout->site);
 
 		$domain_id 	= $checkout->site;
-		$domain 	= $domain_id . '.' . env('APP_DOMAIN');
+		$domain 	= $domain_id . '.' . config('app.domain');
 		Log::debug("Jobs.Landlord.CreateTenant.createTenantDb domain_id = ".$domain_id);
 		Log::debug("Jobs.Landlord.CreateTenant.createTenantDb domain = ".$domain);
 

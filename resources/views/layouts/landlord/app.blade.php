@@ -38,12 +38,12 @@
 					@auth
 						@if ($_landlord_user->account_id <> '')
 							<a class="" href="{{ route('home') }}">
-								<img class="rounded-circle rounded me-2 mb-2" src="{{ Storage::disk('s3l')->url('logo/'.$_landlord_user->account->logo) }}" width="90px" height="90px" alt="Logo"/>
+								<img class="me-2 mb-2" src="{{ Storage::disk('s3l')->url('logo/'.$_landlord_user->account->logo) }}" width="90px" height="90px" alt="Logo"/>
+								<h6 class="text-muted">[{{ $_landlord_user->account->name }}]</h6>
 							</a>
-							<h6 class="text-muted">[{{ $_landlord_user->account->name }}]</h6>
 						@else
 							<a class="" href="{{ route('home') }}">
-								<img class="rounded-circle rounded me-2 mb-2" src="{{ Storage::disk('s3l')->url('logo/logow.svg') }}" width="90px" height="90px" alt="Logo"/>
+								<img class="me-2 mb-2" src="{{ Storage::disk('s3l')->url('logo/logow.svg') }}" width="90px" height="90px" alt="Logo"/>
 							</a>
 							<a class="" href="{{ route('users.profile') }}">
 								<h6 class="text-muted">[{{ Str::limit(auth()->user()->name, 25, '...') }}]</h6>
@@ -52,7 +52,7 @@
 					@endauth
 					@guest
 						<img src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" width="90px" height="90px" class="rounded-circle rounded me-2 mb-2" alt="Logo"/>
-						<h4 class="text-info">{{ env('APP_NAME') }}</h4>
+						<h4 class="text-info">{{ config('app.name') }}</h4>
 						<h6 class="text-danger">Welcome Guest!</h6>
 					@endguest
 				</div>
@@ -174,7 +174,7 @@
 						</div>
 						<div class="col-6 text-end">
 							<p class="mb-0">
-								&copy;{{ date('Y') }} <a href="{{ route('home') }}" class="text-primary">{{ env('APP_NAME') }}</a>. All rights reserved.
+								&copy;{{ date('Y') }} <a href="{{ route('home') }}" class="text-primary">{{ config('app.name') }}</a>. All rights reserved.
 							</p>
 						</div>
 					</div>

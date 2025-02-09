@@ -93,7 +93,7 @@
 
 							<div class="row mb-2 mb-xl-3">
 								<div class="col-auto d-none d-sm-block">
-									<h3 class="mb-3"><i class="align-middle text-muted" data-lucide="grid"></i> @yield('title', env('APP_NAME'))</h3>
+									<h3 class="mb-3"><i class="align-middle text-muted" data-lucide="grid"></i> @yield('title', config('app.name'))</h3>
 								</div>
 								<div class="col-auto ms-auto text-end mt-n1">
 									{{-- <a href="{{ route('tickets.create') }}" class="btn btn-primary shadow-sm float-end me-1">

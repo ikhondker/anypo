@@ -12,6 +12,7 @@ use App\Models\Tenant\Budget;
 use App\Models\Tenant\DeptBudget;
 use App\Models\Tenant\Lookup\Dept;
 
+use DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
@@ -28,46 +29,38 @@ class BudgetSeeder extends Seeder
 		//Schema::enableForeignKeyConstraints();
 		$faker = app(Generator::class);
 
+		// set dept budget amount
+		$amount = 100000;
+
 		// get year
 		$currentYear = date('Y');
-		Log::debug('tenenet.BudgetSeeder.run currentYear =' . $currentYear);
+		Log::debug('tenant.BudgetSeeder.run currentYear =' . $currentYear);
 		//TODO
 		// count dept
-		$count_dept = Dept::count();
-		Log::debug('tenenet.BudgetSeeder.run count_dept =' . $count_dept);
+		$count_dept = Dept::where('enable',true)->count();
+		Log::debug('tenant.BudgetSeeder.run count_dept =' . $count_dept);
 		// create budge for that year
-		// get CY budget id
-		// loop and creare dept budge for that year
-		$budgetCY = [
-			[
-				'fy'			=> '2025',
-				'name'			=> 'Budget for 2025',
-				'start_date'	=> Carbon::parse('2025-01-01'),
-				'end_date'		=> Carbon::parse('2025-12-31'),
-				'amount'		=> 400000, //TODO remove
-				'notes'			=> 'Budget for 2025',
-				'bg_color'		=> 'primary',
-			],
-		];
-
-		// $projects = Project::orderBy('id', 'ASC')->get();
-		// foreach ($projects as $project) {
-			// $pr = new PrController();
-			// $pr1001 = Pr::where('id', '1001')->firstOrFail();
-			// $result = $pr->recalculate($pr1001);
-			// $pr1002 = Pr::where('id', '1002')->firstOrFail();
-			// $result = $pr->recalculate($pr1002);
-			// $pr1003 = Pr::where('id', '1003')->firstOrFail();
-			// $result = $pr->recalculate($pr1003);
-
-			// Approve 1 pr
-			// $pr1001->auth_status	= AuthStatusEnum::APPROVED->value;
-			// $pr1001->auth_date		= date('Y-m-d H:i:s');
-			// $pr1001->auth_user_id	= $sys->id;
-			//$pr1001->save();
-		//}
+		$budget = Budget::create([
+			'fy'			=> $currentYear,
+			'name'			=> 'Budget for '.$currentYear. ' (Seeded)',
+			'start_date'	=> Carbon::parse($currentYear.'-01-01'),
+			'end_date'		=> Carbon::parse($currentYear.'-12-31'),
+			'amount'		=> $amount * $count_dept,
+			'notes'			=> 'Budget for '.$currentYear. '.  Seeded. Please edit as necessary.',
+			'bg_color'		=> 'primary',
+		]);
+		Log::debug('tenant.BudgetSeeder.run created budget_id =' . $budget->id);
 
 
-		//Budget::insert($budgets25);
+		// insert dept_budgets lines
+		$sql= "INSERT INTO dept_budgets(
+			budget_id, dept_id, amount, notes)
+		SELECT ".
+			$budget->id.",id, ".$amount.", 'Seeded. Please edit as necessary.'
+			FROM depts
+			WHERE enable = 1";
+		//Log::debug('tenant.BudgetSeeder.run created sql =' . $sql);
+		DB::INSERT($sql);
+
 	}
 }

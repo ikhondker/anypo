@@ -23,6 +23,7 @@ class TenantSeeder extends Seeder
 		public function run(): void
 		{
 		$this->call(\Database\Seeders\UserSeeder::class);
+
 		// Make sure SetupSeeder runs after UserSeeder as sys_user_id will be generated
 		$this->call(\Database\Seeders\SetupSeeder::class);
 
@@ -31,8 +32,6 @@ class TenantSeeder extends Seeder
 		$this->call(\Database\Seeders\CustomErrorSeeder::class);
 		$this->call(\Database\Seeders\MenuSeeder::class);
 
-		// Note:
-		$this->call(\Database\Seeders\Share\TemplateSeeder::class);
 
 		$this->call(\Database\Seeders\GroupSeeder::class);
 		$this->call(\Database\Seeders\CategorySeeder::class);

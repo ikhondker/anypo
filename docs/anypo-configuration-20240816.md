@@ -32,7 +32,7 @@ https://www.brevo.com/pricing/
 25. 0.25 demo request etc, bug request, ticket Topics, ReplyTemplate, ItemCategory add, UploadItem
 26. 0.26 Upgrade all component to latest, Timestamp action, testing, LandlordSync, remove FontAwsome, demo limitations, seeded to backend, status icon landlord and tenant, rewrite export using phpspreadsheet pkg, merge all export in export Controller and parameterized
 27. 0.27 Entity lowercase and sync with Model Name, bg_color form dept and budget, others,who column fixed, anonymous add, move EntityEnum ad merge, re-write documentation, merge file attachments, installation invoice and amc invoice, system to sys, sysadmin to system, account_id for backend users, filter invoice by status and type , multiple IndexSupport actions, topic to tag
-28. [ongoing] added dept_id in project
+28. [ongoing] added dept_id in project,  env('APP_NAME') and env('APP_DOMAIN') and env('APP_URL')
 
 
 # 12. Key Configuration
@@ -114,14 +114,16 @@ G:\My Drive\Briefcase\lv-anypo\logo
 G:\My Drive\Briefcase\lv-anypo\graphics\avatar
 
 ## Landlord
-  logo.png (300x300) and logot.png (200x200) ,
+  logo.png (120x120)
+  logow.png (120x120)
+  logot.png (200x200) !
   logow.svg (landlord apps)
 
   D:\laravel\anypo\public\assets\logo - general user including logo in pdf
 
 ## Tenant
 	logo.png and logot.png
-	avatar.png
+	avatar.png 120x138
 
 
 # 7. Full refresh

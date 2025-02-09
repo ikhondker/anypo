@@ -39,7 +39,7 @@
 
 
 Call support {{ config('akk.SUPPORT_PHONE_NO') }}</a>
-{{ env('APP_NAME') }}
+{{ config('app.name') }}
 show
 <div class="card-actions float-end">
 	<a href="{{ route('depts.edit', $dept->id ) }}" class="btn btn-sm btn-light"><i data-lucide="edit"></i> Edit</a>

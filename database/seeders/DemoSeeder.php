@@ -30,7 +30,7 @@ use App\Models\Tenant\DeptBudget;
 use App\Enum\Tenant\AuthStatusEnum;
 
 use Faker\Generator;
-
+use Carbon\Carbon;
 use Str;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -44,6 +44,9 @@ class DemoSeeder extends Seeder
 		{
 
 			$faker = app(Generator::class);
+
+			// = Template Note Location =======================================================
+			$this->call(\Database\Seeders\Share\TemplateSeeder::class);
 
 			// = User =======================================================
 			$usersDemo = [
@@ -266,8 +269,8 @@ class DemoSeeder extends Seeder
 		Supplier::factory()->count(6)->create();
 
 
-        // = Budget =======================================================
-        $dummyBudgets = [
+		// = Budget =======================================================
+		$dummyBudgets = [
 			[
 				'fy'				=> '2023',
 				'name'				=> 'Budget for 2023',
@@ -341,8 +344,8 @@ class DemoSeeder extends Seeder
 		Budget::insert($budgets24);
 
 
-        // = DeptBudget =======================================================
-        $deptBudget23 = [
+		// = DeptBudget =======================================================
+		$deptBudget23 = [
 			[
 				'budget_id'			=> '1001',
 				'dept_id'			=> '1001',
@@ -665,6 +668,7 @@ class DemoSeeder extends Seeder
 
 		DeptBudget::insert($deptBudget23);
 		DeptBudget::insert($deptBudget24);
+		DeptBudget::insert($deptBudget25);
 
 
 		// = Project =======================================================

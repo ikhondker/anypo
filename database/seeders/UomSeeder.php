@@ -114,7 +114,7 @@ class UomSeeder extends Seeder
 			],
 		];
 		// TODO
-		Uom::insert($uoms_length);
+		//Uom::insert($uoms_length);
 
 		$uoms_mass = [
 			[
@@ -137,7 +137,7 @@ class UomSeeder extends Seeder
 			],
 		];
 		// TODO
-		Uom::insert($uoms_mass);
+		//Uom::insert($uoms_mass);
 
 		$uoms_capacity =[
 			[
@@ -154,7 +154,7 @@ class UomSeeder extends Seeder
 			],
 		];
 		// TODO
-		Uom::insert($uoms_capacity);
+		//Uom::insert($uoms_capacity);
 
 		$uoms_time = [
 			[
@@ -176,7 +176,7 @@ class UomSeeder extends Seeder
 				'bg_color'		=> 'warning',
 			],
 		];
-		Uom::insert($uoms_time);
+		//Uom::insert($uoms_time);
 
 	}
 }

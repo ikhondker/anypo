@@ -10,7 +10,7 @@ known width issue?
 https://stackoverflow.com/questions/45276778/select2-not-responsive-width-larger-than-container
 https://stackoverflow.com/questions/12683907/set-the-width-of-select2-input-through-angular-ui-directive
 
-sweetlater2 post confirmation
+sweetlalert2 post confirmation
 -----------------------------
 where? sweet-alert2.txt
 D:\laravel\anypo\resources\views\landlord\admin\invoices\generate.blade.php
@@ -34,6 +34,28 @@ Demo install limitation @if ($_setup->demo)
 		return redirect()->route('dashboards.index')->with('error', config('akk.MSG_DEMO'));
 	}
 
+
+app.name or app_name
+-----------------------------
+Use: config('app.name') config('app.domain') config('app.url')
+https://stackoverflow.com/questions/40026893/what-is-difference-between-use-envapp-env-configapp-env-or-appenviron
+In Short & up-to-date 2022:
+    use env() only in config files
+    use App::environment() for checking the environment (APP_ENV in .env).
+    use config('app.var') for all other env variables, ex: config('app.debug')
+
+    create own config files for your own ENV variables. Example:
+    In your .env:
+    MY_VALUE=foo
+    config('myconfig.myvalue') // will result in 'foo'
+[2025-02-08 18:32:06] local.DEBUG: Value of config('app.name')=anypo.net
+[2025-02-08 18:32:06] local.DEBUG: Value of env('APP_NAME')=anypo.net
+[2025-02-08 18:32:06] local.DEBUG: Value of config('app.domain')=localhost
+[2025-02-08 18:32:06] local.DEBUG: Value of env('APP_DOMAIN')=localhost
+[2025-02-08 18:32:06] local.DEBUG: Value of config('app.url')=http://localhost:8000
+[2025-02-08 18:32:06] local.DEBUG: Value of env('APP_URL')=http://localhost:8000
+[2025-02-08 18:32:06] local.DEBUG: Value of config('app.asset_url')=
+[2025-02-08 18:32:06] local.DEBUG: Value of env('ASSET_URL')=
 
 
 time ago

@@ -77,12 +77,11 @@
 						</td>
 					</tr>
 					<x-landlord.edit.notes value="{{ $user->notes }}"/>
-
+					<x-landlord.edit.save/>
 
 				</tbody>
 			</table>
 
-			<x-landlord.edit.save/>
 		</form>
 	</div>
 </div>

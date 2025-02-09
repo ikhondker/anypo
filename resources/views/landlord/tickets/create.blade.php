@@ -35,7 +35,7 @@
 					<tbody>
 						@if ( auth()->user()->isBackend() )
 							<tr>
-								<th>For User :</th>
+								<th width="25%">For User :</th>
 								<td>
 									<select class="form-control select2" data-toggle="select2" name="owner_id" required>
 										<option value=""><< User >> </option>
@@ -52,7 +52,7 @@
 							<input type="text" name="owner_id" id="owner_id" class="form-control" placeholder="ID" value="{{ auth()->user()->id }}" hidden>
 						@endif
 						<tr>
-							<th>Subject :</th>
+							<th width="25%">Subject :</th>
 							<td>
 								<input type="text" class="form-control @error('title') is-invalid @enderror"
 									name="title" id="title" placeholder="Subject"
@@ -70,9 +70,16 @@
 								<x-landlord.attachment.create />
 							</td>
 						</tr>
+						<x-landlord.create.save value="Ticket" />
+						<tr>
+							<th>&nbsp;</th>
+							<td>
+
+							</td>
+						</tr>
+
 					</tbody>
 				</table>
-				<x-landlord.create.save value="Ticket" />
 			</form>
 		</div>
 	</div>

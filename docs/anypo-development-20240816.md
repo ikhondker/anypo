@@ -118,7 +118,7 @@ app.php => 'domain' => env('APP_DOMAIN', 'localhost'),
 Log::debug("app.names= ".config('app.name') );
 Log::debug("app.domain= ".config('app.domain') );
 Log::debug("app.url= ".config('app.url') );
-D:\laravel\anypo\config/akk.php
+D:\laravel\anypo\config\akk.php
 ~~~
 
 # 4. Authorization, CRUD and Homepage

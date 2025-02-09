@@ -15,7 +15,7 @@
 				<tbody>
 
 					<tr>
-						<th>Comment :</th>
+						<th width="25%">Comment :</th>
 						<td>
 							<textarea class="form-control" rows="6" name="content" id="content" placeholder="Ticket Update ...">{{ old('content', 'Ticket Update ...') }}</textarea>
 							@error('content')
@@ -80,15 +80,13 @@
 							</td>
 						</tr>
 					@endif
-
+                    <x-landlord.create.save/>
 				</tbody>
 			</table>
-
-
-			<div class="mb-3 float-end">
+			{{-- <div class="mb-3 float-end">
 				<a class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Back" href="{{ url()->previous() }}"><i data-lucide="x-circle"></i> Back</a>
 				<button type="submit" id="submit" name="submit" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Save"><i data-lucide="save"></i> Update</button>
-			</div>
+			</div> --}}
 		</form>
 		<!-- Form -->
 	</div>

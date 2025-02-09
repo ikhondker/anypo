@@ -71,8 +71,8 @@ class CreateMonthlyInvoice implements ShouldQueue
 		Log::channel('bo')->info('jobs.landlord.CreateMonthlyInvoice Account #' . $this->account_id . ' Second inv start ' . $invoice->from_date . ' to date ' . $invoice->to_date . ' period= ' . $this->period);
 
 		$invoice->due_date		= $account->end_date;
-		$invoice->summary		= env('APP_DOMAIN'). ' - Your Invoice #'. $invoice->invoice_no;
-		$invoice->notes			= 'Subscription Invoice for Account #' . $account->id . ' For ' . $account->site .'.'. env('APP_DOMAIN');
+		$invoice->summary		= config('app.domain'). ' - Your Invoice #'. $invoice->invoice_no;
+		$invoice->notes			= 'Subscription Invoice for Account #' . $account->id . ' For ' . $account->site .'.'. config('app.domain');
 
 		// consider account level discount
 		Log::channel('bo')->info('jobs.landlord.CreateMonthlyInvoice account->discount = ' . $account->discount);

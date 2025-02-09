@@ -27,7 +27,8 @@ class AccountSeeder extends Seeder
 		$accounts = [
 			[
 				'id'				=> '1001',
-				'name'				=> config('app.name'),
+				//'name'				=> config('app.name'),
+				'name'				=> 'Master Site',
 				'site'				=> 'master',
 				'address1'			=> $faker->address,
 				'address2'			=> $faker->address,

@@ -75,7 +75,7 @@
 							<td>
 								<a class="text-muted" href="{{ route('tickets.show',$ticket->id) }}">
 									@if ( $ticket->status_code <> App\Enum\Landlord\TicketStatusEnum::CLOSED->value)
-										<i data-lucide="clock" class="text-info"></i>
+										<i data-lucide="clock" class="text-warning"></i>
 									@else
 										<i data-lucide="check-circle" class="text-muted"></i>
 									@endif
@@ -105,7 +105,7 @@
 								<a href="{{ route('tickets.show',$ticket->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="View"><i data-lucide="eye"></i> View</a>
 								<a href="{{ route('tickets.assign',$ticket->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="Assign">Assign</a>
+									data-bs-placement="top" title="Assign"><i data-lucide="user-check"></i> Assign</a>
 								<a href="{{ route('reports.pdf-ticket', $ticket->id) }}" class="text-body"
 									target="_blank" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="Download"><i class="align-middle" data-lucide="printer"></i></a>

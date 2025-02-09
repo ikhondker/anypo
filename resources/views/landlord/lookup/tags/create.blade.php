@@ -1,7 +1,7 @@
 @extends('layouts.landlord.app')
 @section('title','Tag')
 @section('breadcrumb')
-	<li class="breadcrumb-item"><a href="{{ route('topics.index') }}" class="text-muted">Tag</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('tags.index') }}" class="text-muted">Tag</a></li>
 	<li class="breadcrumb-item active">Create Tag</li>
 @endsection
 
@@ -22,10 +22,10 @@
 				<table class="table table-sm my-2">
 					<tbody>
 						<x-landlord.create.name/>
+						<x-landlord.edit.save/>
 					</tbody>
 				</table>
 
-				<x-landlord.edit.save/>
 			</form>
 		</div>
 	</div>

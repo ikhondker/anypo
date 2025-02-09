@@ -26,9 +26,9 @@
 					<tbody>
 						<x-landlord.edit.id-read-only :value="$tag->id"/>
 						<x-landlord.edit.name value="{{ $tag->name }}"/>
+						<x-landlord.edit.save/>
 					</tbody>
 				</table>
-				<x-landlord.edit.save/>
 			</form>
 		</div>
 	</div>

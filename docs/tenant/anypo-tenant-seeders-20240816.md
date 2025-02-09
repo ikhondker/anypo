@@ -10,12 +10,12 @@ php artisan tenants:migrate-fresh --tenants=demo1
 
 
 >> seed ALL tenant table
-php artisan tenants:rollback --tenants='0e0b9a88-8f56-42bb-b7cc-3473ac811964'
-php artisan tenants:migrate --tenants='0e0b9a88-8f56-42bb-b7cc-3473ac811964'
-php artisan tenants:seed --class=TenantSeeder --tenants='0e0b9a88-8f56-42bb-b7cc-3473ac811964'
+php artisan tenants:rollback --tenants='63a88ac2-acaa-40d7-be76-2628abb8bfb9'
+php artisan tenants:migrate --tenants='63a88ac2-acaa-40d7-be76-2628abb8bfb9'
+php artisan tenants:seed --class=TenantSeeder --tenants='63a88ac2-acaa-40d7-be76-2628abb8bfb9'
 
-php artisan tenants:seed --class=ProjectSeeder --tenants='0e0b9a88-8f56-42bb-b7cc-3473ac811964'
-php artisan tenants:seed --class=BudgetSeeder --tenants='0e0b9a88-8f56-42bb-b7cc-3473ac811964'
+php artisan tenants:seed --class=ProjectSeeder --tenants='63a88ac2-acaa-40d7-be76-2628abb8bfb9'
+php artisan tenants:seed --class=BudgetSeeder --tenants='63a88ac2-acaa-40d7-be76-2628abb8bfb9'
 
 php artisan queue:listen
 php artisan tenants:seed --tenants=demo1
@@ -38,9 +38,9 @@ delete from attachments;
 Database\Seeders\Landlord\
 php artisan tenants:seed --class="Database\Seeders\Share\TemplateSeeder" --tenants=demo1
 
-php artisan tenants:seed --class=TimestampSeeder --tenants='0e0b9a88-8f56-42bb-b7cc-3473ac811964'
-php artisan tenants:seed --class=ExportSeeder --tenants='0e0b9a88-8f56-42bb-b7cc-3473ac811964'
-php artisan tenants:seed --class=MenuSeeder --tenants='0e0b9a88-8f56-42bb-b7cc-3473ac811964'
+php artisan tenants:seed --class=TimestampSeeder --tenants='63a88ac2-acaa-40d7-be76-2628abb8bfb9'
+php artisan tenants:seed --class=ExportSeeder --tenants='63a88ac2-acaa-40d7-be76-2628abb8bfb9'
+php artisan tenants:seed --class=MenuSeeder --tenants='63a88ac2-acaa-40d7-be76-2628abb8bfb9'
 
 php artisan tenants:seed --class=UserSeeder --tenants=demo1
 php artisan tenants:seed --class=SetupSeeder --tenants=demo1
@@ -78,10 +78,10 @@ php artisan tenants:seed --class=ItemSeeder --tenants=demo1
 php artisan tenants:seed --class=BudgetSeeder --tenants=demo1
 php artisan tenants:seed --class=DeptBudgetSeeder --tenants=demo1 !! revision issue
 
-php artisan tenants:seed --class=PrSeeder --tenants'0e0b9a88-8f56-42bb-b7cc-3473ac811964
+php artisan tenants:seed --class=PrSeeder --tenants'63a88ac2-acaa-40d7-be76-2628abb8bfb9
 php artisan tenants:seed --class=PrlSeeder --tenants=demo1
 
-php artisan tenants:seed --class=PoSeeder --tenants'0e0b9a88-8f56-42bb-b7cc-3473ac811964
+php artisan tenants:seed --class=PoSeeder --tenants'63a88ac2-acaa-40d7-be76-2628abb8bfb9
 php artisan tenants:seed --class=PolSeeder --tenants=demo1
 
 php artisan tenants:seed --class=ReceiptSeeder --tenants=demo1

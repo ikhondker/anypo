@@ -232,7 +232,7 @@
 				<img src="{{ Str::replace('\\','/',Storage::disk('s3l')->url('logo/logot.png')) }}"/>
 			</div>
 			<div id="company">
-				<h2 class="name">{{ env('APP_NAME')}}</h2>
+				<h2 class="name">{{ config('app.name')}}</h2>
 				<div>{{ $config->address1.', '. $config->address2 }}</div>
 				<div>{{ $config->city.', '.$config->state.', '.$config->zip. ', '.$config->country }}</div>
 				<div>{{ $config->cell }}</div>

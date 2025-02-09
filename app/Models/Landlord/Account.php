@@ -70,7 +70,7 @@ class Account extends Model
 
 	public function scopeByUser(Builder $query): void
 	{
-		$query->where('owner_id', auth()->user()->id)->where('posted', true);
+		$query->where('owner_id', auth()->user()->id);
 	}
 
 	/* ---------------- HasMany ---------------------- */

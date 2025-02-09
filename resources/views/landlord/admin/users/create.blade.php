@@ -39,9 +39,9 @@
 								</td>
 							</tr>
 						@endif
+						<x-landlord.create.save value="User" />
 					</tbody>
 				</table>
-				<x-landlord.create.save value="User" />
 			</form>
 		</div>
 	</div>

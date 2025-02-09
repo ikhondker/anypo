@@ -8,6 +8,8 @@ use App\Models\Landlord\Manage\TicketTag;
 use App\Http\Requests\Landlord\Manage\StoreTicketTagRequest;
 use App\Http\Requests\Landlord\Manage\UpdateTicketTagRequest;
 
+use Illuminate\Support\Facades\Log;
+
 class TicketTagController extends Controller
 {
 	/**
@@ -63,12 +65,12 @@ class TicketTagController extends Controller
 	 */
 	public function destroy(TicketTag $ticketTag)
 	{
-		$this->authorize('delete', $ticketTopic);
+		$this->authorize('delete', $ticketTag);
 
-		$ticket_id 		= $ticketTopic->ticket_id;
+		$ticket_id 		= $ticketTag->ticket_id;
 
-		Log::debug('landlord.TicketTopicController.destroy ticket_topic_id= ' . $ticketTopic->id);
-		$ticketTopic->delete();
-		return redirect()->route('tickets.topics',$ticket_id )->with('success', 'Topic deleted.');
+		Log::debug('landlord.TicketTopicController.destroy ticket_topic_id= ' . $ticketTag->id);
+		$ticketTag->delete();
+		return redirect()->route('tickets.tags',$ticket_id )->with('success', 'Tags deleted.');
 	}
 }

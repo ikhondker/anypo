@@ -29,7 +29,7 @@
 				<table class="table table-sm my-2">
 					<tbody>
 						<tr>
-							<th>Current Plan :</th>
+							<th width="25%">Current Plan :</th>
 							<td><strong>{{ $account->primaryProduct->name }}</strong></td>
 						</tr>
 						<tr>
@@ -43,8 +43,9 @@
 								<div class="form-check mb-3">
 									<input type="radio" id="formRadio1" class="form-check-input" name="period" value="1">
 									<label class="form-check-label" for="formRadio1">
-										<strong>1 Months </strong> <br>
-										{{ number_format($account->price,2,'.') }}USD</label>
+										<strong>1 Months </strong>
+										({{ number_format($account->price,2,'.') }}USD)
+									</label>
 								</div>
 								<!-- End Checkbox -->
 
@@ -52,9 +53,9 @@
 								<div class="form-check mb-3">
 									<input type="radio" id="formRadio1" class="form-check-input" checked name="period" value="3">
 									<label class="form-check-label" for="formRadio1">
-										<strong>3 Months</strong><br>
-										<del class="text-danger">{{ number_format($account->price * 3, 2) }} USD</del>
-										{{ number_format(3 * $account->price * (100-$config->discount_pc_3)/100, 2) }} USD
+										<strong>3 Months</strong>
+										(<del class="text-danger">{{ number_format($account->price * 3, 2) }} USD</del>
+										{{ number_format(3 * $account->price * (100-$config->discount_pc_3)/100, 2) }} USD)
 									</label>
 									<div class="small text-muted">{{ number_format($config->discount_pc_3,2) }}% discount .</div>
 								</div>
@@ -64,9 +65,9 @@
 								<div class="form-check mb-3">
 									<input type="radio" id="formRadio2" class="form-check-input" name="period" value="6">
 									<label class="form-check-label" for="formRadio2">
-										<strong>6 Months</strong><br>
-										<del class="text-danger">{{ number_format($account->price * 6, 2) }} USD</del>
-										{{ number_format(6 * $account->price * (100-$config->discount_pc_6)/100, 2) }} USD
+										<strong>6 Months</strong>
+										(<del class="text-danger">{{ number_format($account->price * 6, 2) }} USD</del>
+										{{ number_format(6 * $account->price * (100-$config->discount_pc_6)/100, 2) }} USD)
 									</label>
 									<div class="small text-muted">{{ number_format($config->discount_pc_6,2) }}% discount .</div>
 								</div>
@@ -76,9 +77,9 @@
 								<div class="form-check mb-3">
 									<input type="radio" id="formRadio4" class="form-check-input" name="period" value="12">
 									<label class="form-check-label" for="formRadio4">
-										<strong>12 Months</strong><br>
-										<del class="text-danger">{{ number_format($account->price * 12, 2) }} USD</del>
-										{{ number_format(12 * $account->price * (100 - $config->discount_pc_12)/100, 2) }} USD
+										<strong>12 Months</strong>
+										(<del class="text-danger">{{ number_format($account->price * 12, 2) }} USD</del>
+										{{ number_format(12 * $account->price * (100 - $config->discount_pc_12)/100, 2) }} USD)
 									</label>
 									<div class="small text-muted">{{ number_format($config->discount_pc_12,2) }}% discount .</div>
 								</div>

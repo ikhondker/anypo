@@ -120,16 +120,16 @@ class InvoiceController extends Controller
 		switch ($invoice_type) {
 			case InvoiceTypeEnum::SETUP->value:
 				$product = Product::where('id', 1008)->first();
-				$notes			= 'Add-hoq Configuration Invoice for Account #' . $account->id . ' For ' . $account->site .'.'. env('APP_DOMAIN');
+				$notes			= 'Add-hoq Configuration Invoice for Account #' . $account->id . ' For ' . $account->site .'.'. config('app.domain');
 				break;
 			case InvoiceTypeEnum::SUPPORT->value:
 				$product = Product::where('id', 1009)->first();
-				$notes			= 'Add-hoq Priority Support Invoice for Account #' . $account->id . ' For ' . $account->site .'.'. env('APP_DOMAIN');
+				$notes			= 'Add-hoq Priority Support Invoice for Account #' . $account->id . ' For ' . $account->site .'.'. config('app.domain');
 
 				break;
 			case InvoiceTypeEnum::AMC->value:
 				$product = Product::where('id', 1010)->first();
-				$notes			= 'Add-hoq AMC Invoice for Account #' . $account->id . ' For ' . $account->site .'.'. env('APP_DOMAIN');
+				$notes			= 'Add-hoq AMC Invoice for Account #' . $account->id . ' For ' . $account->site .'.'. config('app.domain');
 
 				break;
 			default:
@@ -358,7 +358,7 @@ class InvoiceController extends Controller
 		if ($request->has('type')) {
 			$invoices->where('invoice_type', $request->query('type'));
 		}
-		//if(!empty($status)){
+
 		if ($request->has('status')) {
 			$invoices->where('status_code', $request->query('status'));
 		}
@@ -375,11 +375,16 @@ class InvoiceController extends Controller
 
 	public function post(Invoice $invoice)
 	{
-			$invoice->status_code	= InvoiceStatusEnum::DUE->value;
-			$invoice->save();
-			Log::debug('landlord.invoice.post Invoice Posted invoice_id = ' . $invoice->id);
-			EventLog::event('invoice', $invoice->id, 'post');
-			return redirect()->route('invoices.show', $invoice->id)->with('success', 'INVOICE #'. $invoice->id.' Posted successfully.');
+
+		if ($invoice->status_code <> InvoiceStatusEnum::DRAFT->value){
+			return redirect()->route('invoices.show',$invoice->id)->with('error', 'Sorry, you can only POST draft Invoices !');
+		}
+
+		$invoice->status_code	= InvoiceStatusEnum::DUE->value;
+		$invoice->save();
+		Log::debug('landlord.invoice.post Invoice Posted invoice_id = ' . $invoice->id);
+		EventLog::event('invoice', $invoice->id, 'post');
+		return redirect()->route('invoices.show', $invoice->id)->with('success', 'INVOICE #'. $invoice->id.' Posted successfully.');
 	}
 
 	/**

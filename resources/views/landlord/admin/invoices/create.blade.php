@@ -74,7 +74,7 @@
 								</td>
 							</tr>
 							<tr>
-								<th>Department :</th>
+								<th>Account :</th>
 								<td>
 									<select class="form-control select2" data-toggle="select2" name="account_id" required>
 										<option value=""><< Account >> </option>

@@ -34,7 +34,7 @@ return new class extends Migration
 			$table->string('cell')->nullable();
 			$table->foreignUuid('owner_id')->nullable()->constrained('users');
 			$table->foreignId('primary_product_id')->nullable()->constrained('products');
-			$table->string('logo')->nullable()->default('logow.svg');
+			$table->string('logo')->nullable()->default('logo.png');
 			// base columns
 			$table->integer('base_mnth')->default(0);
 			$table->integer('base_user')->default(1);
@@ -75,7 +75,7 @@ return new class extends Migration
 			$table->integer('tenant_count_pr')->default(0);		// only approved
 			$table->integer('tenant_count_po')->default(0); 	// only approved
 			$table->integer('tenant_count_grs')->default(0);
-			$table->integer('tenant_count_inv')->default(0); 	// only posted
+			$table->integer('tenant_count_inv')->default(0); 	// only posted i.e. due
 			$table->integer('tenant_count_pay')->default(0);
 			$table->boolean('tenant_enable')->default(true);
 			$table->string('rank')->default(RankEnum::C->value);

@@ -105,14 +105,14 @@
 					</form>
 					<!-- End Form -->
 
-					<p class="text-white-50">Product new features or big discounts. We never spam.</p>
+					<p class="small text-white-50">Product new features or big discounts. We never spam.</p>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-12">
 					<p class="text-white-50 mt-4 text-center mb-0">
 
-						<p class="text-white-50 small mb-0">&copy; {{ date('Y').' '. env('APP_NAME') }}. All rights reserved.
+						<p class="text-white-50 small mb-0">&copy; {{ date('Y').' '. config('app.name') }}. All rights reserved.
 							@auth
 								@if (auth()->user()->isSystem())
 									Laravel v{{ app()->version() }} (PHP v{{ phpversion() }})

@@ -17,7 +17,11 @@
 					<x-landlord.actions.ticket-actions ticketId="{{ $ticket->id }}"/>
 				@endif
 				<a href="{{ route('tickets.create') }}" class="btn btn-primary me-1"><i data-lucide="plus"></i> New Ticket</a>
-				<a href="{{ route('tickets.index') }}" class="btn btn-primary me-1"><i data-lucide="database"></i> View all</a>
+				@if (auth()->user()->isBackend())
+					<a href="{{ route('tickets.all') }}" class="btn btn-primary me-1"><i data-lucide="database"></i> View all</a>
+				@else
+					<a href="{{ route('tickets.index') }}" class="btn btn-primary me-1"><i data-lucide="database"></i> View all</a>
+				@endif
 				<a href="{{ route('reports.pdf-ticket', $ticket->id) }}" class="btn btn-primary me-1"><i data-lucide="printer"></i> Print</a>
 		@endslot
 	</x-landlord.page-header>
@@ -31,13 +35,13 @@
 			<div class="card-header">
 				<div class="card-actions float-end">
 				</div>
-				<h5 class="card-title text-danger mb-0">Support Details</h5>
+				<h5 class="card-title text-danger mb-0">Support Details (Only Visible to Support)</h5>
 			</div>
 			<div class="card-body pt-0">
 				<table class="table table-sm my-2">
 					<tbody>
 						<tr>
-							<th>Category :</th>
+							<th width="25%">Category :</th>
 							<td><span class="badge badge-subtle-success">{{ $ticket->category->name }}</span> </td>
 						</tr>
 						<tr>
