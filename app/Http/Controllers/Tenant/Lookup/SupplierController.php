@@ -224,7 +224,7 @@ class SupplierController extends Controller
 		$spreadsheet = new Spreadsheet();
 		$sheet = $spreadsheet->getActiveSheet();
 
-	   // $data = DB::select("SELECT id, name, address1, address2, contact_person, cell, city, zip, state, country, website, email, IF(enable, 'Yes', 'No') as Enable
+	    // $data = DB::select("SELECT id, name, address1, address2, contact_person, cell, city, zip, state, country, website, email, IF(enable, 'Yes', 'No') as Enable
 
 		$sheet->setCellValue('A1', 'ID#');
 		$sheet->setCellValue('B1', 'Name');

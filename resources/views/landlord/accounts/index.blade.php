@@ -70,9 +70,7 @@
 					<th>Billed</th>
 					<th>Last Bill Date</th>
 					<th>Next Inv No</th>
-
 					<th>Actions</th>
-
 				</tr>
 			</thead>
 			<tbody>

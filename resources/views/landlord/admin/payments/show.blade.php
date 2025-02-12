@@ -115,12 +115,13 @@
 						{{-- <p class="text-sm">
 							<strong>Extra note:</strong> Please send all items at the same time to the shipping address. Thanks in advance.
 						</p> --}}
-						<a class="btn btn-primary" href="javascript:;" onclick="window.print(); return false;">
-							<i data-lucide="printer"></i> Print This Receipt
+						{{-- <a class="btn btn-primary" href="javascript:;" onclick="window.print(); return false;">
+							<i data-lucide="printer"></i> Print This Payment
+						</a> --}}
+                        <a class="btn btn-primary" href="{{ route('reports.pdf-payment', $payment->id) }}">
+							<i data-lucide="printer"></i> Print This Payment
 						</a>
-
 					</div>
-
 				</div>
 			</div>
 

@@ -199,7 +199,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 	}
 	//$request->user()->sendEmailVerificationNotification();
 	//return back()->with('message', 'Verification link sent!');
-	return back()->with('success', 'Verification link sent! Please check your mail and clink on "Verify Email Address" link.');
+	return back()->with('success', 'Verification link sent! Please check your mail and clink on \"Verify Email Address\" link.');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 

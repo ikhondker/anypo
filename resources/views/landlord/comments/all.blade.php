@@ -1,7 +1,7 @@
 @extends('layouts.landlord.app')
 @section('title', 'Comments')
 @section('breadcrumb')
-	<li class="breadcrumb-item active">Comments</li>
+	<li class="breadcrumb-item active">All Comments</li>
 @endsection
 
 
@@ -59,7 +59,7 @@
 						<th>Attachment</th>
 						<th>Internal?</th>
 						<th>Comment By</th>
-						<th>Comment Date</th>
+						<th>Ticket Date</th>
 						<th>Ticket</th>
 						<th>Ticket Status</th>
 						<th>Actions</th>

@@ -26,7 +26,7 @@
 							<th width="30%">Photo</th>
 							<td>
 								<div class="">
-									<img src="{{ Storage::disk('s3l')->url('logo/'.$account->logo) }}" class="rounded-circle img-responsive mt-2" width="128" height="128" alt="{{ $account->name }}" title="{{ $account->name }}"/>
+									<img src="{{ Storage::disk('s3l')->url('logo/'.$account->logo) }}" class="img-responsive mt-2" width="128" height="128" alt="{{ $account->name }}" title="{{ $account->name }}"/>
 									<div class="mt-2">
 										<input type="file" id="file_to_upload" name="file_to_upload"
 										accept=".jpg,.jpeg,.png,.gif"

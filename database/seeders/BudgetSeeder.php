@@ -62,5 +62,7 @@ class BudgetSeeder extends Seeder
 		//Log::debug('tenant.BudgetSeeder.run created sql =' . $sql);
 		DB::INSERT($sql);
 
+        Log::debug('tenant.BudgetSeeder.run inserted into dept_budgets table.');
+
 	}
 }

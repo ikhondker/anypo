@@ -85,12 +85,17 @@ class AttachmentPolicy
 	 */
 	public function download(User $user, Attachment $attachment): bool
 	{
+
+
+		//Log::debug('policy user->id=' . $user->id);
+		//Log::debug('policy attachment->owner_id) =' .$attachment->owner_id) ;
+
 		switch (auth()->user()->role->value) {
 			case UserRoleEnum::USER->value:
 				return ($user->id == $attachment->owner_id) ;
 				break;
 			case UserRoleEnum::ADMIN->value:
-				return ($user->account_id == $attachment->id);
+				return ($user->account_id == $attachment->account_id);
 				break;
 			case UserRoleEnum::SUPPORT->value:
 				return true;

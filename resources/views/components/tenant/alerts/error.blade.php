@@ -4,9 +4,9 @@
 		<i data-lucide="alert-triangle" class="text-danger"></i>
 	</div>
 	<div class="alert-message">
-		<strong>Error!</strong> {{ $message }}
+		{{-- <strong>Error!</strong> {{ $message }} --}}
 		@if($errors->any())
-			<ul>
+			<ul class="m-0">
 				@foreach ($errors->all() as $error)
 					<li class="">{{ $error }}</li>
 				@endforeach

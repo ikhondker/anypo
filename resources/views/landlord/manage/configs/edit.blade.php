@@ -28,7 +28,7 @@
 									<th width="30%">Logo</th>
 									<td>
 										<div class="">
-											<img src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" class="rounded-circle img-responsive mt-2" width="128" height="128" alt="{{ $config->name }}" title="{{ $config->name }}"/>
+											<img src="{{ Storage::disk('s3l')->url('logo/logo.png') }}" class="img-responsive mt-2" width="128" height="128" alt="{{ $config->name }}" title="{{ $config->name }}"/>
 											<div class="mt-2">
 												<input type="file" id="file_to_upload" name="file_to_upload"
 												accept=".jpg,.jpeg,.png,.gif"
@@ -100,7 +100,7 @@
 						<table class="table table-sm my-2">
 							<tbody>
 								<tr>
-									<th>discount_pc_3 :</th>
+									<th>Discount (3 Months) % :</th>
 									<td>
 										<input type="number" class="form-control @error('discount_pc_3') is-invalid @enderror"
 										name="discount_pc_3" id="discount_pc_3" placeholder="Name"
@@ -112,7 +112,7 @@
 									</td>
 								</tr>
 								<tr>
-									<th>discount_pc_6 :</th>
+									<th>Discount (6 Months) % :</th>
 									<td>
 										<input type="number" class="form-control @error('discount_pc_6') is-invalid @enderror"
 										name="discount_pc_6" id="discount_pc_6" placeholder="Name"
@@ -125,7 +125,7 @@
 								</tr>
 
 								<tr>
-									<th>discount_pc_12 :</th>
+									<th>Discount (12 Months) % :</th>
 									<td>
 										<input type="number" class="form-control @error('discount_pc_12') is-invalid @enderror"
 										name="discount_pc_12" id="discount_pc_12" placeholder="Name"
@@ -138,7 +138,7 @@
 								</tr>
 
 								<tr>
-									<th>discount_pc_24 :</th>
+									<th>Discount (24 Months) % :</th>
 									<td>
 										<input type="number" class="form-control @error('discount_pc_24') is-invalid @enderror"
 										name="discount_pc_24" id="discount_pc_24" placeholder="Name"
@@ -185,10 +185,13 @@
 									@error('days_gen_bill')
 										<div class="small text-danger">{{ $message }}</div>
 									@enderror
+                                    <small class="muted">Generate Bill before expire</small>
 									</td>
 								</tr>
 								<tr>
-									<th>days_due :</th>
+									<th>Days Due :
+
+                                    </th>
 									<td>
 										<input type="number" class="form-control @error('days_due') is-invalid @enderror"
 										name="days_due" id="days_due" placeholder="Name"
@@ -197,10 +200,11 @@
 									@error('days_due')
 										<div class="small text-danger">{{ $message }}</div>
 									@enderror
+                                    <small class="muted">Mark as Due (Not used)</small>
 									</td>
 								</tr>
 								<tr>
-									<th>days_past_due :</th>
+									<th>Days Past Due :</th>
 									<td>
 										<input type="number" class="form-control @error('days_past_due') is-invalid @enderror"
 										name="days_past_due" id="days_past_due" placeholder="Name"
@@ -209,10 +213,11 @@
 									@error('days_past_due')
 										<div class="small text-danger">{{ $message }}</div>
 									@enderror
+                                    <small class="muted">Mark as Over Due (Not used)</small>
 									</td>
 								</tr>
 								<tr>
-									<th>Days days_archive :</th>
+									<th>Days Days Archive :</th>
 									<td>
 										<input type="number" class="form-control @error('days_archive') is-invalid @enderror"
 										name="days_archive" id="days_archive" placeholder="Name"
@@ -221,6 +226,7 @@
 									@error('days_archive')
 										<div class="small text-danger">{{ $message }}</div>
 									@enderror
+                                      <small class="muted">Mark as Archived (Not used)</small>
 									</td>
 								</tr>
 								<tr>
@@ -233,6 +239,7 @@
 									@error('days_addon_free')
 										<div class="small text-danger">{{ $message }}</div>
 									@enderror
+                                    <small class="muted">Add-on is added free AkkController</small>
 									</td>
 								</tr>
 							</tbody>
@@ -297,9 +304,8 @@
 										</div>
 									</td>
 								</tr>
-
 								<tr>
-									<th>Banner :</th>
+									<th>Banner  (NOT Working!):</th>
 									<td>
 										<label class="form-check form-switch" for="admin">
 											<input class="form-check-input mt-0" type="checkbox" id="banner" name="banner" @checked($config->banner)>

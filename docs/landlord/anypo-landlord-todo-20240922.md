@@ -3,10 +3,10 @@
 
 # 7. TODO - Open
 ====================================================================
-logo for backend user?
+how to disbale login in tenant withou set maintan mode
+x logo for backend user?
 Success! Verification link sent! Please check your mail and clink on &quot;Verify Email Address&quot; link.
 login top left
-invocie posted?
 allow purchased user to ask for setup service
 123. filter open ticket only
 123. allow filter only open ticket in all ticket page

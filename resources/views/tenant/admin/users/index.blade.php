@@ -134,8 +134,6 @@
 							@foreach ($users as $user)
 							<tr>
 								<td>
-									{{-- <x-tenant.list.my-avatar :avatar="$user->avatar"/> --}}
-									{{-- <img src="{{ url("tenant\\".tenant('id')."\\".config('akk.DIR_AVATAR') . $user->avatar) }}" width="48" height="48" class="rounded-circle me-2" alt="Avatar">		 --}}
 									<img src="{{ Storage::disk('s3t')->url('avatar/'.$user->avatar) }}" width="48" height="48" class="rounded-circle me-2" alt="Avatar">
 									@if ( (auth()->user()->role->value == UserRoleEnum::SYS->value) && $user->backend )
 										<a href="{{ route('users.show',$user->id) }}"><strong class="text-danger">{{ $user->name }}</strong></a>
@@ -161,9 +159,6 @@
 									</a>
 
 									@if(session('original_user'))
-										{{-- <a wire:ignore href="{{ route('users.leave-impersonate') }}" class="me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Leave Impersonate">
-											<i class="align-middle text-success" data-lucide="log-in"></i>
-										</a> --}}
 
 									@else
 										@can('impersonate', $user)

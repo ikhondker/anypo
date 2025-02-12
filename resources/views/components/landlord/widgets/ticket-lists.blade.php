@@ -17,16 +17,16 @@
 			<table class="table w-100">
 				<thead>
 					<tr>
-						<th class="align-middle">Ticket#</th>
-						<th class="align-middle">Subject</th>
-						<th class="align-middle">Requestor</th>
-						<th class="align-middle">Date</th>
+						<th>Ticket#</th>
+						<th>Subject</th>
+						<th>Requestor</th>
+						<th>Date</th>
 						@if ( auth()->user()->isBackend())
-							<th class="align-middle">Dept</th>
-							<th class="align-middle">Agent</th>
+							<th>Dept</th>
+							<th>Agent</th>
 						@endif
-						<th class="align-middle">Status</th>
-						<th class="align-middle text-end">Actions</th>
+						<th>Status</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -59,13 +59,12 @@
 							<td>
 								<x-landlord.list.my-badge value="{{ $ticket->status->name }}" badge="{{ $ticket->status->badge }}"/>
 							</td>
-							<td class="text-end">
+							<td>
 								<a href="{{ route('tickets.show',$ticket->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
-									data-bs-placement="top" title="View">View</a>
+									data-bs-placement="top" title="View"><i data-lucide="eye"></i> View</a>
 								@if ( auth()->user()->isBackend())
-									<a href="{{ route('tickets.assign',$ticket->id) }}" class="me-2"
-										data-bs-toggle="tooltip" data-bs-placement="top" title="Assign">
-										<i data-lucide="check-circle" class="text-danger"></i>
+                                <a href="{{ route('tickets.assign',$ticket->id) }}" class="btn btn-light" data-bs-toggle="tooltip"
+									data-bs-placement="top" title="Assign"><i data-lucide="user-check" class="text-danger"></i> Assign</a>
 								@endif
 								</a>
 							</td>

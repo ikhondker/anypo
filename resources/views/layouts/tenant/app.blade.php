@@ -68,7 +68,7 @@
 		</nav>
 		<div class="main">
 			@if ($_setup->demo)
-				<x-tenant.alerts.warning message="This is a Demo Instance" />
+				<x-tenant.alerts.warning message="This is a Demo Instance." />
 			@endif
 
 			<nav class="navbar navbar-expand navbar-bg">
@@ -264,7 +264,7 @@
 								<div class="alert alert-danger alert-outline alert-dismissible" role="alert">
 									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 									<div class="alert-icon">
-										<i data-feather="alert-triangle"></i>
+                                        <i data-lucide="info" class="text-white"></i>
 									</div>
 									<div class="alert-message text-danger px-4">
 										<strong class="text-danger">ANNOUNCEMENT!</strong> {!! nl2br($_setup->banner_message) !!}
@@ -283,7 +283,6 @@
 					</div>
 					<!-- END TENANT NOTICE -->
 
-					{{-- <h1 class="h3 mb-3">Blank Page</h1> --}}
 
 					@if ($_setup->freezed)
 						<!-- breadcrumb -->

@@ -48,11 +48,11 @@
 						<td>
 							@if ($service->addon && $service->enable)
 								<a href="{{ route('services.delete', $service->id) }}"
-									class="text-body sw2-advance" data-entity="AddOn"
+									class="btn btn-light sw2-advance" data-entity="AddOn"
 									data-name="{{ $service->name }}"
 									data-status="Remove" data-bs-toggle="tooltip"
 									data-bs-placement="top" title="Remove Add-On">
-									<i data-lucide="x-circle" class="text-danger"></i>
+									<i data-lucide="x-circle" class="text-danger"></i> Remove
 								</a>
 							@endif
 						</td>

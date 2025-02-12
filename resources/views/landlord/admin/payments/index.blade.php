@@ -73,7 +73,7 @@
 							<td>{{ $payment->id }}</td>
 							<td>
 								<a href="{{ route('payments.show', $payment->id) }}" class="text-muted">
-									<strong>{{ Str::limit($payment->summary, 20) }}</strong>
+									<strong>{{ Str::limit($payment->summary, 30) }}</strong>
 								</a>
 							</td>
 							<td><x-landlord.list.my-date :value="$payment->pay_date" /></td>

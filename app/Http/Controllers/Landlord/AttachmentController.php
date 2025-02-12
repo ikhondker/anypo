@@ -161,6 +161,8 @@ class AttachmentController extends Controller
 		$this->authorize('download', $attachment);
 
 		Log::debug('tenant.attachments.download Value of attachment_id = '. $attachment->id);
+        //Log::debug('tenant.attachments.download Value of attachment.owner_id = '. $attachment->owner_id);
+        //Log::debug('tenant.attachments.download Value of auth()->user()->id = '. auth()->user()->id);
 		Log::debug('tenant.attachments.download Value of file_name = '. $attachment->org_file_name);
 		Log::debug('tenant.attachments.download Value of entity = '. $attachment->entity);
 

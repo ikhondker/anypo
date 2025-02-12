@@ -19,7 +19,7 @@
 			<div class="card">
 				<div class="card-header">
 					<div class="card-actions float-end">
-						<a href="{{ route('configs.edit', $config->id) }}" class="btn btn-sm btn-light"><i data-lucide="edit"></i>Edit</a>
+						<a href="{{ route('configs.edit', $config->id) }}" class="btn btn-sm btn-light"><i data-lucide="edit"></i> Edit</a>
 					</div>
 					<h5 class="card-title">Configuration Overview</h5>
 					<h6 class="card-subtitle text-muted">Detail Information of your Configuration.</h6>

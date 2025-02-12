@@ -5,7 +5,7 @@
 
 				<div class="row">
 					<div class="col-md-6">
-						<img class="rounded-circle rounded me-2 mb-2" src="{{ Storage::disk('s3l')->url('logo/logot.png') }}" alt="Logo" width="120" height="120">
+						<img class="me-2 mb-2" src="{{ Storage::disk('s3l')->url('logo/logot.png') }}" alt="Logo" width="120" height="120">
 						{{-- <div class="text-muted">Payment No.</div>
 						<strong>741037024</strong> --}}
 					</div>
@@ -129,8 +129,11 @@
 					{{-- <p class="text-sm">
 						<strong>Extra note:</strong> Please send all items at the same time to the shipping address. Thanks in advance.
 					</p> --}}
-					<a class="btn btn-primary" href="javascript:;" onclick="window.print(); return false;">
+					{{-- <a class="btn btn-primary" href="javascript:;" onclick="window.print(); return false;">
 						<i data-lucide="printer"></i> Print This Invoice ***
+					</a> --}}
+                    <a class="btn btn-primary" href="{{ route('reports.pdf-invoice', $invoice->id) }}">
+						<i data-lucide="printer"></i> Print This Invoice
 					</a>
 
 				</div>

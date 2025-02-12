@@ -100,7 +100,7 @@ class PrController extends Controller
 		$prs = Pr::query();
 
 		if (request('term')) {
-			$prs =  $prs->where('summary', 'LIKE', '%' . request('term') . '%')
+			$prs = $prs->where('summary', 'LIKE', '%' . request('term') . '%')
 			->orWhere('id', 'Like', '%' . request('term') . '%');
 		}
 

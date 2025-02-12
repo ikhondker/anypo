@@ -61,9 +61,9 @@
 					<tr>
 						<th class="align-middle">#</th>
 						<th class="align-middle">Invoice #</th>
+						<th class="align-middle">Type</th>
 						<th class="align-middle">Summary</th>
 						<th class="align-middle">Invoice Date</th>
-						<th class="align-middle">Type</th>
 						<th class="align-middle">Amount $</th>
 						<th class="align-middle">Status</th>
 						<th class="align-middle">Actions</th>
@@ -80,13 +80,13 @@
 									<strong>#{{ Str::limit($invoice->invoice_no, 10) }}</strong>
 								</a>
 							</td>
+							<td><x-landlord.list.my-badge :value="$invoice->invoice_type" /></td>
 							<td>
 								<a href="{{ route('invoices.show', $invoice->id) }}" class="text-muted">
-									<strong>{{ Str::limit($invoice->summary, 20) }}</strong>
+									<strong>{{ Str::limit($invoice->summary, 30) }}</strong>
 								</a>
 							</td>
 							<td><x-landlord.list.my-date :value="$invoice->invoice_date" /></td>
-							<td><x-landlord.list.my-badge :value="$invoice->invoice_type" /></td>
 							<td><x-landlord.list.my-number :value="$invoice->amount" /></td>
 							<td><x-landlord.list.my-badge :value="$invoice->status->name" badge="{{ $invoice->status->badge }}" /></td>
 							<td>

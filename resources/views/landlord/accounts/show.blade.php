@@ -41,22 +41,30 @@
 					{{-- <strong>{{ $account->primaryProduct->name }}</strong> --}}
 					<div class="mb-1">
 						<span class="card-subtitle">Account Name :
-						<strong>{{ $account->name }}</strong></span>
+						<strong>{{ $account->name }}</strong>
+                        </span>
 					</div>
 					<div class="mb-1">
 						<span class="card-subtitle">Your plan :
-						<strong>{{ $account->primaryProduct->name }}</strong></span>
+						<strong>{{ $account->primaryProduct->name }}</strong>
+                        </span>
 					</div>
 					<div class="mb-1">
 						<span class="card-subtitle">Subscription :
-						<strong class="text-info">${{number_format($account->price, 2)}} USD/mo</strong></span>
+						<strong>${{number_format($account->price, 2)}} USD/mo</strong>
+                        </span>
 					</div>
 					<div class="mb-1">
 						<span class="card-subtitle">URL :
 							<strong>
-							<a href="https://{{ $account->site.'.'.config('app.domain') }}" target="_blank" class="text-info">{{ $account->site.'.'.config('app.domain') }}</a>
+							<a href="https://{{ $account->site.'.'.config('app.domain') }}" target="_blank">{{ $account->site.'.'.config('app.domain') }}</a>
 							</strong>
 						</span>
+					</div>
+                    <div class="mb-1">
+						<span class="card-subtitle">Expire Date :
+						    <strong><x-landlord.list.my-date value="{{ $account->end_date }}" /></strong>
+                        </span>
 					</div>
 				</div>
 			</div>
@@ -119,7 +127,7 @@
 
 	@if (auth()->user()->isBackend())
 		<div class="card">
-			<div class="card-header">
+			<div class="card-header bg-danger-subtle">
 				<div class="card-actions float-end">
 				</div>
 				<h5 class="card-title text-danger mb-0">Support Details</h5>

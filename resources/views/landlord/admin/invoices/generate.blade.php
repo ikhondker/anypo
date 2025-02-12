@@ -44,7 +44,7 @@
 									<input type="radio" id="formRadio1" class="form-check-input" name="period" value="1">
 									<label class="form-check-label" for="formRadio1">
 										<strong>1 Months </strong>
-										({{ number_format($account->price,2,'.') }}USD)
+										({{ number_format($account->price,2,'.') }} USD)
 									</label>
 								</div>
 								<!-- End Checkbox -->

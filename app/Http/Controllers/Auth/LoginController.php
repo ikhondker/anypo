@@ -96,7 +96,6 @@ class LoginController extends Controller
 
 	}
 
-
 	// IQBAL 9-sep-2022
 	// Added to overwrite the login credentials
 	protected function credentials(Request $request)

@@ -32,10 +32,10 @@
 
 	@if (auth()->user()->isBackend())
 		<div class="card">
-			<div class="card-header">
+			<div class="card-header bg-danger-subtle">
 				<div class="card-actions float-end">
 				</div>
-				<h5 class="card-title text-danger mb-0">Support Details (Only Visible to Support)</h5>
+				<h5 class="card-title text-danger mb-0">Support Details</h5>
 			</div>
 			<div class="card-body pt-0">
 				<table class="table table-sm my-2">

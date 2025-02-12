@@ -87,7 +87,7 @@ class CheckoutController extends Controller
 	 */
 	public function edit(Checkout $checkout)
 	{
-		$this->authorize('update', $checkout);
+		//$this->authorize('update', $checkout);
 		abort(403);
 	}
 

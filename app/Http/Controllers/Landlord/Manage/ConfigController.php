@@ -23,6 +23,7 @@ use App\Helpers\EventLog;
 # 10. Events
 # 11. Controller
 # 12. Seeded
+use Illuminate\Support\Facades\Log;
 # 13. FUTURE
 
 class ConfigController extends Controller
@@ -81,6 +82,7 @@ class ConfigController extends Controller
 		if ($request->has('maintenance')) {
 			//Checkbox checked
 			$request->merge(['maintenance' => 1]);
+            Log::error('landlord.manage.config.update Setting maintenance.');
 		} else {
 			//Checkbox not checked
 			$request->merge(['maintenance' => 0]);
@@ -89,6 +91,7 @@ class ConfigController extends Controller
 		if ($request->has('banner')) {
 			//Checkbox checked
 			$request->merge(['banner' => 1]);
+            Log::error('landlord.manage.config.update Setting banner.');
 		} else {
 			//Checkbox not checked
 			$request->merge(['banner' => 0]);
