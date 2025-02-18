@@ -35,6 +35,7 @@ https://www.brevo.com/pricing/
 28. [ongoing] added dept_id in project,  env('APP_NAME') and env('APP_DOMAIN') and env('APP_URL')
 
 
+If you have an account with us, you should receive a password reset email momentarily. Please check your inbox.
 # 12. Key Configuration
 ====================================================================
 ## landlord Helper\Landlord\FileUpload.php

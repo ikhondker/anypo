@@ -2,7 +2,13 @@
 # 3. TODO
 ====================================================================
 1.	demo access to user
-										<i data-feather="alert-triangle"></i>
+<i data-feather="alert-triangle"></i>
+Tick+paid
+INV/2024/2222
+print icon+view Details
+breaccum home icon only
+
+
 1. highlight circle in selected menu items
 2.	bug report in both landlord and tenant
 3.	xremove <i class="bi bi-cart-check"></i>
